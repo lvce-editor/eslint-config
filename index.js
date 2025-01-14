@@ -1,10 +1,12 @@
 import perfectionist from 'eslint-plugin-perfectionist'
 import eslint from '@eslint/js'
 import tseslint from 'typescript-eslint'
+import nodePlugin from 'eslint-plugin-n'
 
 export default tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
+  nodePlugin.configs['flat/recommended'],
   {
     ignores: [
       'dist',
@@ -27,6 +29,11 @@ export default tseslint.config(
       '@typescript-eslint/explicit-function-return-type': 'error',
       '@typescript-eslint/consistent-type-exports': 'error',
       '@typescript-eslint/consistent-type-imports': 'error',
+    },
+  },
+  {
+    rules: {
+      'n/prefer-node-protocol': 'error',
     },
   },
   {

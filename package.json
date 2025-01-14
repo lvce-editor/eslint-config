@@ -28,6 +28,7 @@
   "description": "",
   "dependencies": {
     "@eslint/js": "^9.18.0",
+    "eslint-plugin-n": "^17.15.1",
     "eslint-plugin-perfectionist": "^4.6.0",
     "typescript-eslint": "^8.20.0"
   },
