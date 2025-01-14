@@ -1,0 +1,44 @@
+{
+  "name": "@lvce-editor/eslint-config",
+  "version": "0.0.0-dev",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "type-check": "tsc -b",
+    "format": "prettier --write .",
+    "test": "echo ok",
+    "build": "node scripts/build.js",
+    "lint": "echo ok"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lvce-editor/eslint-config.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lvce-editor/eslint-config/issues"
+  },
+  "homepage": "https://github.com/lvce-editor/eslint-config#readme",
+  "description": "",
+  "dependencies": {
+    "@eslint/js": "^9.18.0",
+    "eslint-plugin-perfectionist": "^4.6.0",
+    "typescript-eslint": "^8.20.0"
+  },
+  "peerDependencies": {
+    "eslint": ">= 9"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.6",
+    "execa": "^9.5.2",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 150
+  }
+}
