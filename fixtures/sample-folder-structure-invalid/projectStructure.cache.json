@@ -1,6 +1,0 @@
-[
-  {
-    "filename": "/home/simon/Documents/levivilet/eslint-config/fixtures/sample-folder-structure-invalid/src/parts/Main/Other.ts",
-    "errorMessage": "🔥 File 'Other.ts' is invalid. 🔥\n\nAllowed names  = main.ts\nError location = ./src/parts/Main/Other.ts\n\n"
-  }
-]
