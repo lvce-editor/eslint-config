@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "src/main.ts:2",
+    "message": "Expected \"./a.ts\" to come before \"./b.ts\"."
+  }
+]
