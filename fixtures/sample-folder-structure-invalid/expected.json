@@ -1,6 +1,6 @@
 [
   {
-    "filePath": "src/parts/Main/Main.ts:1",
+    "filePath": "src/parts/Main/Other.ts:1",
     "message": "🔥 File 'Other.ts' is invalid. 🔥\n\nAllowed names  = main.ts\nError location = ./src/parts/Main/Other.ts\n\n"
   }
 ]
