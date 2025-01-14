@@ -33,7 +33,7 @@ export default tseslint.config(
   },
   {
     rules: {
-      'prefer-node-protocol': 'error',
+      'n/prefer-node-protocol': 'error',
     },
   },
   {
