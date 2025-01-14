@@ -1,6 +1,6 @@
 [
   {
     "filePath": "src/parts/Main/Main.ts:1",
-    "message": "🔥 The limit for the given selectors in the root of the file has been exceeded. 🔥\n\nSelector: 'interface', 'type', 'function', 'variable', 'arrowFunction', 'class', limit = 1, occurrences = 4.\n\n"
+    "message": "🔥 The limit for the given selectors in the root of the file has been exceeded. 🔥\n\nSelector: 'interface', 'type', 'function', 'arrowFunction', 'class', limit = 1, occurrences = 4.\n\n"
   }
 ]

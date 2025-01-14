@@ -38,7 +38,7 @@ const fileCompositionConfig = createFileComposition({
   filesRules: [
     {
       filePattern: '**/*.ts',
-      rootSelectorsLimits: [{ selector: ['interface', 'type', 'function', 'variable', 'arrowFunction', 'class'], limit: 1 }],
+      rootSelectorsLimits: [{ selector: ['interface', 'type', 'function', 'arrowFunction', 'class'], limit: 1 }],
       rules: [],
     },
   ],
