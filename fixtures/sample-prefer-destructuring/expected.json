@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "src/main.ts:6",
+    "message": "Use object destructuring."
+  }
+]

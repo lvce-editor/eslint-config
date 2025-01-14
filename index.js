@@ -34,6 +34,11 @@ export default tseslint.config(
   },
   {
     rules: {
+      'prefer-destructuring': ['error', { object: true, array: false }],
+    },
+  },
+  {
+    rules: {
       'n/prefer-node-protocol': 'error',
     },
   },
