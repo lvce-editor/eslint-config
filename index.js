@@ -5,8 +5,11 @@ import { createFileComposition, createFolderStructure, projectStructurePlugin } 
 import tseslint from 'typescript-eslint'
 import process from 'node:process'
 import { join } from 'node:path'
+import { mkdirSync } from 'node:fs'
 
 const root = process.cwd()
+
+mkdirSync(join(root, '.tmp'), { recursive: true })
 
 const folderStructureConfig = createFolderStructure({
   projectRoot: root,
@@ -135,7 +138,7 @@ export default tseslint.config(
   },
   {
     settings: {
-      'project-structure/cache-location': join(root, '.tmp', 'project-cache.json'),
+      'project-structure/cache-location': join(root, '.tmp'),
     },
   },
 )
