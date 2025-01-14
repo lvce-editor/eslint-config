@@ -52,6 +52,11 @@ export default tseslint.config(
     },
   },
   {
+    rules: {
+      'n/no-unpublished-import': 'off', // TODO enable this for some node packages, which don't bundle dependencies
+    },
+  },
+  {
     plugins: {
       perfectionist,
     },
