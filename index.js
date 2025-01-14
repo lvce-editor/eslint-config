@@ -3,10 +3,13 @@ import nodePlugin from 'eslint-plugin-n'
 import perfectionist from 'eslint-plugin-perfectionist'
 import { createFileComposition, createFolderStructure, projectStructurePlugin } from 'eslint-plugin-project-structure'
 import tseslint from 'typescript-eslint'
+import process from 'node:process'
+import { join } from 'node:path'
+
+const root = process.cwd()
 
 const folderStructureConfig = createFolderStructure({
-  // @ts-ignore
-  projectRoot: process.cwd(),
+  projectRoot: root,
   structure: [
     {
       name: 'src',
@@ -41,6 +44,14 @@ const fileCompositionConfig = createFileComposition({
 export default tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
+  {
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: root,
+      },
+    },
+  },
   nodePlugin.configs['flat/recommended'],
   {
     ignores: [
@@ -120,6 +131,11 @@ export default tseslint.config(
       // If you have many rules in a separate file.
       'project-structure/file-composition': ['error', fileCompositionConfig],
       'project-structure/folder-structure': ['error', folderStructureConfig],
+    },
+  },
+  {
+    settings: {
+      'project-structure/cache-location': join(root, '.tmp', 'project-cache.json'),
     },
   },
 )
