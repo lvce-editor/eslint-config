@@ -1,3 +1,6 @@
+.tmp
+result.json
+
 # Logs
 logs
 *.log
