@@ -5,6 +5,7 @@ import { createFileComposition, createFolderStructure, projectStructurePlugin } 
 import tseslint from 'typescript-eslint'
 
 const folderStructureConfig = createFolderStructure({
+  // @ts-ignore
   projectRoot: process.cwd(),
   structure: [
     {
