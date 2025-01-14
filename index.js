@@ -1,10 +1,33 @@
 import eslint from '@eslint/js'
 import nodePlugin from 'eslint-plugin-n'
 import perfectionist from 'eslint-plugin-perfectionist'
-import { createFileComposition, projectStructurePlugin } from 'eslint-plugin-project-structure'
+import { createFileComposition, createFolderStructure, projectStructurePlugin } from 'eslint-plugin-project-structure'
 import tseslint from 'typescript-eslint'
 
-export const fileCompositionConfig = createFileComposition({
+const folderStructureConfig = createFolderStructure({
+  projectRoot: process.cwd(),
+  structure: [
+    {
+      name: 'src',
+      children: [
+        {
+          name: '{camelCase}.ts',
+        },
+        {
+          name: 'parts',
+          children: [
+            {
+              name: '{PascalCase}',
+              children: [{ name: '{folderName}.ts' }],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+})
+
+const fileCompositionConfig = createFileComposition({
   filesRules: [
     {
       filePattern: '**/*.ts',
@@ -95,6 +118,7 @@ export default tseslint.config(
     rules: {
       // If you have many rules in a separate file.
       'project-structure/file-composition': ['error', fileCompositionConfig],
+      'project-structure/folder-structure': ['error', folderStructureConfig],
     },
   },
 )

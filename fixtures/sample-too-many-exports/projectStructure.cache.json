@@ -1,0 +1,6 @@
+[
+  {
+    "filename": "/home/simon/Documents/levivilet/eslint-config/fixtures/sample-too-many-exports/src/parts/Main/Main.ts",
+    "errorMessage": "🔥 File 'Main.ts' is invalid. 🔥\n\nAllowed names  = main.ts\nError location = ./src/parts/Main/Main.ts\n\n"
+  }
+]
