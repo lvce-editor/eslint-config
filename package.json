@@ -15,8 +15,10 @@
     "type": "git",
     "url": "git+https://github.com/lvce-editor/eslint-config.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "eslint-config"
+  ],
+  "author": "Lvce Editor",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/lvce-editor/eslint-config/issues"
