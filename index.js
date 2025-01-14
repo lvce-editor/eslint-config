@@ -1,7 +1,42 @@
-import perfectionist from 'eslint-plugin-perfectionist'
 import eslint from '@eslint/js'
-import tseslint from 'typescript-eslint'
 import nodePlugin from 'eslint-plugin-n'
+import perfectionist from 'eslint-plugin-perfectionist'
+import { createFileComposition, createFolderStructure, projectStructurePlugin } from 'eslint-plugin-project-structure'
+import tseslint from 'typescript-eslint'
+
+const folderStructureConfig = createFolderStructure({
+  // @ts-ignore
+  projectRoot: process.cwd(),
+  structure: [
+    {
+      name: 'src',
+      children: [
+        {
+          name: '{camelCase}.ts',
+        },
+        {
+          name: 'parts',
+          children: [
+            {
+              name: '{PascalCase}',
+              children: [{ name: '{FolderName}.ts' }],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+})
+
+const fileCompositionConfig = createFileComposition({
+  filesRules: [
+    {
+      filePattern: '**/*.ts',
+      rootSelectorsLimits: [{ selector: ['interface', 'type', 'function', 'variable', 'arrowFunction', 'class'], limit: 1 }],
+      rules: [],
+    },
+  ],
+})
 
 export default tseslint.config(
   eslint.configs.recommended,
@@ -74,6 +109,17 @@ export default tseslint.config(
           newlinesBetween: 'never',
         },
       ],
+    },
+  },
+  {
+    files: ['src/**/*.ts'],
+    plugins: {
+      'project-structure': projectStructurePlugin,
+    },
+    rules: {
+      // If you have many rules in a separate file.
+      'project-structure/file-composition': ['error', fileCompositionConfig],
+      'project-structure/folder-structure': ['error', folderStructureConfig],
     },
   },
 )

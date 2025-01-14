@@ -12,12 +12,8 @@ export default [
   },
   {
     rules: {
-      'n/prefer-node-protocol': [
-        'error',
-        {
-          version: '>=16.0.0',
-        },
-      ],
+      'project-structure/folder-structure': 'off',
+      'project-structure/file-composition': 'off',
     },
   },
 ]

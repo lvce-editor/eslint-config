@@ -10,4 +10,10 @@ export default [
       },
     },
   },
+  {
+    rules: {
+      'project-structure/file-composition': 'off',
+      'project-structure/folder-structure': 'off',
+    },
+  },
 ]
