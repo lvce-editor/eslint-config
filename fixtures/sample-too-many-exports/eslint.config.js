@@ -13,7 +13,6 @@ export default [
   {
     rules: {
       'project-structure/folder-structure': 'off',
-      'project-structure/file-composition': 'off',
     },
   },
 ]
