@@ -19,7 +19,7 @@ const folderStructureConfig = createFolderStructure({
           children: [
             {
               name: '{PascalCase}',
-              children: [{ name: '{folderName}.ts' }],
+              children: [{ name: '{FolderName}.ts' }],
             },
           ],
         },
