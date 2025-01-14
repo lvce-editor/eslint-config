@@ -1,7 +1,7 @@
 import { execa } from 'execa'
 import { readFile } from 'node:fs/promises'
 import { dirname } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { join } from 'path'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -12,7 +12,9 @@ const hasError = (file) => {
 }
 
 const parseFile = (file: any, root: string, name: string): readonly any[] => {
-  const relative = file.filePath.slice(root.length + 'fixtures'.length + 1 + name.length + 1)
+  const rootUri = pathToFileURL(root).toString()
+  const uri = pathToFileURL(file.filePath).toString()
+  const relative = uri.slice(rootUri.length + 'fixtures'.length + 1 + name.length + 1)
   const parsed: any[] = []
   for (const message of file.messages) {
     parsed.push({
