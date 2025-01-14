@@ -10,14 +10,4 @@ export default [
       },
     },
   },
-  {
-    rules: {
-      'n/prefer-node-protocol': [
-        'error',
-        {
-          version: '>=16.0.0',
-        },
-      ],
-    },
-  },
 ]
