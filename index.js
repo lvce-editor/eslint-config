@@ -44,7 +44,10 @@ const fileCompositionConfig = createFileComposition({
   ],
 })
 
-export default tseslint.config(
+/**
+ * @type {any}
+ */
+const defaultConfig = tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   {
@@ -55,7 +58,6 @@ export default tseslint.config(
       },
     },
   },
-  nodePlugin.configs['flat/recommended'],
   {
     ignores: [
       'dist',
@@ -88,11 +90,6 @@ export default tseslint.config(
   },
   {
     rules: {
-      'n/prefer-node-protocol': 'error',
-    },
-  },
-  {
-    rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/ban-ts-comment': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
@@ -103,11 +100,6 @@ export default tseslint.config(
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/restrict-template-expressions': 'off',
       '@typescript-eslint/require-await': 'off',
-    },
-  },
-  {
-    rules: {
-      'n/no-unpublished-import': 'off', // TODO enable this for some node packages, which don't bundle dependencies
     },
   },
   {
@@ -125,6 +117,25 @@ export default tseslint.config(
       ],
     },
   },
+)
+
+/**
+ * @type {any}
+ */
+export const recommendedNode = [
+  nodePlugin.configs['flat/recommended'],
+  {
+    rules: {
+      'n/prefer-node-protocol': 'error',
+      'n/no-unpublished-import': 'off', // TODO enable this for some node packages, which don't bundle dependencies
+    },
+  },
+]
+
+/**
+ * @type {any}
+ */
+export const recommendedFolderStructucture = [
   {
     files: ['src/**/*.ts'],
     plugins: {
@@ -141,4 +152,6 @@ export default tseslint.config(
       'project-structure/cache-location': join(root, '.tmp'),
     },
   },
-)
+]
+
+export default defaultConfig

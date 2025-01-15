@@ -1,3 +1,3 @@
-import config from '../../index.js'
+import * as config from '../../index.js'
 
-export default [...config]
+export default [...config.default, config.recommendedFolderStructure]
