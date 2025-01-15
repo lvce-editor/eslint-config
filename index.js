@@ -44,6 +44,9 @@ const fileCompositionConfig = createFileComposition({
   ],
 })
 
+/**
+ * @type {any}
+ */
 const defaultConfig = tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
@@ -116,6 +119,9 @@ const defaultConfig = tseslint.config(
   },
 )
 
+/**
+ * @type {any}
+ */
 export const recommendedNode = [
   nodePlugin.configs['flat/recommended'],
   {
@@ -126,6 +132,9 @@ export const recommendedNode = [
   },
 ]
 
+/**
+ * @type {any}
+ */
 export const recommendedFolderStructucture = [
   {
     files: ['src/**/*.ts'],
