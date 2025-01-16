@@ -1,11 +1,12 @@
 import eslint from '@eslint/js'
+import pluginJest from 'eslint-plugin-jest'
 import nodePlugin from 'eslint-plugin-n'
 import perfectionist from 'eslint-plugin-perfectionist'
 import { createFileComposition, createFolderStructure, projectStructurePlugin } from 'eslint-plugin-project-structure'
-import tseslint from 'typescript-eslint'
-import process from 'node:process'
-import { join } from 'node:path'
 import { mkdirSync } from 'node:fs'
+import { join } from 'node:path'
+import process from 'node:process'
+import tseslint from 'typescript-eslint'
 
 const root = process.cwd()
 
@@ -58,6 +59,7 @@ const defaultConfig = tseslint.config(
       },
     },
   },
+  pluginJest.configs['flat/recommended'],
   {
     ignores: [
       'dist',
