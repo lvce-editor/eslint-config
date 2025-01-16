@@ -79,10 +79,11 @@ const defaultConfig = tseslint.config(
   },
   {
     rules: {
-      '@typescript-eslint/explicit-function-return-type': 'error',
       '@typescript-eslint/consistent-type-exports': 'error',
       '@typescript-eslint/consistent-type-imports': 'error',
+      '@typescript-eslint/explicit-function-return-type': 'error',
       '@typescript-eslint/prefer-readonly-parameter-types': 'error',
+      'no-console': ['error', { allow: ['warn', 'error'] }],
     },
   },
   {
