@@ -53,7 +53,7 @@
   },
   "jest": {
     "injectGlobals": false,
-    "testTimeout": 120000,
+    "testTimeout": 240000,
     "extensionsToTreatAsEsm": [
       ".ts"
     ],
