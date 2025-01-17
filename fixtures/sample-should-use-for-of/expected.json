@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "src/parts/Add/Add.ts:3",
+    "message": "Use `for…of` instead of `.forEach(…)`"
+  }
+]

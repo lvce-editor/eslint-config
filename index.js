@@ -8,6 +8,7 @@ import { join } from 'node:path'
 import process from 'node:process'
 import tseslint from 'typescript-eslint'
 import packageJson from 'eslint-plugin-package-json/configs/recommended'
+import eslintPluginUnicorn from 'eslint-plugin-unicorn'
 
 const root = process.cwd()
 
@@ -118,6 +119,20 @@ const defaultConfig = tseslint.config(
   {
     files: ['**/package.json'],
     extends: [packageJson],
+  },
+  eslintPluginUnicorn.configs['flat/recommended'],
+  {
+    rules: {
+      'unicorn/filename-case': 'off',
+      'unicorn/prefer-event-target': 'off',
+      'unicorn/no-null': 'off',
+      'unicorn/prevent-abbreviations': 'off',
+      'unicorn/import-style': 'off',
+      'unicorn/no-useless-undefined': 'off',
+      'unicorn/switch-case-braces': 'off',
+      'unicorn/prefer-add-event-listener': 'off',
+      'unicorn/prefer-set-has': 'off',
+    },
   },
   {
     ignores: [
