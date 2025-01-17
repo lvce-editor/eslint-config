@@ -115,10 +115,10 @@ const defaultConfig = tseslint.config(
       },
     },
   },
-  // {
-  //   files: ['**/package.json'],
-  //   extends: [packageJson],
-  // },
+  {
+    files: ['**/package.json'],
+    extends: [packageJson],
+  },
   {
     ignores: [
       'dist',
