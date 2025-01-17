@@ -136,6 +136,7 @@ const defaultConfig = tseslint.config(
       'unicorn/prefer-add-event-listener': 'off',
       'unicorn/prefer-set-has': 'off',
       'unicorn/prefer-node-protocol': 'off',
+      'unicorn/prefer-ternary': 'off',
       'unicorn/new-for-builtins': 'off',
       'unicorn/prefer-at': 'off',
       'unicorn/prefer-math-trunc': 'off',
