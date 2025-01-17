@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "src/parts/Add/Add.ts:1",
+    "message": "Missing return type on function."
+  }
+]

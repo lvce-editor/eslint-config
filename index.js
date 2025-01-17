@@ -46,6 +46,7 @@ const fileCompositionConfig = createFileComposition({
   ],
 })
 
+tseslint.configs.recommendedTypeChecked
 /**
  * @type {any}
  */
