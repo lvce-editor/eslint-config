@@ -53,18 +53,6 @@ tseslint.configs.recommendedTypeChecked
 const defaultConfig = tseslint.config(
   {
     files: ['**/*.ts'],
-    extends: [
-      eslint.configs.recommended,
-      ...tseslint.configs.recommendedTypeChecked,
-      {
-        languageOptions: {
-          parserOptions: {
-            projectService: true,
-            tsconfigRootDir: root,
-          },
-        },
-      },
-    ],
     plugins: {
       perfectionist,
     },
@@ -77,6 +65,26 @@ const defaultConfig = tseslint.config(
           newlinesBetween: 'never',
         },
       ],
+    },
+  },
+  {
+    files: ['**/*.ts'],
+    extends: [
+      eslint.configs.recommended,
+      ...tseslint.configs.recommendedTypeChecked,
+      {
+        languageOptions: {
+          parserOptions: {
+            projectService: true,
+            tsconfigRootDir: root,
+          },
+        },
+      },
+    ],
+  },
+  {
+    files: ['**/*.ts'],
+    rules: {
       '@typescript-eslint/consistent-type-exports': 'error',
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/explicit-function-return-type': 'error',
@@ -107,10 +115,10 @@ const defaultConfig = tseslint.config(
       },
     },
   },
-  {
-    files: ['**/package.json'],
-    extends: [packageJson],
-  },
+  // {
+  //   files: ['**/package.json'],
+  //   extends: [packageJson],
+  // },
   {
     ignores: [
       'dist',
