@@ -61,6 +61,13 @@ const defaultConfig = tseslint.config(
   },
   pluginJest.configs['flat/recommended'],
   {
+    settings: {
+      jest: {
+        version: 29,
+      },
+    },
+  },
+  {
     ignores: [
       'dist',
       '.tmp',
