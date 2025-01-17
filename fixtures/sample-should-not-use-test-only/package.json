@@ -1,14 +1,14 @@
 {
   "name": "sample-folder-structure-invalid",
   "version": "1.0.0",
-  "main": "src/main.ts",
+  "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "author": "",
   "type": "module",
+  "main": "src/main.ts",
   "scripts": {
     "lint": "eslint .",
     "lint:ci": "eslint . --format json --output-file result.json"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "description": ""
+  }
 }

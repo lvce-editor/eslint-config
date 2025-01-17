@@ -7,6 +7,7 @@ import { mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 import process from 'node:process'
 import tseslint from 'typescript-eslint'
+import packageJson from 'eslint-plugin-package-json/configs/recommended'
 
 const root = process.cwd()
 
@@ -49,23 +50,65 @@ const fileCompositionConfig = createFileComposition({
  * @type {any}
  */
 const defaultConfig = tseslint.config(
-  eslint.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
   {
-    languageOptions: {
-      parserOptions: {
-        projectService: true,
-        tsconfigRootDir: root,
+    files: ['**/*.ts'],
+    extends: [
+      eslint.configs.recommended,
+      ...tseslint.configs.recommendedTypeChecked,
+      {
+        languageOptions: {
+          parserOptions: {
+            projectService: true,
+            tsconfigRootDir: root,
+          },
+        },
       },
+    ],
+    plugins: {
+      perfectionist,
+    },
+    rules: {
+      'perfectionist/sort-imports': [
+        'error',
+        {
+          type: 'natural',
+          order: 'asc',
+          newlinesBetween: 'never',
+        },
+      ],
+      '@typescript-eslint/consistent-type-exports': 'error',
+      '@typescript-eslint/consistent-type-imports': 'error',
+      '@typescript-eslint/explicit-function-return-type': 'error',
+      '@typescript-eslint/prefer-readonly-parameter-types': 'error',
+      'no-console': ['error', { allow: ['warn', 'error'] }],
+      'prefer-destructuring': ['error', { object: true, array: false }],
+
+      // off
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/ban-ts-comment': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      'no-case-declarations': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/restrict-template-expressions': 'off',
+      '@typescript-eslint/require-await': 'off',
+      '@typescript-eslint/no-unused-vars': 'off', // handled by typescript
     },
   },
-  pluginJest.configs['flat/recommended'],
   {
+    files: ['**/*.test.ts'],
+    extends: [pluginJest.configs['flat/recommended']],
     settings: {
       jest: {
         version: 29,
       },
     },
+  },
+  {
+    files: ['**/package.json'],
+    extends: [packageJson],
   },
   {
     ignores: [
@@ -83,50 +126,6 @@ const defaultConfig = tseslint.config(
       'eslint.config.js',
       'packages/text-search-worker/src/textSearchWorkerMain.ts',
     ],
-  },
-  {
-    rules: {
-      '@typescript-eslint/consistent-type-exports': 'error',
-      '@typescript-eslint/consistent-type-imports': 'error',
-      '@typescript-eslint/explicit-function-return-type': 'error',
-      '@typescript-eslint/prefer-readonly-parameter-types': 'error',
-      'no-console': ['error', { allow: ['warn', 'error'] }],
-    },
-  },
-  {
-    rules: {
-      'prefer-destructuring': ['error', { object: true, array: false }],
-    },
-  },
-  {
-    rules: {
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/ban-ts-comment': 'off',
-      '@typescript-eslint/no-unsafe-member-access': 'off',
-      '@typescript-eslint/no-unsafe-assignment': 'off',
-      '@typescript-eslint/no-unsafe-call': 'off',
-      '@typescript-eslint/no-unsafe-return': 'off',
-      'no-case-declarations': 'off',
-      '@typescript-eslint/no-unsafe-argument': 'off',
-      '@typescript-eslint/restrict-template-expressions': 'off',
-      '@typescript-eslint/require-await': 'off',
-      '@typescript-eslint/no-unused-vars': 'off', // handled by typescript
-    },
-  },
-  {
-    plugins: {
-      perfectionist,
-    },
-    rules: {
-      'perfectionist/sort-imports': [
-        'error',
-        {
-          type: 'natural',
-          order: 'asc',
-          newlinesBetween: 'never',
-        },
-      ],
-    },
   },
 )
 
