@@ -132,6 +132,7 @@ const defaultConfig = tseslint.config(
       'unicorn/switch-case-braces': 'off',
       'unicorn/prefer-add-event-listener': 'off',
       'unicorn/prefer-set-has': 'off',
+      'unicorn/prefer-node-protocol': 'off',
     },
   },
   {
