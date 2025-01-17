@@ -30,10 +30,11 @@
     "@eslint/js": "^9.18.0",
     "eslint-plugin-jest": "^28.11.0",
     "eslint-plugin-n": "^17.15.1",
+    "eslint-plugin-package-json": "^0.19.0",
     "eslint-plugin-perfectionist": "^4.6.0",
     "eslint-plugin-project-structure": "^3.13.1",
-    "typescript-eslint": "^8.20.0",
-    "eslint-plugin-package-json": "^0.19.0"
+    "eslint-plugin-unicorn": "^56.0.1",
+    "typescript-eslint": "^8.20.0"
   },
   "peerDependencies": {
     "eslint": ">= 9"
