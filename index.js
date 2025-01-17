@@ -115,6 +115,9 @@ const defaultConfig = tseslint.config(
         version: 29,
       },
     },
+    rules: {
+      '@typescript-eslint/only-throw-error': 'off',
+    },
   },
   {
     files: ['**/package.json'],
