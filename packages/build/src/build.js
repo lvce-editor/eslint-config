@@ -48,6 +48,10 @@ const getVersion = async () => {
   return getGitTagFromGit()
 }
 
+await execa(`npm`, ['run', 'build'], {
+  cwd: join(root, 'packages', 'rules'),
+})
+
 await rm(dist, { recursive: true, force: true })
 await mkdir(dist, { recursive: true })
 
