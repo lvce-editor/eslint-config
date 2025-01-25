@@ -6,5 +6,8 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "eslint": "^9.19.0"
+  }
 }
