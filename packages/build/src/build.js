@@ -1,10 +1,9 @@
 import { execa } from 'execa'
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import { bundleJs } from './bundleJs.js'
 import { root } from './root.js'
 
-const dist = join(root, '.tmp', 'dist')
+const dist = join(root, 'dist')
 
 const readJson = async (path) => {
   const content = await readFile(path, 'utf8')
@@ -52,23 +51,20 @@ const getVersion = async () => {
 await rm(dist, { recursive: true, force: true })
 await mkdir(dist, { recursive: true })
 
-await bundleJs()
-
 const version = await getVersion()
 
-const packageJson = await readJson(join(root, 'packages', 'text-search-worker', 'package.json'))
+const packageJson = await readJson(join(root, 'package.json'))
 
 delete packageJson.scripts
 delete packageJson.devDependencies
 delete packageJson.prettier
 delete packageJson.jest
-delete packageJson.xo
-delete packageJson.directories
-delete packageJson.nodemonConfig
 packageJson.version = version
-packageJson.main = 'dist/textSearchWorkerMain.js'
+packageJson.main = 'index.js'
 
 await writeJson(join(dist, 'package.json'), packageJson)
 
 await cp(join(root, 'README.md'), join(dist, 'README.md'))
+await cp(join(root, 'index.js'), join(dist, 'index.js'))
+await cp(join(root, 'index.d.ts'), join(dist, 'index.d.ts'))
 await cp(join(root, 'LICENSE'), join(dist, 'LICENSE'))
