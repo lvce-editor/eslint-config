@@ -203,6 +203,6 @@ export const recommendedFolderStructucture = [
   },
 ]
 
-export const recommendedTsconfig = [tsconfigPlugin]
+export const recommendedTsconfig = [...tsconfigPlugin]
 
 export default defaultConfig
