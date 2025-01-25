@@ -10,7 +10,9 @@ import tseslint from 'typescript-eslint'
 import packageJson from 'eslint-plugin-package-json/configs/recommended'
 import eslintPluginUnicorn from 'eslint-plugin-unicorn'
 // @ts-ignore
-import tsconfigPlugin from '../rules/dist/index.js'
+
+const uri = '../rules/dist/index.js'
+const tsconfigPlugin = (await import(uri)).default
 
 const root = process.cwd()
 
