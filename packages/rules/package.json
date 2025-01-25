@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "node --experimental-strip-types test/index.ts",
-    "postinstall": "npm run build",
+    "postinstall": "echo ok",
     "build": "esbuild src/index.ts --outfile=dist/index.js"
   },
   "keywords": [],
