@@ -127,7 +127,10 @@ const defaultConfig = tseslint.config(
     files: ['**/package.json'],
     extends: [packageJson],
   },
-  eslintPluginUnicorn.configs['flat/recommended'],
+  {
+    files: ['**/*.ts'],
+    ...eslintPluginUnicorn.configs['flat/recommended'],
+  },
   {
     files: ['**/*.ts'],
     rules: {
