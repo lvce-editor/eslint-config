@@ -2,10 +2,6 @@ import * as rule from '../src/tsconfig-strict.ts'
 import json from '@eslint/json'
 import { RuleTester } from 'eslint'
 
-//------------------------------------------------------------------------------
-// Tests
-//------------------------------------------------------------------------------
-
 const ruleTester = new RuleTester({
   plugins: {
     json,
