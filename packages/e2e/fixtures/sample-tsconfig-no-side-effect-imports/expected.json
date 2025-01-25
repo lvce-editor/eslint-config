@@ -1,6 +1,6 @@
 [
   {
-    "filePath": "src/main.ts:1",
-    "message": "All imports in the declaration are only used as types. Use `import type`."
+    "filePath": "tsconfig.json:2",
+    "message": "noUncheckedSideEffectImport rule should be enabled"
   }
 ]
