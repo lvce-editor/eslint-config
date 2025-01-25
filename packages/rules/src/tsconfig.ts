@@ -7,10 +7,10 @@ const rule = {
     fixable: 'code',
     schema: [],
   },
-  create(context) {
+  create(context: any) {
     return {
       // Performs action in the function on every variable declarator
-      VariableDeclarator(node) {
+      VariableDeclarator(node: any) {
         // Check if a `const` variable declaration
         if (node.parent.kind === 'const') {
           // Check if variable name is `foo`
@@ -30,7 +30,7 @@ const rule = {
                 data: {
                   notBar: node.init.value,
                 },
-                fix(fixer) {
+                fix(fixer: any) {
                   return fixer.replaceText(node.init, '"bar"')
                 },
               })
