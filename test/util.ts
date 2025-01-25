@@ -37,12 +37,13 @@ const parseResult = (root: string, name: string, result: any): readonly any[] =>
 }
 
 export const runFixture = async (name: string) => {
+  const fixturePath = join(root, 'fixtures', name)
   await execa(`npm`, ['run', 'lint:ci'], {
-    cwd: join(root, 'fixtures', name),
+    cwd: join(fixturePath),
     reject: false,
   })
-  const resultFilePath = join(root, 'fixtures', name, 'result.json')
-  const expectedJsonPath = join(root, 'fixtures', name, 'expected.json')
+  const resultFilePath = join(fixturePath, 'result.json')
+  const expectedJsonPath = join(fixturePath, 'expected.json')
   const expectedJsonContent = await readFile(expectedJsonPath, 'utf-8')
   const expected = JSON.parse(expectedJsonContent)
   const resultContent = await readFile(resultFilePath, 'utf-8')
