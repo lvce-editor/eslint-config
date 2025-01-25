@@ -6,5 +6,9 @@
   {
     "filePath": "tsconfig.json:2",
     "message": "forceConsistentCasingInFileNames rule should be enabled"
+  },
+  {
+    "filePath": "tsconfig.json:2",
+    "message": "strict mode should be enabled"
   }
 ]
