@@ -1,7 +1,7 @@
-import config from '../../index.js'
+import * as config from '../../packages/plugin/index.js'
 
 export default [
-  ...config,
+  ...config.default,
   {
     rules: {
       'project-structure/folder-structure': 'off',
