@@ -1,5 +1,5 @@
 {
-  "name": "sample-type-import-not-used",
+  "name": "sample-tsconfig-no-side-effect-imports",
   "version": "0.0.0-dev",
   "description": "",
   "license": "MIT",
