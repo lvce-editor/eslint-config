@@ -14,16 +14,28 @@ const plugin = {
   configs: {},
 }
 
-const recommended = {
-  plugins: {
-    tsconfig: plugin,
-    json,
+const recommended = [
+  {
+    plugins: {
+      json,
+    },
   },
-  rules: /** @type {const} */ {
-    'tsconfig/no-unchecked-side-effect-imports': 'error',
-    'tsconfig/force-consistent-casing-in-file-names': 'error',
+  {
+    files: ['**/*.json'],
+    language: 'json/json',
+    rules: {},
   },
-  files: ['**/*.json'],
-}
+  {
+    plugins: {
+      tsconfig: plugin,
+    },
+  },
+  {
+    rules: {
+      'tsconfig/no-unchecked-side-effect-imports': 'error',
+      'tsconfig/force-consistent-casing-in-file-names': 'error',
+    },
+  },
+]
 
 export default recommended
