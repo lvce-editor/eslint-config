@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "node --experimental-strip-types test/tsconfig.test.ts"
+    "test": "node --experimental-strip-types test/index.ts"
   },
   "keywords": [],
   "author": "",
