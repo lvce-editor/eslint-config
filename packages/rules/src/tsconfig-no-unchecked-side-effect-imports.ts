@@ -11,7 +11,6 @@ export const meta = {
 export const create = (context: any) => {
   return {
     Member(node: any) {
-      console.log(node)
       if (node.name.type === 'String' && node.name.value === 'compilerOptions' && node.value.type === 'Object') {
         const members = node.value.members
         for (const member of members) {

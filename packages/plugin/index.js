@@ -9,6 +9,10 @@ import process from 'node:process'
 import tseslint from 'typescript-eslint'
 import packageJson from 'eslint-plugin-package-json/configs/recommended'
 import eslintPluginUnicorn from 'eslint-plugin-unicorn'
+// @ts-ignore
+
+const uri = '../rules/dist/index.js'
+const tsconfigPlugin = (await import(uri)).default
 
 const root = process.cwd()
 
@@ -47,7 +51,6 @@ const fileCompositionConfig = createFileComposition({
   ],
 })
 
-tseslint.configs.recommendedTypeChecked
 /**
  * @type {any}
  */
@@ -199,5 +202,7 @@ export const recommendedFolderStructucture = [
     },
   },
 ]
+
+export const recommendedTsconfig = [tsconfigPlugin]
 
 export default defaultConfig
