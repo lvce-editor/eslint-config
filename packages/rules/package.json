@@ -2,6 +2,7 @@
   "name": "@lvce-editor/eslint-config-rules",
   "version": "0.0.0-dev",
   "main": "index.js",
+  "type": "module",
   "scripts": {},
   "keywords": [],
   "author": "",
