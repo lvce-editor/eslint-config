@@ -5,12 +5,12 @@
   "type": "module",
   "types": "index.d.ts",
   "scripts": {
-    "type-check": "tsc -b",
+    "build": "node packages/build/src/build.js",
     "format": "prettier --write .",
-    "test": "lerna run test",
-    "build": "node scripts/build.js",
     "lint": "echo ok",
-    "postinstall": "lerna bootstrap --ci"
+    "postinstall": "lerna bootstrap --ci",
+    "test": "lerna run test",
+    "type-check": "tsc -b"
   },
   "repository": {
     "type": "git",
