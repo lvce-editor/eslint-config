@@ -38,7 +38,7 @@ ruleTester.run('strict', rule, {
           line: 1,
           column: 23,
           endLine: 1,
-          endColumn: 57,
+          endColumn: 31,
         },
       ],
     },
