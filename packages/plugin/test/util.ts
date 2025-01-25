@@ -5,9 +5,9 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 import { join } from 'path'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const root = join(__dirname, '../')
+const root = join(__dirname, '..', '..', '..')
 
-const hasError = (file) => {
+const hasError = (file: any) => {
   return file.errorCount > 0
 }
 
