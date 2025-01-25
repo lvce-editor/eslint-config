@@ -13,7 +13,7 @@ const ruleTester = new RuleTester({
   language: 'json/json',
 })
 
-ruleTester.run('no-empty-keys', rule, {
+ruleTester.run('no-unchecked-side-effect-imports', rule, {
   valid: [
     {
       code: '{"compilerOptions": { "noUncheckedSideEffectImports": true }}',
@@ -26,7 +26,7 @@ ruleTester.run('no-empty-keys', rule, {
       code: '{"compilerOptions": { }}',
       errors: [
         {
-          messageId: 'noUncheckedSideEffectImport',
+          messageId: 'noUncheckedSideEffectImports',
           line: 1,
           column: 2,
           endLine: 1,
@@ -38,7 +38,7 @@ ruleTester.run('no-empty-keys', rule, {
       code: '{"compilerOptions": { "noUncheckedSideEffectImports": false }}',
       errors: [
         {
-          messageId: 'noUncheckedSideEffectImport',
+          messageId: 'noUncheckedSideEffectImports',
           line: 1,
           column: 23,
           endLine: 1,

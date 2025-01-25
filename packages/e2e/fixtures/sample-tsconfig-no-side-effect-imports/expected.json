@@ -1,7 +1,7 @@
 [
   {
     "filePath": "tsconfig.json:2",
-    "message": "noUncheckedSideEffectImport rule should be enabled"
+    "message": "noUncheckedSideEffectImports rule should be enabled"
   },
   {
     "filePath": "tsconfig.json:2",
