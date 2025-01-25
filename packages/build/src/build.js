@@ -65,6 +65,6 @@ packageJson.main = 'index.js'
 await writeJson(join(dist, 'package.json'), packageJson)
 
 await cp(join(root, 'README.md'), join(dist, 'README.md'))
-await cp(join(root, 'index.js'), join(dist, 'index.js'))
-await cp(join(root, 'index.d.ts'), join(dist, 'index.d.ts'))
+await cp(join(root, 'packages', 'plugin', 'index.js'), join(dist, 'index.js'))
+await cp(join(root, 'packages', 'plugin', 'index.d.ts'), join(dist, 'index.d.ts'))
 await cp(join(root, 'LICENSE'), join(dist, 'LICENSE'))
