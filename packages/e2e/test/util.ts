@@ -37,7 +37,7 @@ const parseResult = (fixturePath: string, result: any): readonly any[] => {
 }
 
 export const runFixture = async (name: string) => {
-  const fixturePath = join(root, 'fixtures', name)
+  const fixturePath = join(root, 'packages', 'e2e', 'fixtures', name)
   await execa(`npm`, ['run', 'lint:ci'], {
     cwd: join(fixturePath),
     reject: false,
