@@ -1,4 +1,4 @@
-import rule from '../src/tsconfig-no-unchecked-side-effect-imports.ts'
+import * as rule from '../src/tsconfig-no-unchecked-side-effect-imports.ts'
 import json from '@eslint/json'
 import { RuleTester } from 'eslint'
 
