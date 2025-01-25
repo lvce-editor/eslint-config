@@ -4,11 +4,7 @@ import json from '@eslint/json'
 const plugin = {
   meta: {
     name: 'tsconfig',
-    // version: '0.0.1', // x-release-please-version
-  },
-  files: ['**/tsconfig.json'],
-  languages: {
-    ...json.languages,
+    version: '0.0.1',
   },
   rules: {
     'no-unchecked-side-effect-imports': tsconfigNoUncheckedSideEffectImports,
@@ -19,10 +15,12 @@ const plugin = {
 const recommended = {
   plugins: {
     tsconfig: plugin,
+    json,
   },
   rules: /** @type {const} */ {
     'tsconfig/no-unchecked-side-effect-imports': 'error',
   },
+  files: ['**/*.json'],
 }
 
 export default recommended
