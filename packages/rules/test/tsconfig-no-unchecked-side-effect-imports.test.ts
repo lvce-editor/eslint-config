@@ -26,7 +26,7 @@ ruleTester.run('no-unchecked-side-effect-imports', rule, {
       code: '{"compilerOptions": { }}',
       errors: [
         {
-          messageId: 'noUncheckedSideEffectImport',
+          messageId: 'noUncheckedSideEffectImports',
           line: 1,
           column: 2,
           endLine: 1,
@@ -38,7 +38,7 @@ ruleTester.run('no-unchecked-side-effect-imports', rule, {
       code: '{"compilerOptions": { "noUncheckedSideEffectImports": false }}',
       errors: [
         {
-          messageId: 'noUncheckedSideEffectImport',
+          messageId: 'noUncheckedSideEffectImports',
           line: 1,
           column: 23,
           endLine: 1,

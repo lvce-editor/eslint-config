@@ -6,10 +6,10 @@ export const meta = {
     description: 'Disallow not allowed keys in JSON objects',
   },
   messages: {
-    noUncheckedSideEffectImport: 'noUncheckedSideEffectImport rule should be enabled',
+    noUncheckedSideEffectImports: 'noUncheckedSideEffectImports rule should be enabled',
   },
 }
 
 export const create = (context: any) => {
-  return tsConfigCompilerOption.create(context, 'noUncheckedSideEffectImport')
+  return tsConfigCompilerOption.create(context, 'noUncheckedSideEffectImports')
 }
