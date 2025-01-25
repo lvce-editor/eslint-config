@@ -11,11 +11,10 @@ const hasError = (file) => {
   return file.errorCount > 0
 }
 
-const parseFile = (fixturesPath: string, file: any, name: string): readonly any[] => {
-  const fixturesUri = pathToFileURL(fixturesPath).toString()
+const parseFile = (file: any, root: string, name: string): readonly any[] => {
+  const rootUri = pathToFileURL(root).toString()
   const uri = pathToFileURL(file.filePath).toString()
-  const relative = uri.slice(fixturesUri.length + 1 + name.length + 1)
-  console.log({ fixturesUri, uri, relative })
+  const relative = uri.slice(rootUri.length + 'fixtures'.length + 1 + name.length + 1)
   const parsed: any[] = []
   for (const message of file.messages) {
     parsed.push({
@@ -26,29 +25,28 @@ const parseFile = (fixturesPath: string, file: any, name: string): readonly any[
   return parsed
 }
 
-const parseResult = (fixturePath: string, result: any): readonly any[] => {
+const parseResult = (root: string, name: string, result: any): readonly any[] => {
   const parsed: any[] = []
   for (const file of result) {
     if (!hasError(file)) {
       continue
     }
-    parsed.push(...parseFile(fixturePath, file))
+    parsed.push(...parseFile(file, root, name))
   }
   return parsed
 }
 
 export const runFixture = async (name: string) => {
-  const fixturePath = join(root, 'packages', 'e2e', 'fixtures', name)
   await execa(`npm`, ['run', 'lint:ci'], {
-    cwd: fixturePath,
+    cwd: join(root, 'fixtures', name),
     reject: false,
   })
-  const resultFilePath = join(fixturePath, 'result.json')
-  const expectedJsonPath = join(fixturePath, 'expected.json')
+  const resultFilePath = join(root, 'fixtures', name, 'result.json')
+  const expectedJsonPath = join(root, 'fixtures', name, 'expected.json')
   const expectedJsonContent = await readFile(expectedJsonPath, 'utf-8')
   const expected = JSON.parse(expectedJsonContent)
   const resultContent = await readFile(resultFilePath, 'utf-8')
   const resultJson = JSON.parse(resultContent)
-  const parsed = parseResult(fixturePath, resultJson)
+  const parsed = parseResult(root, name, resultJson)
   return { parsed, expected }
 }
