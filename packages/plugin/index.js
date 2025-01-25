@@ -129,6 +129,7 @@ const defaultConfig = tseslint.config(
   },
   eslintPluginUnicorn.configs['flat/recommended'],
   {
+    files: ['**/*.ts'],
     rules: {
       'unicorn/filename-case': 'off',
       'unicorn/prefer-event-target': 'off',
@@ -174,6 +175,7 @@ const defaultConfig = tseslint.config(
 export const recommendedNode = [
   nodePlugin.configs['flat/recommended'],
   {
+    files: ['**/*.ts'],
     rules: {
       'n/prefer-node-protocol': 'error',
       'n/no-unpublished-import': 'off', // TODO enable this for some node packages, which don't bundle dependencies
