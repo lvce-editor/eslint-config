@@ -36,7 +36,7 @@
     "eslint-plugin-perfectionist": "^4.7.0",
     "eslint-plugin-project-structure": "^3.13.2",
     "eslint-plugin-unicorn": "^56.0.1",
-    "typescript-eslint": "^8.21.0"
+    "typescript-eslint": "^8.22.0"
   },
   "peerDependencies": {
     "eslint": ">= 9"
