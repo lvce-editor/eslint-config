@@ -151,6 +151,7 @@ const defaultConfig = tseslint.config(
       'unicorn/no-array-push-push': 'off',
       'unicorn/no-array-callback-reference': 'off',
       'unicorn/no-for-loop': 'off',
+      'unicorn/number-literal-case': 'off',
     },
   },
   {
