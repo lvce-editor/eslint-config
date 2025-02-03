@@ -168,8 +168,13 @@ const defaultConfig = tseslint.config(
       'scripts',
       'rollup.config.js',
       'eslint.config.js',
-      'packages/text-search-worker/src/textSearchWorkerMain.ts',
     ],
+  },
+  {
+    files: ['**/*Main.ts'],
+    rules: {
+      '@typescript-eslint/no-floating-promises': 'off',
+    },
   },
 )
 
