@@ -32,11 +32,11 @@
     "@eslint/json": "^0.10.0",
     "eslint-plugin-jest": "^28.11.0",
     "eslint-plugin-n": "^17.15.1",
-    "eslint-plugin-package-json": "^0.21.1",
-    "eslint-plugin-perfectionist": "^4.7.0",
+    "eslint-plugin-package-json": "^0.23.1",
+    "eslint-plugin-perfectionist": "^4.8.0",
     "eslint-plugin-project-structure": "^3.13.2",
     "eslint-plugin-unicorn": "^56.0.1",
-    "typescript-eslint": "^8.22.0"
+    "typescript-eslint": "^8.23.0"
   },
   "peerDependencies": {
     "eslint": ">= 9"
