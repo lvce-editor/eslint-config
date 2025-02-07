@@ -2,6 +2,7 @@ import json from '@eslint/json'
 import * as tsconfigAllowImportingTsExtensions from './tsconfig-allow-importing-ts-extensions.ts'
 import * as tsconfigForceConsistentCasingInFileNames from './tsconfig-force-consistent-casing-in-file-names.ts'
 import * as tsconfigNoUncheckedSideEffectImports from './tsconfig-no-unchecked-side-effect-imports.ts'
+import * as tsconfigNoImplicitAny from './tsconfig-no-implicit-any.ts'
 import * as tsconfigStrict from './tsconfig-strict.ts'
 
 const plugin = {
@@ -14,6 +15,7 @@ const plugin = {
     'force-consistent-casing-in-file-names': tsconfigForceConsistentCasingInFileNames,
     strict: tsconfigStrict,
     'allow-importing-ts-extensions': tsconfigAllowImportingTsExtensions,
+    'no-implicit-any': tsconfigNoImplicitAny,
   },
   configs: {},
 }
@@ -40,6 +42,7 @@ const recommended = [
       'tsconfig/force-consistent-casing-in-file-names': 'error',
       'tsconfig/strict': 'error',
       'tsconfig/allow-importing-ts-extensions': 'error',
+      'tsconfig/no-implicit-any': 'error',
     },
   },
 ]
