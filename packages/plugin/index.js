@@ -162,6 +162,8 @@ const defaultConfig = tseslint.config(
       '**/coverage/**',
       '**/server/**',
       '**/e2e/**',
+      '**/dist2/**',
+      '**/dist/**',
       '**/memory/**',
       '**/test-integration/**',
       '**/test-integration-util/**',
