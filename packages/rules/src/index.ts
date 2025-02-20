@@ -4,6 +4,7 @@ import * as tsconfigForceConsistentCasingInFileNames from './tsconfig-force-cons
 import * as tsconfigNoUncheckedSideEffectImports from './tsconfig-no-unchecked-side-effect-imports.ts'
 import * as tsconfigNoImplicitAny from './tsconfig-no-implicit-any.ts'
 import * as tsconfigStrict from './tsconfig-strict.ts'
+import * as tsconfigAssumeChangesOnlyAffectDirectDependencies from './tsconfig-assume-changes-only-affect-direct-dependencies.ts'
 
 const plugin = {
   meta: {
@@ -16,6 +17,7 @@ const plugin = {
     strict: tsconfigStrict,
     'allow-importing-ts-extensions': tsconfigAllowImportingTsExtensions,
     'no-implicit-any': tsconfigNoImplicitAny,
+    'assume-changes-only-affect-direct-dependenices': tsconfigAssumeChangesOnlyAffectDirectDependencies,
   },
   configs: {},
 }
@@ -43,6 +45,7 @@ const recommended = [
       'tsconfig/strict': 'error',
       'tsconfig/allow-importing-ts-extensions': 'error',
       'tsconfig/no-implicit-any': 'error',
+      'tsconfig/assume-changes-only-affect-direct-dependencies': 'error',
     },
   },
 ]
