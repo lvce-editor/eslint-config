@@ -45,7 +45,7 @@ const recommended = [
       'tsconfig/strict': 'error',
       'tsconfig/allow-importing-ts-extensions': 'error',
       'tsconfig/no-implicit-any': 'error',
-      'tsconfig/assume-changes-only-affect-direct-dependencies': 'error',
+      'tsconfig/assume-changes-only-affect-direct-dependenices': 'error',
     },
   },
 ]
