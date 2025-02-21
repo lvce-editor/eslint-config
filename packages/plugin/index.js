@@ -9,6 +9,7 @@ import process from 'node:process'
 import tseslint from 'typescript-eslint'
 import packageJson from 'eslint-plugin-package-json/configs/recommended'
 import eslintPluginUnicorn from 'eslint-plugin-unicorn'
+import eslintPluginYml from 'eslint-plugin-yml'
 // @ts-ignore
 
 const uri = '../rules/dist/index.js'
@@ -122,6 +123,10 @@ const defaultConfig = tseslint.config(
       '@typescript-eslint/only-throw-error': 'off',
       '@typescript-eslint/prefer-promise-reject-errors': 'off',
     },
+  },
+  {
+    files: ['**/*.yml'],
+    ...eslintPluginYml.configs['flat/recommended'],
   },
   {
     files: ['**/package.json'],
