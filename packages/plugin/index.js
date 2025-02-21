@@ -126,7 +126,7 @@ const defaultConfig = tseslint.config(
   },
   {
     files: ['**/*.yml'],
-    ...eslintPluginYml.configs['flat/recommended'],
+    extends: [eslintPluginYml.configs['flat/recommended']],
   },
   {
     files: ['**/package.json'],
