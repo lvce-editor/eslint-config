@@ -42,7 +42,7 @@ ruleTester.run('exact-optional-property-types', rule, {
           line: 1,
           column: 23,
           endLine: 1,
-          endColumn: 57,
+          endColumn: 51,
         },
       ],
     },
