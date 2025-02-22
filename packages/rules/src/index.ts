@@ -5,6 +5,7 @@ import * as tsconfigNoUncheckedSideEffectImports from './tsconfig-no-unchecked-s
 import * as tsconfigNoImplicitAny from './tsconfig-no-implicit-any.ts'
 import * as tsconfigStrict from './tsconfig-strict.ts'
 import * as tsconfigAssumeChangesOnlyAffectDirectDependencies from './tsconfig-assume-changes-only-affect-direct-dependencies.ts'
+import * as tsconfigExactOptionalPropertyTypes from './tsconfig-exact-optional-property-types.ts'
 
 const plugin = {
   meta: {
@@ -18,6 +19,7 @@ const plugin = {
     'allow-importing-ts-extensions': tsconfigAllowImportingTsExtensions,
     'no-implicit-any': tsconfigNoImplicitAny,
     'assume-changes-only-affect-direct-dependenices': tsconfigAssumeChangesOnlyAffectDirectDependencies,
+    'exact-optional-property-types': tsconfigExactOptionalPropertyTypes,
   },
   configs: {},
 }
@@ -46,6 +48,7 @@ const recommended = [
       'tsconfig/allow-importing-ts-extensions': 'error',
       'tsconfig/no-implicit-any': 'error',
       'tsconfig/assume-changes-only-affect-direct-dependenices': 'error',
+      'tsconfig/exact-optional-property-types': 'error',
     },
   },
 ]
