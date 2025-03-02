@@ -190,7 +190,10 @@ const defaultConfig = tseslint.config(
  * @type {any}
  */
 export const recommendedNode = [
-  nodePlugin.configs['flat/recommended'],
+  {
+    files: ['**/*.ts'],
+    ...nodePlugin.configs['flat/recommended'],
+  },
   {
     files: ['**/*.ts'],
     rules: {
