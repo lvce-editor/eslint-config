@@ -6,6 +6,7 @@ import * as tsconfigNoImplicitAny from './tsconfig-no-implicit-any.ts'
 import * as tsconfigStrict from './tsconfig-strict.ts'
 import * as tsconfigAssumeChangesOnlyAffectDirectDependencies from './tsconfig-assume-changes-only-affect-direct-dependencies.ts'
 import * as tsconfigExactOptionalPropertyTypes from './tsconfig-exact-optional-property-types.ts'
+import * as tsconfigErasableSyntaxOnly from './tsconfig-erasable-syntax-only.ts'
 
 const plugin = {
   meta: {
@@ -20,6 +21,7 @@ const plugin = {
     'no-implicit-any': tsconfigNoImplicitAny,
     'assume-changes-only-affect-direct-dependenices': tsconfigAssumeChangesOnlyAffectDirectDependencies,
     'exact-optional-property-types': tsconfigExactOptionalPropertyTypes,
+    'erasable-syntax-only': tsconfigErasableSyntaxOnly,
   },
   configs: {},
 }
@@ -45,6 +47,7 @@ const recommended = [
       'tsconfig/no-unchecked-side-effect-imports': 'error',
       'tsconfig/force-consistent-casing-in-file-names': 'error',
       'tsconfig/strict': 'error',
+      'tsconfig/erasable-syntax-only': 'error',
       'tsconfig/allow-importing-ts-extensions': 'error',
       'tsconfig/no-implicit-any': 'error',
       'tsconfig/assume-changes-only-affect-direct-dependenices': 'error',
