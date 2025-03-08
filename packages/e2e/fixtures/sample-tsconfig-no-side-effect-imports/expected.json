@@ -13,6 +13,10 @@
   },
   {
     "filePath": "tsconfig.json:2",
+    "message": "erasableSyntaxOnly rule should be enabled"
+  },
+  {
+    "filePath": "tsconfig.json:2",
     "message": "allowImportingTsExtensions rule should be enabled"
   },
   {
@@ -26,9 +30,5 @@
   {
     "filePath": "tsconfig.json:2",
     "message": "exactOptionalPropertyTypes rule should be enabled"
-  },
-  {
-    "filePath": "tsconfig.json:2",
-    "message": "erasableSyntaxOnly rule should be enabled"
   }
 ]
