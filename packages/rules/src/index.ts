@@ -47,7 +47,7 @@ const recommended = [
       'tsconfig/no-unchecked-side-effect-imports': 'error',
       'tsconfig/force-consistent-casing-in-file-names': 'error',
       'tsconfig/strict': 'error',
-      'tsconfig/erasable-syntax-only': 'error',
+      'tsconfig/erasable-syntax-only': 'off',
       'tsconfig/allow-importing-ts-extensions': 'error',
       'tsconfig/no-implicit-any': 'error',
       'tsconfig/assume-changes-only-affect-direct-dependenices': 'error',
