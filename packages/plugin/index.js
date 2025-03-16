@@ -157,6 +157,7 @@ const defaultConfig = tseslint.config(
       'unicorn/no-array-callback-reference': 'off',
       'unicorn/no-for-loop': 'off',
       'unicorn/number-literal-case': 'off',
+      'unicorn/prefer-string-raw': 'off',
     },
   },
   {
