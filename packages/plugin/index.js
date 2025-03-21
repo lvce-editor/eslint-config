@@ -7,7 +7,7 @@ import { mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 import process from 'node:process'
 import tseslint from 'typescript-eslint'
-import packageJson from 'eslint-plugin-package-json/configs/recommended'
+import packageJson from 'eslint-plugin-package-json'
 import eslintPluginUnicorn from 'eslint-plugin-unicorn'
 import eslintPluginYml from 'eslint-plugin-yml'
 import markdown from '@eslint/markdown'
@@ -130,7 +130,7 @@ const defaultConfig = tseslint.config(
   },
   {
     files: ['**/package.json'],
-    extends: [packageJson],
+    extends: [packageJson.configs.recommended],
   },
   {
     files: ['**/*.ts'],
