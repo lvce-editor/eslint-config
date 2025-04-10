@@ -44,9 +44,9 @@
     "eslint": ">= 9"
   },
   "devDependencies": {
-    "@lerna/legacy-package-management": "^8.2.1",
+    "@lerna/legacy-package-management": "^8.2.2",
     "@types/node": "^22.13.11",
-    "lerna": "^8.2.1",
+    "lerna": "^8.2.2",
     "prettier": "^3.5.3",
     "typescript": "^5.8.3"
   },
