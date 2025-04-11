@@ -96,6 +96,7 @@ const defaultConfig = tseslint.config(
       '@typescript-eslint/prefer-readonly-parameter-types': 'error',
       'no-console': ['error', { allow: ['warn', 'error'] }],
       'prefer-destructuring': ['error', { object: true, array: false }],
+      '@typescript-eslint/no-deprecated': 'error',
 
       // off
       '@typescript-eslint/no-explicit-any': 'off',
