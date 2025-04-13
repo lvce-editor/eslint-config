@@ -21,7 +21,7 @@
     "esbuild": "^0.25.2",
     "execa": "^9.5.2",
     "jest": "^29.7.0",
-    "ts-jest": "^29.3.1"
+    "ts-jest": "^29.3.2"
   },
   "jest": {
     "injectGlobals": false,
