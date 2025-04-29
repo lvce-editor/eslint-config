@@ -33,12 +33,12 @@
     "@eslint/markdown": "6.4.0",
     "eslint-plugin-jest": "28.11.0",
     "eslint-plugin-n": "17.17.0",
-    "eslint-plugin-package-json": "0.30.0",
+    "eslint-plugin-package-json": "0.31.0",
     "eslint-plugin-perfectionist": "4.12.3",
     "eslint-plugin-project-structure": "3.13.3",
-    "eslint-plugin-unicorn": "58.0.0",
+    "eslint-plugin-unicorn": "59.0.0",
     "eslint-plugin-yml": "1.18.0",
-    "typescript-eslint": "8.31.0"
+    "typescript-eslint": "8.31.1"
   },
   "peerDependencies": {
     "eslint": ">= 9"
