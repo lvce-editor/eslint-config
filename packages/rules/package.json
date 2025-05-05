@@ -13,7 +13,7 @@
   "license": "MIT",
   "description": "",
   "dependencies": {
-    "eslint": "^9.25.1"
+    "eslint": "^9.26.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
