@@ -36,9 +36,9 @@
     "eslint-plugin-package-json": "0.31.0",
     "eslint-plugin-perfectionist": "4.12.3",
     "eslint-plugin-project-structure": "3.13.3",
-    "eslint-plugin-unicorn": "59.0.0",
+    "eslint-plugin-unicorn": "59.0.1",
     "eslint-plugin-yml": "1.18.0",
-    "typescript-eslint": "8.31.1"
+    "typescript-eslint": "8.32.0"
   },
   "peerDependencies": {
     "eslint": ">= 9"
