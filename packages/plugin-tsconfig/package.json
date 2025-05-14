@@ -12,10 +12,9 @@
   "author": "",
   "license": "MIT",
   "description": "",
-  "dependencies": {
-    "eslint": "^9.26.0"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "eslint": "^9.26.0",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.10.6",
     "esbuild": "^0.25.4",
