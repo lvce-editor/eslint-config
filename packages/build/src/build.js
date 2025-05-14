@@ -49,7 +49,7 @@ const getVersion = async () => {
 }
 
 await execa(`npm`, ['run', 'build'], {
-  cwd: join(root, 'packages', 'rules'),
+  cwd: join(root, 'packages', 'plugin-tsconfig'),
 })
 
 await rm(dist, { recursive: true, force: true })
@@ -71,7 +71,7 @@ await writeJson(join(dist, 'package.json'), packageJson)
 await cp(join(root, 'README.md'), join(dist, 'README.md'))
 await cp(join(root, 'packages', 'plugin', 'index.js'), join(dist, 'index.js'))
 await cp(join(root, 'packages', 'plugin', 'index.d.ts'), join(dist, 'index.d.ts'))
-await cp(join(root, 'packages', 'rules', 'dist', 'index.js'), join(dist, 'rules.js'))
+await cp(join(root, 'packages', 'plugin-tsconfig', 'dist', 'index.js'), join(dist, 'rules.js'))
 await cp(join(root, 'LICENSE'), join(dist, 'LICENSE'))
 
 const indexPath = join(dist, 'index.js')
