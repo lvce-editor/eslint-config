@@ -1,0 +1,7 @@
+name: CI
+
+jobs:
+  ci:
+    strategy:
+      matrix:
+        os: [ubuntu-24.04, macos-14, windows-2025]
