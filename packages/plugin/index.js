@@ -12,7 +12,7 @@ import eslintPluginUnicorn from 'eslint-plugin-unicorn'
 import eslintPluginYml from 'eslint-plugin-yml'
 import markdown from '@eslint/markdown'
 
-const uri = '../rules/dist/index.js'
+const uri = '../plugin-tsconfig/dist/index.js'
 const tsconfigPlugin = (await import(uri)).default
 
 const root = process.cwd()
