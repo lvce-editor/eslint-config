@@ -1,6 +1,6 @@
 import eslintPluginYml from 'eslint-plugin-yml'
 
-export const plugin = {
+const plugin = {
   meta: {
     name: 'github-actions',
     version: '0.0.1',
