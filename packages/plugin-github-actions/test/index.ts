@@ -1,1 +1,1 @@
-import './yaml-formatting.test.ts'
+import './ci-versions.test.ts'
