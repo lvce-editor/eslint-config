@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo ok",
     "postinstall": "npm run build",
-    "build": "esbuild --bundle src/index.ts --outfile=dist/index.js --external:@eslint/json --format=esm"
+    "build": "echo ok"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +14,7 @@
   "description": "",
   "dependencies": {
     "eslint": "^9.26.0",
+    "eslint-compat-utils": "^0.6.5",
     "eslint-plugin-yml": "^1.18.0"
   },
   "devDependencies": {
