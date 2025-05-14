@@ -76,5 +76,5 @@ await cp(join(root, 'LICENSE'), join(dist, 'LICENSE'))
 
 const indexPath = join(dist, 'index.js')
 const indexContent = await readFile(indexPath, 'utf8')
-const newIndexContent = indexContent.replace('../rules/dist/index.js', './rules.js')
+const newIndexContent = indexContent.replace('../plugin-tsconfig/dist/index.js', './rules.js')
 await writeFile(indexPath, newIndexContent)
