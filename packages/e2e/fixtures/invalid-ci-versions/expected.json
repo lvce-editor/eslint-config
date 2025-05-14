@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "src/ci.yml:7",
+    "message": "Unsupported ci version: macos-14"
+  }
+]
