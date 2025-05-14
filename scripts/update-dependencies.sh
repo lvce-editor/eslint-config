@@ -30,6 +30,7 @@ function updateDependencies {
 cd packages/build                                   && updateDependencies && cd ../.. &&
 cd packages/e2e                                     && updateDependencies && cd ../.. &&
 cd packages/plugin                                  && updateDependencies && cd ../.. &&
+cd packages/plugin-github-actions                   && updateDependencies && cd ../.. &&
 cd packages/rules                                   && updateDependencies && cd ../.. &&
 
 
