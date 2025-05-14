@@ -1,5 +1,5 @@
 {
-  "name": "@lvce-editor/eslint-config-rules",
+  "name": "@lvce-editor/eslint-plugin-tsconfig",
   "version": "0.0.0-dev",
   "main": "dist/index.js",
   "type": "module",

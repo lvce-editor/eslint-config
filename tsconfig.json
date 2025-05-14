@@ -12,7 +12,7 @@
       "path": "./packages/plugin"
     },
     {
-      "path": "./packages/rules"
+      "path": "./packages/plugin-tsconfig"
     },
     {
       "path": "./packages/plugin-github-actions"
