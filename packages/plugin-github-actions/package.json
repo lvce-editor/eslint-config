@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "node --experimental-strip-types test/index.ts",
-    "postinstall": "npm run build",
-    "build": "echo ok"
+    "postinstall": "npm run build"
   },
   "keywords": [],
   "author": "",
