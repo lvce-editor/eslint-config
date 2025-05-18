@@ -101,6 +101,7 @@ const defaultConfig = tseslint.config(
             { from: 'lib', name: 'RegExp' },
             { from: 'lib', name: 'MessagePort' },
             { from: 'package', name: 'MessagePortMain', package: 'electron' },
+            { from: 'package', name: 'Socket', package: 'node:net' },
           ],
         },
       ],
