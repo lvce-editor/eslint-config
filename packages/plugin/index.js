@@ -93,7 +93,17 @@ const defaultConfig = tseslint.config(
       '@typescript-eslint/consistent-type-exports': 'error',
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/explicit-function-return-type': 'error',
-      '@typescript-eslint/prefer-readonly-parameter-types': 'error',
+      '@typescript-eslint/prefer-readonly-parameter-types': [
+        'error',
+        {
+          allow: [
+            { from: 'lib', name: 'Uint32Array' },
+            { from: 'lib', name: 'RegExp' },
+            { from: 'lib', name: 'MessagePort' },
+          ],
+        },
+      ],
+
       'no-console': ['error', { allow: ['warn', 'error'] }],
       'prefer-destructuring': ['error', { object: true, array: false }],
       '@typescript-eslint/no-deprecated': 'error',
