@@ -100,6 +100,7 @@ const defaultConfig = tseslint.config(
             { from: 'lib', name: 'Uint32Array' },
             { from: 'lib', name: 'RegExp' },
             { from: 'lib', name: 'MessagePort' },
+            { from: 'package', name: 'MessagePortMain', package: 'electron' },
           ],
         },
       ],
