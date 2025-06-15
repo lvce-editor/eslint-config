@@ -9,7 +9,6 @@
     "build": "esbuild --bundle src/index.ts --outfile=dist/index.js --external:@eslint/json --format=esm"
   },
   "keywords": [],
-  "author": "",
   "license": "MIT",
   "description": "",
   "dependencies": {},
