@@ -132,7 +132,7 @@ const defaultConfig = tseslint.config(
     extends: [pluginJest.configs['flat/recommended']],
     settings: {
       jest: {
-        version: 29,
+        version: 30,
       },
     },
     rules: {
