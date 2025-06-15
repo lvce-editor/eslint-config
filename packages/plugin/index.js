@@ -128,6 +128,7 @@ const defaultConfig = tseslint.config(
   },
   {
     files: ['**/*.test.ts'],
+    // @ts-ignore
     extends: [pluginJest.configs['flat/recommended']],
     settings: {
       jest: {
