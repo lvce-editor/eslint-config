@@ -4,7 +4,6 @@
   "main": "index.js",
   "type": "module",
   "keywords": [],
-  "author": "",
   "license": "MIT",
   "description": "",
   "devDependencies": {
