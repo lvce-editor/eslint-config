@@ -138,6 +138,13 @@ const defaultConfig = tseslint.config(
     rules: {
       '@typescript-eslint/only-throw-error': 'off',
       '@typescript-eslint/prefer-promise-reject-errors': 'off',
+      'jest/no-restricted-jest-methods': [
+        'error',
+        {
+          advanceTimersByTime: `Don't use timers`,
+          unstable_mockModule: "Don't use module mocks",
+        },
+      ],
     },
   },
   {
