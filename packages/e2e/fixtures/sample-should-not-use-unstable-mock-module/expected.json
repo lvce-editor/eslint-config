@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "test/Add.test.ts:3",
+    "message": "Don't use module mocks"
+  }
+]
