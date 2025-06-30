@@ -145,6 +145,14 @@ const defaultConfig = tseslint.config(
           unstable_mockModule: "Don't use module mocks",
         },
       ],
+      'no-restricted-syntax': [
+        'error',
+
+        {
+          selector: "CallExpression[callee.type='MemberExpression'][callee.object.name='Promise'][callee.property.name='resolve']",
+          message: 'Dont use Promise resolve.',
+        },
+      ],
     },
   },
   {
