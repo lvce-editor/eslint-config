@@ -7,6 +7,5 @@
     "lint": "eslint .",
     "lint:ci": "eslint . --format json --output-file result.json"
   },
-  "license": "MIT",
-  "description": ""
+  "license": "MIT"
 }
