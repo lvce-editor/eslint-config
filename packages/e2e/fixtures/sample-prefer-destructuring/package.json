@@ -1,7 +1,6 @@
 {
   "name": "sample-prefer-destructuring",
   "version": "0.0.0-dev",
-  "description": "",
   "license": "MIT",
   "type": "module",
   "main": "src/main.ts",
