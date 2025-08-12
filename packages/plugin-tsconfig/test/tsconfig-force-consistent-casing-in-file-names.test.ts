@@ -8,6 +8,7 @@ import { RuleTester } from 'eslint'
 
 const ruleTester = new RuleTester({
   plugins: {
+    // @ts-ignore
     json,
   },
   language: 'json/json',
