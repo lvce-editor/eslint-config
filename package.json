@@ -38,7 +38,7 @@
     "eslint-plugin-project-structure": "3.13.3",
     "eslint-plugin-unicorn": "60.0.0",
     "eslint-plugin-yml": "1.18.0",
-    "typescript-eslint": "8.39.1"
+    "typescript-eslint": "8.39.0"
   },
   "peerDependencies": {
     "eslint": ">= 9"
