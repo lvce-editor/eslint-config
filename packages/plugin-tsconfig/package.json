@@ -13,10 +13,10 @@
   "description": "",
   "dependencies": {},
   "devDependencies": {
-    "eslint": "^9.32.0",
+    "eslint": "^9.33.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^22.10.6",
-    "esbuild": "^0.25.8",
+    "esbuild": "^0.25.9",
     "execa": "^9.6.0",
     "jest": "^30.0.5",
     "ts-jest": "^29.4.1"
