@@ -102,6 +102,7 @@ const defaultConfig = tseslint.config(
             { from: 'lib', name: 'MessagePort' },
             { from: 'lib', name: 'FileList' },
             { from: 'lib', name: 'Response' },
+            { from: 'lib', name: 'Error' },
             { from: 'package', name: 'MessagePortMain', package: 'electron' },
             { from: 'package', name: 'Socket', package: 'node:net' },
             { from: 'package', name: 'Dirent', package: 'node:fs' },
