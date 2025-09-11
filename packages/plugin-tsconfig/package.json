@@ -13,12 +13,12 @@
   "description": "",
   "dependencies": {},
   "devDependencies": {
-    "eslint": "^9.33.0",
+    "eslint": "^9.35.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^22.10.6",
     "esbuild": "^0.25.9",
     "execa": "^9.6.0",
-    "jest": "^30.0.5",
+    "jest": "^30.1.3",
     "ts-jest": "^29.4.1"
   },
   "jest": {
