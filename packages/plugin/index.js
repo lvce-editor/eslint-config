@@ -138,6 +138,7 @@ const defaultConfig = tseslint.config(
       },
     },
     rules: {
+      'unicorn/consistent-function-scoping': 'off',
       '@typescript-eslint/only-throw-error': 'off',
       '@typescript-eslint/prefer-promise-reject-errors': 'off',
       'jest/no-restricted-jest-methods': [
