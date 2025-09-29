@@ -104,6 +104,8 @@ const defaultConfig = tseslint.config(
             { from: 'lib', name: 'Response' },
             { from: 'lib', name: 'Error' },
             { from: 'lib', name: 'File' },
+            { from: 'lib', name: 'FileSystemDirectoryHandle' },
+            { from: 'lib', name: 'FileSystemFileHandle' },
             { from: 'package', name: 'MessagePortMain', package: 'electron' },
             { from: 'package', name: 'Socket', package: 'node:net' },
             { from: 'package', name: 'Dirent', package: 'node:fs' },
@@ -157,6 +159,7 @@ const defaultConfig = tseslint.config(
           message: 'Dont use Promise resolve.',
         },
       ],
+      '@typescript-eslint/unbound-method': 'off',
     },
   },
   {
