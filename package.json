@@ -28,7 +28,7 @@
   "description": "",
   "dependencies": {
     "@eslint/css": "0.13.0",
-    "@eslint/js": "9.37.0",
+    "@eslint/js": "9.38.0",
     "@eslint/json": "0.13.2",
     "@eslint/markdown": "7.4.0",
     "eslint-plugin-jest": "29.0.1",
