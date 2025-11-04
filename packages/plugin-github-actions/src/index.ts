@@ -2,6 +2,7 @@ import type { Linter } from 'eslint'
 import * as parserYAML from 'yaml-eslint-parser'
 import * as actionVersions from './action-versions.ts'
 import * as ciVersions from './ci-versions.ts'
+import * as failFast from './fail-fast.ts'
 import * as maxParallel from './max-parallel.ts'
 import * as timeoutMinutes from './timeout-minutes.ts'
 
@@ -11,10 +12,11 @@ const plugin = {
     version: '0.0.1',
   },
   rules: {
-    'ci-versions': ciVersions,
     'action-versions': actionVersions,
-    'timeout-minutes': timeoutMinutes,
+    'ci-versions': ciVersions,
+    'fail-fast': failFast,
     'max-parallel': maxParallel,
+    'timeout-minutes': timeoutMinutes,
   },
 }
 
