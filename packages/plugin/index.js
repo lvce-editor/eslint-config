@@ -9,8 +9,12 @@ import eslintPluginYml from 'eslint-plugin-yml'
 import tseslint from 'typescript-eslint'
 
 // @ts-ignore
-const uri = '../plugin-tsconfig/src/index.ts'
-const tsconfigPlugin = await import(uri)
+const tsconfigUri = '../plugin-tsconfig/src/index.ts'
+const tsconfigPlugin = await import(tsconfigUri)
+
+// @ts-ignore
+const actionsUri = '../plugin-github-actions/src/index.ts'
+const actionsPlugin = await import(actionsUri)
 
 const root = process.cwd()
 
@@ -216,5 +220,7 @@ export const recommendedNode = [
 ]
 
 export const recommendedTsconfig = [...tsconfigPlugin.default]
+
+export const recommendedActions = [...actionsPlugin.default]
 
 export default defaultConfig
