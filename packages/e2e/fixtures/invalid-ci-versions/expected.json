@@ -1,6 +1,6 @@
 [
   {
-    "filePath": "src/ci.yml:7",
+    "filePath": ".github/workflows/ci.yml:7",
     "message": "Unsupported ci version: macos-14"
   }
 ]
