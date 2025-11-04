@@ -3,13 +3,14 @@ import * as parserYAML from 'yaml-eslint-parser'
 import * as actionVersions from './action-versions.ts'
 import * as ciVersions from './ci-versions.ts'
 import * as failFast from './fail-fast.ts'
-import * as maxParallel from './max-parallel.ts'
-import * as npmRegistry from './npm-registry.ts'
-import * as on from './on.ts'
-import * as timeoutMinutes from './timeout-minutes.ts'
-import * as shell from './shell.ts'
-import * as npm from './npm.ts'
 import * as matrix from './matrix.ts'
+import * as maxParallel from './max-parallel.ts'
+import * as needs from './needs.ts'
+import * as npmRegistry from './npm-registry.ts'
+import * as npm from './npm.ts'
+import * as on from './on.ts'
+import * as shell from './shell.ts'
+import * as timeoutMinutes from './timeout-minutes.ts'
 
 const plugin = {
   meta: {
@@ -24,6 +25,7 @@ const plugin = {
     'npm-registry': npmRegistry,
     'timeout-minutes': timeoutMinutes,
     matrix: matrix,
+    needs: needs,
     npm: npm,
     on: on,
     shell,
@@ -47,6 +49,7 @@ const recommended: Linter.Config[] = [
       'github-actions/max-parallel': 'error',
       'github-actions/npm-registry': 'error',
       'github-actions/npm': 'error',
+      'github-actions/needs': 'error',
       'github-actions/on': 'error',
       'github-actions/shell': 'error',
       'github-actions/timeout-minutes': 'error',
