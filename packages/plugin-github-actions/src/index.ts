@@ -2,6 +2,7 @@ import type { Linter } from 'eslint'
 import * as parserYAML from 'yaml-eslint-parser'
 import * as actionVersions from './action-versions.ts'
 import * as ciVersions from './ci-versions.ts'
+import * as timeoutMinutes from './timeout-minutes.ts'
 
 const plugin = {
   meta: {
@@ -11,6 +12,7 @@ const plugin = {
   rules: {
     'ci-versions': ciVersions,
     'action-versions': actionVersions,
+    'timeout-minutes': timeoutMinutes,
   },
 }
 
