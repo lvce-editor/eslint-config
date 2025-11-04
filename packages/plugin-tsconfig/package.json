@@ -2,6 +2,10 @@
   "name": "@lvce-editor/eslint-plugin-tsconfig",
   "version": "0.0.0-dev",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lvce-editor/eslint-config.git"
+  },
   "type": "module",
   "scripts": {
     "test": "node test/index.ts"
