@@ -16,7 +16,6 @@ const plugin = {
 
 const recommended: Linter.Config[] = [
   {
-    name: 'github-actions/recommended',
     plugins: {
       'github-actions': plugin,
     },
