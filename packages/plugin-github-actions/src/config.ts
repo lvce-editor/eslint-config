@@ -18,4 +18,5 @@ export const actions = {
   'actions/deploy-pages': ['actions/deploy-pages@v4'],
   'actions/download-artifact': ['actions/download-artifact@v4'],
   'actions/upload-artifact': ['actions/upload-artifact@v4'],
+  'actions/create-release': ['actions/create-release@v1'],
 }
