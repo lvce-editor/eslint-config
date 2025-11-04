@@ -1,5 +1,4 @@
-// @ts-ignore
-import * as config from '../../../../.tmp/plugin-github-actions/dist/index.js'
+import * as config from '../../../plugin-github-actions/src/index.ts'
 import eslintPluginYml from 'eslint-plugin-yml'
 
 export default [

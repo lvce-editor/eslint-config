@@ -1,5 +1,6 @@
-import type { AST } from 'yaml-eslint-parser'
+import type { Rule } from 'eslint'
 import { getSourceCode } from 'eslint-compat-utils'
+import type { AST } from 'yaml-eslint-parser'
 import { config, platforms } from './config.ts'
 
 const parseVersion = (value: string, prefix: string): string => {
@@ -40,9 +41,9 @@ export const meta = {
   messages: {
     unsupportedCiVersion: 'Unsupported ci version: {{value}}',
   },
-}
+} as const
 
-export const create = (context: any) => {
+export const create = (context: Rule.RuleContext) => {
   const sourceCode = getSourceCode(context)
   if (!sourceCode.parserServices?.isYAML) {
     return {}
