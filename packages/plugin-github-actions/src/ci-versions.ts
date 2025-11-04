@@ -3,20 +3,20 @@ import { getSourceCode } from 'eslint-compat-utils'
 import type { AST } from 'yaml-eslint-parser'
 import { config, platforms } from './config.ts'
 
-const parseVersion = (value: string, prefix: string): string => {
+const parseVersion = (value: string): string => {
   return value
 }
 
 const parseUbuntuVersion = (value: string): string => {
-  return parseVersion(value, platforms.ubuntu)
+  return parseVersion(value)
 }
 
 const parseWindowsVersion = (value: string): string => {
-  return parseVersion(value, platforms.windows)
+  return parseVersion(value)
 }
 
 const parseMacosVersion = (value: string): string => {
-  return parseVersion(value, platforms.macos)
+  return parseVersion(value)
 }
 
 const isSupportedUbuntuVersion = (version: string): boolean => {
