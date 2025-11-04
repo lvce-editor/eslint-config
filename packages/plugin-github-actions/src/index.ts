@@ -5,6 +5,7 @@ import * as ciVersions from './ci-versions.ts'
 import * as failFast from './fail-fast.ts'
 import * as maxParallel from './max-parallel.ts'
 import * as npmRegistry from './npm-registry.ts'
+import * as on from './on.ts'
 import * as timeoutMinutes from './timeout-minutes.ts'
 
 const plugin = {
@@ -19,6 +20,7 @@ const plugin = {
     'npm-registry': npmRegistry,
     'fail-fast': failFast,
     'timeout-minutes': timeoutMinutes,
+    on: on,
   },
 }
 
@@ -32,11 +34,13 @@ const recommended: Linter.Config[] = [
       parser: parserYAML,
     },
     rules: {
-      'github-actions/ci-versions': 'error',
       'github-actions/action-versions': 'error',
-      'github-actions/timeout-minutes': 'error',
+      'github-actions/ci-versions': 'error',
+      'github-actions/fail-fast': 'error',
       'github-actions/max-parallel': 'error',
       'github-actions/npm-registry': 'error',
+      'github-actions/on': 'error',
+      'github-actions/timeout-minutes': 'error',
     },
   },
 ]
