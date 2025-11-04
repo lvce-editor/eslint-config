@@ -64,6 +64,7 @@ delete packageJson.jest
 packageJson.version = version
 packageJson.main = 'index.js'
 packageJson.dependencies['@lvce-editor/eslint-plugin-tsconfig'] = version
+packageJson.dependencies['@lvce-editor/eslint-plugin-github-actions'] = version
 
 await writeJson(join(dist, 'package.json'), packageJson)
 
