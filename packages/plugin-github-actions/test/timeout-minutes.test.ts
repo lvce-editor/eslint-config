@@ -30,7 +30,7 @@ jobs:
         {
           messageId: 'unsupportedTimeoutMinutes',
           line: 5,
-          column: 5,
+          column: 22,
           endLine: 5,
           endColumn: 26,
         },
