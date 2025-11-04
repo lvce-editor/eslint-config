@@ -17,6 +17,7 @@ export const meta: Rule.RuleMetaData = {
   messages: {
     unsupportedActionVersion: 'Unsupported action version: {{value}}',
   },
+  fixable: 'code',
 }
 
 export const create = (context: Rule.RuleContext) => {
@@ -49,6 +50,10 @@ export const create = (context: Rule.RuleContext) => {
               messageId: 'unsupportedActionVersion',
               data: {
                 value: nodeValue,
+              },
+              fix(fixer) {
+                const validText = value.at(-1) || ''
+                return fixer.replaceText(node.value, validText)
               },
             })
           }
