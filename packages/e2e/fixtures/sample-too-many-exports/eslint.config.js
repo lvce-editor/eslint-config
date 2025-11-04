@@ -4,8 +4,6 @@ export default [
   ...config.default,
   ...config.recommendedFolderStructure,
   {
-    rules: {
-      'project-structure/folder-structure': 'off',
-    },
+    rules: {},
   },
 ]
