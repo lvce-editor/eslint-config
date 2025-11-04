@@ -9,7 +9,6 @@ const ruleTester = new RuleTester({
   },
 })
 
-// @ts-ignore
 ruleTester.run('unsupportedCiVersion', rule, {
   valid: [
     {
