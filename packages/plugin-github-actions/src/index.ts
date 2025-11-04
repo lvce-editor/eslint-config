@@ -3,6 +3,7 @@ import * as parserYAML from 'yaml-eslint-parser'
 import * as actionVersions from './action-versions.ts'
 import * as ciVersions from './ci-versions.ts'
 import * as maxParallel from './max-parallel.ts'
+import * as npmRegistry from './npm-registry.ts'
 import * as timeoutMinutes from './timeout-minutes.ts'
 
 const plugin = {
@@ -15,6 +16,7 @@ const plugin = {
     'action-versions': actionVersions,
     'timeout-minutes': timeoutMinutes,
     'max-parallel': maxParallel,
+    'npm-registry': npmRegistry,
   },
 }
 
@@ -32,6 +34,7 @@ const recommended: Linter.Config[] = [
       'github-actions/action-versions': 'error',
       'github-actions/timeout-minutes': 'error',
       'github-actions/max-parallel': 'error',
+      'github-actions/npm-registry': 'error',
     },
   },
 ]
