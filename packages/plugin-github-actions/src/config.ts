@@ -20,3 +20,5 @@ export const actions = {
   'actions/upload-artifact': ['actions/upload-artifact@v4'],
   'actions/create-release': ['actions/create-release@v1'],
 }
+
+export const npmRegistries = ['https://registry.npmjs.org', 'https://npm.pkg.github.com']
