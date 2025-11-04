@@ -1,7 +1,5 @@
-import type { Linter } from 'eslint'
-import * as parserYAML from 'yaml-eslint-parser'
-import * as actionVersions from './action-versions.ts'
 import * as ciVersions from './ci-versions.ts'
+import * as actionVersions from './action-versions.ts'
 
 const plugin = {
   meta: {
@@ -14,14 +12,10 @@ const plugin = {
   },
 }
 
-const recommended: Linter.Config[] = [
+const recommended = [
   {
     plugins: {
       'github-actions': plugin,
-    },
-    files: ['**/.github/workflows/*.y?(a)ml'],
-    languageOptions: {
-      parser: parserYAML,
     },
   },
 ]
