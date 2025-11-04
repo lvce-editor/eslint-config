@@ -50,10 +50,6 @@ const getVersion = async () => {
   return getGitTagFromGit()
 }
 
-await execa(`npm`, ['run', 'build'], {
-  cwd: join(root, 'packages', 'plugin-tsconfig'),
-})
-
 await rm(tmp, { recursive: true, force: true })
 await mkdir(dist, { recursive: true })
 
@@ -67,18 +63,18 @@ delete packageJson.prettier
 delete packageJson.jest
 packageJson.version = version
 packageJson.main = 'index.js'
+packageJson.dependencies['@lvce-editor/eslint-plugin-tsconfig'] = version
 
 await writeJson(join(dist, 'package.json'), packageJson)
 
 await cp(join(root, 'README.md'), join(dist, 'README.md'))
 await cp(join(root, 'packages', 'plugin', 'index.js'), join(dist, 'index.js'))
 await cp(join(root, 'packages', 'plugin', 'index.d.ts'), join(dist, 'index.d.ts'))
-await cp(join(root, 'packages', 'plugin-tsconfig', 'dist', 'index.js'), join(dist, 'rules.js'))
 await cp(join(root, 'LICENSE'), join(dist, 'LICENSE'))
 
 const indexPath = join(dist, 'index.js')
 const indexContent = await readFile(indexPath, 'utf8')
-const newIndexContent = indexContent.replace('../plugin-tsconfig/dist/index.js', './rules.js')
+const newIndexContent = indexContent.replace('../plugin-tsconfig/src/index.ts', '@lvce-editor/eslint-plugin-tsconfig')
 await writeFile(indexPath, newIndexContent)
 
 for (const packageName of ['plugin-github-actions', 'plugin-tsconfig']) {
