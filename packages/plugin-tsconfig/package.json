@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "test": "node --experimental-strip-types test/index.ts",
+    "test": "node test/index.ts",
     "postinstall": "npm run build",
     "build": "esbuild --bundle src/index.ts --outfile=dist/index.js --external:@eslint/json --format=esm"
   },
