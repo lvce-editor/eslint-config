@@ -24,3 +24,5 @@ export const actions = {
 export const npmRegistries = ['https://registry.npmjs.org', 'https://npm.pkg.github.com']
 
 export const onProperties = ['push', 'pull_request']
+
+export const npmCommands = ['run', 'test', 'publish', 'install', 'ci']
