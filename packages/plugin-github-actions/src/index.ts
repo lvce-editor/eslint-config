@@ -23,8 +23,8 @@ const plugin = {
     'npm-registry': npmRegistry,
     'timeout-minutes': timeoutMinutes,
     matrix: matrix,
-    on: on,
     npm: npm,
+    on: on,
   },
 }
 
