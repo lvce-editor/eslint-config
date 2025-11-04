@@ -11,7 +11,9 @@
   "keywords": [],
   "license": "MIT",
   "description": "",
-  "dependencies": {},
+  "dependencies": {
+    "@eslint/json": "0.14.0"
+  },
   "devDependencies": {
     "eslint": "^9.39.1",
     "@types/jest": "^30.0.0",
