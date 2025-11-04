@@ -48,7 +48,7 @@ export const create = (context: Rule.RuleContext) => {
               node,
               messageId: 'unsupportedActionVersion',
               data: {
-                value: node.value,
+                value: nodeValue,
               },
             })
           }
