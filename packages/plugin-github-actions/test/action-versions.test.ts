@@ -20,7 +20,7 @@ jobs:
         os: [ubuntu-24.04]
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4`,
+      - uses: actions/checkout@v5`,
     },
   ],
   invalid: [

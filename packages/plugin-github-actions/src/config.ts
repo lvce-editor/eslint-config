@@ -11,7 +11,7 @@ export const platforms = {
 }
 
 export const actions = {
-  'actions/checkout': ['actions/checkout@v4'],
+  'actions/checkout': ['actions/checkout@v5'],
   'actions/setup-node': ['actions/setup-node@v6'],
   'actions/cache': ['actions/cache@v4'],
   'actions/upload-pages-artifact': ['actions/upload-pages-artifact@v4'],
