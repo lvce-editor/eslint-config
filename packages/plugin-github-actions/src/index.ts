@@ -7,6 +7,7 @@ import * as maxParallel from './max-parallel.ts'
 import * as npmRegistry from './npm-registry.ts'
 import * as on from './on.ts'
 import * as timeoutMinutes from './timeout-minutes.ts'
+import * as npm from './npm.ts'
 
 const plugin = {
   meta: {
@@ -16,11 +17,12 @@ const plugin = {
   rules: {
     'action-versions': actionVersions,
     'ci-versions': ciVersions,
+    'fail-fast': failFast,
     'max-parallel': maxParallel,
     'npm-registry': npmRegistry,
-    'fail-fast': failFast,
     'timeout-minutes': timeoutMinutes,
     on: on,
+    npm: npm,
   },
 }
 
@@ -39,6 +41,7 @@ const recommended: Linter.Config[] = [
       'github-actions/fail-fast': 'error',
       'github-actions/max-parallel': 'error',
       'github-actions/npm-registry': 'error',
+      'github-actions/npm': 'error',
       'github-actions/on': 'error',
       'github-actions/timeout-minutes': 'error',
     },
