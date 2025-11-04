@@ -1,6 +1,6 @@
 import * as tsConfigCompilerOption from './tsconfig-compiler-option.ts'
 
-export const meta = {
+export const meta: Rule.RuleMetaData = {
   type: 'problem' as const,
   docs: {
     description: 'Ensure that the allowImportingTsExtensions is enabled',
