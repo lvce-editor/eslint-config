@@ -8,8 +8,9 @@ import eslintPluginUnicorn from 'eslint-plugin-unicorn'
 import eslintPluginYml from 'eslint-plugin-yml'
 import tseslint from 'typescript-eslint'
 
-const uri = '../plugin-tsconfig/dist/index.js'
-const tsconfigPlugin = (await import(uri)).default
+// @ts-ignore
+const uri = '../plugin-tsconfig/src/index.ts'
+const tsconfigPlugin = await import(uri)
 
 const root = process.cwd()
 
@@ -214,6 +215,6 @@ export const recommendedNode = [
   },
 ]
 
-export const recommendedTsconfig = [...tsconfigPlugin]
+export const recommendedTsconfig = [...tsconfigPlugin.default]
 
 export default defaultConfig
