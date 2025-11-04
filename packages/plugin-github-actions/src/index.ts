@@ -16,7 +16,7 @@ const plugin = {
 
 const recommended: Linter.Config[] = [
   {
-    files: ['**/*.yml'],
+    files: ['**/.github/workflows/*.y?(a)ml'],
     languageOptions: {
       parser: parserYAML,
     },
