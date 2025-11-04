@@ -26,3 +26,5 @@ export const npmRegistries = ['https://registry.npmjs.org', 'https://npm.pkg.git
 export const onProperties = ['push', 'pull_request']
 
 export const npmCommands = ['run', 'test', 'publish', 'install', 'ci']
+
+export const shells = ['bash']
