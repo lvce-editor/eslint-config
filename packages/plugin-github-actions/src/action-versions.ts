@@ -7,7 +7,7 @@ const isSupported = (actions: readonly string[], value: string): boolean => {
   return actions.includes(value)
 }
 
-export const meta = {
+export const meta: Rule.RuleMetaData = {
   type: 'problem',
 
   docs: {
@@ -17,7 +17,7 @@ export const meta = {
   messages: {
     unsupportedActionVersion: 'Unsupported action version: {{value}}',
   },
-} as const
+}
 
 export const create = (context: Rule.RuleContext) => {
   const sourceCode = getSourceCode(context)

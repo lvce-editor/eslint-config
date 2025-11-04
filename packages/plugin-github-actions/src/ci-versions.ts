@@ -31,7 +31,7 @@ const isSupportedWindowsVersion = (version: string): boolean => {
   return config.windows.includes(version)
 }
 
-export const meta = {
+export const meta: Rule.RuleMetaData = {
   type: 'problem',
 
   docs: {
@@ -41,7 +41,7 @@ export const meta = {
   messages: {
     unsupportedCiVersion: 'Unsupported ci version: {{value}}',
   },
-} as const
+}
 
 export const create = (context: Rule.RuleContext) => {
   const sourceCode = getSourceCode(context)
