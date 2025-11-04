@@ -1,6 +1,7 @@
 import * as tsConfigCompilerOption from './tsconfig-compiler-option.ts'
+import type { Rule } from 'eslint'
 
-export const meta = {
+export const meta: Rule.RuleMetaData = {
   type: 'problem' as const,
   docs: {
     description: 'Ensure that the assumeChangesOnlyAffectDirectDependencies rule is enabled',

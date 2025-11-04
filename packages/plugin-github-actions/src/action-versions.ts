@@ -7,7 +7,7 @@ const isSupported = (actions: readonly string[], value: string): boolean => {
   return actions.includes(value)
 }
 
-export const meta = {
+export const meta: Rule.RuleMetaData = {
   type: 'problem',
 
   docs: {

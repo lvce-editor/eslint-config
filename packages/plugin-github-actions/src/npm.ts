@@ -3,7 +3,7 @@ import { getSourceCode } from 'eslint-compat-utils'
 import type { AST } from 'yaml-eslint-parser'
 import { npmCommands } from './config.ts'
 
-export const meta = {
+export const meta: Rule.RuleMetaData = {
   type: 'problem',
 
   docs: {
