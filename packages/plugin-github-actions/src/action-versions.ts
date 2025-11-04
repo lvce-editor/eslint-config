@@ -16,7 +16,7 @@ export const meta = {
   messages: {
     unsupportedActionVersion: 'Unsupported action version: {{value}}',
   },
-}
+} as const
 
 export const create = (context: any) => {
   const sourceCode = getSourceCode(context)

@@ -40,7 +40,7 @@ export const meta = {
   messages: {
     unsupportedCiVersion: 'Unsupported ci version: {{value}}',
   },
-}
+} as const
 
 export const create = (context: any) => {
   const sourceCode = getSourceCode(context)
