@@ -84,7 +84,7 @@ const tsconfigPlugin = await import(tsconfigUri)
 // @ts-ignore
 const actionsUri = '../plugin-github-actions/src/index.ts'
 const actionsPlugin = await import(actionsUri)`,
-  `import * as tsconfigPlugin from '@lvce-editor/eslint-plugin-tsconfig',
+  `import * as tsconfigPlugin from '@lvce-editor/eslint-plugin-tsconfig'
 import * as actionsPlugin from '@lvce-editor/eslint-plugin-github-actions'`,
 )
 await writeFile(indexPath, newIndexContent)
