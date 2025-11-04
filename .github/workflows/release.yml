@@ -96,7 +96,6 @@ jobs:
       - run: npm publish --access public
         working-directory: ./.tmp/dist
       - name: Publish GitHub release
-        if: matrix.os == 'ubuntu-24.04'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
