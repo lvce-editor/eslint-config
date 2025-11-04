@@ -1,4 +1,5 @@
 import * as ciVersions from './ci-versions.ts'
+import * as actionVersions from './action-versions.ts'
 
 const plugin = {
   meta: {
@@ -7,6 +8,7 @@ const plugin = {
   },
   rules: {
     'ci-versions': ciVersions,
+    'action-versions': actionVersions,
   },
 }
 
