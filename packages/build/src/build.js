@@ -78,9 +78,14 @@ const indexContent = await readFile(indexPath, 'utf8')
 const newIndexContent = indexContent.replace(
   `
 // @ts-ignore
-const uri = '../plugin-tsconfig/src/index.ts'
-const tsconfigPlugin = await import(uri)`,
-  `import * as tsconfigPlugin from '@lvce-editor/eslint-plugin-tsconfig'`,
+const tsconfigUri = '../plugin-tsconfig/src/index.ts'
+const tsconfigPlugin = await import(tsconfigUri)
+
+// @ts-ignore
+const actionsUri = '../plugin-github-actions/src/index.ts'
+const actionsPlugin = await import(actionsUri)`,
+  `import * as tsconfigPlugin from '@lvce-editor/eslint-plugin-tsconfig',
+import * as actionsPlugin from '@lvce-editor/eslint-plugin-github-actions'`,
 )
 await writeFile(indexPath, newIndexContent)
 
