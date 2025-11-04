@@ -1,11 +1,6 @@
 import type { Rule } from 'eslint'
 import { getSourceCode } from 'eslint-compat-utils'
 import type { AST } from 'yaml-eslint-parser'
-import { actions } from './config.ts'
-
-const isSupported = (actions: readonly string[], value: string): boolean => {
-  return actions.includes(value)
-}
 
 export const meta = {
   type: 'problem',
