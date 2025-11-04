@@ -46,7 +46,7 @@ const recommended: Linter.Config[] = [
       'github-actions/npm': 'error',
       'github-actions/on': 'error',
       'github-actions/timeout-minutes': 'error',
-      'github-actions/matrix': 'error',
+      'github-actions/matrix': 'off',
     },
   },
 ]
