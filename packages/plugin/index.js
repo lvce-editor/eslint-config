@@ -1,56 +1,17 @@
 import eslint from '@eslint/js'
+import markdown from '@eslint/markdown'
 import pluginJest from 'eslint-plugin-jest'
 import nodePlugin from 'eslint-plugin-n'
-import perfectionist from 'eslint-plugin-perfectionist'
-import { createFileComposition, createFolderStructure, projectStructurePlugin } from 'eslint-plugin-project-structure'
-import { mkdirSync } from 'node:fs'
-import { join } from 'node:path'
-import process from 'node:process'
-import tseslint from 'typescript-eslint'
 import packageJson from 'eslint-plugin-package-json'
+import perfectionist from 'eslint-plugin-perfectionist'
 import eslintPluginUnicorn from 'eslint-plugin-unicorn'
 import eslintPluginYml from 'eslint-plugin-yml'
-import markdown from '@eslint/markdown'
+import tseslint from 'typescript-eslint'
 
 const uri = '../plugin-tsconfig/dist/index.js'
 const tsconfigPlugin = (await import(uri)).default
 
 const root = process.cwd()
-
-mkdirSync(join(root, '.tmp'), { recursive: true })
-
-const folderStructureConfig = createFolderStructure({
-  projectRoot: root,
-  structure: [
-    {
-      name: 'src',
-      children: [
-        {
-          name: '{camelCase}.ts',
-        },
-        {
-          name: 'parts',
-          children: [
-            {
-              name: '{PascalCase}',
-              children: [{ name: '{FolderName}.ts' }],
-            },
-          ],
-        },
-      ],
-    },
-  ],
-})
-
-const fileCompositionConfig = createFileComposition({
-  filesRules: [
-    {
-      filePattern: '**/*.ts',
-      rootSelectorsLimits: [{ selector: ['interface', 'type', 'function', 'arrowFunction', 'class'], limit: 1 }],
-      rules: [],
-    },
-  ],
-})
 
 /**
  * @type {any}
@@ -249,28 +210,6 @@ export const recommendedNode = [
     rules: {
       'n/prefer-node-protocol': 'error',
       'n/no-unpublished-import': 'off', // TODO enable this for some node packages, which don't bundle dependencies
-    },
-  },
-]
-
-/**
- * @type {any}
- */
-export const recommendedFolderStructucture = [
-  {
-    files: ['src/**/*.ts'],
-    plugins: {
-      'project-structure': projectStructurePlugin,
-    },
-    rules: {
-      // If you have many rules in a separate file.
-      'project-structure/file-composition': ['error', fileCompositionConfig],
-      'project-structure/folder-structure': ['error', folderStructureConfig],
-    },
-  },
-  {
-    settings: {
-      'project-structure/cache-location': join(root, '.tmp'),
     },
   },
 ]
