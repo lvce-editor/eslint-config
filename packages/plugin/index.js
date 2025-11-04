@@ -7,8 +7,10 @@ import perfectionist from 'eslint-plugin-perfectionist'
 import eslintPluginUnicorn from 'eslint-plugin-unicorn'
 import eslintPluginYml from 'eslint-plugin-yml'
 import tseslint from 'typescript-eslint'
+
 // @ts-ignore
-import * as tsconfigPlugin from '../plugin-tsconfig/src/index.ts'
+const uri = '../plugin-tsconfig/src/index.ts'
+const tsconfigPlugin = await import(uri)
 
 const root = process.cwd()
 

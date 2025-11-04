@@ -74,7 +74,12 @@ await cp(join(root, 'LICENSE'), join(dist, 'LICENSE'))
 
 const indexPath = join(dist, 'index.js')
 const indexContent = await readFile(indexPath, 'utf8')
-const newIndexContent = indexContent.replace('../plugin-tsconfig/src/index.ts', '@lvce-editor/eslint-plugin-tsconfig')
+const newIndexContent = indexContent.replace(
+  `// @ts-ignore
+const uri = '../plugin-tsconfig/src/index.ts'
+const tsconfigPlugin = await import(uri)`,
+  `import * as tsconfigPlugin from '@lvce-editor/eslint-plugin-tsconfig'`,
+)
 await writeFile(indexPath, newIndexContent)
 
 for (const packageName of ['plugin-github-actions', 'plugin-tsconfig']) {
