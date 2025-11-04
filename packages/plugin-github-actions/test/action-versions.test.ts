@@ -34,6 +34,15 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v1`,
+      output: `
+jobs:
+  ci:
+    strategy:
+      matrix:
+        os: [ubuntu-24.04]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5`,
       errors: [
         {
           messageId: 'unsupportedActionVersion',
