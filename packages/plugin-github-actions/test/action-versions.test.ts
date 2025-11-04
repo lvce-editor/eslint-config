@@ -47,7 +47,7 @@ jobs:
         {
           messageId: 'unsupportedActionVersion',
           line: 9,
-          column: 9,
+          column: 15,
           endLine: 9,
           endColumn: 34,
         },
