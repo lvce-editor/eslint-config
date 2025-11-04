@@ -12,11 +12,11 @@ const plugin = {
     version: '0.0.1',
   },
   rules: {
-    'ci-versions': ciVersions,
     'action-versions': actionVersions,
-    'timeout-minutes': timeoutMinutes,
+    'ci-versions': ciVersions,
     'max-parallel': maxParallel,
     'npm-registry': npmRegistry,
+    'timeout-minutes': timeoutMinutes,
   },
 }
 
