@@ -87,12 +87,8 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm publish --access public
         working-directory: ./.tmp/plugin-github-actions
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - run: npm publish --access public
         working-directory: ./.tmp/plugin-tsconfig
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - run: npm publish --access public
         working-directory: ./.tmp/dist
       - name: Publish GitHub release
