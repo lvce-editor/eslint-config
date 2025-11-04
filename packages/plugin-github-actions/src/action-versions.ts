@@ -45,7 +45,7 @@ export const create = (context: Rule.RuleContext) => {
         for (const [key, value] of Object.entries(actions)) {
           if (nodeValue.startsWith(key) && !isSupported(value, nodeValue)) {
             context.report({
-              node,
+              node: node.value,
               messageId: 'unsupportedActionVersion',
               data: {
                 value: nodeValue,
