@@ -1,43 +1,33 @@
 import type { AST } from 'yaml-eslint-parser'
 import { getSourceCode } from 'eslint-compat-utils'
+import { config, platforms } from './config.ts'
+
+const parseVersion = (value: string, prefix: string): string => {
+  return value
+}
 
 const parseUbuntuVersion = (value: string): string => {
-  return value.slice('ubuntu-'.length)
+  return parseVersion(value, platforms.ubuntu)
 }
 
 const parseWindowsVersion = (value: string): string => {
-  return value.slice('windows-'.length)
+  return parseVersion(value, platforms.windows)
 }
 
 const parseMacosVersion = (value: string): string => {
-  return value.slice('macos-'.length)
+  return parseVersion(value, platforms.macos)
 }
 
 const isSupportedUbuntuVersion = (version: string): boolean => {
-  switch (version) {
-    case '24.04':
-      return true
-    default:
-      return false
-  }
+  return config.ubuntu.includes(version)
 }
 
 const isSupportedMacosversion = (version: string): boolean => {
-  switch (version) {
-    case '15':
-      return true
-    default:
-      return false
-  }
+  return config.macos.includes(version)
 }
 
 const isSupportedWindowsVersion = (version: string): boolean => {
-  switch (version) {
-    case '2025':
-      return true
-    default:
-      return false
-  }
+  return config.windows.includes(version)
 }
 
 export const meta = {
@@ -59,17 +49,17 @@ export const create = (context: any) => {
   }
   const checks = [
     {
-      prefix: 'ubuntu-',
+      prefix: `${platforms.ubuntu}-`,
       parseVersion: parseUbuntuVersion,
       isSupported: isSupportedUbuntuVersion,
     },
     {
-      prefix: 'macos-',
+      prefix: `${platforms.macos}-`,
       parseVersion: parseMacosVersion,
       isSupported: isSupportedMacosversion,
     },
     {
-      prefix: 'windows-',
+      prefix: `${platforms.windows}-`,
       parseVersion: parseWindowsVersion,
       isSupported: isSupportedWindowsVersion,
     },
