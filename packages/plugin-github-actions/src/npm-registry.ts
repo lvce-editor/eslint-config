@@ -1,7 +1,7 @@
 import type { Rule } from 'eslint'
 import { getSourceCode } from 'eslint-compat-utils'
 import type { AST } from 'yaml-eslint-parser'
-import { config, npmRegistries } from './config.ts'
+import { npmRegistries } from './config.ts'
 
 export const meta = {
   type: 'problem',
