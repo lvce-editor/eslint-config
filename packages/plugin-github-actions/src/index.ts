@@ -8,6 +8,7 @@ import * as npmRegistry from './npm-registry.ts'
 import * as on from './on.ts'
 import * as timeoutMinutes from './timeout-minutes.ts'
 import * as npm from './npm.ts'
+import * as matrix from './matrix.ts'
 
 const plugin = {
   meta: {
@@ -21,6 +22,7 @@ const plugin = {
     'max-parallel': maxParallel,
     'npm-registry': npmRegistry,
     'timeout-minutes': timeoutMinutes,
+    matrix: matrix,
     on: on,
     npm: npm,
   },
@@ -44,6 +46,7 @@ const recommended: Linter.Config[] = [
       'github-actions/npm': 'error',
       'github-actions/on': 'error',
       'github-actions/timeout-minutes': 'error',
+      'github-actions/matrix': 'error',
     },
   },
 ]
