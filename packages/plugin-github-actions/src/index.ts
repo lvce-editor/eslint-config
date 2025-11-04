@@ -16,18 +16,13 @@ const plugin = {
 
 const recommended: Linter.Config[] = [
   {
+    plugins: {
+      'github-actions': plugin,
+    },
     files: ['**/.github/workflows/*.y?(a)ml'],
     languageOptions: {
       parser: parserYAML,
     },
-  },
-  {
-    plugins: {
-      'github-actions': plugin,
-    },
-  },
-
-  {
     rules: {
       'github-actions/ci-versions': 'error',
       'github-actions/action-versions': 'error',
