@@ -14,4 +14,6 @@ export const actions = {
   'actions/checkout': ['actions/checkout@v4'],
   'actions/setup-node': ['actions/setup-node@v6'],
   'actions/cache': ['actions/cache@v4'],
+  'actions/upload-pages-artifact': ['actions/upload-pages-artifact@v4'],
+  'actions/deploy-pages': ['actions/deploy-pages@v4'],
 }
