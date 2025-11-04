@@ -10,6 +10,7 @@ import * as timeoutMinutes from './timeout-minutes.ts'
 import * as shell from './shell.ts'
 import * as npm from './npm.ts'
 import * as needs from './needs.ts'
+import * as matrix from './matrix.ts'
 
 const plugin = {
   meta: {
@@ -24,6 +25,7 @@ const plugin = {
     'npm-registry': npmRegistry,
     'timeout-minutes': timeoutMinutes,
     needs: needs,
+    matrix: matrix,
     npm: npm,
     on: on,
     shell,
@@ -43,6 +45,7 @@ const recommended: Linter.Config[] = [
       'github-actions/action-versions': 'error',
       'github-actions/ci-versions': 'error',
       'github-actions/fail-fast': 'error',
+      'github-actions/matrix': 'off',
       'github-actions/max-parallel': 'error',
       'github-actions/npm-registry': 'error',
       'github-actions/npm': 'error',
