@@ -1,12 +1,13 @@
 import json from '@eslint/json'
+import type { Linter } from 'eslint'
 import * as tsconfigAllowImportingTsExtensions from './tsconfig-allow-importing-ts-extensions.ts'
-import * as tsconfigForceConsistentCasingInFileNames from './tsconfig-force-consistent-casing-in-file-names.ts'
-import * as tsconfigNoUncheckedSideEffectImports from './tsconfig-no-unchecked-side-effect-imports.ts'
-import * as tsconfigNoImplicitAny from './tsconfig-no-implicit-any.ts'
-import * as tsconfigStrict from './tsconfig-strict.ts'
 import * as tsconfigAssumeChangesOnlyAffectDirectDependencies from './tsconfig-assume-changes-only-affect-direct-dependencies.ts'
-import * as tsconfigExactOptionalPropertyTypes from './tsconfig-exact-optional-property-types.ts'
 import * as tsconfigErasableSyntaxOnly from './tsconfig-erasable-syntax-only.ts'
+import * as tsconfigExactOptionalPropertyTypes from './tsconfig-exact-optional-property-types.ts'
+import * as tsconfigForceConsistentCasingInFileNames from './tsconfig-force-consistent-casing-in-file-names.ts'
+import * as tsconfigNoImplicitAny from './tsconfig-no-implicit-any.ts'
+import * as tsconfigNoUncheckedSideEffectImports from './tsconfig-no-unchecked-side-effect-imports.ts'
+import * as tsconfigStrict from './tsconfig-strict.ts'
 
 const plugin = {
   meta: {
@@ -26,23 +27,17 @@ const plugin = {
   configs: {},
 }
 
-const recommended = [
+const recommended: Linter.Config[] = [
   {
+    files: ['**/tsconfig.json'],
     plugins: {
       json,
-    },
-  },
-  {
-    files: ['**/*.json'],
-    language: 'json/json',
-    rules: {},
-  },
-  {
-    plugins: {
       tsconfig: plugin,
     },
-  },
-  {
+    language: 'json/jsonc',
+    languageOptions: {
+      allowTrailingCommas: true,
+    },
     rules: {
       'tsconfig/no-unchecked-side-effect-imports': 'error',
       'tsconfig/force-consistent-casing-in-file-names': 'error',
