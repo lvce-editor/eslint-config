@@ -52,7 +52,7 @@ export const create = (context: Rule.RuleContext) => {
           const rest = nodeValue.slice('npm '.length)
           if (!isSupportedNpmCommand(rest)) {
             context.report({
-              node,
+              node: node.value,
               messageId: 'unsupportedNpmCommand',
               data: {
                 value: nodeValue,

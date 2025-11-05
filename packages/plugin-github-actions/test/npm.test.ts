@@ -31,7 +31,7 @@ jobs:
       errors: [
         {
           messageId: 'unsupportedNpmCommand',
-          column: 9,
+          column: 14,
           endColumn: 21,
           endLine: 6,
           line: 6,
