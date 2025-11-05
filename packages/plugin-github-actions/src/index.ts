@@ -9,6 +9,7 @@ import * as needs from './needs.ts'
 import * as npmRegistry from './npm-registry.ts'
 import * as npm from './npm.ts'
 import * as on from './on.ts'
+import * as permissions from './permissions.ts'
 import * as shell from './shell.ts'
 import * as timeoutMinutes from './timeout-minutes.ts'
 
@@ -29,6 +30,7 @@ const plugin = {
     npm: npm,
     on: on,
     shell,
+    permissions,
   },
 }
 
@@ -47,10 +49,11 @@ const recommended: Linter.Config[] = [
       'github-actions/fail-fast': 'error',
       'github-actions/matrix': 'off',
       'github-actions/max-parallel': 'error',
+      'github-actions/needs': 'error',
       'github-actions/npm-registry': 'error',
       'github-actions/npm': 'error',
-      'github-actions/needs': 'error',
       'github-actions/on': 'error',
+      'github-actions/permissions': 'error',
       'github-actions/shell': 'error',
       'github-actions/timeout-minutes': 'error',
     },

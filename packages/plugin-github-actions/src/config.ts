@@ -28,3 +28,8 @@ export const onProperties = ['push', 'pull_request']
 export const npmCommands = ['run', 'test', 'publish', 'install', 'ci']
 
 export const shells = ['bash']
+
+export const permissions: Record<string, readonly string[]> = {
+  'id-token': ['write'],
+  contents: ['write'],
+}
