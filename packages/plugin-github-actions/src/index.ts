@@ -11,6 +11,7 @@ import * as npm from './npm.ts'
 import * as on from './on.ts'
 import * as shell from './shell.ts'
 import * as timeoutMinutes from './timeout-minutes.ts'
+import * as nodeVersionFile from './node-version-file.ts'
 
 const plugin = {
   meta: {
@@ -29,6 +30,7 @@ const plugin = {
     npm: npm,
     on: on,
     shell,
+    'node-version-file': nodeVersionFile,
   },
 }
 
@@ -47,9 +49,10 @@ const recommended: Linter.Config[] = [
       'github-actions/fail-fast': 'error',
       'github-actions/matrix': 'off',
       'github-actions/max-parallel': 'error',
+      'github-actions/needs': 'error',
+      'github-actions/node-version-file': 'error',
       'github-actions/npm-registry': 'error',
       'github-actions/npm': 'error',
-      'github-actions/needs': 'error',
       'github-actions/on': 'error',
       'github-actions/shell': 'error',
       'github-actions/timeout-minutes': 'error',
