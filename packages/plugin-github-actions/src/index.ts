@@ -24,15 +24,15 @@ const plugin = {
     'ci-versions': ciVersions,
     'fail-fast': failFast,
     'max-parallel': maxParallel,
+    'node-version-file': nodeVersionFile,
     'npm-registry': npmRegistry,
     'timeout-minutes': timeoutMinutes,
     matrix: matrix,
     needs: needs,
     npm: npm,
     on: on,
-    shell,
-    'node-version-file': nodeVersionFile,
     permissions,
+    shell,
   },
 }
 
