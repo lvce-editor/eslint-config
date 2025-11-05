@@ -9,7 +9,7 @@ const ruleTester = new RuleTester({
   },
 })
 
-ruleTester.run('maxParallel', rule, {
+ruleTester.run('failFast', rule, {
   valid: [
     {
       code: `
@@ -30,7 +30,7 @@ jobs:
         {
           messageId: 'unsupportedFailFast',
           line: 5,
-          column: 5,
+          column: 16,
           endLine: 5,
           endColumn: 20,
         },

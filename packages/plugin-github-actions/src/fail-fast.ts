@@ -39,7 +39,7 @@ export const create = (context: Rule.RuleContext) => {
       ) {
         const nodeValue = node.value.value
         context.report({
-          node,
+          node: node.value,
           messageId: 'unsupportedFailFast',
           data: {
             value: nodeValue,
