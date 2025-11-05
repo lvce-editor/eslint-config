@@ -12,6 +12,7 @@ import * as on from './on.ts'
 import * as permissions from './permissions.ts'
 import * as shell from './shell.ts'
 import * as timeoutMinutes from './timeout-minutes.ts'
+import * as nodeVersionFile from './node-version-file.ts'
 
 const plugin = {
   meta: {
@@ -23,14 +24,15 @@ const plugin = {
     'ci-versions': ciVersions,
     'fail-fast': failFast,
     'max-parallel': maxParallel,
+    'node-version-file': nodeVersionFile,
     'npm-registry': npmRegistry,
     'timeout-minutes': timeoutMinutes,
     matrix: matrix,
     needs: needs,
     npm: npm,
     on: on,
-    shell,
     permissions,
+    shell,
   },
 }
 
@@ -50,6 +52,7 @@ const recommended: Linter.Config[] = [
       'github-actions/matrix': 'off',
       'github-actions/max-parallel': 'error',
       'github-actions/needs': 'error',
+      'github-actions/node-version-file': 'error',
       'github-actions/npm-registry': 'error',
       'github-actions/npm': 'error',
       'github-actions/on': 'error',
