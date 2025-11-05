@@ -32,4 +32,5 @@ export const shells = ['bash']
 export const permissions: Record<string, readonly string[]> = {
   'id-token': ['write'],
   contents: ['write'],
+  pages: ['write'],
 }
