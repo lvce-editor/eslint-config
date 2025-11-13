@@ -16,8 +16,8 @@ export const actions = {
   'actions/cache': ['actions/cache@v4'],
   'actions/upload-pages-artifact': ['actions/upload-pages-artifact@v4'],
   'actions/deploy-pages': ['actions/deploy-pages@v4'],
-  'actions/download-artifact': ['actions/download-artifact@v4'],
-  'actions/upload-artifact': ['actions/upload-artifact@v4'],
+  'actions/download-artifact': ['actions/download-artifact@v6'],
+  'actions/upload-artifact': ['actions/upload-artifact@v5'],
   'actions/create-release': ['actions/create-release@v1'],
   'actions/setup-python': ['actions/setup-python@v5'],
 }
