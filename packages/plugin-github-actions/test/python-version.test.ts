@@ -30,17 +30,17 @@ jobs:
   publish-release:
     runs-on: ubuntu-24.04
     steps:
-      - name: Use Python 3.13
+      - name: Use Python 3.11
         uses: actions/setup-python@5
         with:
-          python-version: '3.13'`,
+          python-version: '3.11'`,
       errors: [
         {
           messageId: 'unsupportedPythonVersion',
           column: 11,
           endColumn: 33,
-          endLine: 8,
-          line: 8,
+          endLine: 9,
+          line: 9,
         },
       ],
     },
