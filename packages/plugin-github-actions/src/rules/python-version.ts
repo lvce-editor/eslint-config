@@ -1,6 +1,7 @@
 import type { Rule } from 'eslint'
 import { getSourceCode } from 'eslint-compat-utils'
 import type { AST } from 'yaml-eslint-parser'
+import { pythonVersions } from './config.ts'
 
 export const meta: Rule.RuleMetaData = {
   type: 'problem',
@@ -37,7 +38,7 @@ export const create = (context: Rule.RuleContext) => {
         node.value.type === 'YAMLScalar'
       ) {
         const nodeValue = node.value.value
-        if (typeof nodeValue !== 'string' || nodeValue !== '.nvmrc') {
+        if (typeof nodeValue !== 'string' || pythonVersions.includes(nodeValue)) {
           context.report({
             node,
             messageId: 'unsupportedPythonVersion',
