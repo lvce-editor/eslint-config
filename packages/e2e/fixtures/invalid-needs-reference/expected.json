@@ -1,6 +1,6 @@
 [
   {
     "filePath": ".github/workflows/ci.yml:12",
-    "message": "Unsupported action version: actions/checkout@v2"
+    "message": "Unsupported needs value: not-found"
   }
 ]
