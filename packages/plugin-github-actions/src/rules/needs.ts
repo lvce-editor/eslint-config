@@ -74,39 +74,53 @@ export const create = (context: Rule.RuleContext) => {
         typeof node.value === 'object' &&
         'type' in node.value
       ) {
-        if (node.value.type !== 'YAMLSequence') {
-          context.report({
-            node,
-            messageId: 'unsupportedNeeds',
-            data: {
-              value: stringifyValue(node.value),
-            },
-          })
-          return
-        }
         const validNeeds = getValidNeeds(node)
 
-        for (const item of node.value.entries) {
-          if (!item || item.type !== 'YAMLScalar' || typeof item.value !== 'string') {
+        if (node.value.type === 'YAMLScalar' && typeof node.value.value === 'string') {
+          if (!validNeeds.includes(node.value.value)) {
             context.report({
               node,
               messageId: 'unsupportedNeeds',
               data: {
-                value: stringifyValue(item),
-              },
-            })
-            continue
-          }
-          if (!validNeeds.includes(item.value)) {
-            context.report({
-              node,
-              messageId: 'unsupportedNeeds',
-              data: {
-                value: stringifyValue(item),
+                value: stringifyValue(node.value),
               },
             })
           }
+          return
         }
+
+        if (node.value.type === 'YAMLSequence') {
+          for (const item of node.value.entries) {
+            if (!item || item.type !== 'YAMLScalar' || typeof item.value !== 'string') {
+              context.report({
+                node,
+                messageId: 'unsupportedNeeds',
+                data: {
+                  value: stringifyValue(item),
+                },
+              })
+              continue
+            }
+            if (!validNeeds.includes(item.value)) {
+              context.report({
+                node,
+                messageId: 'unsupportedNeeds',
+                data: {
+                  value: stringifyValue(item),
+                },
+              })
+            }
+          }
+          return
+        }
+
+        context.report({
+          node,
+          messageId: 'unsupportedNeeds',
+          data: {
+            value: stringifyValue(node.value),
+          },
+        })
       }
     },
   }
