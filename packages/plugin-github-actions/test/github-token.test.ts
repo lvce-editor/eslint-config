@@ -40,9 +40,9 @@ jobs:
         {
           messageId: 'unsupportedGithubToken',
           column: 11,
-          endColumn: 33,
-          endLine: 8,
-          line: 8,
+          endColumn: 28,
+          endLine: 10,
+          line: 10,
         },
       ],
     },
