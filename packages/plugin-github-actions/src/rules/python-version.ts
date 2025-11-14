@@ -40,7 +40,7 @@ export const create = (context: Rule.RuleContext) => {
         if (typeof nodeValue !== 'string' || nodeValue !== '.nvmrc') {
           context.report({
             node,
-            messageId: 'unsupportedNodeVersionFile',
+            messageId: 'unsupportedPythonVersion',
             data: {
               value: nodeValue,
             },
