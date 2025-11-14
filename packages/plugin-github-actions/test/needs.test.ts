@@ -29,7 +29,7 @@ jobs:
     fail-fast: true
 
   b:
-    needs: a`,
+    needs: [a]`,
     },
   ],
   invalid: [
@@ -60,10 +60,10 @@ jobs:
       errors: [
         {
           messageId: 'unsupportedNeeds',
-          line: 4,
+          endColumn: 17,
+          endLine: 8,
+          line: 8,
           column: 5,
-          endLine: 4,
-          endColumn: 15,
         },
       ],
     },

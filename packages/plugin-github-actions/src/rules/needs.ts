@@ -45,7 +45,6 @@ const getValidNeeds = (node: AST.YAMLPair): readonly string[] => {
   if (greatGrandParent.type === 'YAMLMapping') {
     const pairs = greatGrandParent.pairs
     for (const pair of pairs) {
-      console.log(pair)
       if (pair.key && pair.key.type === 'YAMLScalar' && typeof pair.key.value === 'string') {
         validNeeds.push(pair.key.value)
       }
@@ -86,7 +85,6 @@ export const create = (context: Rule.RuleContext) => {
           return
         }
         const validNeeds = getValidNeeds(node)
-        console.log({ validNeeds })
 
         for (const item of node.value.entries) {
           if (!item || item.type !== 'YAMLScalar' || typeof item.value !== 'string') {
