@@ -15,6 +15,7 @@ import * as pythonVersion from './rules/python-version.ts'
 import * as shell from './rules/shell.ts'
 import * as timeoutMinutes from './rules/timeout-minutes.ts'
 import * as workingDirectory from './rules/working-directory.ts'
+import * as githubToken from './rules/github-token.ts'
 
 const plugin = {
   meta: {
@@ -25,6 +26,7 @@ const plugin = {
     'action-versions': actionVersions,
     'ci-versions': ciVersions,
     'fail-fast': failFast,
+    'github-token': githubToken,
     'max-parallel': maxParallel,
     'node-version-file': nodeVersionFile,
     'npm-registry': npmRegistry,
@@ -53,6 +55,7 @@ const recommended: Linter.Config[] = [
       'github-actions/action-versions': 'error',
       'github-actions/ci-versions': 'error',
       'github-actions/fail-fast': 'error',
+      'github-actions/github-token': 'error',
       'github-actions/matrix': 'off',
       'github-actions/max-parallel': 'error',
       'github-actions/needs': 'error',
