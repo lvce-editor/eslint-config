@@ -1,0 +1,13 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ci:
+    runs-on: ubuntu-24.04
+    needs: ['not-found']
+    steps:
+      - uses: actions/checkout@v5

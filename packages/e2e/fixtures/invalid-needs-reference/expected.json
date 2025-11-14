@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": ".github/workflows/ci.yml:12",
+    "message": "Unsupported action version: actions/checkout@v2"
+  }
+]

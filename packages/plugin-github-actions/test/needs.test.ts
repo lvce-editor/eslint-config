@@ -48,5 +48,24 @@ jobs:
         },
       ],
     },
+    {
+      code: `
+jobs:
+  a:
+    runs-on: ubuntu-24.04
+    fail-fast: true
+
+  b:
+    needs: ["c"]`,
+      errors: [
+        {
+          messageId: 'unsupportedNeeds',
+          line: 4,
+          column: 5,
+          endLine: 4,
+          endColumn: 15,
+        },
+      ],
+    },
   ],
 })
