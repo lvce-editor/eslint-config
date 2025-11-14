@@ -1,0 +1,14 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ci:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - run: npm test
+        working-directory: ./not-found

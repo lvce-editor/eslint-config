@@ -13,6 +13,7 @@ import * as permissions from './rules/permissions.ts'
 import * as shell from './rules/shell.ts'
 import * as timeoutMinutes from './rules/timeout-minutes.ts'
 import * as nodeVersionFile from './rules/node-version-file.ts'
+import * as workingDirectory from './rules/working-directory.ts'
 
 const plugin = {
   meta: {
@@ -27,6 +28,7 @@ const plugin = {
     'node-version-file': nodeVersionFile,
     'npm-registry': npmRegistry,
     'timeout-minutes': timeoutMinutes,
+    'working-directory': workingDirectory,
     matrix: matrix,
     needs: needs,
     npm: npm,
@@ -59,6 +61,7 @@ const recommended: Linter.Config[] = [
       'github-actions/permissions': 'off',
       'github-actions/shell': 'error',
       'github-actions/timeout-minutes': 'error',
+      'github-actions/working-directory': 'error',
     },
   },
 ]
