@@ -34,16 +34,17 @@ export const create = (context: Rule.RuleContext) => {
         node.value &&
         typeof node.value === 'object' &&
         'type' in node.value &&
-        node.value.type !== 'YAMLSequence' &&
-        !(node.value.type === 'YAMLScalar' && typeof node.value.value === 'string')
+        node.value.type !== 'YAMLSequence'
       ) {
-        context.report({
-          node,
-          messageId: 'unsupportedNeeds',
-          data: {
-            value: node.value,
-          },
-        })
+        if (node.value.type !== 'YAMLScalar' || typeof node.value.value === 'string') {
+          context.report({
+            node,
+            messageId: 'unsupportedNeeds',
+            data: {
+              value: node.value,
+            },
+          })
+        }
       }
     },
   }
