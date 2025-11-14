@@ -64,6 +64,7 @@ const recommended: Linter.Config[] = [
       'github-actions/npm': 'error',
       'github-actions/on': 'error',
       'github-actions/permissions': 'off',
+      'github-actions/python-version': 'error',
       'github-actions/shell': 'error',
       'github-actions/timeout-minutes': 'error',
       'github-actions/working-directory': 'error',
