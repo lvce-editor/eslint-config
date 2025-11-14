@@ -30,6 +30,8 @@ export const npmCommands = ['run', 'test', 'publish', 'install', 'ci']
 
 export const shells = ['bash']
 
+export const pythonVersions = ['3.13', '3.14', '3.15']
+
 export const permissions: Record<string, readonly string[]> = {
   'id-token': ['write'],
   contents: ['write'],

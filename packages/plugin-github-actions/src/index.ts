@@ -6,13 +6,14 @@ import * as failFast from './rules/fail-fast.ts'
 import * as matrix from './rules/matrix.ts'
 import * as maxParallel from './rules/max-parallel.ts'
 import * as needs from './rules/needs.ts'
+import * as nodeVersionFile from './rules/node-version-file.ts'
 import * as npmRegistry from './rules/npm-registry.ts'
 import * as npm from './rules/npm.ts'
 import * as on from './rules/on.ts'
 import * as permissions from './rules/permissions.ts'
+import * as pythonVersion from './rules/python-version.ts'
 import * as shell from './rules/shell.ts'
 import * as timeoutMinutes from './rules/timeout-minutes.ts'
-import * as nodeVersionFile from './rules/node-version-file.ts'
 import * as workingDirectory from './rules/working-directory.ts'
 import * as githubToken from './rules/github-token.ts'
 
@@ -29,6 +30,7 @@ const plugin = {
     'max-parallel': maxParallel,
     'node-version-file': nodeVersionFile,
     'npm-registry': npmRegistry,
+    'python-version': pythonVersion,
     'timeout-minutes': timeoutMinutes,
     'working-directory': workingDirectory,
     matrix: matrix,
