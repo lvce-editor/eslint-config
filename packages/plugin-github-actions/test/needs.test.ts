@@ -29,7 +29,7 @@ jobs:
     fail-fast: true
 
   b:
-    needs: a`,
+    needs: [a]`,
     },
   ],
   invalid: [
@@ -45,6 +45,25 @@ jobs:
           column: 5,
           endLine: 4,
           endColumn: 15,
+        },
+      ],
+    },
+    {
+      code: `
+jobs:
+  a:
+    runs-on: ubuntu-24.04
+    fail-fast: true
+
+  b:
+    needs: ["c"]`,
+      errors: [
+        {
+          messageId: 'unsupportedNeeds',
+          endColumn: 17,
+          endLine: 8,
+          line: 8,
+          column: 5,
         },
       ],
     },

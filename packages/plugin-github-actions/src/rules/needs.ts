@@ -14,6 +14,45 @@ export const meta: Rule.RuleMetaData = {
   },
 } as const
 
+const stringifyValue = (
+  node:
+    | AST.YAMLAlias
+    | AST.YAMLBlockFoldedScalar
+    | AST.YAMLBlockLiteralScalar
+    | AST.YAMLBlockMapping
+    | AST.YAMLBlockSequence
+    | AST.YAMLDoubleQuotedScalar
+    | AST.YAMLFlowMapping
+    | AST.YAMLFlowSequence
+    | AST.YAMLPlainScalar
+    | AST.YAMLSingleQuotedScalar
+    | AST.YAMLWithMeta
+    | null,
+): string => {
+  if (!node) {
+    return ''
+  }
+  if (node.type === 'YAMLScalar') {
+    return `${node.value}`
+  }
+  return `${node.type}`
+}
+
+const getValidNeeds = (node: AST.YAMLPair): readonly string[] => {
+  const greatGrandParent = node.parent.parent.parent
+  const validNeeds: string[] = []
+
+  if (greatGrandParent.type === 'YAMLMapping') {
+    const pairs = greatGrandParent.pairs
+    for (const pair of pairs) {
+      if (pair.key && pair.key.type === 'YAMLScalar' && typeof pair.key.value === 'string') {
+        validNeeds.push(pair.key.value)
+      }
+    }
+  }
+  return validNeeds
+}
+
 export const create = (context: Rule.RuleContext) => {
   const sourceCode = getSourceCode(context)
   if (!sourceCode.parserServices?.isYAML) {
@@ -33,17 +72,40 @@ export const create = (context: Rule.RuleContext) => {
         node.key.value === 'needs' &&
         node.value &&
         typeof node.value === 'object' &&
-        'type' in node.value &&
-        node.value.type !== 'YAMLSequence'
+        'type' in node.value
       ) {
-        if (node.value.type !== 'YAMLScalar' || typeof node.value.value !== 'string') {
+        if (node.value.type !== 'YAMLSequence') {
           context.report({
             node,
             messageId: 'unsupportedNeeds',
             data: {
-              value: node.value,
+              value: stringifyValue(node.value),
             },
           })
+          return
+        }
+        const validNeeds = getValidNeeds(node)
+
+        for (const item of node.value.entries) {
+          if (!item || item.type !== 'YAMLScalar' || typeof item.value !== 'string') {
+            context.report({
+              node,
+              messageId: 'unsupportedNeeds',
+              data: {
+                value: stringifyValue(item),
+              },
+            })
+            continue
+          }
+          if (!validNeeds.includes(item.value)) {
+            context.report({
+              node,
+              messageId: 'unsupportedNeeds',
+              data: {
+                value: stringifyValue(item),
+              },
+            })
+          }
         }
       }
     },
