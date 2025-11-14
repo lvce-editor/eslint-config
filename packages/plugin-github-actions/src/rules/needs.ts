@@ -36,7 +36,7 @@ export const create = (context: Rule.RuleContext) => {
         'type' in node.value &&
         node.value.type !== 'YAMLSequence'
       ) {
-        if (node.value.type !== 'YAMLScalar' || typeof node.value.value === 'string') {
+        if (node.value.type !== 'YAMLScalar' || typeof node.value.value !== 'string') {
           context.report({
             node,
             messageId: 'unsupportedNeeds',
