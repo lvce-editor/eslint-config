@@ -30,17 +30,17 @@ export const create = (context: Rule.RuleContext) => {
         'type' in node.key &&
         node.key.type === 'YAMLScalar' &&
         typeof node.key.value === 'string' &&
-        node.key.value === 'node-version-file' &&
+        node.key.value === 'GITHUB_TOKEN' &&
         node.value &&
         typeof node.value === 'object' &&
         'type' in node.value &&
         node.value.type === 'YAMLScalar'
       ) {
         const nodeValue = node.value.value
-        if (typeof nodeValue !== 'string' || nodeValue !== '.nvmrc') {
+        if (typeof nodeValue !== 'string' || nodeValue !== '${{ secrets.GITHUB_TOKEN }}') {
           context.report({
             node,
-            messageId: 'unsupportedNodeVersionFile',
+            messageId: 'unsupportedGithubToken',
             data: {
               value: nodeValue,
             },

@@ -38,7 +38,7 @@ jobs:
           GITHUB_TOKEN: 123`,
       errors: [
         {
-          messageId: 'invalidGithubToken',
+          messageId: 'unsupportedGithubToken',
           column: 11,
           endColumn: 33,
           endLine: 8,
