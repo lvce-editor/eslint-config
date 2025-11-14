@@ -1,6 +1,7 @@
 import './action-versions.test.ts'
 import './ci-versions.test.ts'
 import './fail-fast.test.ts'
+import './github-token.test.ts'
 import './matrix.test.ts'
 import './needs.test.ts'
 import './node-version-file.test.ts'
