@@ -1,6 +1,6 @@
 import { RuleTester } from 'eslint'
 import parser from 'yaml-eslint-parser'
-import * as rule from '../src/timeout-minutes.ts'
+import * as rule from '../src/rules/timeout-minutes.ts'
 
 const ruleTester = new RuleTester({
   languageOptions: {

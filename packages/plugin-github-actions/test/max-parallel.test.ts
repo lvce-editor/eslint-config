@@ -1,6 +1,6 @@
 import { RuleTester } from 'eslint'
 import parser from 'yaml-eslint-parser'
-import * as rule from '../src/max-parallel.ts'
+import * as rule from '../src/rules/max-parallel.ts'
 
 const ruleTester = new RuleTester({
   languageOptions: {
