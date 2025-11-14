@@ -1,6 +1,6 @@
 import { RuleTester } from 'eslint'
 import parser from 'yaml-eslint-parser'
-import * as rule from '../src/npm-registry.ts'
+import * as rule from '../src/rules/npm-registry.ts'
 
 const ruleTester = new RuleTester({
   languageOptions: {
