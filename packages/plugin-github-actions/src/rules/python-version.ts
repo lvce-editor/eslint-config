@@ -38,7 +38,7 @@ export const create = (context: Rule.RuleContext) => {
         node.value.type === 'YAMLScalar'
       ) {
         const nodeValue = node.value.value
-        if (typeof nodeValue !== 'string' || pythonVersions.includes(nodeValue)) {
+        if (typeof nodeValue !== 'string' || !pythonVersions.includes(nodeValue)) {
           context.report({
             node,
             messageId: 'unsupportedPythonVersion',
