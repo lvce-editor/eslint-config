@@ -182,7 +182,6 @@ const defaultConfig = tseslint.config(
       '**/build/**',
       '**/coverage/**',
       '**/server/**',
-      '**/e2e/**',
       '**/dist2/**',
       '**/dist/**',
       '**/memory/**',
