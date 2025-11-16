@@ -44,7 +44,7 @@ export const create = (context: Rule.RuleContext) => {
           fix(fixer) {
             const edits: Rule.Fix[] = []
             const parent = node.parent
-            edits.push(fixer.replaceText(node, 'softprops/action-gh-release@v2'))
+            edits.push(fixer.replaceText(node.value, 'softprops/action-gh-release@v2'))
             for (const pair of parent.pairs) {
               if (pair.key && pair.key.type === 'YAMLScalar' && pair.key.value === 'with' && pair.value?.type == 'YAMLMapping') {
                 const subPairs = pair.value.pairs
