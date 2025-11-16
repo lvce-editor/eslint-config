@@ -11,21 +11,22 @@ const ruleTester = new RuleTester({
 
 ruleTester.run('releaseAction', rule, {
   valid: [
-    //   {
-    //     code: `jobs:
-    // create-release:
-    //   name: create-release
-    //   steps:
-    //     - name: Create GitHub release
-    //       id: release
-    //       uses: softprops/action-gh-release@v2
-    //       env:
-    //         GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
-    //       with:
-    //         tag_name: \${{ env.RG_VERSION }}
-    //         name: \${{ env.RG_VERSION }}
-    //         draft: true`,
-    //   },
+    {
+      code: `
+jobs:
+  create-release:
+    name: create-release
+    steps:
+      - name: Create GitHub release
+        id: release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: \${{ env.RG_VERSION }}
+          name: \${{ env.RG_VERSION }}
+          draft: true`,
+    },
   ],
   invalid: [
     {
