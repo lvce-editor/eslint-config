@@ -49,8 +49,8 @@ jobs:
           messageId: 'unsupportedReleaseAction',
           column: 9,
           endColumn: 40,
-          endLine: 7,
-          line: 7,
+          endLine: 8,
+          line: 8,
         },
       ],
       output: `
