@@ -30,7 +30,8 @@ jobs:
   ],
   invalid: [
     {
-      code: `jobs:
+      code: `
+jobs:
   create-release:
     name: create-release
     steps:
@@ -52,6 +53,20 @@ jobs:
           line: 7,
         },
       ],
+      output: `
+jobs:
+  create-release:
+    name: create-release
+    steps:
+      - name: Create GitHub release
+        id: release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: \${{ env.RG_VERSION }}
+          name: \${{ env.RG_VERSION }}
+          draft: true`,
     },
   ],
 })
