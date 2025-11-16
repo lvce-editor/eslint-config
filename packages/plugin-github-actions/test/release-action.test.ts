@@ -45,7 +45,7 @@ jobs:
           draft: true`,
       errors: [
         {
-          messageId: 'unsupportedGithubToken',
+          messageId: 'unsupportedReleaseAction',
           column: 11,
           endColumn: 28,
           endLine: 10,
