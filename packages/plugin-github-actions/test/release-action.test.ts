@@ -46,10 +46,10 @@ jobs:
       errors: [
         {
           messageId: 'unsupportedReleaseAction',
-          column: 11,
-          endColumn: 28,
-          endLine: 10,
-          line: 10,
+          column: 9,
+          endColumn: 40,
+          endLine: 7,
+          line: 7,
         },
       ],
     },
