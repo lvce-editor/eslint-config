@@ -12,6 +12,8 @@ export const meta: Rule.RuleMetaData = {
   messages: {
     unsupportedReleaseAction: 'Unsupported release action',
   },
+
+  fixable: 'code',
 } as const
 
 export const create = (context: Rule.RuleContext) => {
@@ -30,22 +32,28 @@ export const create = (context: Rule.RuleContext) => {
         'type' in node.key &&
         node.key.type === 'YAMLScalar' &&
         typeof node.key.value === 'string' &&
-        node.key.value === 'GITHUB_TOKEN' &&
+        node.key.value === 'uses' &&
         node.value &&
-        typeof node.value === 'object' &&
-        'type' in node.value &&
-        node.value.type === 'YAMLScalar'
+        node.value.type === 'YAMLScalar' &&
+        node.value.value === 'actions/create-release@v1'
       ) {
-        const nodeValue = node.value.value
-        if (typeof nodeValue !== 'string' || nodeValue !== '${{ secrets.GITHUB_TOKEN }}') {
-          context.report({
-            node,
-            messageId: 'unsupportedReleaseAction',
-            data: {
-              value: nodeValue,
-            },
-          })
-        }
+        context.report({
+          node,
+          messageId: 'unsupportedReleaseAction',
+          data: {},
+          fix(fixer) {
+            const parent = node.parent
+            for (const pair of parent.pairs) {
+              if (pair.key && pair.key.type === 'YAMLScalar' && pair.key.value === 'with') {
+                console.log(pair.value)
+              }
+            }
+            console.log({ parent })
+            // const validText = value.at(-1) || ''
+            // return fixer.replaceText(node.value, validText)
+          },
+        })
+        console.log(node)
       }
     },
   }
