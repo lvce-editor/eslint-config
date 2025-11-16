@@ -42,18 +42,21 @@ export const create = (context: Rule.RuleContext) => {
           messageId: 'unsupportedReleaseAction',
           data: {},
           fix(fixer) {
+            const edits: Rule.Fix[] = []
             const parent = node.parent
             for (const pair of parent.pairs) {
-              if (pair.key && pair.key.type === 'YAMLScalar' && pair.key.value === 'with') {
-                console.log(pair.value)
+              if (pair.key && pair.key.type === 'YAMLScalar' && pair.key.value === 'with' && pair.value?.type == 'YAMLMapping') {
+                const subPairs = pair.value.pairs
+                for (const subPair of subPairs) {
+                  if (subPair.key?.type === 'YAMLScalar' && subPair.key.value === 'release_name') {
+                    edits.push(fixer.replaceText(subPair.key, 'name'))
+                  }
+                }
               }
             }
-            console.log({ parent })
-            // const validText = value.at(-1) || ''
-            // return fixer.replaceText(node.value, validText)
+            return edits
           },
         })
-        console.log(node)
       }
     },
   }
