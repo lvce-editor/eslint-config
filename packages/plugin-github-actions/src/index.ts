@@ -16,6 +16,7 @@ import * as shell from './rules/shell.ts'
 import * as timeoutMinutes from './rules/timeout-minutes.ts'
 import * as workingDirectory from './rules/working-directory.ts'
 import * as githubToken from './rules/github-token.ts'
+import * as releaseAction from './rules/release-action.ts'
 
 const plugin = {
   meta: {
@@ -31,6 +32,7 @@ const plugin = {
     'node-version-file': nodeVersionFile,
     'npm-registry': npmRegistry,
     'python-version': pythonVersion,
+    'release-action': releaseAction,
     'timeout-minutes': timeoutMinutes,
     'working-directory': workingDirectory,
     matrix: matrix,
@@ -65,6 +67,7 @@ const recommended: Linter.Config[] = [
       'github-actions/on': 'error',
       'github-actions/permissions': 'off',
       'github-actions/python-version': 'error',
+      'github-actions/release-action': 'error',
       'github-actions/shell': 'error',
       'github-actions/timeout-minutes': 'error',
       'github-actions/working-directory': 'error',
