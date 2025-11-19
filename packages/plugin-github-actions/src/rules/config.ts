@@ -1,7 +1,7 @@
 export const config = {
-  ubuntu: ['ubuntu-24.04'],
+  ubuntu: ['ubuntu-24.04', 'ubuntu-24.04-arm'],
   macos: ['macos-15', 'macos-26'],
-  windows: ['windows-2025'],
+  windows: ['windows-2025', 'windows-11-arm'],
 }
 
 export const platforms = {
