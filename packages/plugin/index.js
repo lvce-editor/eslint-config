@@ -63,6 +63,7 @@ const defaultConfig = tseslint.config(
         'error',
         {
           allow: [
+            { from: 'lib', name: 'Uint8Array' },
             { from: 'lib', name: 'Uint32Array' },
             { from: 'lib', name: 'RegExp' },
             { from: 'lib', name: 'MessagePort' },
