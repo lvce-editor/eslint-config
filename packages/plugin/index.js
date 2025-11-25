@@ -185,6 +185,7 @@ const defaultConfig = tseslint.config(
       '**/dist2/**',
       '**/dist/**',
       '**/memory/**',
+      '**/fixtures/**',
       '**/test-integration/**',
       '**/test-integration-util/**',
       'scripts',
