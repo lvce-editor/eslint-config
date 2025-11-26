@@ -77,6 +77,7 @@ const defaultConfig = tseslint.config(
             { from: 'lib', name: 'RequestInfo' },
             { from: 'lib', name: 'URL' },
             { from: 'lib', name: 'CacheQueryOptions' },
+            { from: 'lib', name: 'Buffer' },
             { from: 'package', name: 'MessagePortMain', package: 'electron' },
             { from: 'package', name: 'Socket', package: 'node:net' },
             { from: 'package', name: 'Dirent', package: 'node:fs' },
