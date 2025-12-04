@@ -121,6 +121,7 @@ const defaultConfig = tseslint.config(
         {
           advanceTimersByTime: `Don't use timers`,
           unstable_mockModule: "Don't use module mocks",
+          mock: "Don't use mocks",
         },
       ],
       'no-restricted-syntax': [
