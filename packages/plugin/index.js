@@ -50,6 +50,13 @@ const defaultConfig = tseslint.config(
           order: 'asc',
         },
       ],
+      'perfectionist/sort-objects': [
+        'error',
+        {
+          type: 'alphabetical',
+          order: 'asc',
+        },
+      ],
     },
   },
   {
