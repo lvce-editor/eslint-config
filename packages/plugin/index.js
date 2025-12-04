@@ -70,6 +70,7 @@ const defaultConfig = tseslint.config(
             { from: 'lib', name: 'FileList' },
             { from: 'lib', name: 'Response' },
             { from: 'lib', name: 'Error' },
+            { from: 'lib', name: 'Blob' },
             { from: 'lib', name: 'File' },
             { from: 'lib', name: 'FileSystemDirectoryHandle' },
             { from: 'lib', name: 'FileSystemHandle' },
