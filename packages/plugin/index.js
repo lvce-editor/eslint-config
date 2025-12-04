@@ -36,6 +36,20 @@ const defaultConfig = tseslint.config(
           newlinesBetween: 'never',
         },
       ],
+      'perfectionist/sort-interfaces': [
+        'error',
+        {
+          type: 'alphabetical',
+          order: 'asc',
+        },
+      ],
+      'perfectionist/sort-switch-case': [
+        'error',
+        {
+          type: 'alphabetical',
+          order: 'asc',
+        },
+      ],
     },
   },
   {
