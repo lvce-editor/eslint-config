@@ -11,14 +11,14 @@ export const platforms = {
 }
 
 export const actions = {
-  'actions/cache': ['actions/cache@v4'],
-  'actions/checkout': ['actions/checkout@v5'],
+  'actions/cache': ['actions/cache@v5'],
+  'actions/checkout': ['actions/checkout@v6'],
   'actions/create-release': ['actions/create-release@v1'],
   'actions/deploy-pages': ['actions/deploy-pages@v4'],
   'actions/download-artifact': ['actions/download-artifact@v6'],
   'actions/setup-node': ['actions/setup-node@v6'],
   'actions/setup-python': ['actions/setup-python@v5'],
-  'actions/upload-artifact': ['actions/upload-artifact@v5'],
+  'actions/upload-artifact': ['actions/upload-artifact@v6'],
   'actions/upload-pages-artifact': ['actions/upload-pages-artifact@v4'],
 }
 
