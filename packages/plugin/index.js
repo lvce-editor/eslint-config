@@ -33,7 +33,7 @@ const defaultConfig = tseslint.config(
         {
           type: 'natural',
           order: 'asc',
-          newlinesBetween: 'never',
+          newlinesBetween: 0,
         },
       ],
       'perfectionist/sort-interfaces': [
