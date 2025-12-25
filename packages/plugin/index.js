@@ -213,6 +213,7 @@ const defaultConfig = tseslint.config(
       '**/fixtures/**',
       '**/test-integration/**',
       '**/test-integration-util/**',
+      '**test/cases/**',
       'scripts',
       'rollup.config.js',
       'eslint.config.js',
