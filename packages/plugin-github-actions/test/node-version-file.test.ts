@@ -1,5 +1,5 @@
 import { RuleTester } from 'eslint'
-import parser from 'yaml-eslint-parser'
+import * as parser from 'yaml-eslint-parser'
 import * as rule from '../src/rules/node-version-file.ts'
 
 const ruleTester = new RuleTester({
