@@ -4,7 +4,7 @@ import * as rule from '../src/rules/python-version.ts'
 
 const ruleTester = new RuleTester({
   languageOptions: {
-    parser: parseYAML,
+    parser: { parse: parseYAML },
     ecmaVersion: 2020,
   },
 })
