@@ -1,10 +1,10 @@
 import { RuleTester } from 'eslint'
-import parser from 'yaml-eslint-parser'
+import { parseYAML } from 'yaml-eslint-parser'
 import * as rule from '../src/rules/needs.ts'
 
 const ruleTester = new RuleTester({
   languageOptions: {
-    parser,
+    parser: parseYAML,
     ecmaVersion: 2020,
   },
 })
