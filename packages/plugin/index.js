@@ -198,6 +198,7 @@ const defaultConfig = tseslint.config(
       'unicorn/number-literal-case': 'off',
       'unicorn/prefer-string-raw': 'off',
       'unicorn/prefer-single-call': 'off',
+      'unicorn/no-nested-ternary': 'off',
     },
   },
   {
