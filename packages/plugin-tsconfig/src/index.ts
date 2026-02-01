@@ -31,6 +31,7 @@ const recommended: Linter.Config[] = [
   {
     files: ['**/tsconfig.json'],
     plugins: {
+      // @ts-ignore
       json,
       tsconfig: plugin,
     },
