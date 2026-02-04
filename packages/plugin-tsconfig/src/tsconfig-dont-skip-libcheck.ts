@@ -7,7 +7,7 @@ export const meta: Rule.RuleMetaData = {
     description: 'Enforce not skipping libCheck',
   },
   messages: {
-    dontSkipLibCheck: "Don't skip libcheck",
+    skipLibCheck: "Don't skip libcheck",
   },
 }
 
