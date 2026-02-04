@@ -36,7 +36,7 @@ ruleTester.run('dont-skip-libcheck', rule, {
           line: 1,
           column: 23,
           endLine: 1,
-          endColumn: 53,
+          endColumn: 37,
         },
       ],
     },
