@@ -48,6 +48,7 @@ const recommended: Linter.Config[] = [
       'tsconfig/no-implicit-any': 'error',
       'tsconfig/assume-changes-only-affect-direct-dependenices': 'error',
       'tsconfig/exact-optional-property-types': 'error',
+      'tsconfig/dont-skip-libcheck': 'error',
     },
   },
 ]
