@@ -36,6 +36,7 @@ const defaultConfig = tseslint.config(
           cspell: {
             words: [
               'mixtral',
+              'testuser',
               'deepseek',
               'lvce',
               'codellama',
