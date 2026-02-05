@@ -1,0 +1,10 @@
+[
+  {
+    "filePath": "src/main.ts:2",
+    "message": "Unknown word: \"speling\""
+  },
+  {
+    "filePath": "src/main.ts:5",
+    "message": "Unknown word: \"Wrld\""
+  }
+]
