@@ -36,7 +36,11 @@ const defaultConfig = tseslint.config(
           cspell: {
             words: [
               'mixtral',
+              'unspaced',
+              'viewmodel',
+              'Whenexpression',
               'Consolas',
+              'rowindex',
               'testuser',
               'deepseek',
               'lvce',
