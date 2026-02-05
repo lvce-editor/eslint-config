@@ -38,12 +38,6 @@ const fetchLatestRelease = async (owner: string, repo: string): Promise<string |
   }
 }
 
-const extractActionName = (actionString: string): string | null => {
-  // Extract owner/repo from strings like "actions/cache@v5"
-  const match = actionString.match(/^([^@]+)/)
-  return match ? match[1] : null
-}
-
 const parseActionsFromConfig = (content: string): ActionsMap => {
   const actionsMatch = content.match(/export const actions = \{([^}]+)\}/s)
   if (!actionsMatch) {
