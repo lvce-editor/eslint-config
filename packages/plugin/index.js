@@ -36,6 +36,17 @@ const defaultConfig = tseslint.config(
           cspell: {
             words: [
               'Activedescendant',
+              'executeprepare',
+              'executeresolve',
+              'commitish',
+              'dbaeumer',
+              'mockrpc',
+              'softprops',
+              'Fmain',
+              'Ftest',
+              'Fmigration',
+              'xclip',
+              'Xsel',
               'appname',
               'asar',
               'Backquote',
