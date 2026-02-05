@@ -115,6 +115,7 @@ const defaultConfig = tseslint.config(
               'Whenexpression',
               'workspaceunsupported',
               'workspaceuri',
+              'remotesome',
               'αρχείο',
               'Русский',
               'файл',
