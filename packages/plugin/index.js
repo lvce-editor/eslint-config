@@ -1,5 +1,6 @@
 import eslint from '@eslint/js'
 import markdown from '@eslint/markdown'
+import cspellPlugin from '@cspell/eslint-plugin'
 import pluginJest from 'eslint-plugin-jest'
 import nodePlugin from 'eslint-plugin-n'
 import packageJson from 'eslint-plugin-package-json'
@@ -25,9 +26,11 @@ const defaultConfig = tseslint.config(
   {
     files: ['**/*.ts'],
     plugins: {
+      '@cspell': cspellPlugin,
       perfectionist,
     },
     rules: {
+      '@cspell/spellchecker': 'error',
       'perfectionist/sort-imports': [
         'error',
         {
