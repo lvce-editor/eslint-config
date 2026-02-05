@@ -6,6 +6,9 @@
   "keywords": [],
   "license": "MIT",
   "description": "",
+  "scripts": {
+    "update-action-versions": "node src/updateActionVersions.ts"
+  },
   "devDependencies": {
     "@babel/preset-typescript": "^7.28.5",
     "@lvce-editor/verror": "^1.7.0",
