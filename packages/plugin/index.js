@@ -34,7 +34,7 @@ const defaultConfig = tseslint.config(
         'error',
         {
           cspell: {
-            words: ['mixtral', 'deepseek', 'lvce', 'codellama'],
+            words: ['mixtral', 'deepseek', 'lvce', 'codellama', 'nonexistentmodel', 'huggingface'],
           },
         },
       ],
