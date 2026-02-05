@@ -30,7 +30,14 @@ const defaultConfig = tseslint.config(
       perfectionist,
     },
     rules: {
-      '@cspell/spellchecker': 'error',
+      '@cspell/spellchecker': [
+        'error',
+        {
+          cspell: {
+            words: ['mixtral', 'deepseek', 'lvce', 'codellama'],
+          },
+        },
+      ],
       'perfectionist/sort-imports': [
         'error',
         {
