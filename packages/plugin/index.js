@@ -112,6 +112,8 @@ const defaultConfig = tseslint.config(
               'pointercapture',
               'sortsize',
               'Icontest',
+              'navigations',
+              'Overtype',
             ],
           },
         },
