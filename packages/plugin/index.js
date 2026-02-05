@@ -91,6 +91,7 @@ const defaultConfig = tseslint.config(
               'Resizer',
               'Firstindex',
               'Uids',
+              'asar',
               'roledescription',
               'mcpservers',
               'mostpopular',
