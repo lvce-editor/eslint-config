@@ -41,12 +41,12 @@
     "typescript-eslint": "8.54.0"
   },
   "peerDependencies": {
-    "eslint": ">= 9"
+    "eslint": ">= 10"
   },
   "devDependencies": {
     "@lerna/legacy-package-management": "^8.2.4",
     "@lvce-editor/eslint-config": "^5.5.0",
-    "@types/node": "^24.2.1",
+    "@types/node": "^25.2.1",
     "eslint": "^10.0.0",
     "lerna": "^8.2.4",
     "prettier": "^3.8.1",
