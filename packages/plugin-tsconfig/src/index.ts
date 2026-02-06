@@ -8,6 +8,7 @@ import * as tsconfigForceConsistentCasingInFileNames from './tsconfig-force-cons
 import * as tsconfigNoImplicitAny from './tsconfig-no-implicit-any.ts'
 import * as tsconfigNoUncheckedSideEffectImports from './tsconfig-no-unchecked-side-effect-imports.ts'
 import * as tsconfigStrict from './tsconfig-strict.ts'
+import * as tsconfigDontSkipLibCheck from './tsconfig-dont-skip-libcheck.ts'
 
 const plugin = {
   meta: {
@@ -23,6 +24,7 @@ const plugin = {
     'assume-changes-only-affect-direct-dependenices': tsconfigAssumeChangesOnlyAffectDirectDependencies,
     'exact-optional-property-types': tsconfigExactOptionalPropertyTypes,
     'erasable-syntax-only': tsconfigErasableSyntaxOnly,
+    'dont-skip-lib-check': tsconfigDontSkipLibCheck,
   },
   configs: {},
 }
