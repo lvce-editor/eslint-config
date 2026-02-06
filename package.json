@@ -43,6 +43,9 @@
   "peerDependencies": {
     "eslint": ">= 10"
   },
+  "overrides": {
+    "eslint": "$eslint"
+  },
   "devDependencies": {
     "@lerna/legacy-package-management": "^8.2.4",
     "@lvce-editor/eslint-config": "^5.5.0",
