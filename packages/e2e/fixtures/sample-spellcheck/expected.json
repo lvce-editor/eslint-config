@@ -1,7 +1,7 @@
 [
   {
     "filePath": "src/main.ts:2",
-    "message": "Unknown word: \"speling\""
+    "message": "Misspelled word: \"speling\" (spelling)"
   },
   {
     "filePath": "src/main.ts:5",
