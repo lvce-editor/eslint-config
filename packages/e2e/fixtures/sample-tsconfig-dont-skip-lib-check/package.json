@@ -1,0 +1,11 @@
+{
+  "name": "sample-tsconfig-no-side-effect-imports",
+  "version": "0.0.0-dev",
+  "license": "MIT",
+  "type": "module",
+  "main": "src/main.ts",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:ci": "eslint . --format json --output-file result.json"
+  }
+}
