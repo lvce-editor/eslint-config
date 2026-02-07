@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "tsconfig.json:9",
+    "message": "Don't skip libcheck"
+  }
+]
