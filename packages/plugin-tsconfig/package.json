@@ -14,7 +14,7 @@
   "license": "MIT",
   "description": "",
   "dependencies": {
-    "@eslint/json": "1.0.0"
+    "@eslint/json": "1.0.1"
   },
   "devDependencies": {
     "eslint": "^9.39.2",
