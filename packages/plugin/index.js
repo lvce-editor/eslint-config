@@ -36,6 +36,7 @@ const defaultConfig = tseslint.config(
           cspell: {
             words: [
               'Activedescendant',
+              'ignoreawait',
               'appname',
               'asar',
               'Backquote',
