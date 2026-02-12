@@ -45,6 +45,7 @@ const defaultConfig = tseslint.config(
               'computedlanguage',
               'confirmdelete',
               'confirmdelete',
+              'ABNT',
               'confirmpaste',
               'confirmpaste',
               'Consolas',
