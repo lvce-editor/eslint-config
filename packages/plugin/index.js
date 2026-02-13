@@ -116,6 +116,7 @@ const defaultConfig = tseslint.config(
               'setsize',
               'sideeffects',
               'softprops',
+              'unhandle',
               'sortsize',
               'tàste',
               'testfolder',
