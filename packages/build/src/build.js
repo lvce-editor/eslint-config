@@ -65,6 +65,7 @@ packageJson.version = version
 packageJson.main = 'index.js'
 packageJson.dependencies['@lvce-editor/eslint-plugin-tsconfig'] = version
 packageJson.dependencies['@lvce-editor/eslint-plugin-github-actions'] = version
+packageJson.dependencies['@lvce-editor/eslint-plugin-regex'] = version
 
 await writeJson(join(dist, 'package.json'), packageJson)
 
@@ -83,13 +84,18 @@ const tsconfigPlugin = await import(tsconfigUri)
 
 // @ts-ignore
 const actionsUri = '../plugin-github-actions/src/index.ts'
-const actionsPlugin = await import(actionsUri)`,
+const actionsPlugin = await import(actionsUri)
+
+// @ts-ignore
+const regexUri = '../plugin-regex/src/index.ts'
+const regexPlugin = await import(regexUri)`,
   `import * as tsconfigPlugin from '@lvce-editor/eslint-plugin-tsconfig'
-import * as actionsPlugin from '@lvce-editor/eslint-plugin-github-actions'`,
+import * as actionsPlugin from '@lvce-editor/eslint-plugin-github-actions'
+import * as regexPlugin from '@lvce-editor/eslint-plugin-regex'`,
 )
 await writeFile(indexPath, newIndexContent)
 
-for (const packageName of ['plugin-github-actions', 'plugin-tsconfig']) {
+for (const packageName of ['plugin-github-actions', 'plugin-tsconfig', 'plugin-regex']) {
   const packageJson = await readJson(join(root, 'packages', packageName, 'package.json'))
   delete packageJson.scripts
   delete packageJson.devDependencies
