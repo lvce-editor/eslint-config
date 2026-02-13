@@ -90,6 +90,8 @@ jobs:
       - run: npm publish --access public
         working-directory: ./.tmp/plugin-tsconfig
       - run: npm publish --access public
+        working-directory: ./.tmp/plugin-regex
+      - run: npm publish --access public
         working-directory: ./.tmp/dist
       - name: Publish GitHub release
         env:

@@ -16,6 +16,9 @@
     },
     {
       "path": "./packages/plugin-github-actions"
+    },
+    {
+      "path": "./packages/plugin-regex"
     }
   ]
 }

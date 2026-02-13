@@ -17,6 +17,10 @@ const tsconfigPlugin = await import(tsconfigUri)
 const actionsUri = '../plugin-github-actions/src/index.ts'
 const actionsPlugin = await import(actionsUri)
 
+// @ts-ignore
+const regexUri = '../plugin-regex/src/index.ts'
+const regexPlugin = await import(regexUri)
+
 const root = process.cwd()
 
 /**
@@ -391,5 +395,7 @@ export const recommendedNode = [
 export const recommendedTsconfig = [...tsconfigPlugin.default]
 
 export const recommendedActions = [...actionsPlugin.default]
+
+export const recommendedRegex = [...regexPlugin.default]
 
 export default defaultConfig

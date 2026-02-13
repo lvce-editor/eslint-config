@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "src/main.ts:2",
+    "message": "Regex should be hoisted."
+  }
+]
