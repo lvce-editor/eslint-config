@@ -31,7 +31,7 @@ function matches(value) {
     {
       code: `
 function matchesAvatar(escapedUserId, key) {
-  const avatarKeyRegex = new RegExp(`^avatar:user:${escapedUserId}(?::|$)`)
+  const avatarKeyRegex = new RegExp(\`^avatar:user:\${escapedUserId}(?::|$)\`)
   return avatarKeyRegex.test(key)
 }
 `,
