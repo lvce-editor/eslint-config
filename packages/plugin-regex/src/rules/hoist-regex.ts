@@ -15,6 +15,26 @@ const isInsideFunction = (node: any): boolean => {
   return false
 }
 
+const isStaticRegexArgument = (node: any): boolean => {
+  if (!node) {
+    return true
+  }
+  if (node.type === 'Literal') {
+    return true
+  }
+  if (node.type === 'TemplateLiteral') {
+    return node.expressions.length === 0
+  }
+  return false
+}
+
+const hasOnlyStaticRegexArguments = (node: any): boolean => {
+  if (!node.arguments || node.arguments.length === 0) {
+    return true
+  }
+  return node.arguments.every(isStaticRegexArgument)
+}
+
 export const meta: Rule.RuleMetaData = {
   type: 'suggestion',
   docs: {
@@ -36,7 +56,7 @@ export const create = (context: Rule.RuleContext) => {
       }
     },
     NewExpression(node: any) {
-      if (node.callee?.type === 'Identifier' && node.callee.name === 'RegExp' && isInsideFunction(node)) {
+      if (node.callee?.type === 'Identifier' && node.callee.name === 'RegExp' && isInsideFunction(node) && hasOnlyStaticRegexArguments(node)) {
         context.report({
           node,
           messageId: 'hoistRegex',
@@ -44,7 +64,7 @@ export const create = (context: Rule.RuleContext) => {
       }
     },
     CallExpression(node: any) {
-      if (node.callee?.type === 'Identifier' && node.callee.name === 'RegExp' && isInsideFunction(node)) {
+      if (node.callee?.type === 'Identifier' && node.callee.name === 'RegExp' && isInsideFunction(node) && hasOnlyStaticRegexArguments(node)) {
         context.report({
           node,
           messageId: 'hoistRegex',
