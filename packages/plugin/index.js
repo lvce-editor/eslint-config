@@ -48,6 +48,7 @@ const defaultConfig = tseslint.config(
               'codellama',
               'commitish',
               'computedlanguage',
+              'uncollapse',
               'confirmdelete',
               'confirmdelete',
               'ABNT',
