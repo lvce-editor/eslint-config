@@ -32,6 +32,8 @@ cd packages/e2e                                     && updateDependencies && cd 
 cd packages/plugin                                  && updateDependencies && cd ../.. &&
 cd packages/plugin-github-actions                   && updateDependencies && cd ../.. &&
 cd packages/plugin-tsconfig                         && updateDependencies && cd ../.. &&
+cd packages/plugin-regex                         && updateDependencies && cd ../.. &&
+cd packages/plugin-rpc                         && updateDependencies && cd ../.. &&
 
 
 echo "Great Success!"
