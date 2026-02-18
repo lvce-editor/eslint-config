@@ -29,6 +29,7 @@
   "description": "",
   "dependencies": {
     "@cspell/eslint-plugin": "9.6.4",
+    "@e18e/eslint-plugin": "^0.2.0",
     "@eslint/css": "0.14.1",
     "@eslint/js": "9.32.0",
     "@eslint/json": "1.0.1",

@@ -8,6 +8,7 @@ import perfectionist from 'eslint-plugin-perfectionist'
 import eslintPluginUnicorn from 'eslint-plugin-unicorn'
 import eslintPluginYml from 'eslint-plugin-yml'
 import tseslint from 'typescript-eslint'
+import e18e from '@e18e/eslint-plugin'
 
 // @ts-ignore
 const tsconfigUri = '../plugin-tsconfig/src/index.ts'
@@ -389,6 +390,8 @@ const defaultConfig = tseslint.config(
     },
   },
   ...markdown.configs.recommended,
+  // @ts-ignore
+  e18e.configs.recommended,
 )
 
 /**
