@@ -7,6 +7,33 @@ import { bundleJs } from './bundleJs.js'
 const tmp = join(root, '.tmp')
 const dist = join(root, '.tmp', 'dist')
 
+const bundledPlugins = [
+  {
+    dependency: '@lvce-editor/eslint-plugin-tsconfig',
+    packageName: 'plugin-tsconfig',
+    uri: 'tsconfigUri',
+    variable: 'tsconfigPlugin',
+  },
+  {
+    dependency: '@lvce-editor/eslint-plugin-github-actions',
+    packageName: 'plugin-github-actions',
+    uri: 'actionsUri',
+    variable: 'actionsPlugin',
+  },
+  {
+    dependency: '@lvce-editor/eslint-plugin-regex',
+    packageName: 'plugin-regex',
+    uri: 'regexUri',
+    variable: 'regexPlugin',
+  },
+  {
+    dependency: '@lvce-editor/eslint-plugin-rpc',
+    packageName: 'plugin-rpc',
+    uri: 'rpcUri',
+    variable: 'rpcPlugin',
+  },
+]
+
 const readJson = async (path) => {
   const content = await readFile(path, 'utf8')
   return JSON.parse(content)
@@ -63,9 +90,9 @@ delete packageJson.prettier
 delete packageJson.jest
 packageJson.version = version
 packageJson.main = 'index.js'
-packageJson.dependencies['@lvce-editor/eslint-plugin-tsconfig'] = version
-packageJson.dependencies['@lvce-editor/eslint-plugin-github-actions'] = version
-packageJson.dependencies['@lvce-editor/eslint-plugin-regex'] = version
+for (const plugin of bundledPlugins) {
+  packageJson.dependencies[plugin.dependency] = version
+}
 
 await writeJson(join(dist, 'package.json'), packageJson)
 
@@ -76,26 +103,22 @@ await cp(join(root, 'LICENSE'), join(dist, 'LICENSE'))
 
 const indexPath = join(dist, 'index.js')
 const indexContent = await readFile(indexPath, 'utf8')
-const newIndexContent = indexContent.replace(
-  `
-// @ts-ignore
-const tsconfigUri = '../plugin-tsconfig/src/index.ts'
-const tsconfigPlugin = await import(tsconfigUri)
+const replaceDynamicPluginImport = (content, plugin) => {
+  const pattern = new RegExp(
+    String.raw`// @ts-ignore\s*\nconst ${plugin.uri} = '\.\./${plugin.packageName}/src/index\.ts'\s*\nconst ${plugin.variable} = await import\(${plugin.uri}\)`,
+  )
+  const replacement = `import * as ${plugin.variable} from '${plugin.dependency}'`
+  return content.replace(pattern, replacement)
+}
 
-// @ts-ignore
-const actionsUri = '../plugin-github-actions/src/index.ts'
-const actionsPlugin = await import(actionsUri)
-
-// @ts-ignore
-const regexUri = '../plugin-regex/src/index.ts'
-const regexPlugin = await import(regexUri)`,
-  `import * as tsconfigPlugin from '@lvce-editor/eslint-plugin-tsconfig'
-import * as actionsPlugin from '@lvce-editor/eslint-plugin-github-actions'
-import * as regexPlugin from '@lvce-editor/eslint-plugin-regex'`,
-)
+let newIndexContent = indexContent
+for (const plugin of bundledPlugins) {
+  newIndexContent = replaceDynamicPluginImport(newIndexContent, plugin)
+}
 await writeFile(indexPath, newIndexContent)
 
-for (const packageName of ['plugin-github-actions', 'plugin-tsconfig', 'plugin-regex']) {
+for (const plugin of bundledPlugins) {
+  const packageName = plugin.packageName
   const packageJson = await readJson(join(root, 'packages', packageName, 'package.json'))
   delete packageJson.scripts
   delete packageJson.devDependencies
