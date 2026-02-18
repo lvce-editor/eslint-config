@@ -19,6 +19,9 @@
     },
     {
       "path": "./packages/plugin-regex"
+    },
+    {
+      "path": "./packages/plugin-rpc"
     }
   ]
 }
