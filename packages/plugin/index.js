@@ -22,6 +22,10 @@ const actionsPlugin = await import(actionsUri)
 const regexUri = '../plugin-regex/src/index.ts'
 const regexPlugin = await import(regexUri)
 
+// @ts-ignore
+const rpcUri = '../plugin-rpc/src/index.ts'
+const rpcPlugin = await import(rpcUri)
+
 const root = process.cwd()
 
 /**
@@ -397,6 +401,7 @@ const defaultConfig = tseslint.config(
       'e18e/prefer-static-regex': 'off',
     },
   },
+  ...rpcPlugin.default,
 )
 
 /**
@@ -421,5 +426,7 @@ export const recommendedTsconfig = [...tsconfigPlugin.default]
 export const recommendedActions = [...actionsPlugin.default]
 
 export const recommendedRegex = [...regexPlugin.default]
+
+export const recommendedRpc = [...rpcPlugin.default]
 
 export default defaultConfig

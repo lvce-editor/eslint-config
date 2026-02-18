@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "src/main.ts:1",
+    "message": "Use `using` with `mockRpc`."
+  }
+]
