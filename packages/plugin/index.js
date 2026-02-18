@@ -401,6 +401,7 @@ const defaultConfig = tseslint.config(
       'e18e/prefer-static-regex': 'off',
     },
   },
+  ...rpcPlugin.default,
 )
 
 /**
