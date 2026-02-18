@@ -8,8 +8,6 @@ const isRegisterMockRpcCall = (expression: any): boolean => {
   return (
     expression?.type === 'CallExpression' &&
     expression.callee?.type === 'MemberExpression' &&
-    expression.callee.object?.type === 'Identifier' &&
-    expression.callee.object.name === 'RendererWorker' &&
     expression.callee.property?.type === 'Identifier' &&
     expression.callee.property.name === 'registerMockRpc'
   )
