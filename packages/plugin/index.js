@@ -287,7 +287,6 @@ const defaultConfig = tseslint.config(
       '@typescript-eslint/require-await': 'off',
       '@typescript-eslint/no-unused-vars': 'off', // handled by typescript
       'unicorn/no-nested-ternary': 'off',
-      'prefer-static-regex': 'off',
     },
   },
   {
@@ -393,6 +392,11 @@ const defaultConfig = tseslint.config(
   ...markdown.configs.recommended,
   // @ts-ignore
   e18e.configs.recommended,
+  {
+    rules: {
+      'e18e/prefer-static-regex': 'off',
+    },
+  },
 )
 
 /**
