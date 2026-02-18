@@ -12,7 +12,7 @@ ruleTester.run('prefer-using-mock-rpc', rule, {
   valid: [
     {
       code: `
-using mockRpc = RendererWorker.registerMockRpc({
+using mockRpc = SearchProcess.registerMockRpc({
   testMethod() {
     return 'ok'
   },
@@ -26,7 +26,16 @@ const mockRpc = createMockRpc()
     },
     {
       code: `
-const otherMockRpc = RendererWorker.registerMockRpc({
+const otherMockRpc = fileSearchWorker.registerMockRpc({
+  testMethod() {
+    return 'ok'
+  },
+})
+`,
+    },
+    {
+      code: `
+const mainProcessMockRpc = MainProcess.registerMockRpc({
   testMethod() {
     return 'ok'
   },
@@ -37,7 +46,7 @@ const otherMockRpc = RendererWorker.registerMockRpc({
   invalid: [
     {
       code: `
-const mockRpc = RendererWorker.registerMockRpc({
+const mockRpc = SearchProcess.registerMockRpc({
   testMethod() {
     return 'ok'
   },
@@ -55,7 +64,7 @@ const mockRpc = RendererWorker.registerMockRpc({
     },
     {
       code: `
-let mockRpc = RendererWorker.registerMockRpc({
+let mockRpc = MainProcess.registerMockRpc({
   testMethod() {
     return 'ok'
   },
