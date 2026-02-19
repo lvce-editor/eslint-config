@@ -399,6 +399,7 @@ const defaultConfig = tseslint.config(
   {
     rules: {
       'e18e/prefer-static-regex': 'off',
+      'e18e/ban-dependencies': 'off',
     },
   },
   ...rpcPlugin.default,
