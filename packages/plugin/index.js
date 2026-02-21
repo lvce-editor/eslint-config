@@ -374,6 +374,7 @@ const defaultConfig = tseslint.config(
       'package-json/require-exports': 'off',
       'package-json/require-files': 'off',
       'package-json/require-sideEffects': 'off',
+      'package-json/require-attribution': 'off',
     },
   },
   {
