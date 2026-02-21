@@ -369,6 +369,13 @@ const defaultConfig = tseslint.config(
     },
   },
   {
+    rules: {
+      'package-json/require-author': 'off',
+      'package-json/require-exports': 'off',
+      'package-json/require-files': 'off',
+    },
+  },
+  {
     ignores: [
       'dist',
       '.tmp',
