@@ -53,6 +53,7 @@ const defaultConfig = tseslint.config(
               'quickpick',
               'Backquote',
               'checkmark',
+              'openrouter',
               'codellama',
               'Wacher',
               'commitish',
