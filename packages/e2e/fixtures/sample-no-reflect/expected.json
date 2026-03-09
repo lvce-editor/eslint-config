@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "src/main.ts:5",
+    "message": "ES2015 'Reflect' is not available."
+  }
+]
