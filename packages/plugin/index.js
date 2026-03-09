@@ -9,6 +9,7 @@ import eslintPluginUnicorn from 'eslint-plugin-unicorn'
 import eslintPluginYml from 'eslint-plugin-yml'
 import tseslint from 'typescript-eslint'
 import e18e from '@e18e/eslint-plugin'
+// @ts-ignore
 import esxPlugin from 'eslint-plugin-es-x'
 
 // @ts-ignore
