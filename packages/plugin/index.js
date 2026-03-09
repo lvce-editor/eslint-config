@@ -9,6 +9,8 @@ import eslintPluginUnicorn from 'eslint-plugin-unicorn'
 import eslintPluginYml from 'eslint-plugin-yml'
 import tseslint from 'typescript-eslint'
 import e18e from '@e18e/eslint-plugin'
+// @ts-ignore
+import esxPlugin from 'eslint-plugin-es-x'
 
 // @ts-ignore
 const tsconfigUri = '../plugin-tsconfig/src/index.ts'
@@ -37,6 +39,7 @@ const defaultConfig = tseslint.config(
     plugins: {
       '@cspell': cspellPlugin,
       perfectionist,
+      'es-x': esxPlugin,
     },
     rules: {
       '@cspell/spellchecker': [
@@ -246,6 +249,7 @@ const defaultConfig = tseslint.config(
       '@typescript-eslint/consistent-type-exports': 'error',
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/explicit-function-return-type': 'error',
+      'es-x/no-reflect': 'error',
       '@typescript-eslint/prefer-readonly-parameter-types': [
         'error',
         {
