@@ -5,6 +5,7 @@ import * as tsconfigAssumeChangesOnlyAffectDirectDependencies from './tsconfig-a
 import * as tsconfigErasableSyntaxOnly from './tsconfig-erasable-syntax-only.ts'
 import * as tsconfigExactOptionalPropertyTypes from './tsconfig-exact-optional-property-types.ts'
 import * as tsconfigForceConsistentCasingInFileNames from './tsconfig-force-consistent-casing-in-file-names.ts'
+import * as tsconfigModuleResolution from './tsconfig-module-resolution.ts'
 import * as tsconfigNoImplicitAny from './tsconfig-no-implicit-any.ts'
 import * as tsconfigNoUncheckedSideEffectImports from './tsconfig-no-unchecked-side-effect-imports.ts'
 import * as tsconfigStrict from './tsconfig-strict.ts'
@@ -25,6 +26,7 @@ const plugin = {
     'exact-optional-property-types': tsconfigExactOptionalPropertyTypes,
     'erasable-syntax-only': tsconfigErasableSyntaxOnly,
     'dont-skip-lib-check': tsconfigDontSkipLibCheck,
+    'module-resolution': tsconfigModuleResolution,
   },
   configs: {},
 }
@@ -51,6 +53,7 @@ const recommended: Linter.Config[] = [
       'tsconfig/assume-changes-only-affect-direct-dependenices': 'error',
       'tsconfig/exact-optional-property-types': 'error',
       'tsconfig/dont-skip-lib-check': 'error',
+      'tsconfig/module-resolution': 'error',
     },
   },
 ]

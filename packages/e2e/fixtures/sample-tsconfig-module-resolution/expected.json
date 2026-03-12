@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "tsconfig.json:8",
+    "message": "moduleResolution must be set to bundle or nodenext"
+  }
+]
