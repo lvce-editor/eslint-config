@@ -172,6 +172,7 @@ const defaultConfig = tseslint.config(
               'Viewletkey',
               'Visiblelines',
               'Whenexpression',
+              'katex',
               'workspaceunsupported',
               'workspaceuri',
               'Previou',
