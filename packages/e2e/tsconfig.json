@@ -1,11 +1,15 @@
 {
   "compilerOptions": {
-    "lib": ["esnext"],
+    "lib": [
+      "esnext"
+    ],
     "checkJs": true,
     "target": "esnext",
-    "types": ["node"],
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "types": [
+      "node"
+    ],
+    "module": "nodenext",
+    "moduleResolution": "nodeNext",
     "skipLibCheck": true,
     "noEmit": true,
     "allowSyntheticDefaultImports": true,
@@ -22,5 +26,8 @@
     "noUncheckedSideEffectImports": true,
     "erasableSyntaxOnly": true
   },
-  "include": ["src", "test"]
+  "include": [
+    "src",
+    "test"
+  ]
 }
