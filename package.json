@@ -29,7 +29,7 @@
   "description": "",
   "dependencies": {
     "@cspell/eslint-plugin": "9.7.0",
-    "@e18e/eslint-plugin": "^0.2.0",
+    "@e18e/eslint-plugin": "^0.3.0",
     "@eslint/css": "1.0.0",
     "@eslint/js": "9.32.0",
     "@eslint/json": "1.2.0",
@@ -40,7 +40,7 @@
     "eslint-plugin-perfectionist": "5.7.0",
     "eslint-plugin-unicorn": "63.0.0",
     "eslint-plugin-yml": "3.3.1",
-    "typescript-eslint": "8.57.1"
+    "typescript-eslint": "8.57.2"
   },
   "peerDependencies": {
     "eslint": "^9"
@@ -51,7 +51,7 @@
     "eslint": "^9.39.2",
     "lerna": "^8.2.4",
     "prettier": "^3.8.1",
-    "typescript": "5.9.3"
+    "typescript": "6.0.2"
   },
   "prettier": {
     "semi": false,
