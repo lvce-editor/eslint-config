@@ -45,6 +45,7 @@ export const create = (context: Rule.RuleContext) => {
                 node: pair.key,
                 messageId: 'unsupportedPermission',
                 data: {
+                  // @ts-ignore
                   value: pair,
                 },
               })
@@ -56,6 +57,7 @@ export const create = (context: Rule.RuleContext) => {
                     node,
                     messageId: 'unsupportedPermission',
                     data: {
+                      // @ts-ignore
                       value: pair.value,
                     },
                   })
