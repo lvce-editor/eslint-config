@@ -40,6 +40,7 @@ export const create = (context: Rule.RuleContext) => {
           node,
           messageId: 'unsupportedMatrix',
           data: {
+            // @ts-ignore
             value: node.value,
           },
         })
