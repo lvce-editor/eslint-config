@@ -255,6 +255,7 @@ const defaultConfig = tseslint.config(
       '@typescript-eslint/consistent-type-exports': 'error',
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/explicit-function-return-type': 'error',
+      '@typescript-eslint/no-import-type-side-effects': 'error',
       '@typescript-eslint/prefer-readonly-parameter-types': [
         'error',
         {
