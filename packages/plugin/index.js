@@ -5,6 +5,7 @@ import pluginJest from 'eslint-plugin-jest'
 import nodePlugin from 'eslint-plugin-n'
 import packageJson from 'eslint-plugin-package-json'
 import perfectionist from 'eslint-plugin-perfectionist'
+import sonarjs from 'eslint-plugin-sonarjs'
 import eslintPluginUnicorn from 'eslint-plugin-unicorn'
 import eslintPluginYml from 'eslint-plugin-yml'
 import tseslint from 'typescript-eslint'
@@ -251,6 +252,10 @@ const defaultConfig = tseslint.config(
   },
   {
     files: ['**/*.ts'],
+    ...sonarjs.configs.recommended,
+  },
+  {
+    files: ['**/*.ts'],
     rules: {
       '@typescript-eslint/consistent-type-exports': 'error',
       '@typescript-eslint/consistent-type-imports': 'error',
@@ -313,6 +318,7 @@ const defaultConfig = tseslint.config(
       },
     },
     rules: {
+      'sonarjs/no-exclusive-tests': 'off',
       'unicorn/consistent-function-scoping': 'off',
       '@typescript-eslint/only-throw-error': 'off',
       '@typescript-eslint/prefer-promise-reject-errors': 'off',
