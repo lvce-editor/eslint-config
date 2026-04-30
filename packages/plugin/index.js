@@ -318,6 +318,7 @@ const defaultConfig = tseslint.config(
       },
     },
     rules: {
+      'sonarjs/no-exclusive-tests': 'off',
       'unicorn/consistent-function-scoping': 'off',
       '@typescript-eslint/only-throw-error': 'off',
       '@typescript-eslint/prefer-promise-reject-errors': 'off',
