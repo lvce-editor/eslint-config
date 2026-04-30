@@ -322,6 +322,7 @@ const defaultConfig = tseslint.config(
       'sonarjs/no-all-duplicated-branches': 'off',
       'sonarjs/no-globals-shadowing': 'off',
       'sonarjs/slow-regex': 'off',
+      'sonarjs/prefer-regexp-exec': 'off',
     },
   },
   {
