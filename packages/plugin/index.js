@@ -318,6 +318,7 @@ const defaultConfig = tseslint.config(
       'sonarjs/todo-tag': 'off',
       'sonarjs/pseudo-random': 'off',
       'sonarjs/no-invariant-returns': 'off',
+      'sonarjs/no-small-switch': 'off',
     },
   },
   {
