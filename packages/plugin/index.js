@@ -310,6 +310,15 @@ const defaultConfig = tseslint.config(
     },
   },
   {
+    files: ['**/*.ts'],
+    rules: {
+      'sonarjs/no-exclusive-tests': 'off',
+      'sonarjs/no-unused-vars': 'off',
+      'sonarjs/no-skipped-tests': 'off',
+      'sonarjs/todo-tag': 'off',
+    },
+  },
+  {
     files: ['**/*.test.ts'],
     extends: [pluginJest.configs['flat/recommended']],
     settings: {
@@ -318,7 +327,6 @@ const defaultConfig = tseslint.config(
       },
     },
     rules: {
-      'sonarjs/no-exclusive-tests': 'off',
       'unicorn/consistent-function-scoping': 'off',
       '@typescript-eslint/only-throw-error': 'off',
       '@typescript-eslint/prefer-promise-reject-errors': 'off',
