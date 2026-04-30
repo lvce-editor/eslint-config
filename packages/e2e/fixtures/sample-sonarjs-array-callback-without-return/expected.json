@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "src/main.ts:2",
+    "message": "Array.prototype.map() expects a return value from arrow function."
+  }
+]
