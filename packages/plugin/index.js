@@ -319,6 +319,10 @@ const defaultConfig = tseslint.config(
       'sonarjs/pseudo-random': 'off',
       'sonarjs/no-invariant-returns': 'off',
       'sonarjs/no-small-switch': 'off',
+      'sonarjs/no-all-duplicated-branches': 'off',
+      'sonarjs/no-globals-shadowing': 'off',
+      'sonarjs/slow-regex': 'off',
+      'sonarjs/prefer-regexp-exec': 'off',
     },
   },
   {
