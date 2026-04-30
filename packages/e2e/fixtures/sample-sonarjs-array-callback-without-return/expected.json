@@ -1,6 +1,6 @@
 [
   {
-    "filePath": "src/main.ts:2",
-    "message": "Array.prototype.map() expects a return value from arrow function."
+    "filePath": "src/main.ts:3",
+    "message": "Consider using \"forEach\" instead of \"map\" as its return value is not being used here."
   }
 ]
