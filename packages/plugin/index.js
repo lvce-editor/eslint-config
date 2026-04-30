@@ -323,6 +323,11 @@ const defaultConfig = tseslint.config(
       'sonarjs/no-globals-shadowing': 'off',
       'sonarjs/slow-regex': 'off',
       'sonarjs/prefer-regexp-exec': 'off',
+      'sonarjs/no-clear-text-protocols': 'off',
+      'sonarjs/no-useless-catch': 'off',
+      'sonarjs/publicly-writable-directories': 'off',
+      'sonarjs/file-permissions': 'off',
+      'sonarjs/deprecation': 'off',
     },
   },
   {
