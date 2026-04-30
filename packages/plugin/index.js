@@ -316,6 +316,8 @@ const defaultConfig = tseslint.config(
       'sonarjs/no-unused-vars': 'off',
       'sonarjs/no-skipped-tests': 'off',
       'sonarjs/todo-tag': 'off',
+      'sonarjs/pseudo-random': 'off',
+      'sonarjs/no-invariant-returns': 'off',
     },
   },
   {
