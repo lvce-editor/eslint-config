@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "e2e/main.ts:9",
+    "message": "Assign the locator to a variable before passing it to expect(...)."
+  }
+]
