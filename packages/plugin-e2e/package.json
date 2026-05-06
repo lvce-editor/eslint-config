@@ -1,0 +1,49 @@
+{
+  "name": "@lvce-editor/eslint-plugin-e2e",
+  "version": "0.0.0-dev",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lvce-editor/eslint-config.git"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "node test/index.ts"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "eslint": "^10.3.0",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^22.10.6",
+    "esbuild": "^0.28.0",
+    "execa": "^9.6.1",
+    "jest": "^30.3.0",
+    "ts-jest": "^29.4.9"
+  },
+  "jest": {
+    "injectGlobals": false,
+    "testTimeout": 240000,
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    },
+    "transform": {
+      "^.+\\.tsx?$": [
+        "ts-jest",
+        {
+          "useESM": true
+        }
+      ]
+    },
+    "testMatch": [
+      "**/test/**/*.test.ts"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/fixtures/"
+    ]
+  }
+}
