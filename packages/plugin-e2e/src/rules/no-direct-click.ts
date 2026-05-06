@@ -1,4 +1,5 @@
 import type { Rule } from 'eslint'
+import type * as ESTree from 'estree'
 
 export const meta: Rule.RuleMetaData = {
   type: 'problem',
@@ -10,13 +11,13 @@ export const meta: Rule.RuleMetaData = {
   },
 }
 
-const isDirectClickCall = (node: any): boolean => {
-  return node.callee?.type === 'MemberExpression' && node.callee.property?.type === 'Identifier' && node.callee.property.name === 'click'
+const isDirectClickCall = (node: ESTree.CallExpression): node is ESTree.CallExpression & { callee: ESTree.MemberExpression } => {
+  return node.callee.type === 'MemberExpression' && node.callee.property.type === 'Identifier' && node.callee.property.name === 'click'
 }
 
 export const create = (context: Rule.RuleContext): Rule.RuleListener => {
   return {
-    CallExpression(node: any) {
+    CallExpression(node: ESTree.CallExpression) {
       if (!isDirectClickCall(node)) {
         return
       }

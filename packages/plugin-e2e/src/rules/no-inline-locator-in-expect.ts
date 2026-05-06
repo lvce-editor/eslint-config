@@ -1,4 +1,5 @@
 import type { Rule } from 'eslint'
+import type * as ESTree from 'estree'
 
 export const meta: Rule.RuleMetaData = {
   type: 'problem',
@@ -10,12 +11,19 @@ export const meta: Rule.RuleMetaData = {
   },
 }
 
-const isLocatorCall = (node: any): boolean => {
-  return node?.type === 'CallExpression' && node.callee?.type === 'Identifier' && node.callee.name === 'Locator'
+interface TsNonNullExpression extends ESTree.BaseNode {
+  type: 'TSNonNullExpression'
+  expression: TraversableNode
 }
 
-const containsInlineLocatorCall = (node: any): boolean => {
-  if (!node || typeof node !== 'object') {
+type TraversableNode = ESTree.Node | TsNonNullExpression | null | undefined
+
+const isLocatorCall = (node: TraversableNode): node is ESTree.CallExpression => {
+  return node?.type === 'CallExpression' && node.callee.type === 'Identifier' && node.callee.name === 'Locator'
+}
+
+const containsInlineLocatorCall = (node: TraversableNode): boolean => {
+  if (!node) {
     return false
   }
   if (isLocatorCall(node)) {
@@ -37,13 +45,13 @@ const containsInlineLocatorCall = (node: any): boolean => {
   }
 }
 
-const isExpectCall = (node: any): boolean => {
-  return node.callee?.type === 'Identifier' && node.callee.name === 'expect'
+const isExpectCall = (node: ESTree.CallExpression): boolean => {
+  return node.callee.type === 'Identifier' && node.callee.name === 'expect'
 }
 
 export const create = (context: Rule.RuleContext): Rule.RuleListener => {
   return {
-    CallExpression(node: any) {
+    CallExpression(node: ESTree.CallExpression) {
       if (!isExpectCall(node)) {
         return
       }
