@@ -10,6 +10,20 @@ export const meta: Rule.RuleMetaData = {
   },
 }
 
-export const create = (): Rule.RuleListener => {
-  return {}
+const isDirectClickCall = (node: any): boolean => {
+  return node.callee?.type === 'MemberExpression' && node.callee.property?.type === 'Identifier' && node.callee.property.name === 'click'
+}
+
+export const create = (context: Rule.RuleContext): Rule.RuleListener => {
+  return {
+    CallExpression(node: any) {
+      if (!isDirectClickCall(node)) {
+        return
+      }
+      context.report({
+        node: node.callee.property,
+        messageId: 'noDirectClick',
+      })
+    },
+  }
 }
