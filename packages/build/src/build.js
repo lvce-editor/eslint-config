@@ -27,6 +27,12 @@ const bundledPlugins = [
     variable: 'regexPlugin',
   },
   {
+    dependency: '@lvce-editor/eslint-plugin-e2e',
+    packageName: 'plugin-e2e',
+    uri: 'e2eUri',
+    variable: 'e2ePlugin',
+  },
+  {
     dependency: '@lvce-editor/eslint-plugin-rpc',
     packageName: 'plugin-rpc',
     uri: 'rpcUri',

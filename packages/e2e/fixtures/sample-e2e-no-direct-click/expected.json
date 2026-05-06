@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "e2e/main.ts:6",
+    "message": "Do not call .click() directly in e2e tests. Use Command.execute(...) or the page object API instead."
+  }
+]
