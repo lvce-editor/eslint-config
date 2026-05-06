@@ -1,7 +1,7 @@
 const agentModePickerToggle = {
-  async click() {},
+  async click(): Promise<void> {},
 }
 
-export const selectAgentMode = async () => {
+export const selectAgentMode = async (): Promise<void> => {
   await agentModePickerToggle.click()
 }
