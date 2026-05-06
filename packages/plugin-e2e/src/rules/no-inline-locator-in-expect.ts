@@ -13,13 +13,75 @@ export const meta: Rule.RuleMetaData = {
 
 interface TsNonNullExpression extends ESTree.BaseNode {
   type: 'TSNonNullExpression'
-  expression: TraversableNode
+  expression: unknown
 }
 
-type TraversableNode = ESTree.Node | TsNonNullExpression | null | undefined
+interface CallExpressionNode extends ESTree.BaseNode {
+  type: 'CallExpression'
+  callee: unknown
+  arguments: readonly unknown[]
+  optional: boolean
+}
 
-const isLocatorCall = (node: TraversableNode): node is ESTree.CallExpression => {
-  return node?.type === 'CallExpression' && node.callee.type === 'Identifier' && node.callee.name === 'Locator'
+interface MemberExpressionNode extends ESTree.BaseNode {
+  type: 'MemberExpression'
+  object: unknown
+  property: unknown
+  computed: boolean
+  optional: boolean
+}
+
+interface ChainExpressionNode extends ESTree.BaseNode {
+  type: 'ChainExpression'
+  expression: unknown
+}
+
+interface AwaitExpressionNode extends ESTree.BaseNode {
+  type: 'AwaitExpression'
+  argument: unknown
+}
+
+interface IdentifierNode extends ESTree.BaseNode {
+  type: 'Identifier'
+  name: string
+}
+
+type TraversableNode = unknown
+
+const isCallExpressionNode = (node: TraversableNode): node is CallExpressionNode => {
+  return typeof node === 'object' && node !== null && 'type' in node && node.type === 'CallExpression' && 'callee' in node && 'arguments' in node
+}
+
+const isIdentifierNode = (node: TraversableNode): node is IdentifierNode => {
+  return typeof node === 'object' && node !== null && 'type' in node && node.type === 'Identifier' && 'name' in node
+}
+
+const isMemberExpressionNode = (node: TraversableNode): node is MemberExpressionNode => {
+  return (
+    typeof node === 'object' &&
+    node !== null &&
+    'type' in node &&
+    node.type === 'MemberExpression' &&
+    'object' in node &&
+    'property' in node &&
+    'computed' in node
+  )
+}
+
+const isChainExpressionNode = (node: TraversableNode): node is ChainExpressionNode => {
+  return typeof node === 'object' && node !== null && 'type' in node && node.type === 'ChainExpression' && 'expression' in node
+}
+
+const isAwaitExpressionNode = (node: TraversableNode): node is AwaitExpressionNode => {
+  return typeof node === 'object' && node !== null && 'type' in node && node.type === 'AwaitExpression' && 'argument' in node
+}
+
+const isTsNonNullExpression = (node: TraversableNode): node is TsNonNullExpression => {
+  return typeof node === 'object' && node !== null && 'type' in node && node.type === 'TSNonNullExpression' && 'expression' in node
+}
+
+const isLocatorCall = (node: TraversableNode): node is CallExpressionNode => {
+  return isCallExpressionNode(node) && isIdentifierNode(node.callee) && node.callee.name === 'Locator'
 }
 
 const containsInlineLocatorCall = (node: TraversableNode): boolean => {
@@ -29,29 +91,31 @@ const containsInlineLocatorCall = (node: TraversableNode): boolean => {
   if (isLocatorCall(node)) {
     return true
   }
-  switch (node.type) {
-    case 'CallExpression':
-      return containsInlineLocatorCall(node.callee) || node.arguments.some(containsInlineLocatorCall)
-    case 'MemberExpression':
-      return containsInlineLocatorCall(node.object) || (node.computed && containsInlineLocatorCall(node.property))
-    case 'ChainExpression':
-      return containsInlineLocatorCall(node.expression)
-    case 'AwaitExpression':
-      return containsInlineLocatorCall(node.argument)
-    case 'TSNonNullExpression':
-      return containsInlineLocatorCall(node.expression)
-    default:
-      return false
+  if (isCallExpressionNode(node)) {
+    return containsInlineLocatorCall(node.callee) || node.arguments.some(containsInlineLocatorCall)
   }
+  if (isMemberExpressionNode(node)) {
+    return containsInlineLocatorCall(node.object) || (node.computed && containsInlineLocatorCall(node.property))
+  }
+  if (isChainExpressionNode(node)) {
+    return containsInlineLocatorCall(node.expression)
+  }
+  if (isAwaitExpressionNode(node)) {
+    return containsInlineLocatorCall(node.argument)
+  }
+  if (isTsNonNullExpression(node)) {
+    return containsInlineLocatorCall(node.expression)
+  }
+  return false
 }
 
-const isExpectCall = (node: ESTree.CallExpression): boolean => {
+const isExpectCall = (node: ESTree.SimpleCallExpression): boolean => {
   return node.callee.type === 'Identifier' && node.callee.name === 'expect'
 }
 
 export const create = (context: Rule.RuleContext): Rule.RuleListener => {
   return {
-    CallExpression(node: ESTree.CallExpression) {
+    CallExpression(node: ESTree.SimpleCallExpression) {
       if (!isExpectCall(node)) {
         return
       }

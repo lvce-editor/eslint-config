@@ -11,13 +11,13 @@ export const meta: Rule.RuleMetaData = {
   },
 }
 
-const isDirectClickCall = (node: ESTree.CallExpression): node is ESTree.CallExpression & { callee: ESTree.MemberExpression } => {
+const isDirectClickCall = (node: ESTree.SimpleCallExpression): node is ESTree.SimpleCallExpression & { callee: ESTree.MemberExpression } => {
   return node.callee.type === 'MemberExpression' && node.callee.property.type === 'Identifier' && node.callee.property.name === 'click'
 }
 
 export const create = (context: Rule.RuleContext): Rule.RuleListener => {
   return {
-    CallExpression(node: ESTree.CallExpression) {
+    CallExpression(node: ESTree.SimpleCallExpression) {
       if (!isDirectClickCall(node)) {
         return
       }
