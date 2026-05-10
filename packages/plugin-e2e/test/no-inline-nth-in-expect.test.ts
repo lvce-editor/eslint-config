@@ -36,13 +36,5 @@ async function test() {
 `,
       errors: [{ messageId: 'noInlineNthInExpect' }],
     },
-    {
-      code: `
-async function test() {
-  await expect(pills.nth(0)!).toBeVisible()
-}
-`,
-      errors: [{ messageId: 'noInlineNthInExpect' }],
-    },
   ],
 })

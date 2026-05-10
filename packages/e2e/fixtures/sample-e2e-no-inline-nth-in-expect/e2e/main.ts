@@ -1,6 +1,6 @@
 const expect = (_value: unknown): { toBeVisible(): Promise<void>; toContainText(value: string): Promise<void> } => ({
-  async toBeVisible(): Promise<void> { },
-  async toContainText(_value: string): Promise<void> { },
+  async toBeVisible(): Promise<void> {},
+  async toContainText(_value: string): Promise<void> {},
 })
 
 export const assertPills = async (): Promise<void> => {
