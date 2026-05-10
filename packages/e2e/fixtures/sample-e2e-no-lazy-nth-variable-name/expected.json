@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "e2e/main.ts:8",
+    "message": "Prefer a specific variable name like firstRow or row0 over nth-based names like rowsNth0."
+  }
+]
