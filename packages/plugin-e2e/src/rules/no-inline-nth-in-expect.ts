@@ -1,0 +1,150 @@
+import type { Rule } from 'eslint'
+import type * as ESTree from 'estree'
+
+export const meta: Rule.RuleMetaData = {
+  type: 'problem',
+  docs: {
+    description: 'Disallow inline nth locator expressions inside expect calls',
+  },
+  messages: {
+    noInlineNthInExpect: 'Assign the nth locator to a variable before passing it to expect(...).',
+  },
+}
+
+interface TsAsExpressionNode extends ESTree.BaseNode {
+  type: 'TSAsExpression'
+  expression: unknown
+}
+
+interface TsNonNullExpressionNode extends ESTree.BaseNode {
+  type: 'TSNonNullExpression'
+  expression: unknown
+}
+
+interface CallExpressionNode extends ESTree.BaseNode {
+  type: 'CallExpression'
+  callee: unknown
+  arguments: readonly unknown[]
+  optional: boolean
+}
+
+interface MemberExpressionNode extends ESTree.BaseNode {
+  type: 'MemberExpression'
+  object: unknown
+  property: unknown
+  computed: boolean
+  optional: boolean
+}
+
+interface ChainExpressionNode extends ESTree.BaseNode {
+  type: 'ChainExpression'
+  expression: unknown
+}
+
+interface AwaitExpressionNode extends ESTree.BaseNode {
+  type: 'AwaitExpression'
+  argument: unknown
+}
+
+interface IdentifierNode extends ESTree.BaseNode {
+  type: 'Identifier'
+  name: string
+}
+
+type TraversableNode = unknown
+
+const isCallExpressionNode = (node: TraversableNode): node is CallExpressionNode => {
+  return typeof node === 'object' && node !== null && 'type' in node && node.type === 'CallExpression' && 'callee' in node && 'arguments' in node
+}
+
+const isIdentifierNode = (node: TraversableNode): node is IdentifierNode => {
+  return typeof node === 'object' && node !== null && 'type' in node && node.type === 'Identifier' && 'name' in node
+}
+
+const isMemberExpressionNode = (node: TraversableNode): node is MemberExpressionNode => {
+  return (
+    typeof node === 'object' &&
+    node !== null &&
+    'type' in node &&
+    node.type === 'MemberExpression' &&
+    'object' in node &&
+    'property' in node &&
+    'computed' in node
+  )
+}
+
+const isChainExpressionNode = (node: TraversableNode): node is ChainExpressionNode => {
+  return typeof node === 'object' && node !== null && 'type' in node && node.type === 'ChainExpression' && 'expression' in node
+}
+
+const isAwaitExpressionNode = (node: TraversableNode): node is AwaitExpressionNode => {
+  return typeof node === 'object' && node !== null && 'type' in node && node.type === 'AwaitExpression' && 'argument' in node
+}
+
+const isTsAsExpressionNode = (node: TraversableNode): node is TsAsExpressionNode => {
+  return typeof node === 'object' && node !== null && 'type' in node && node.type === 'TSAsExpression' && 'expression' in node
+}
+
+const isTsNonNullExpressionNode = (node: TraversableNode): node is TsNonNullExpressionNode => {
+  return typeof node === 'object' && node !== null && 'type' in node && node.type === 'TSNonNullExpression' && 'expression' in node
+}
+
+const isNthCall = (node: TraversableNode): node is CallExpressionNode => {
+  return (
+    isCallExpressionNode(node) &&
+    isMemberExpressionNode(node.callee) &&
+    !node.callee.computed &&
+    isIdentifierNode(node.callee.property) &&
+    node.callee.property.name === 'nth'
+  )
+}
+
+const containsInlineNthCall = (node: TraversableNode): boolean => {
+  if (!node) {
+    return false
+  }
+  if (isNthCall(node)) {
+    return true
+  }
+  if (isCallExpressionNode(node)) {
+    return containsInlineNthCall(node.callee) || node.arguments.some(containsInlineNthCall)
+  }
+  if (isMemberExpressionNode(node)) {
+    return containsInlineNthCall(node.object) || (node.computed && containsInlineNthCall(node.property))
+  }
+  if (isChainExpressionNode(node)) {
+    return containsInlineNthCall(node.expression)
+  }
+  if (isAwaitExpressionNode(node)) {
+    return containsInlineNthCall(node.argument)
+  }
+  if (isTsAsExpressionNode(node)) {
+    return containsInlineNthCall(node.expression)
+  }
+  if (isTsNonNullExpressionNode(node)) {
+    return containsInlineNthCall(node.expression)
+  }
+  return false
+}
+
+const isExpectCall = (node: ESTree.SimpleCallExpression): boolean => {
+  return node.callee.type === 'Identifier' && node.callee.name === 'expect'
+}
+
+export const create = (context: Rule.RuleContext): Rule.RuleListener => {
+  return {
+    CallExpression(node: ESTree.SimpleCallExpression) {
+      if (!isExpectCall(node)) {
+        return
+      }
+      const [firstArgument] = node.arguments
+      if (!containsInlineNthCall(firstArgument)) {
+        return
+      }
+      context.report({
+        node: firstArgument,
+        messageId: 'noInlineNthInExpect',
+      })
+    },
+  }
+}
