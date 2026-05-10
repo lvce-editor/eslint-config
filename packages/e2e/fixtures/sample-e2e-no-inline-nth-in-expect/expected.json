@@ -1,0 +1,10 @@
+[
+  {
+    "filePath": "e2e/main.ts:8",
+    "message": "Assign the nth locator to a variable before passing it to expect(...)."
+  },
+  {
+    "filePath": "e2e/main.ts:9",
+    "message": "Assign the nth locator to a variable before passing it to expect(...)."
+  }
+]
