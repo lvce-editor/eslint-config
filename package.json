@@ -29,7 +29,7 @@
   "description": "",
   "dependencies": {
     "@cspell/eslint-plugin": "10.0.0",
-    "@e18e/eslint-plugin": "^0.4.1",
+    "@e18e/eslint-plugin": "^0.5.0",
     "@eslint/css": "1.2.0",
     "@eslint/js": "10.0.1",
     "@eslint/json": "1.2.0",
@@ -41,7 +41,7 @@
     "eslint-plugin-sonarjs": "4.0.3",
     "eslint-plugin-unicorn": "64.0.0",
     "eslint-plugin-yml": "3.3.2",
-    "typescript-eslint": "8.59.2"
+    "typescript-eslint": "8.59.3"
   },
   "peerDependencies": {
     "eslint": "^10"
