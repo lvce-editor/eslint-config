@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": ".github/workflows/ci.yml:3",
+    "message": "Unsupported on value: pull_request_target"
+  }
+]
