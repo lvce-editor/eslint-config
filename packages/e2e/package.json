@@ -15,7 +15,7 @@
     "@types/node": "^22.10.6",
     "execa": "^9.6.1",
     "jest": "^30.4.2",
-    "ts-jest": "^29.4.9"
+    "ts-jest": "^29.4.10"
   },
   "jest": {
     "injectGlobals": false,
