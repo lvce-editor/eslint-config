@@ -361,6 +361,18 @@ const defaultConfig = tseslint.config(
           selector: "CallExpression[callee.type='MemberExpression'][callee.object.name='Promise'][callee.property.name='resolve']",
           message: 'Dont use Promise resolve.',
         },
+        {
+          selector: "CallExpression[callee.type='MemberExpression'][callee.object.name='Reflect'][callee.property.name='get']",
+          message: "Don't use Reflect.get.",
+        },
+        {
+          selector: "CallExpression[callee.type='MemberExpression'][callee.object.name='Reflect'][callee.property.name='deleteProperty']",
+          message: "Don't use Reflect.deleteProperty.",
+        },
+        {
+          selector: "NewExpression[callee.name='Proxy']",
+          message: "Don't use Proxy.",
+        },
       ],
       '@typescript-eslint/unbound-method': 'off',
     },
