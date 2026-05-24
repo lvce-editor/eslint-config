@@ -1,0 +1,14 @@
+[
+  {
+    "filePath": "src/main.ts:1",
+    "message": "Don't use Reflect.get."
+  },
+  {
+    "filePath": "src/main.ts:2",
+    "message": "Don't use Reflect.deleteProperty."
+  },
+  {
+    "filePath": "src/main.ts:3",
+    "message": "Don't use Proxy."
+  }
+]
