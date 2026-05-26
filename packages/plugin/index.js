@@ -131,6 +131,8 @@ const defaultConfig = tseslint.config(
               'noreferrer',
               'opfs',
               'Overtype',
+              'subworker',
+              'objecturl',
               'pointercapture',
               'posinset',
               'recentlypublished',
@@ -332,6 +334,7 @@ const defaultConfig = tseslint.config(
       'sonarjs/publicly-writable-directories': 'off',
       'sonarjs/file-permissions': 'off',
       'sonarjs/deprecation': 'off',
+      'preserve-caught-error': 'off',
     },
   },
   {
