@@ -123,6 +123,7 @@ const defaultConfig = tseslint.config(
               'mycopy',
               'myproject',
               'navigations',
+              'worktree',
               'newfolder',
               'newshared',
               'Niño',
