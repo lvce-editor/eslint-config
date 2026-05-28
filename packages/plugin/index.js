@@ -184,6 +184,8 @@ const defaultConfig = tseslint.config(
               'Credentialless',
               'Resizers',
               'viewmodel',
+              'stash',
+              'unstash',
               'Viewletkey',
               'Visiblelines',
               'Whenexpression',
