@@ -3,7 +3,8 @@ import type { Rule } from 'eslint'
 const defaultMinimumVersion = '20.0.0'
 const defaultMaximumVersion = '24.15.0'
 const defaultBadVersions = ['24.16.0']
-const versionRegex = /^v?(\d+)\.(\d+)\.(\d+)$/
+const versionPattern = String.raw`^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$`
+const versionRegex = new RegExp(versionPattern)
 
 interface Version {
   readonly major: number
@@ -64,14 +65,17 @@ export const meta: Rule.RuleMetaData = {
       properties: {
         minimumVersion: {
           type: 'string',
+          pattern: versionPattern,
         },
         maximumVersion: {
           type: 'string',
+          pattern: versionPattern,
         },
         badVersions: {
           type: 'array',
           items: {
             type: 'string',
+            pattern: versionPattern,
           },
           uniqueItems: true,
         },
