@@ -21,6 +21,12 @@ const bundledPlugins = [
     variable: 'actionsPlugin',
   },
   {
+    dependency: '@lvce-editor/eslint-plugin-nvmrc',
+    packageName: 'plugin-nvmrc',
+    uri: 'nvmrcUri',
+    variable: 'nvmrcPlugin',
+  },
+  {
     dependency: '@lvce-editor/eslint-plugin-regex',
     packageName: 'plugin-regex',
     uri: 'regexUri',

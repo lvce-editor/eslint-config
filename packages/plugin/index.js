@@ -20,6 +20,10 @@ const actionsUri = '../plugin-github-actions/src/index.ts'
 const actionsPlugin = await import(actionsUri)
 
 // @ts-ignore
+const nvmrcUri = '../plugin-nvmrc/src/index.ts'
+const nvmrcPlugin = await import(nvmrcUri)
+
+// @ts-ignore
 const regexUri = '../plugin-regex/src/index.ts'
 const regexPlugin = await import(regexUri)
 
@@ -498,6 +502,8 @@ export const recommendedNode = [
 export const recommendedTsconfig = [...tsconfigPlugin.default]
 
 export const recommendedActions = [...actionsPlugin.default]
+
+export const recommendedNvmrc = [...nvmrcPlugin.default]
 
 export const recommendedRegex = [...regexPlugin.default]
 
