@@ -90,6 +90,10 @@ jobs:
       - run: npm publish --access public
         working-directory: ./.tmp/plugin-tsconfig
       - run: npm publish --access public
+        working-directory: ./.tmp/plugin-nvmrc
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: npm publish --access public
         working-directory: ./.tmp/plugin-regex
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
