@@ -18,8 +18,8 @@
     "yaml-eslint-parser": "2.0.0"
   },
   "devDependencies": {
-    "eslint-plugin-yml": "3.3.2",
-    "eslint": "^10.4.0",
+    "eslint-plugin-yml": "3.4.0",
+    "eslint": "^10.4.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^22.10.6",
     "esbuild": "^0.28.0",
