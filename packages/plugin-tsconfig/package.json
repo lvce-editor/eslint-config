@@ -14,10 +14,10 @@
   "license": "MIT",
   "description": "",
   "dependencies": {
-    "@eslint/json": "1.2.0"
+    "@eslint/json": "2.0.0"
   },
   "devDependencies": {
-    "eslint": "^10.4.0",
+    "eslint": "^10.4.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^22.10.6",
     "esbuild": "^0.28.0",
