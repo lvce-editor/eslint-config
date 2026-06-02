@@ -3,6 +3,7 @@ import * as noDirectClick from './rules/no-direct-click.ts'
 import * as noInlineLocatorInExpect from './rules/no-inline-locator-in-expect.ts'
 import * as noInlineNthInExpect from './rules/no-inline-nth-in-expect.ts'
 import * as noLazyNthVariableName from './rules/no-lazy-nth-variable-name.ts'
+import * as preferImportMetaResolve from './rules/prefer-import-meta-resolve.ts'
 
 const plugin = {
   meta: {
@@ -14,6 +15,7 @@ const plugin = {
     'no-inline-locator-in-expect': noInlineLocatorInExpect,
     'no-inline-nth-in-expect': noInlineNthInExpect,
     'no-lazy-nth-variable-name': noLazyNthVariableName,
+    'prefer-import-meta-resolve': preferImportMetaResolve,
   },
   configs: {},
 }
@@ -29,6 +31,7 @@ const recommended: Linter.Config[] = [
       'e2e/no-inline-locator-in-expect': 'error',
       'e2e/no-inline-nth-in-expect': 'error',
       'e2e/no-lazy-nth-variable-name': 'error',
+      'e2e/prefer-import-meta-resolve': 'error',
     },
   },
 ]
