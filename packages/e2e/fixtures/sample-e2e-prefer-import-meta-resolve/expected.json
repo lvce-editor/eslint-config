@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "e2e/main.ts:2",
+    "message": "Use import.meta.resolve(...) instead of new URL(..., import.meta.url).toString()."
+  }
+]
