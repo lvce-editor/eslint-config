@@ -1,10 +1,8 @@
 import type { Rule } from 'eslint'
-import { getSourceCode } from 'eslint-compat-utils'
 import type { AST } from 'yaml-eslint-parser'
+import { getSourceCode } from 'eslint-compat-utils'
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem',
-
   docs: {
     description: 'Disallow unsupported fail fast values',
   },
@@ -12,6 +10,8 @@ export const meta: Rule.RuleMetaData = {
   messages: {
     unsupportedFailFast: 'Unsupported fail fast value: {{value}}',
   },
+
+  type: 'problem',
 } as const
 
 export const create = (context: Rule.RuleContext) => {
@@ -39,11 +39,11 @@ export const create = (context: Rule.RuleContext) => {
       ) {
         const nodeValue = node.value.value
         context.report({
-          node: node.value,
-          messageId: 'unsupportedFailFast',
           data: {
             value: nodeValue,
           },
+          messageId: 'unsupportedFailFast',
+          node: node.value,
         })
       }
     },

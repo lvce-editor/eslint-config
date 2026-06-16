@@ -1,13 +1,13 @@
 export const config = {
-  ubuntu: ['ubuntu-24.04', 'ubuntu-24.04-arm'],
   macos: ['macos-15', 'macos-26'],
+  ubuntu: ['ubuntu-24.04', 'ubuntu-24.04-arm'],
   windows: ['windows-2025', 'windows-11-arm'],
 }
 
 export const platforms = {
-  windows: 'windows',
-  ubuntu: 'ubuntu',
   macos: 'macos',
+  ubuntu: 'ubuntu',
+  windows: 'windows',
 }
 
 export const actions = {
@@ -33,7 +33,7 @@ export const shells = ['bash']
 export const pythonVersions = ['3.13', '3.14', '3.15']
 
 export const permissions: Record<string, readonly string[]> = {
-  'id-token': ['write'],
   contents: ['write'],
+  'id-token': ['write'],
   pages: ['write'],
 }

@@ -1,11 +1,9 @@
 import type { Rule } from 'eslint'
-import { getSourceCode } from 'eslint-compat-utils'
 import type { AST } from 'yaml-eslint-parser'
+import { getSourceCode } from 'eslint-compat-utils'
 import { permissions } from './config.ts'
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem',
-
   docs: {
     description: 'Disallow unsupported permission values',
   },
@@ -13,6 +11,8 @@ export const meta: Rule.RuleMetaData = {
   messages: {
     unsupportedPermission: 'Unsupported permission value: {{value}}',
   },
+
+  type: 'problem',
 } as const
 
 export const create = (context: Rule.RuleContext) => {
@@ -40,29 +40,29 @@ export const create = (context: Rule.RuleContext) => {
         for (const pair of node.value.pairs) {
           if (pair.key && pair.key.type === 'YAMLScalar' && typeof pair.key.value === 'string') {
             const supportedKey = Object.hasOwn(permissions, pair.key.value)
-            if (!supportedKey) {
-              context.report({
-                node: pair.key,
-                messageId: 'unsupportedPermission',
-                data: {
-                  // @ts-ignore
-                  value: pair,
-                },
-              })
-            } else {
+            if (supportedKey) {
               if (pair.value && pair.value.type === 'YAMLScalar' && typeof pair.value.value === 'string') {
                 const items = permissions[pair.key.value] || []
                 if (!items.includes(pair.value.value)) {
                   context.report({
-                    node,
-                    messageId: 'unsupportedPermission',
                     data: {
                       // @ts-ignore
                       value: pair.value,
                     },
+                    messageId: 'unsupportedPermission',
+                    node,
                   })
                 }
               }
+            } else {
+              context.report({
+                data: {
+                  // @ts-ignore
+                  value: pair,
+                },
+                messageId: 'unsupportedPermission',
+                node: pair.key,
+              })
             }
           }
         }
