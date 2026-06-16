@@ -24,11 +24,22 @@ const isImportMetaUrl = (node: ESTree.Node): boolean => {
 }
 
 const isUrlConstructor = (node: ESTree.Node): node is ESTree.NewExpression => {
-  return node.type === 'NewExpression' && node.callee.type === 'Identifier' && ['URL', 'Url'].includes(node.callee.name) && node.arguments.length >= 2 && isImportMetaUrl(node.arguments[1])
+  return (
+    node.type === 'NewExpression' &&
+    node.callee.type === 'Identifier' &&
+    ['URL', 'Url'].includes(node.callee.name) &&
+    node.arguments.length >= 2 &&
+    isImportMetaUrl(node.arguments[1])
+  )
 }
 
 const isNewUrlToStringCall = (node: ESTree.SimpleCallExpression): boolean => {
-  return node.callee.type === 'MemberExpression' && !node.callee.computed && isIdentifier(node.callee.property, 'toString') && isUrlConstructor(node.callee.object)
+  return (
+    node.callee.type === 'MemberExpression' &&
+    !node.callee.computed &&
+    isIdentifier(node.callee.property, 'toString') &&
+    isUrlConstructor(node.callee.object)
+  )
 }
 
 export const create = (context: Rule.RuleContext): Rule.RuleListener => {
