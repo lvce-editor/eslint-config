@@ -15,13 +15,12 @@ const parseFile = (file: any, fixturePath: string): readonly any[] => {
   const fixtureUri = pathToFileURL(fixturePath).toString()
   const uri = pathToFileURL(file.filePath).toString()
   const relative = uri.slice(fixtureUri.length + 1)
-  const parsed: any[] = []
-  for (const message of file.messages) {
-    parsed.push({
-      filePath: `${relative}:${message.line}`,
-      message: message.message,
-    })
-  }
+  const parsed: any[] = Array.from(file.messages, (message) => ({
+    // @ts-ignore
+    filePath: `${relative}:${message.line}`,
+    // @ts-ignore
+    message: message.message,
+  }))
   return parsed
 }
 
@@ -49,5 +48,5 @@ export const runFixture = async (name: string) => {
   const resultContent = await readFile(resultFilePath, 'utf-8')
   const resultJson = JSON.parse(resultContent)
   const parsed = parseResult(fixturePath, resultJson)
-  return { parsed, expected }
+  return { expected, parsed }
 }
