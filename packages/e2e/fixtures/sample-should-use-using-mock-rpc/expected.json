@@ -2,5 +2,13 @@
   {
     "filePath": "src/main.ts:1",
     "message": "Use `using` with `mockRpc`."
+  },
+  {
+    "filePath": "src/main.ts:2",
+    "message": "Prefer an arrow function property over a method with a single return."
+  },
+  {
+    "filePath": "src/main.ts:8",
+    "message": "Prefer an arrow function property over a method with a single return."
   }
 ]
