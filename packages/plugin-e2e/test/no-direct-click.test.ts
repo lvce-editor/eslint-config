@@ -9,22 +9,6 @@ const ruleTester = new RuleTester({
 })
 
 ruleTester.run('no-direct-click', rule, {
-  valid: [
-    {
-      code: `
-async function test() {
-  await Command.execute('AgentModePicker.select')
-}
-`,
-    },
-    {
-      code: `
-async function test() {
-  await agentModePicker.clickOption()
-}
-`,
-    },
-  ],
   invalid: [
     {
       code: `
@@ -41,6 +25,22 @@ async function test() {
 }
 `,
       errors: [{ messageId: 'noDirectClick' }],
+    },
+  ],
+  valid: [
+    {
+      code: `
+async function test() {
+  await Command.execute('AgentModePicker.select')
+}
+`,
+    },
+    {
+      code: `
+async function test() {
+  await agentModePicker.clickOption()
+}
+`,
     },
   ],
 })

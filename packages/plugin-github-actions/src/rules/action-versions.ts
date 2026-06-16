@@ -1,6 +1,6 @@
 import type { Rule } from 'eslint'
-import { getSourceCode } from 'eslint-compat-utils'
 import type { AST } from 'yaml-eslint-parser'
+import { getSourceCode } from 'eslint-compat-utils'
 import { actions } from './config.ts'
 
 const isSupported = (actions: readonly string[], value: string): boolean => {
@@ -8,16 +8,16 @@ const isSupported = (actions: readonly string[], value: string): boolean => {
 }
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem',
-
   docs: {
     description: 'Disallow unsupported action versions',
   },
 
+  fixable: 'code',
+
   messages: {
     unsupportedActionVersion: 'Unsupported action version: {{value}}',
   },
-  fixable: 'code',
+  type: 'problem',
 }
 
 export const create = (context: Rule.RuleContext) => {
@@ -46,8 +46,6 @@ export const create = (context: Rule.RuleContext) => {
         for (const [key, value] of Object.entries(actions)) {
           if (nodeValue.startsWith(key) && !isSupported(value, nodeValue)) {
             context.report({
-              node: node.value,
-              messageId: 'unsupportedActionVersion',
               data: {
                 value: nodeValue,
               },
@@ -55,6 +53,8 @@ export const create = (context: Rule.RuleContext) => {
                 const validText = value.at(-1) || ''
                 return fixer.replaceText(node.value, validText)
               },
+              messageId: 'unsupportedActionVersion',
+              node: node.value,
             })
           }
         }

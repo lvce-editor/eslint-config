@@ -4,12 +4,28 @@ import * as rule from '../src/rules/on.ts'
 
 const ruleTester = new RuleTester({
   languageOptions: {
-    parser,
     ecmaVersion: 2020,
+    parser,
   },
 })
 
 ruleTester.run('on', rule, {
+  invalid: [
+    {
+      code: `
+on:
+  abc:`,
+      errors: [
+        {
+          column: 1,
+          endColumn: 7,
+          endLine: 3,
+          line: 2,
+          messageId: 'unsupportedOn',
+        },
+      ],
+    },
+  ],
   valid: [
     {
       code: `
@@ -18,22 +34,6 @@ on:
   pull_request:
     branches:
       - main`,
-    },
-  ],
-  invalid: [
-    {
-      code: `
-on:
-  abc:`,
-      errors: [
-        {
-          messageId: 'unsupportedOn',
-          column: 1,
-          endColumn: 7,
-          endLine: 3,
-          line: 2,
-        },
-      ],
     },
   ],
 })

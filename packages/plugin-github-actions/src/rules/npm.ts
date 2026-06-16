@@ -1,11 +1,9 @@
 import type { Rule } from 'eslint'
-import { getSourceCode } from 'eslint-compat-utils'
 import type { AST } from 'yaml-eslint-parser'
+import { getSourceCode } from 'eslint-compat-utils'
 import { npmCommands } from './config.ts'
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem',
-
   docs: {
     description: 'Disallow unsupported npm commands',
   },
@@ -13,6 +11,8 @@ export const meta: Rule.RuleMetaData = {
   messages: {
     unsupportedNpmCommand: 'Unsupported npm command: {{value}}',
   },
+
+  type: 'problem',
 } as const
 
 const isSupportedNpmCommand = (value: string): boolean => {
@@ -52,11 +52,11 @@ export const create = (context: Rule.RuleContext) => {
           const rest = nodeValue.slice('npm '.length)
           if (!isSupportedNpmCommand(rest)) {
             context.report({
-              node: node.value,
-              messageId: 'unsupportedNpmCommand',
               data: {
                 value: nodeValue,
               },
+              messageId: 'unsupportedNpmCommand',
+              node: node.value,
             })
           }
         }

@@ -2,13 +2,13 @@ import type { Rule } from 'eslint'
 import type * as ESTree from 'estree'
 
 export const meta: Rule.RuleMetaData = {
-  type: 'suggestion',
   docs: {
     description: 'Prefer import.meta.resolve over new URL(..., import.meta.url).toString()',
   },
   messages: {
     preferImportMetaResolve: 'Use import.meta.resolve(...) instead of new URL(..., import.meta.url).toString().',
   },
+  type: 'suggestion',
 }
 
 const isIdentifier = (node: ESTree.Node, name: string): node is ESTree.Identifier => {
@@ -38,8 +38,8 @@ export const create = (context: Rule.RuleContext): Rule.RuleListener => {
         return
       }
       context.report({
-        node,
         messageId: 'preferImportMetaResolve',
+        node,
       })
     },
   }

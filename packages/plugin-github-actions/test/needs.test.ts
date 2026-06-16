@@ -4,12 +4,67 @@ import * as rule from '../src/rules/needs.ts'
 
 const ruleTester = new RuleTester({
   languageOptions: {
-    parser,
     ecmaVersion: 2020,
+    parser,
   },
 })
 
 ruleTester.run('needs', rule, {
+  invalid: [
+    {
+      code: `
+jobs:
+  a:
+    needs: 123`,
+      errors: [
+        {
+          column: 5,
+          endColumn: 15,
+          endLine: 4,
+          line: 4,
+          messageId: 'unsupportedNeeds',
+        },
+      ],
+    },
+    {
+      code: `
+jobs:
+  a:
+    runs-on: ubuntu-24.04
+    fail-fast: true
+
+  b:
+    needs: ["c"]`,
+      errors: [
+        {
+          column: 5,
+          endColumn: 17,
+          endLine: 8,
+          line: 8,
+          messageId: 'unsupportedNeeds',
+        },
+      ],
+    },
+    {
+      code: `
+jobs:
+  a:
+    runs-on: ubuntu-24.04
+    fail-fast: true
+
+  b:
+    needs: c`,
+      errors: [
+        {
+          column: 5,
+          endColumn: 13,
+          endLine: 8,
+          line: 8,
+          messageId: 'unsupportedNeeds',
+        },
+      ],
+    },
+  ],
   valid: [
     {
       code: `
@@ -40,61 +95,6 @@ jobs:
 
   b:
     needs: a`,
-    },
-  ],
-  invalid: [
-    {
-      code: `
-jobs:
-  a:
-    needs: 123`,
-      errors: [
-        {
-          messageId: 'unsupportedNeeds',
-          line: 4,
-          column: 5,
-          endLine: 4,
-          endColumn: 15,
-        },
-      ],
-    },
-    {
-      code: `
-jobs:
-  a:
-    runs-on: ubuntu-24.04
-    fail-fast: true
-
-  b:
-    needs: ["c"]`,
-      errors: [
-        {
-          messageId: 'unsupportedNeeds',
-          endColumn: 17,
-          endLine: 8,
-          line: 8,
-          column: 5,
-        },
-      ],
-    },
-    {
-      code: `
-jobs:
-  a:
-    runs-on: ubuntu-24.04
-    fail-fast: true
-
-  b:
-    needs: c`,
-      errors: [
-        {
-          messageId: 'unsupportedNeeds',
-          endColumn: 13,
-          endLine: 8,
-          line: 8,
-          column: 5,
-        },
-      ],
     },
   ],
 })

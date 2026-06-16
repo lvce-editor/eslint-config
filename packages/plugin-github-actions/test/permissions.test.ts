@@ -4,20 +4,12 @@ import * as rule from '../src/rules/permissions.ts'
 
 const ruleTester = new RuleTester({
   languageOptions: {
-    parser,
     ecmaVersion: 2020,
+    parser,
   },
 })
 
 ruleTester.run('permissions', rule, {
-  valid: [
-    {
-      code: `
-permissions:
-  id-token: write
-  contents: write`,
-    },
-  ],
   invalid: [
     {
       code: `permissions:
@@ -25,13 +17,21 @@ permissions:
   contents: write`,
       errors: [
         {
-          messageId: 'unsupportedPermission',
           column: 1,
           endColumn: 18,
           endLine: 3,
           line: 1,
+          messageId: 'unsupportedPermission',
         },
       ],
+    },
+  ],
+  valid: [
+    {
+      code: `
+permissions:
+  id-token: write
+  contents: write`,
     },
   ],
 })

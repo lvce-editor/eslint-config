@@ -4,20 +4,12 @@ import * as rule from '../src/rules/matrix.ts'
 
 const ruleTester = new RuleTester({
   languageOptions: {
-    parser,
     ecmaVersion: 2020,
+    parser,
   },
 })
 
 ruleTester.run('matrix', rule, {
-  valid: [
-    {
-      code: `
-jobs:
-  pr:
-    matrix: [ubuntu-24.04]`,
-    },
-  ],
   invalid: [
     {
       code: `
@@ -27,13 +19,21 @@ jobs:
 `,
       errors: [
         {
-          messageId: 'unsupportedMatrix',
           column: 5,
           endColumn: 16,
           endLine: 4,
           line: 4,
+          messageId: 'unsupportedMatrix',
         },
       ],
+    },
+  ],
+  valid: [
+    {
+      code: `
+jobs:
+  pr:
+    matrix: [ubuntu-24.04]`,
     },
   ],
 })

@@ -9,6 +9,58 @@ const ruleTester = new RuleTester({
 })
 
 ruleTester.run('hoist-regex', rule, {
+  invalid: [
+    {
+      code: `
+export const matches = (value) => {
+  return /abc/.test(value)
+}
+`,
+      errors: [
+        {
+          column: 10,
+          endColumn: 15,
+          endLine: 3,
+          line: 3,
+          messageId: 'hoistRegex',
+        },
+      ],
+    },
+    {
+      code: `
+function matches(value) {
+  const matcher = new RegExp('abc')
+  return matcher.test(value)
+}
+`,
+      errors: [
+        {
+          column: 19,
+          endColumn: 36,
+          endLine: 3,
+          line: 3,
+          messageId: 'hoistRegex',
+        },
+      ],
+    },
+    {
+      code: `
+function matches(value) {
+  const matcher = RegExp('abc')
+  return matcher.test(value)
+}
+`,
+      errors: [
+        {
+          column: 19,
+          endColumn: 32,
+          endLine: 3,
+          line: 3,
+          messageId: 'hoistRegex',
+        },
+      ],
+    },
+  ],
   valid: [
     {
       code: `
@@ -35,58 +87,6 @@ function matchesAvatar(escapedUserId, key) {
   return avatarKeyRegex.test(key)
 }
 `,
-    },
-  ],
-  invalid: [
-    {
-      code: `
-export const matches = (value) => {
-  return /abc/.test(value)
-}
-`,
-      errors: [
-        {
-          messageId: 'hoistRegex',
-          line: 3,
-          column: 10,
-          endLine: 3,
-          endColumn: 15,
-        },
-      ],
-    },
-    {
-      code: `
-function matches(value) {
-  const matcher = new RegExp('abc')
-  return matcher.test(value)
-}
-`,
-      errors: [
-        {
-          messageId: 'hoistRegex',
-          line: 3,
-          column: 19,
-          endLine: 3,
-          endColumn: 36,
-        },
-      ],
-    },
-    {
-      code: `
-function matches(value) {
-  const matcher = RegExp('abc')
-  return matcher.test(value)
-}
-`,
-      errors: [
-        {
-          messageId: 'hoistRegex',
-          line: 3,
-          column: 19,
-          endLine: 3,
-          endColumn: 32,
-        },
-      ],
     },
   ],
 })
