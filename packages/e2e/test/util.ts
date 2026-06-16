@@ -43,9 +43,9 @@ export const runFixture = async (name: string): Promise<{ readonly expected: any
   })
   const resultFilePath = join(fixturePath, 'result.json')
   const expectedJsonPath = join(fixturePath, 'expected.json')
-  const expectedJsonContent = await readFile(expectedJsonPath, 'utf-8')
+  const expectedJsonContent = await readFile(expectedJsonPath, 'utf8')
   const expected = JSON.parse(expectedJsonContent)
-  const resultContent = await readFile(resultFilePath, 'utf-8')
+  const resultContent = await readFile(resultFilePath, 'utf8')
   const resultJson = JSON.parse(resultContent)
   const parsed = parseResult(fixturePath, resultJson)
   return { expected, parsed }
