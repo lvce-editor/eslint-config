@@ -9,6 +9,44 @@ const ruleTester = new RuleTester({
 })
 
 ruleTester.run('prefer-using-mock-rpc', rule, {
+  invalid: [
+    {
+      code: `
+const mockRpc = SearchProcess.registerMockRpc({
+  testMethod() {
+    return 'ok'
+  },
+})
+`,
+      errors: [
+        {
+          column: 1,
+          endColumn: 3,
+          endLine: 6,
+          line: 2,
+          messageId: 'preferUsingMockRpc',
+        },
+      ],
+    },
+    {
+      code: `
+let mockRpc = MainProcess.registerMockRpc({
+  testMethod() {
+    return 'ok'
+  },
+})
+`,
+      errors: [
+        {
+          column: 1,
+          endColumn: 3,
+          endLine: 6,
+          line: 2,
+          messageId: 'preferUsingMockRpc',
+        },
+      ],
+    },
+  ],
   valid: [
     {
       code: `
@@ -41,44 +79,6 @@ const mainProcessMockRpc = MainProcess.registerMockRpc({
   },
 })
 `,
-    },
-  ],
-  invalid: [
-    {
-      code: `
-const mockRpc = SearchProcess.registerMockRpc({
-  testMethod() {
-    return 'ok'
-  },
-})
-`,
-      errors: [
-        {
-          messageId: 'preferUsingMockRpc',
-          line: 2,
-          column: 1,
-          endLine: 6,
-          endColumn: 3,
-        },
-      ],
-    },
-    {
-      code: `
-let mockRpc = MainProcess.registerMockRpc({
-  testMethod() {
-    return 'ok'
-  },
-})
-`,
-      errors: [
-        {
-          messageId: 'preferUsingMockRpc',
-          line: 2,
-          column: 1,
-          endLine: 6,
-          endColumn: 3,
-        },
-      ],
     },
   ],
 })

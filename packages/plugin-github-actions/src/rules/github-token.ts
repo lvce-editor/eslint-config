@@ -1,10 +1,8 @@
 import type { Rule } from 'eslint'
-import { getSourceCode } from 'eslint-compat-utils'
 import type { AST } from 'yaml-eslint-parser'
+import { getSourceCode } from 'eslint-compat-utils'
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem',
-
   docs: {
     description: 'Disallow unsupported github token values',
   },
@@ -12,6 +10,8 @@ export const meta: Rule.RuleMetaData = {
   messages: {
     unsupportedGithubToken: 'Unsupported github token value: {{value}}',
   },
+
+  type: 'problem',
 } as const
 
 export const create = (context: Rule.RuleContext) => {
@@ -39,11 +39,11 @@ export const create = (context: Rule.RuleContext) => {
         const nodeValue = node.value.value
         if (typeof nodeValue !== 'string' || nodeValue !== '${{ secrets.GITHUB_TOKEN }}') {
           context.report({
-            node,
-            messageId: 'unsupportedGithubToken',
             data: {
               value: nodeValue,
             },
+            messageId: 'unsupportedGithubToken',
+            node,
           })
         }
       }

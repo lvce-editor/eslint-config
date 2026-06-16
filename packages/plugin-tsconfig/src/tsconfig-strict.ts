@@ -1,14 +1,14 @@
-import * as tsConfigCompilerOption from './tsconfig-compiler-option.ts'
 import type { Rule } from 'eslint'
+import * as tsConfigCompilerOption from './tsconfig-compiler-option.ts'
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem' as const,
   docs: {
     description: 'Ensure that the strict mode is enabled',
   },
   messages: {
     strict: 'strict mode should be enabled',
   },
+  type: 'problem' as const,
 }
 
 export const create = (context: any) => {

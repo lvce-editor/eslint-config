@@ -1,19 +1,19 @@
 import type { Rule } from 'eslint'
-import { getSourceCode } from 'eslint-compat-utils'
 import type { AST } from 'yaml-eslint-parser'
+import { getSourceCode } from 'eslint-compat-utils'
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem',
-
   docs: {
     description: 'Disallow unsupported release action usage',
   },
+
+  fixable: 'code',
 
   messages: {
     unsupportedReleaseAction: 'Unsupported release action',
   },
 
-  fixable: 'code',
+  type: 'problem',
 } as const
 
 export const create = (context: Rule.RuleContext) => {
@@ -38,12 +38,10 @@ export const create = (context: Rule.RuleContext) => {
         node.value.value === 'actions/create-release@v1'
       ) {
         context.report({
-          node,
-          messageId: 'unsupportedReleaseAction',
           data: {},
           fix(fixer) {
             const edits: Rule.Fix[] = []
-            const parent = node.parent
+            const {parent} = node
             edits.push(fixer.replaceText(node.value, 'softprops/action-gh-release@v2'))
             for (const pair of parent.pairs) {
               if (pair.key && pair.key.type === 'YAMLScalar' && pair.key.value === 'with' && pair.value?.type == 'YAMLMapping') {
@@ -57,6 +55,8 @@ export const create = (context: Rule.RuleContext) => {
             }
             return edits
           },
+          messageId: 'unsupportedReleaseAction',
+          node,
         })
       }
     },

@@ -1,11 +1,9 @@
 import type { Rule } from 'eslint'
-import { getSourceCode } from 'eslint-compat-utils'
 import type { AST } from 'yaml-eslint-parser'
+import { getSourceCode } from 'eslint-compat-utils'
 import { npmRegistries } from './config.ts'
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem',
-
   docs: {
     description: 'Disallow unsupported npm registry values',
   },
@@ -13,6 +11,8 @@ export const meta: Rule.RuleMetaData = {
   messages: {
     unsupportedNpmRegistry: 'Unsupported npm registry value: {{value}}',
   },
+
+  type: 'problem',
 } as const
 
 export const create = (context: Rule.RuleContext) => {
@@ -40,11 +40,11 @@ export const create = (context: Rule.RuleContext) => {
         const nodeValue = node.value.value
         if (typeof nodeValue !== 'string' || !npmRegistries.includes(nodeValue)) {
           context.report({
-            node,
-            messageId: 'unsupportedNpmRegistry',
             data: {
               value: nodeValue,
             },
+            messageId: 'unsupportedNpmRegistry',
+            node,
           })
         }
       }

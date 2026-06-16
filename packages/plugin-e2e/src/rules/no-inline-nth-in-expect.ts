@@ -2,53 +2,53 @@ import type { Rule } from 'eslint'
 import type * as ESTree from 'estree'
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem',
   docs: {
     description: 'Disallow inline nth locator expressions inside expect calls',
   },
   messages: {
     noInlineNthInExpect: 'Assign the nth locator to a variable before passing it to expect(...).',
   },
+  type: 'problem',
 }
 
 interface TsAsExpressionNode extends ESTree.BaseNode {
-  type: 'TSAsExpression'
   expression: unknown
+  type: 'TSAsExpression'
 }
 
 interface TsNonNullExpressionNode extends ESTree.BaseNode {
-  type: 'TSNonNullExpression'
   expression: unknown
+  type: 'TSNonNullExpression'
 }
 
 interface CallExpressionNode extends ESTree.BaseNode {
-  type: 'CallExpression'
-  callee: unknown
   arguments: readonly unknown[]
+  callee: unknown
   optional: boolean
+  type: 'CallExpression'
 }
 
 interface MemberExpressionNode extends ESTree.BaseNode {
-  type: 'MemberExpression'
-  object: unknown
-  property: unknown
   computed: boolean
+  object: unknown
   optional: boolean
+  property: unknown
+  type: 'MemberExpression'
 }
 
 interface ChainExpressionNode extends ESTree.BaseNode {
-  type: 'ChainExpression'
   expression: unknown
+  type: 'ChainExpression'
 }
 
 interface AwaitExpressionNode extends ESTree.BaseNode {
-  type: 'AwaitExpression'
   argument: unknown
+  type: 'AwaitExpression'
 }
 
 interface IdentifierNode extends ESTree.BaseNode {
-  type: 'Identifier'
   name: string
+  type: 'Identifier'
 }
 
 type TraversableNode = unknown
@@ -142,8 +142,8 @@ export const create = (context: Rule.RuleContext): Rule.RuleListener => {
         return
       }
       context.report({
-        node: firstArgument,
         messageId: 'noInlineNthInExpect',
+        node: firstArgument,
       })
     },
   }

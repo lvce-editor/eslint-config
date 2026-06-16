@@ -6,6 +6,7 @@ import * as noLazyNthVariableName from './rules/no-lazy-nth-variable-name.ts'
 import * as preferImportMetaResolve from './rules/prefer-import-meta-resolve.ts'
 
 const plugin = {
+  configs: {},
   meta: {
     name: 'e2e',
     version: '0.0.1',
@@ -17,7 +18,6 @@ const plugin = {
     'no-lazy-nth-variable-name': noLazyNthVariableName,
     'prefer-import-meta-resolve': preferImportMetaResolve,
   },
-  configs: {},
 }
 
 const recommended: Linter.Config[] = [
