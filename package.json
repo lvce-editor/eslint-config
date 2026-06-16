@@ -8,7 +8,7 @@
     "build": "node packages/build/src/build.js",
     "format": "prettier --write .",
     "postinstall": "lerna bootstrap --ci",
-    "lint": "eslint .",
+    "lint": "eslint . && prettier --check .",
     "test": "lerna run test",
     "type-check": "tsc -b",
     "update-action-versions": "node packages/build/src/updateActionVersions.ts"
