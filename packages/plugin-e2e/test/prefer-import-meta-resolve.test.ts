@@ -9,6 +9,20 @@ const ruleTester = new RuleTester({
 })
 
 ruleTester.run('prefer-import-meta-resolve', rule, {
+  invalid: [
+    {
+      code: `
+const uri = new URL('../fixtures/sample', import.meta.url).toString()
+`,
+      errors: [{ messageId: 'preferImportMetaResolve' }],
+    },
+    {
+      code: `
+const uri = new Url('../fixtures/sample', import.meta.url).toString()
+`,
+      errors: [{ messageId: 'preferImportMetaResolve' }],
+    },
+  ],
   valid: [
     {
       code: `
@@ -24,20 +38,6 @@ const uri = new URL('../fixtures/sample', import.meta.url)
       code: `
 const uri = new URL('../fixtures/sample', other.url).toString()
 `,
-    },
-  ],
-  invalid: [
-    {
-      code: `
-const uri = new URL('../fixtures/sample', import.meta.url).toString()
-`,
-      errors: [{ messageId: 'preferImportMetaResolve' }],
-    },
-    {
-      code: `
-const uri = new Url('../fixtures/sample', import.meta.url).toString()
-`,
-      errors: [{ messageId: 'preferImportMetaResolve' }],
     },
   ],
 })
