@@ -430,6 +430,7 @@ const defaultConfig = tseslint.config(
       'unicorn/switch-case-braces': 'off',
       'unicorn/prefer-add-event-listener': 'off',
       'unicorn/prefer-set-has': 'off',
+      'unicorn/consistent-compound-words': 'off',
       'unicorn/prefer-node-protocol': 'off',
       'unicorn/prefer-ternary': 'off',
       'unicorn/new-for-builtins': 'off',
