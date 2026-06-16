@@ -1,10 +1,8 @@
 import type { Rule } from 'eslint'
-import { getSourceCode } from 'eslint-compat-utils'
 import type { AST } from 'yaml-eslint-parser'
+import { getSourceCode } from 'eslint-compat-utils'
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem',
-
   docs: {
     description: 'Disallow unsupported needs values',
   },
@@ -12,6 +10,8 @@ export const meta: Rule.RuleMetaData = {
   messages: {
     unsupportedNeeds: 'Unsupported needs value: {{value}}',
   },
+
+  type: 'problem',
 } as const
 
 const stringifyValue = (
@@ -43,7 +43,7 @@ const getValidNeeds = (node: AST.YAMLPair): readonly string[] => {
   const validNeeds: string[] = []
 
   if (greatGrandParent.type === 'YAMLMapping') {
-    const pairs = greatGrandParent.pairs
+    const {pairs} = greatGrandParent
     for (const pair of pairs) {
       if (pair.key && pair.key.type === 'YAMLScalar' && typeof pair.key.value === 'string') {
         validNeeds.push(pair.key.value)
@@ -79,11 +79,11 @@ export const create = (context: Rule.RuleContext) => {
         if (node.value.type === 'YAMLScalar' && typeof node.value.value === 'string') {
           if (!validNeeds.includes(node.value.value)) {
             context.report({
-              node,
-              messageId: 'unsupportedNeeds',
               data: {
                 value: stringifyValue(node.value),
               },
+              messageId: 'unsupportedNeeds',
+              node,
             })
           }
           return
@@ -93,21 +93,21 @@ export const create = (context: Rule.RuleContext) => {
           for (const item of node.value.entries) {
             if (!item || item.type !== 'YAMLScalar' || typeof item.value !== 'string') {
               context.report({
-                node,
-                messageId: 'unsupportedNeeds',
                 data: {
                   value: stringifyValue(item),
                 },
+                messageId: 'unsupportedNeeds',
+                node,
               })
               continue
             }
             if (!validNeeds.includes(item.value)) {
               context.report({
-                node,
-                messageId: 'unsupportedNeeds',
                 data: {
                   value: stringifyValue(item),
                 },
+                messageId: 'unsupportedNeeds',
+                node,
               })
             }
           }
@@ -115,11 +115,11 @@ export const create = (context: Rule.RuleContext) => {
         }
 
         context.report({
-          node,
-          messageId: 'unsupportedNeeds',
           data: {
             value: stringifyValue(node.value),
           },
+          messageId: 'unsupportedNeeds',
+          node,
         })
       }
     },
