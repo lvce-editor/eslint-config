@@ -33,9 +33,9 @@ const stringifyValue = (
     return ''
   }
   if (node.type === 'YAMLScalar') {
-    return `${node.value}`
+    return String(node.value)
   }
-  return `${node.type}`
+  return node.type
 }
 
 const getValidNeeds = (node: AST.YAMLPair): readonly string[] => {
