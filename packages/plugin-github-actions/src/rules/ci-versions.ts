@@ -1,6 +1,6 @@
 import type { Rule } from 'eslint'
-import { getSourceCode } from 'eslint-compat-utils'
 import type { AST } from 'yaml-eslint-parser'
+import { getSourceCode } from 'eslint-compat-utils'
 import { config, platforms } from './config.ts'
 
 const parseVersion = (value: string): string => {
@@ -32,8 +32,6 @@ const isSupportedWindowsVersion = (version: string): boolean => {
 }
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem',
-
   docs: {
     description: 'Disallow unsupported ci versions',
   },
@@ -41,33 +39,35 @@ export const meta: Rule.RuleMetaData = {
   messages: {
     unsupportedCiVersion: 'Unsupported ci version: {{value}}',
   },
+
+  type: 'problem',
 }
 
-export const create = (context: Rule.RuleContext) => {
+export const create = (context: Rule.RuleContext): Record<string, (node: AST.YAMLScalar) => void> => {
   const sourceCode = getSourceCode(context)
   if (!sourceCode.parserServices?.isYAML) {
     return {}
   }
   const checks = [
     {
-      prefix: `${platforms.ubuntu}-`,
-      parseVersion: parseUbuntuVersion,
       isSupported: isSupportedUbuntuVersion,
+      parseVersion: parseUbuntuVersion,
+      prefix: `${platforms.ubuntu}-`,
     },
     {
-      prefix: `${platforms.macos}-`,
-      parseVersion: parseMacosVersion,
       isSupported: isSupportedMacosversion,
+      parseVersion: parseMacosVersion,
+      prefix: `${platforms.macos}-`,
     },
     {
-      prefix: `${platforms.windows}-`,
-      parseVersion: parseWindowsVersion,
       isSupported: isSupportedWindowsVersion,
+      parseVersion: parseWindowsVersion,
+      prefix: `${platforms.windows}-`,
     },
   ]
 
   return {
-    YAMLScalar(node: AST.YAMLScalar) {
+    YAMLScalar(node: AST.YAMLScalar): void {
       if (node && node.type === 'YAMLScalar' && typeof node.value === 'string') {
         for (const check of checks) {
           if (node.value.startsWith(check.prefix)) {
@@ -75,11 +75,11 @@ export const create = (context: Rule.RuleContext) => {
             const isSupported = check.isSupported(version)
             if (!isSupported) {
               context.report({
-                node,
-                messageId: 'unsupportedCiVersion',
                 data: {
                   value: node.value,
                 },
+                messageId: 'unsupportedCiVersion',
+                node,
               })
             }
           }

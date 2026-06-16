@@ -9,6 +9,26 @@ const ruleTester = new RuleTester({
 })
 
 ruleTester.run('no-lazy-nth-variable-name', rule, {
+  invalid: [
+    {
+      code: `
+async function test() {
+  const rowsNth0 = rows.nth(0)
+  await expect(rowsNth0).toBeVisible()
+}
+`,
+      errors: [{ messageId: 'noLazyNthVariableName' }],
+    },
+    {
+      code: `
+async function test() {
+  const nth0Row = rows.nth(0).locator('.value')
+  await expect(nth0Row).toBeVisible()
+}
+`,
+      errors: [{ messageId: 'noLazyNthVariableName' }],
+    },
+  ],
   valid: [
     {
       code: `
@@ -33,26 +53,6 @@ async function test() {
   await expect(rowsNth0).toBeVisible()
 }
 `,
-    },
-  ],
-  invalid: [
-    {
-      code: `
-async function test() {
-  const rowsNth0 = rows.nth(0)
-  await expect(rowsNth0).toBeVisible()
-}
-`,
-      errors: [{ messageId: 'noLazyNthVariableName' }],
-    },
-    {
-      code: `
-async function test() {
-  const nth0Row = rows.nth(0).locator('.value')
-  await expect(nth0Row).toBeVisible()
-}
-`,
-      errors: [{ messageId: 'noLazyNthVariableName' }],
     },
   ],
 })

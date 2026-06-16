@@ -1,10 +1,8 @@
 import type { Rule } from 'eslint'
-import { getSourceCode } from 'eslint-compat-utils'
 import type { AST } from 'yaml-eslint-parser'
+import { getSourceCode } from 'eslint-compat-utils'
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem',
-
   docs: {
     description: 'Disallow unsupported timeout minute values',
   },
@@ -12,16 +10,18 @@ export const meta: Rule.RuleMetaData = {
   messages: {
     unsupportedTimeoutMinutes: 'Unsupported timeout minutes value: {{value}}',
   },
+
+  type: 'problem',
 } as const
 
-export const create = (context: Rule.RuleContext) => {
+export const create = (context: Rule.RuleContext): Record<string, (node: AST.YAMLPair) => void> => {
   const sourceCode = getSourceCode(context)
   if (!sourceCode.parserServices?.isYAML) {
     return {}
   }
 
   return {
-    YAMLPair(node: AST.YAMLPair) {
+    YAMLPair(node: AST.YAMLPair): void {
       if (
         node &&
         node.type === 'YAMLPair' &&
@@ -39,11 +39,11 @@ export const create = (context: Rule.RuleContext) => {
       ) {
         const nodeValue = node.value.value
         context.report({
-          node: node.value,
-          messageId: 'unsupportedTimeoutMinutes',
           data: {
             value: nodeValue,
           },
+          messageId: 'unsupportedTimeoutMinutes',
+          node: node.value,
         })
       }
     },

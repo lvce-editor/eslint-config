@@ -10,18 +10,17 @@
   "scripts": {
     "test": "node test/index.ts"
   },
-  "keywords": [],
   "license": "MIT",
   "description": "Lint .nvmrc files.",
   "dependencies": {
     "semver": "^7.8.4"
   },
   "devDependencies": {
-    "eslint": "^10.4.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^22.10.6",
     "@types/semver": "^7.7.1",
     "esbuild": "^0.28.0",
+    "eslint": "^10.4.0",
     "execa": "^9.6.1",
     "jest": "^30.4.2",
     "ts-jest": "^29.4.11"

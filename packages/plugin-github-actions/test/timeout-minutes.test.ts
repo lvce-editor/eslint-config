@@ -4,21 +4,12 @@ import * as rule from '../src/rules/timeout-minutes.ts'
 
 const ruleTester = new RuleTester({
   languageOptions: {
-    parser,
     ecmaVersion: 2020,
+    parser,
   },
 })
 
 ruleTester.run('timeoutMinutes', rule, {
-  valid: [
-    {
-      code: `
-jobs:
-  pr:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 30`,
-    },
-  ],
   invalid: [
     {
       code: `
@@ -28,13 +19,22 @@ jobs:
     timeout-minutes: test`,
       errors: [
         {
-          messageId: 'unsupportedTimeoutMinutes',
-          line: 5,
           column: 22,
-          endLine: 5,
           endColumn: 26,
+          endLine: 5,
+          line: 5,
+          messageId: 'unsupportedTimeoutMinutes',
         },
       ],
+    },
+  ],
+  valid: [
+    {
+      code: `
+jobs:
+  pr:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30`,
     },
   ],
 })

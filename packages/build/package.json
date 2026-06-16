@@ -3,9 +3,8 @@
   "version": "0.0.0-dev",
   "main": "index.js",
   "type": "module",
-  "keywords": [],
   "license": "MIT",
-  "description": "",
+  "description": "Build scripts for the ESLint configuration.",
   "scripts": {
     "update-action-versions": "node src/updateActionVersions.ts"
   },

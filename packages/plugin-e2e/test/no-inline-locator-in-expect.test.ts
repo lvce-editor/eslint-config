@@ -9,16 +9,6 @@ const ruleTester = new RuleTester({
 })
 
 ruleTester.run('no-inline-locator-in-expect', rule, {
-  valid: [
-    {
-      code: `
-async function test() {
-  const chatModelPicker = Locator('.ChatModelPicker')
-  await expect(chatModelPicker).toBeVisible()
-}
-`,
-    },
-  ],
   invalid: [
     {
       code: `
@@ -35,6 +25,16 @@ async function test() {
 }
 `,
       errors: [{ messageId: 'noInlineLocatorInExpect' }],
+    },
+  ],
+  valid: [
+    {
+      code: `
+async function test() {
+  const chatModelPicker = Locator('.ChatModelPicker')
+  await expect(chatModelPicker).toBeVisible()
+}
+`,
     },
   ],
 })

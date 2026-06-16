@@ -4,30 +4,12 @@ import * as rule from '../src/rules/release-action.ts'
 
 const ruleTester = new RuleTester({
   languageOptions: {
-    parser,
     ecmaVersion: 2020,
+    parser,
   },
 })
 
 ruleTester.run('releaseAction', rule, {
-  valid: [
-    {
-      code: `
-jobs:
-  create-release:
-    name: create-release
-    steps:
-      - name: Create GitHub release
-        id: release
-        uses: softprops/action-gh-release@v2
-        env:
-          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: \${{ env.RG_VERSION }}
-          name: \${{ env.RG_VERSION }}
-          draft: true`,
-    },
-  ],
   invalid: [
     {
       code: `
@@ -46,14 +28,32 @@ jobs:
           draft: true`,
       errors: [
         {
-          messageId: 'unsupportedReleaseAction',
           column: 9,
           endColumn: 40,
           endLine: 8,
           line: 8,
+          messageId: 'unsupportedReleaseAction',
         },
       ],
       output: `
+jobs:
+  create-release:
+    name: create-release
+    steps:
+      - name: Create GitHub release
+        id: release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: \${{ env.RG_VERSION }}
+          name: \${{ env.RG_VERSION }}
+          draft: true`,
+    },
+  ],
+  valid: [
+    {
+      code: `
 jobs:
   create-release:
     name: create-release

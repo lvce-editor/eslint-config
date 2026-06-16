@@ -4,25 +4,12 @@ import * as rule from '../src/rules/action-versions.ts'
 
 const ruleTester = new RuleTester({
   languageOptions: {
-    parser,
     ecmaVersion: 2020,
+    parser,
   },
 })
 
 ruleTester.run('unsupportedActionVersion', rule, {
-  valid: [
-    {
-      code: `
-jobs:
-  ci:
-    strategy:
-      matrix:
-        os: [ubuntu-24.04]
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v6`,
-    },
-  ],
   invalid: [
     {
       code: `
@@ -34,6 +21,15 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v1`,
+      errors: [
+        {
+          column: 15,
+          endColumn: 34,
+          endLine: 9,
+          line: 9,
+          messageId: 'unsupportedActionVersion',
+        },
+      ],
       output: `
 jobs:
   ci:
@@ -43,15 +39,19 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6`,
-      errors: [
-        {
-          messageId: 'unsupportedActionVersion',
-          line: 9,
-          column: 15,
-          endLine: 9,
-          endColumn: 34,
-        },
-      ],
+    },
+  ],
+  valid: [
+    {
+      code: `
+jobs:
+  ci:
+    strategy:
+      matrix:
+        os: [ubuntu-24.04]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6`,
     },
   ],
 })

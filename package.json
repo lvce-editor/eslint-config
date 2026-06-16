@@ -7,8 +7,8 @@
   "scripts": {
     "build": "node packages/build/src/build.js",
     "format": "prettier --write .",
-    "lint": "echo ok",
     "postinstall": "lerna bootstrap --ci",
+    "lint": "echo ok",
     "test": "lerna run test",
     "type-check": "tsc -b",
     "update-action-versions": "node packages/build/src/updateActionVersions.ts"
@@ -26,7 +26,7 @@
     "url": "https://github.com/lvce-editor/eslint-config/issues"
   },
   "homepage": "https://github.com/lvce-editor/eslint-config#readme",
-  "description": "",
+  "description": "Shared ESLint configuration for Lvce Editor projects.",
   "dependencies": {
     "@cspell/eslint-plugin": "10.0.1",
     "@e18e/eslint-plugin": "^0.5.1",

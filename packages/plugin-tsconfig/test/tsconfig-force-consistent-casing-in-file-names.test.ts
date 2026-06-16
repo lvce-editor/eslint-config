@@ -1,37 +1,30 @@
-import * as rule from '../src/tsconfig-force-consistent-casing-in-file-names.ts'
 import json from '@eslint/json'
 import { RuleTester } from 'eslint'
+import * as rule from '../src/tsconfig-force-consistent-casing-in-file-names.ts'
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
+  language: 'json/json',
   plugins: {
     // @ts-ignore
     json,
   },
-  language: 'json/json',
 })
 
 ruleTester.run('force-consistent-casing-in-file-names', rule, {
-  valid: [
-    {
-      code: '{"compilerOptions": { "forceConsistentCasingInFileNames": true }}',
-      // @ts-ignore
-      language: 'json/json5',
-    },
-  ],
   invalid: [
     {
       code: '{"compilerOptions": { }}',
       errors: [
         {
-          messageId: 'forceConsistentCasingInFileNames',
-          line: 1,
           column: 2,
-          endLine: 1,
           endColumn: 19,
+          endLine: 1,
+          line: 1,
+          messageId: 'forceConsistentCasingInFileNames',
         },
       ],
     },
@@ -39,13 +32,20 @@ ruleTester.run('force-consistent-casing-in-file-names', rule, {
       code: '{"compilerOptions": { "forceConsistentCasingInFileNames": false }}',
       errors: [
         {
-          messageId: 'forceConsistentCasingInFileNames',
-          line: 1,
           column: 23,
-          endLine: 1,
           endColumn: 57,
+          endLine: 1,
+          line: 1,
+          messageId: 'forceConsistentCasingInFileNames',
         },
       ],
+    },
+  ],
+  valid: [
+    {
+      code: '{"compilerOptions": { "forceConsistentCasingInFileNames": true }}',
+      // @ts-ignore
+      language: 'json/json5',
     },
   ],
 })

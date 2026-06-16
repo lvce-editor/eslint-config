@@ -2,61 +2,59 @@ import type { Rule } from 'eslint'
 import type * as ESTree from 'estree'
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem',
   docs: {
     description: 'Disallow inline locator expressions inside expect calls',
   },
   messages: {
     noInlineLocatorInExpect: 'Assign the locator to a variable before passing it to expect(...).',
   },
+  type: 'problem',
 }
 
 interface TsNonNullExpression extends ESTree.BaseNode {
-  type: 'TSNonNullExpression'
   expression: unknown
+  type: 'TSNonNullExpression'
 }
 
 interface CallExpressionNode extends ESTree.BaseNode {
-  type: 'CallExpression'
-  callee: unknown
   arguments: readonly unknown[]
+  callee: unknown
   optional: boolean
+  type: 'CallExpression'
 }
 
 interface MemberExpressionNode extends ESTree.BaseNode {
-  type: 'MemberExpression'
-  object: unknown
-  property: unknown
   computed: boolean
+  object: unknown
   optional: boolean
+  property: unknown
+  type: 'MemberExpression'
 }
 
 interface ChainExpressionNode extends ESTree.BaseNode {
-  type: 'ChainExpression'
   expression: unknown
+  type: 'ChainExpression'
 }
 
 interface AwaitExpressionNode extends ESTree.BaseNode {
-  type: 'AwaitExpression'
   argument: unknown
+  type: 'AwaitExpression'
 }
 
 interface IdentifierNode extends ESTree.BaseNode {
-  type: 'Identifier'
   name: string
+  type: 'Identifier'
 }
 
-type TraversableNode = unknown
-
-const isCallExpressionNode = (node: TraversableNode): node is CallExpressionNode => {
+const isCallExpressionNode = (node: unknown): node is CallExpressionNode => {
   return typeof node === 'object' && node !== null && 'type' in node && node.type === 'CallExpression' && 'callee' in node && 'arguments' in node
 }
 
-const isIdentifierNode = (node: TraversableNode): node is IdentifierNode => {
+const isIdentifierNode = (node: unknown): node is IdentifierNode => {
   return typeof node === 'object' && node !== null && 'type' in node && node.type === 'Identifier' && 'name' in node
 }
 
-const isMemberExpressionNode = (node: TraversableNode): node is MemberExpressionNode => {
+const isMemberExpressionNode = (node: unknown): node is MemberExpressionNode => {
   return (
     typeof node === 'object' &&
     node !== null &&
@@ -68,23 +66,23 @@ const isMemberExpressionNode = (node: TraversableNode): node is MemberExpression
   )
 }
 
-const isChainExpressionNode = (node: TraversableNode): node is ChainExpressionNode => {
+const isChainExpressionNode = (node: unknown): node is ChainExpressionNode => {
   return typeof node === 'object' && node !== null && 'type' in node && node.type === 'ChainExpression' && 'expression' in node
 }
 
-const isAwaitExpressionNode = (node: TraversableNode): node is AwaitExpressionNode => {
+const isAwaitExpressionNode = (node: unknown): node is AwaitExpressionNode => {
   return typeof node === 'object' && node !== null && 'type' in node && node.type === 'AwaitExpression' && 'argument' in node
 }
 
-const isTsNonNullExpression = (node: TraversableNode): node is TsNonNullExpression => {
+const isTsNonNullExpression = (node: unknown): node is TsNonNullExpression => {
   return typeof node === 'object' && node !== null && 'type' in node && node.type === 'TSNonNullExpression' && 'expression' in node
 }
 
-const isLocatorCall = (node: TraversableNode): node is CallExpressionNode => {
+const isLocatorCall = (node: unknown): node is CallExpressionNode => {
   return isCallExpressionNode(node) && isIdentifierNode(node.callee) && node.callee.name === 'Locator'
 }
 
-const containsInlineLocatorCall = (node: TraversableNode): boolean => {
+const containsInlineLocatorCall = (node: unknown): boolean => {
   if (!node) {
     return false
   }
@@ -115,7 +113,7 @@ const isExpectCall = (node: ESTree.SimpleCallExpression): boolean => {
 
 export const create = (context: Rule.RuleContext): Rule.RuleListener => {
   return {
-    CallExpression(node: ESTree.SimpleCallExpression) {
+    CallExpression(node: ESTree.SimpleCallExpression): void {
       if (!isExpectCall(node)) {
         return
       }
@@ -124,8 +122,8 @@ export const create = (context: Rule.RuleContext): Rule.RuleListener => {
         return
       }
       context.report({
-        node: firstArgument,
         messageId: 'noInlineLocatorInExpect',
+        node: firstArgument,
       })
     },
   }

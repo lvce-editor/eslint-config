@@ -9,16 +9,6 @@ const ruleTester = new RuleTester({
 })
 
 ruleTester.run('no-inline-nth-in-expect', rule, {
-  valid: [
-    {
-      code: `
-async function test() {
-  const firstPill = pills.nth(0)
-  await expect(firstPill).toBeVisible()
-}
-`,
-    },
-  ],
   invalid: [
     {
       code: `
@@ -35,6 +25,16 @@ async function test() {
 }
 `,
       errors: [{ messageId: 'noInlineNthInExpect' }],
+    },
+  ],
+  valid: [
+    {
+      code: `
+async function test() {
+  const firstPill = pills.nth(0)
+  await expect(firstPill).toBeVisible()
+}
+`,
     },
   ],
 })

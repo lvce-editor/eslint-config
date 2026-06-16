@@ -6,7 +6,6 @@
   "scripts": {
     "test": "node test/index.ts"
   },
-  "keywords": [],
   "license": "MIT",
   "description": "Lint github action workflows.",
   "repository": {
@@ -18,11 +17,11 @@
     "yaml-eslint-parser": "2.0.0"
   },
   "devDependencies": {
-    "eslint-plugin-yml": "3.4.0",
-    "eslint": "^10.5.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^22.10.6",
     "esbuild": "^0.28.1",
+    "eslint": "^10.5.0",
+    "eslint-plugin-yml": "3.4.0",
     "execa": "^9.6.1",
     "jest": "^30.4.2",
     "ts-jest": "^29.4.11"

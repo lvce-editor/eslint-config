@@ -1,12 +1,10 @@
 import type { Rule } from 'eslint'
+import type { AST } from 'yaml-eslint-parser'
 import { getSourceCode } from 'eslint-compat-utils'
 import { existsSync } from 'fs'
 import { relative, resolve } from 'path'
-import type { AST } from 'yaml-eslint-parser'
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem',
-
   docs: {
     description: 'Disallow non-existing working directories',
   },
@@ -15,6 +13,8 @@ export const meta: Rule.RuleMetaData = {
     invalidWorkingDirectory: 'Working directory not found: {{value}}',
     workingDirectoryMustBeOfTypeString: 'Working directory must be of type string',
   },
+
+  type: 'problem',
 } as const
 
 const allowedNonExistingWorkingDirectories = ['dist', '.tmp']
@@ -28,14 +28,14 @@ const isAllowedNonExistingWorkingDirectory = (relativePath: string): boolean => 
   return false
 }
 
-export const create = (context: Rule.RuleContext) => {
+export const create = (context: Rule.RuleContext): Record<string, (node: AST.YAMLPair) => void> => {
   const sourceCode = getSourceCode(context)
   if (!sourceCode.parserServices?.isYAML) {
     return {}
   }
 
   return {
-    YAMLPair(node: AST.YAMLPair) {
+    YAMLPair(node: AST.YAMLPair): void {
       if (
         node &&
         node.type === 'YAMLPair' &&
@@ -53,11 +53,11 @@ export const create = (context: Rule.RuleContext) => {
         const nodeValue = node.value.value
         if (typeof nodeValue !== 'string') {
           context.report({
-            node,
-            messageId: 'workingDirectoryMustBeOfTypeString',
             data: {
               value: nodeValue,
             },
+            messageId: 'workingDirectoryMustBeOfTypeString',
+            node,
           })
           return
         }
@@ -65,11 +65,11 @@ export const create = (context: Rule.RuleContext) => {
         const relativePath = relative(context.cwd, path)
         if (!isAllowedNonExistingWorkingDirectory(relativePath) && !existsSync(path)) {
           context.report({
-            node,
-            messageId: 'invalidWorkingDirectory',
             data: {
               value: nodeValue,
             },
+            messageId: 'invalidWorkingDirectory',
+            node,
           })
         }
       }

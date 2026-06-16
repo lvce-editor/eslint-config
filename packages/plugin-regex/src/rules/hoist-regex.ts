@@ -1,7 +1,7 @@
 import type { Rule } from 'eslint'
 
 const isFunctionNode = (node: any): boolean => {
-  return node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression'
+  return ['FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'].includes(node.type)
 }
 
 const isInsideFunction = (node: any): boolean => {
@@ -36,38 +36,38 @@ const hasOnlyStaticRegexArguments = (node: any): boolean => {
 }
 
 export const meta: Rule.RuleMetaData = {
-  type: 'suggestion',
   docs: {
     description: 'Enforce hoisting regexes to module scope',
   },
   messages: {
     hoistRegex: 'Regex should be hoisted.',
   },
+  type: 'suggestion',
 }
 
-export const create = (context: Rule.RuleContext) => {
+export const create = (context: Rule.RuleContext): Rule.RuleListener => {
   return {
-    Literal(node: any) {
+    CallExpression(node: any): void {
+      if (node.callee?.type === 'Identifier' && node.callee.name === 'RegExp' && isInsideFunction(node) && hasOnlyStaticRegexArguments(node)) {
+        context.report({
+          messageId: 'hoistRegex',
+          node,
+        })
+      }
+    },
+    Literal(node: any): void {
       if (node.regex && isInsideFunction(node)) {
         context.report({
-          node,
           messageId: 'hoistRegex',
+          node,
         })
       }
     },
-    NewExpression(node: any) {
+    NewExpression(node: any): void {
       if (node.callee?.type === 'Identifier' && node.callee.name === 'RegExp' && isInsideFunction(node) && hasOnlyStaticRegexArguments(node)) {
         context.report({
-          node,
           messageId: 'hoistRegex',
-        })
-      }
-    },
-    CallExpression(node: any) {
-      if (node.callee?.type === 'Identifier' && node.callee.name === 'RegExp' && isInsideFunction(node) && hasOnlyStaticRegexArguments(node)) {
-        context.report({
           node,
-          messageId: 'hoistRegex',
         })
       }
     },

@@ -81,6 +81,7 @@ const defaultConfig = tseslint.config(
               'ylet',
               'Consolas',
               'nghi',
+              'dont',
               'Formmatting',
               'contentinfo',
               'dbaeumer',
@@ -148,6 +149,9 @@ const defaultConfig = tseslint.config(
               'rowindex',
               'rtrim',
               'sampl',
+              'sonarjs',
+              'Macosversion',
+              'libcheck',
               'scrolltotop',
               'seens',
               'setsize',
@@ -320,6 +324,12 @@ const defaultConfig = tseslint.config(
       '@typescript-eslint/require-await': 'off',
       '@typescript-eslint/no-unused-vars': 'off', // handled by typescript
       'unicorn/no-nested-ternary': 'off',
+    },
+  },
+  {
+    files: ['packages/*/src/rules/**/*.ts'],
+    rules: {
+      '@typescript-eslint/prefer-readonly-parameter-types': 'off',
     },
   },
   {

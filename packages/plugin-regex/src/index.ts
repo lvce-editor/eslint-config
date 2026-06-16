@@ -2,6 +2,7 @@ import type { Linter } from 'eslint'
 import * as hoistRegex from './rules/hoist-regex.ts'
 
 const plugin = {
+  configs: {},
   meta: {
     name: 'regex',
     version: '0.0.1',
@@ -9,7 +10,6 @@ const plugin = {
   rules: {
     'hoist-regex': hoistRegex,
   },
-  configs: {},
 }
 
 const recommended: Linter.Config[] = [

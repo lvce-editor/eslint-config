@@ -2,6 +2,7 @@ import type { Linter } from 'eslint'
 import * as preferUsingMockRpc from './rules/prefer-using-mock-rpc.ts'
 
 const plugin = {
+  configs: {},
   meta: {
     name: 'rpc',
     version: '0.0.1',
@@ -9,7 +10,6 @@ const plugin = {
   rules: {
     'prefer-using-mock-rpc': preferUsingMockRpc,
   },
-  configs: {},
 }
 
 const recommended: Linter.Config[] = [

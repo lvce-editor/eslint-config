@@ -18,18 +18,18 @@ const shouldUseUsing = (node: any): boolean => {
 }
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem',
   docs: {
     description: 'Enforce using with mockRpc registration',
   },
   messages: {
     preferUsingMockRpc: 'Use `using` with `mockRpc`.',
   },
+  type: 'problem',
 }
 
-export const create = (context: Rule.RuleContext) => {
+export const create = (context: Rule.RuleContext): Rule.RuleListener => {
   return {
-    VariableDeclaration(node: any) {
+    VariableDeclaration(node: any): void {
       if (!shouldUseUsing(node)) {
         return
       }
@@ -37,8 +37,8 @@ export const create = (context: Rule.RuleContext) => {
         return
       }
       context.report({
-        node,
         messageId: 'preferUsingMockRpc',
+        node,
       })
     },
   }

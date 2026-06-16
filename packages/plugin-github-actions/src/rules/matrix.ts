@@ -1,10 +1,8 @@
 import type { Rule } from 'eslint'
-import { getSourceCode } from 'eslint-compat-utils'
 import type { AST } from 'yaml-eslint-parser'
+import { getSourceCode } from 'eslint-compat-utils'
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem',
-
   docs: {
     description: 'Disallow unsupported matrix values',
   },
@@ -12,16 +10,18 @@ export const meta: Rule.RuleMetaData = {
   messages: {
     unsupportedMatrix: 'Unsupported matrix value: {{value}}',
   },
+
+  type: 'problem',
 } as const
 
-export const create = (context: Rule.RuleContext) => {
+export const create = (context: Rule.RuleContext): Record<string, (node: AST.YAMLPair) => void> => {
   const sourceCode = getSourceCode(context)
   if (!sourceCode.parserServices?.isYAML) {
     return {}
   }
 
   return {
-    YAMLPair(node: AST.YAMLPair) {
+    YAMLPair(node: AST.YAMLPair): void {
       if (
         node &&
         node.type === 'YAMLPair' &&
@@ -37,12 +37,12 @@ export const create = (context: Rule.RuleContext) => {
         node.value.type !== 'YAMLSequence'
       ) {
         context.report({
-          node,
-          messageId: 'unsupportedMatrix',
           data: {
             // @ts-ignore
             value: node.value,
           },
+          messageId: 'unsupportedMatrix',
+          node,
         })
       }
     },

@@ -1,20 +1,20 @@
 import type { Rule } from 'eslint'
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem' as const,
   docs: {
     description: 'Validate moduleResolution values',
   },
   messages: {
     moduleResolution: 'moduleResolution must be set to bundle or nodenext',
   },
+  type: 'problem' as const,
 }
 
 const allowedValues = new Set(['bundle', 'nodenext'])
 
-export const create = (context: any) => {
+export const create = (context: any): { readonly Member: (node: any) => void } => {
   return {
-    Member(node: any) {
+    Member(node: any): void {
       if (node.name.type !== 'String' || node.name.value !== 'compilerOptions' || node.value.type !== 'Object') {
         return
       }

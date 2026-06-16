@@ -1,11 +1,9 @@
 import type { Rule } from 'eslint'
-import { getSourceCode } from 'eslint-compat-utils'
 import type { AST } from 'yaml-eslint-parser'
+import { getSourceCode } from 'eslint-compat-utils'
 import { onProperties } from './config.ts'
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem',
-
   docs: {
     description: 'Disallow unsupported on values',
   },
@@ -13,16 +11,18 @@ export const meta: Rule.RuleMetaData = {
   messages: {
     unsupportedOn: 'Unsupported on value: {{value}}',
   },
+
+  type: 'problem',
 } as const
 
-export const create = (context: Rule.RuleContext) => {
+export const create = (context: Rule.RuleContext): Record<string, (node: AST.YAMLPair) => void> => {
   const sourceCode = getSourceCode(context)
   if (!sourceCode.parserServices?.isYAML) {
     return {}
   }
 
   return {
-    YAMLPair(node: AST.YAMLPair) {
+    YAMLPair(node: AST.YAMLPair): void {
       if (
         node &&
         node.type === 'YAMLPair' &&
@@ -37,15 +37,15 @@ export const create = (context: Rule.RuleContext) => {
         'type' in node.value &&
         node.value.type === 'YAMLMapping'
       ) {
-        const pairs = node.value.pairs
+        const { pairs } = node.value
         for (const pair of pairs) {
           if (pair.key && pair.key.type === 'YAMLScalar' && typeof pair.key.value === 'string' && !onProperties.includes(pair.key.value)) {
             context.report({
-              node,
-              messageId: 'unsupportedOn',
               data: {
                 value: pair.key.value,
               },
+              messageId: 'unsupportedOn',
+              node,
             })
           }
         }
