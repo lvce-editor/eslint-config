@@ -37,7 +37,7 @@ export const create = (context: Rule.RuleContext) => {
         'type' in node.value &&
         node.value.type === 'YAMLMapping'
       ) {
-        const {pairs} = node.value
+        const { pairs } = node.value
         for (const pair of pairs) {
           if (pair.key && pair.key.type === 'YAMLScalar' && typeof pair.key.value === 'string' && !onProperties.includes(pair.key.value)) {
             context.report({
