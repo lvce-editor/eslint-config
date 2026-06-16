@@ -1,6 +1,6 @@
 import type { Rule } from 'eslint'
-import semver from 'semver'
 import type { SemVer } from 'semver'
+import semver from 'semver'
 
 const defaultMinimumVersion = '20.0.0'
 const defaultMaximumVersion = '24.15.0'
@@ -8,9 +8,9 @@ const defaultBadVersions = ['24.16.0']
 const versionPattern = String.raw`^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$`
 
 interface RuleOptions {
-  readonly minimumVersion?: string
-  readonly maximumVersion?: string
   readonly badVersions?: readonly string[]
+  readonly maximumVersion?: string
+  readonly minimumVersion?: string
 }
 
 const parseVersion = (value: string): SemVer | undefined => {
@@ -28,54 +28,54 @@ const compareVersion = (a: SemVer, b: SemVer): number => {
 const getRuleOptions = (context: Rule.RuleContext): Required<RuleOptions> => {
   const [options = {}] = context.options as [RuleOptions?]
   return {
-    minimumVersion: options.minimumVersion ?? defaultMinimumVersion,
-    maximumVersion: options.maximumVersion ?? defaultMaximumVersion,
     badVersions: options.badVersions ?? defaultBadVersions,
+    maximumVersion: options.maximumVersion ?? defaultMaximumVersion,
+    minimumVersion: options.minimumVersion ?? defaultMinimumVersion,
   }
 }
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem',
-
   docs: {
     description: 'Disallow invalid or unsupported .nvmrc versions',
   },
 
+  messages: {
+    badVersion: '.nvmrc version {{value}} is not allowed',
+    invalidVersion: 'Invalid .nvmrc version: {{value}}',
+    versionTooNew: '.nvmrc version {{value}} is newer than {{maximumVersion}}',
+    versionTooOld: '.nvmrc version {{value}} is older than {{minimumVersion}}',
+  },
+
   schema: [
     {
-      type: 'object',
       additionalProperties: false,
       properties: {
-        minimumVersion: {
-          type: 'string',
-          pattern: versionPattern,
-        },
-        maximumVersion: {
-          type: 'string',
-          pattern: versionPattern,
-        },
         badVersions: {
-          type: 'array',
           items: {
-            type: 'string',
             pattern: versionPattern,
+            type: 'string',
           },
+          type: 'array',
           uniqueItems: true,
         },
+        maximumVersion: {
+          pattern: versionPattern,
+          type: 'string',
+        },
+        minimumVersion: {
+          pattern: versionPattern,
+          type: 'string',
+        },
       },
+      type: 'object',
     },
   ],
 
-  messages: {
-    invalidVersion: 'Invalid .nvmrc version: {{value}}',
-    versionTooOld: '.nvmrc version {{value}} is older than {{minimumVersion}}',
-    versionTooNew: '.nvmrc version {{value}} is newer than {{maximumVersion}}',
-    badVersion: '.nvmrc version {{value}} is not allowed',
-  },
+  type: 'problem',
 }
 
 export const create = (context: Rule.RuleContext) => {
-  const parserServices = context.sourceCode.parserServices
+  const { parserServices } = context.sourceCode
   if (!parserServices?.isNvmrc) {
     return {}
   }
@@ -86,11 +86,11 @@ export const create = (context: Rule.RuleContext) => {
       const version = parseVersion(value)
       if (!version) {
         context.report({
-          node,
-          messageId: 'invalidVersion',
           data: {
             value,
           },
+          messageId: 'invalidVersion',
+          node,
         })
         return
       }
@@ -102,35 +102,35 @@ export const create = (context: Rule.RuleContext) => {
 
       if (badVersions.has(version.version)) {
         context.report({
-          node,
-          messageId: 'badVersion',
           data: {
             value: version.version,
           },
+          messageId: 'badVersion',
+          node,
         })
         return
       }
 
       if (compareVersion(version, minimumVersion) < 0) {
         context.report({
-          node,
-          messageId: 'versionTooOld',
           data: {
-            value: version.version,
             minimumVersion: minimumVersion.version,
+            value: version.version,
           },
+          messageId: 'versionTooOld',
+          node,
         })
         return
       }
 
       if (compareVersion(version, maximumVersion) > 0) {
         context.report({
-          node,
-          messageId: 'versionTooNew',
           data: {
-            value: version.version,
             maximumVersion: maximumVersion.version,
+            value: version.version,
           },
+          messageId: 'versionTooNew',
+          node,
         })
         return
       }
