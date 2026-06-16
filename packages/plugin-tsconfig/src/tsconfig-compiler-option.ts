@@ -1,6 +1,6 @@
-export const create = (context: any, name: string, shouldBeValue = true) => {
+export const create = (context: any, name: string, shouldBeValue = true): { readonly Member: (node: any) => void } => {
   return {
-    Member(node: any) {
+    Member(node: any): void {
       if (node.name.type === 'String' && node.name.value === 'compilerOptions' && node.value.type === 'Object') {
         const { members } = node.value
         for (const member of members) {

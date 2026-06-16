@@ -12,9 +12,9 @@ export const meta: Rule.RuleMetaData = {
 
 const allowedValues = new Set(['bundle', 'nodenext'])
 
-export const create = (context: any) => {
+export const create = (context: any): { readonly Member: (node: any) => void } => {
   return {
-    Member(node: any) {
+    Member(node: any): void {
       if (node.name.type !== 'String' || node.name.value !== 'compilerOptions' || node.value.type !== 'Object') {
         return
       }

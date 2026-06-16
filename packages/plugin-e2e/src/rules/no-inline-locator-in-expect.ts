@@ -115,7 +115,7 @@ const isExpectCall = (node: ESTree.SimpleCallExpression): boolean => {
 
 export const create = (context: Rule.RuleContext): Rule.RuleListener => {
   return {
-    CallExpression(node: ESTree.SimpleCallExpression) {
+    CallExpression(node: ESTree.SimpleCallExpression): void {
       if (!isExpectCall(node)) {
         return
       }

@@ -43,7 +43,7 @@ export const meta: Rule.RuleMetaData = {
   type: 'problem',
 }
 
-export const create = (context: Rule.RuleContext) => {
+export const create = (context: Rule.RuleContext): Record<string, (node: AST.YAMLScalar) => void> => {
   const sourceCode = getSourceCode(context)
   if (!sourceCode.parserServices?.isYAML) {
     return {}
@@ -67,7 +67,7 @@ export const create = (context: Rule.RuleContext) => {
   ]
 
   return {
-    YAMLScalar(node: AST.YAMLScalar) {
+    YAMLScalar(node: AST.YAMLScalar): void {
       if (node && node.type === 'YAMLScalar' && typeof node.value === 'string') {
         for (const check of checks) {
           if (node.value.startsWith(check.prefix)) {

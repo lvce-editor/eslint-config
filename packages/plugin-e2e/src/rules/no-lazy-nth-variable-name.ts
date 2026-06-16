@@ -131,7 +131,7 @@ const hasLazyNthVariableName = (node: TraversableNode): node is IdentifierNode =
 
 export const create = (context: Rule.RuleContext): Rule.RuleListener => {
   return {
-    VariableDeclarator(node: ESTree.Node) {
+    VariableDeclarator(node: ESTree.Node): void {
       if (!isVariableDeclaratorNode(node)) {
         return
       }

@@ -19,7 +19,7 @@ const createProgram = (): any => {
   }
 }
 
-export const parseForESLint = () => {
+export const parseForESLint = (): any => {
   return {
     ast: createProgram(),
     scopeManager: null,
