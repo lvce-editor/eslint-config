@@ -50,23 +50,21 @@ interface TsNonNullExpressionNode extends ESTree.BaseNode {
   type: 'TSNonNullExpression'
 }
 
-type TraversableNode = unknown
-
 const lazyNthVariableNamePattern = /nth\d+/i
 
-const isIdentifierNode = (node: TraversableNode): node is IdentifierNode => {
+const isIdentifierNode = (node: unknown): node is IdentifierNode => {
   return typeof node === 'object' && node !== null && 'type' in node && node.type === 'Identifier' && 'name' in node
 }
 
-const isVariableDeclaratorNode = (node: TraversableNode): node is VariableDeclaratorNode => {
+const isVariableDeclaratorNode = (node: unknown): node is VariableDeclaratorNode => {
   return typeof node === 'object' && node !== null && 'type' in node && node.type === 'VariableDeclarator' && 'id' in node && 'init' in node
 }
 
-const isCallExpressionNode = (node: TraversableNode): node is CallExpressionNode => {
+const isCallExpressionNode = (node: unknown): node is CallExpressionNode => {
   return typeof node === 'object' && node !== null && 'type' in node && node.type === 'CallExpression' && 'callee' in node && 'arguments' in node
 }
 
-const isMemberExpressionNode = (node: TraversableNode): node is MemberExpressionNode => {
+const isMemberExpressionNode = (node: unknown): node is MemberExpressionNode => {
   return (
     typeof node === 'object' &&
     node !== null &&
@@ -78,19 +76,19 @@ const isMemberExpressionNode = (node: TraversableNode): node is MemberExpression
   )
 }
 
-const isChainExpressionNode = (node: TraversableNode): node is ChainExpressionNode => {
+const isChainExpressionNode = (node: unknown): node is ChainExpressionNode => {
   return typeof node === 'object' && node !== null && 'type' in node && node.type === 'ChainExpression' && 'expression' in node
 }
 
-const isTsAsExpressionNode = (node: TraversableNode): node is TsAsExpressionNode => {
+const isTsAsExpressionNode = (node: unknown): node is TsAsExpressionNode => {
   return typeof node === 'object' && node !== null && 'type' in node && node.type === 'TSAsExpression' && 'expression' in node
 }
 
-const isTsNonNullExpressionNode = (node: TraversableNode): node is TsNonNullExpressionNode => {
+const isTsNonNullExpressionNode = (node: unknown): node is TsNonNullExpressionNode => {
   return typeof node === 'object' && node !== null && 'type' in node && node.type === 'TSNonNullExpression' && 'expression' in node
 }
 
-const isNthCall = (node: TraversableNode): node is CallExpressionNode => {
+const isNthCall = (node: unknown): node is CallExpressionNode => {
   return (
     isCallExpressionNode(node) &&
     isMemberExpressionNode(node.callee) &&
@@ -100,7 +98,7 @@ const isNthCall = (node: TraversableNode): node is CallExpressionNode => {
   )
 }
 
-const containsNthCall = (node: TraversableNode): boolean => {
+const containsNthCall = (node: unknown): boolean => {
   if (!node) {
     return false
   }
@@ -125,7 +123,7 @@ const containsNthCall = (node: TraversableNode): boolean => {
   return false
 }
 
-const hasLazyNthVariableName = (node: TraversableNode): node is IdentifierNode => {
+const hasLazyNthVariableName = (node: unknown): node is IdentifierNode => {
   return isIdentifierNode(node) && lazyNthVariableNamePattern.test(node.name)
 }
 
