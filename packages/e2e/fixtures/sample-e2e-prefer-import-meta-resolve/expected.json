@@ -2,5 +2,13 @@
   {
     "filePath": "e2e/main.ts:2",
     "message": "Use import.meta.resolve(...) instead of new URL(..., import.meta.url).toString()."
+  },
+  {
+    "filePath": "e2e/main.ts:2",
+    "message": "Prefer `URL#href` over stringifying a `URL`."
+  },
+  {
+    "filePath": "e2e/main.ts:2",
+    "message": "Do not access members directly from a `new` expression."
   }
 ]

@@ -5,6 +5,10 @@
   },
   {
     "filePath": "src/main.ts:2",
+    "message": "Do not use top-level side effects in exported modules."
+  },
+  {
+    "filePath": "src/main.ts:2",
     "message": "Don't use Reflect.deleteProperty."
   },
   {
