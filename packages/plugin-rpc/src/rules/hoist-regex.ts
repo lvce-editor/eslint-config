@@ -36,38 +36,38 @@ const hasOnlyStaticRegexArguments = (node: any): boolean => {
 }
 
 export const meta: Rule.RuleMetaData = {
-  type: 'suggestion',
   docs: {
     description: 'Enforce hoisting regexes to module scope',
   },
   messages: {
     hoistRegex: 'Regex should be hoisted.',
   },
+  type: 'suggestion',
 }
 
 export const create = (context: Rule.RuleContext) => {
   return {
+    CallExpression(node: any) {
+      if (node.callee?.type === 'Identifier' && node.callee.name === 'RegExp' && isInsideFunction(node) && hasOnlyStaticRegexArguments(node)) {
+        context.report({
+          messageId: 'hoistRegex',
+          node,
+        })
+      }
+    },
     Literal(node: any) {
       if (node.regex && isInsideFunction(node)) {
         context.report({
-          node,
           messageId: 'hoistRegex',
+          node,
         })
       }
     },
     NewExpression(node: any) {
       if (node.callee?.type === 'Identifier' && node.callee.name === 'RegExp' && isInsideFunction(node) && hasOnlyStaticRegexArguments(node)) {
         context.report({
-          node,
           messageId: 'hoistRegex',
-        })
-      }
-    },
-    CallExpression(node: any) {
-      if (node.callee?.type === 'Identifier' && node.callee.name === 'RegExp' && isInsideFunction(node) && hasOnlyStaticRegexArguments(node)) {
-        context.report({
           node,
-          messageId: 'hoistRegex',
         })
       }
     },
