@@ -2,52 +2,52 @@ import type { Rule } from 'eslint'
 import type * as ESTree from 'estree'
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem',
   docs: {
     description: 'Disallow lazy nth-based variable names for locator variables',
   },
   messages: {
     noLazyNthVariableName: 'Prefer a specific variable name like firstRow or row0 over nth-based names like rowsNth0.',
   },
+  type: 'problem',
 }
 
 interface VariableDeclaratorNode extends ESTree.BaseNode {
-  type: 'VariableDeclarator'
   id: unknown
   init: unknown
+  type: 'VariableDeclarator'
 }
 
 interface IdentifierNode extends ESTree.BaseNode {
-  type: 'Identifier'
   name: string
+  type: 'Identifier'
 }
 
 interface CallExpressionNode extends ESTree.BaseNode {
-  type: 'CallExpression'
-  callee: unknown
   arguments: readonly unknown[]
+  callee: unknown
+  type: 'CallExpression'
 }
 
 interface MemberExpressionNode extends ESTree.BaseNode {
-  type: 'MemberExpression'
+  computed: boolean
   object: unknown
   property: unknown
-  computed: boolean
+  type: 'MemberExpression'
 }
 
 interface ChainExpressionNode extends ESTree.BaseNode {
-  type: 'ChainExpression'
   expression: unknown
+  type: 'ChainExpression'
 }
 
 interface TsAsExpressionNode extends ESTree.BaseNode {
-  type: 'TSAsExpression'
   expression: unknown
+  type: 'TSAsExpression'
 }
 
 interface TsNonNullExpressionNode extends ESTree.BaseNode {
-  type: 'TSNonNullExpression'
   expression: unknown
+  type: 'TSNonNullExpression'
 }
 
 type TraversableNode = unknown
@@ -142,8 +142,8 @@ export const create = (context: Rule.RuleContext): Rule.RuleListener => {
         return
       }
       context.report({
-        node: node.id,
         messageId: 'noLazyNthVariableName',
+        node: node.id,
       })
     },
   }
