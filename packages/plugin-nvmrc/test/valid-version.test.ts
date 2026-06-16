@@ -74,6 +74,26 @@ ruleTester.run('valid-version', rule, {
       ],
     },
     {
+      code: '20.0.0-alpha',
+      errors: [
+        {
+          messageId: 'invalidVersion',
+          line: 1,
+          column: 1,
+        },
+      ],
+    },
+    {
+      code: '20.0.0+build',
+      errors: [
+        {
+          messageId: 'invalidVersion',
+          line: 1,
+          column: 1,
+        },
+      ],
+    },
+    {
       code: '19.9.0',
       errors: [
         {
