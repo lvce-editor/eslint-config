@@ -132,7 +132,6 @@ export const create = (context: Rule.RuleContext): Rule.RuleListener => {
           messageId: 'versionTooNew',
           node,
         })
-        return
       }
     },
   }
