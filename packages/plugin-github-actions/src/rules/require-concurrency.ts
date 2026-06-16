@@ -20,7 +20,7 @@ const hasCancelInProgress = (node: AST.YAMLPair | undefined): boolean => {
     return false
   }
   const cancelInProgress = findPair(node.value, 'cancel-in-progress')
-  return getScalarValue(cancelInProgress?.value) === true
+  return Boolean(cancelInProgress && getScalarValue(cancelInProgress.value) === true)
 }
 
 export const create = (context: Rule.RuleContext) => {

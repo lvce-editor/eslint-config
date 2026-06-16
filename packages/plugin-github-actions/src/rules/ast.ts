@@ -1,10 +1,12 @@
 import type { AST } from 'yaml-eslint-parser'
 
-export const isScalar = (node: AST.YAMLPair['value']): node is AST.YAMLScalar => {
+type MaybeYamlContent = AST.YAMLPair['value'] | undefined
+
+export const isScalar = (node: MaybeYamlContent): node is AST.YAMLScalar => {
   return Boolean(node && node.type === 'YAMLScalar')
 }
 
-export const isMapping = (node: AST.YAMLPair['value']): node is AST.YAMLMapping => {
+export const isMapping = (node: MaybeYamlContent): node is AST.YAMLMapping => {
   return Boolean(node && node.type === 'YAMLMapping')
 }
 
@@ -15,14 +17,14 @@ export const getPairKey = (node: AST.YAMLPair): string | undefined => {
   return undefined
 }
 
-export const getScalarStringValue = (node: AST.YAMLPair['value']): string | undefined => {
+export const getScalarStringValue = (node: MaybeYamlContent): string | undefined => {
   if (isScalar(node) && typeof node.value === 'string') {
     return node.value
   }
   return undefined
 }
 
-export const getScalarValue = (node: AST.YAMLPair['value']): string | number | boolean | null | undefined => {
+export const getScalarValue = (node: MaybeYamlContent): string | number | boolean | null | undefined => {
   if (isScalar(node)) {
     return node.value
   }
@@ -33,7 +35,7 @@ export const findPair = (mapping: AST.YAMLMapping, key: string): AST.YAMLPair | 
   return mapping.pairs.find((pair) => getPairKey(pair) === key)
 }
 
-export const getParentPair = (node: AST.YAMLMapping): AST.YAMLPair | undefined => {
+export const getParentPair = (node: AST.YAMLMapping | AST.YAMLSequence): AST.YAMLPair | undefined => {
   return node.parent.type === 'YAMLPair' ? node.parent : undefined
 }
 

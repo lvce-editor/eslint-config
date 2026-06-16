@@ -28,7 +28,8 @@ export const create = (context: Rule.RuleContext) => {
         return
       }
       const uses = findPair(node, 'uses')
-      if (getScalarStringValue(uses?.value) !== 'actions/checkout@v6') {
+      const usesValue = uses ? getScalarStringValue(uses.value) : undefined
+      if (usesValue !== 'actions/checkout@v6') {
         return
       }
       const withPair = findPair(node, 'with')
