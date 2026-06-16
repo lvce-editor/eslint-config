@@ -33,9 +33,9 @@ const stringifyValue = (
     return ''
   }
   if (node.type === 'YAMLScalar') {
-    return `${node.value}`
+    return String(node.value)
   }
-  return `${node.type}`
+  return node.type
 }
 
 const getValidNeeds = (node: AST.YAMLPair): readonly string[] => {
@@ -43,7 +43,7 @@ const getValidNeeds = (node: AST.YAMLPair): readonly string[] => {
   const validNeeds: string[] = []
 
   if (greatGrandParent.type === 'YAMLMapping') {
-    const {pairs} = greatGrandParent
+    const { pairs } = greatGrandParent
     for (const pair of pairs) {
       if (pair.key && pair.key.type === 'YAMLScalar' && typeof pair.key.value === 'string') {
         validNeeds.push(pair.key.value)
@@ -53,14 +53,14 @@ const getValidNeeds = (node: AST.YAMLPair): readonly string[] => {
   return validNeeds
 }
 
-export const create = (context: Rule.RuleContext) => {
+export const create = (context: Rule.RuleContext): Record<string, (node: AST.YAMLPair) => void> => {
   const sourceCode = getSourceCode(context)
   if (!sourceCode.parserServices?.isYAML) {
     return {}
   }
 
   return {
-    YAMLPair(node: AST.YAMLPair) {
+    YAMLPair(node: AST.YAMLPair): void {
       if (
         node &&
         node.type === 'YAMLPair' &&

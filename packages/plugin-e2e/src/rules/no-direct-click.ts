@@ -17,7 +17,7 @@ const isDirectClickCall = (node: ESTree.SimpleCallExpression): node is ESTree.Si
 
 export const create = (context: Rule.RuleContext): Rule.RuleListener => {
   return {
-    CallExpression(node: ESTree.SimpleCallExpression) {
+    CallExpression(node: ESTree.SimpleCallExpression): void {
       if (!isDirectClickCall(node)) {
         return
       }

@@ -16,14 +16,14 @@ export const meta: Rule.RuleMetaData = {
   type: 'problem',
 } as const
 
-export const create = (context: Rule.RuleContext) => {
+export const create = (context: Rule.RuleContext): Record<string, (node: AST.YAMLPair) => void> => {
   const sourceCode = getSourceCode(context)
   if (!sourceCode.parserServices?.isYAML) {
     return {}
   }
 
   return {
-    YAMLPair(node: AST.YAMLPair) {
+    YAMLPair(node: AST.YAMLPair): void {
       if (
         node &&
         node.type === 'YAMLPair' &&
@@ -41,7 +41,7 @@ export const create = (context: Rule.RuleContext) => {
           data: {},
           fix(fixer) {
             const edits: Rule.Fix[] = []
-            const {parent} = node
+            const { parent } = node
             edits.push(fixer.replaceText(node.value, 'softprops/action-gh-release@v2'))
             for (const pair of parent.pairs) {
               if (pair.key && pair.key.type === 'YAMLScalar' && pair.key.value === 'with' && pair.value?.type == 'YAMLMapping') {

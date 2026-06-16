@@ -7,7 +7,7 @@ import { join } from 'path'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..', '..', '..')
 
-const hasError = (file: any) => {
+const hasError = (file: any): boolean => {
   return file.errorCount > 0
 }
 
@@ -35,7 +35,7 @@ const parseResult = (fixturePath: string, result: any): readonly any[] => {
   return parsed
 }
 
-export const runFixture = async (name: string) => {
+export const runFixture = async (name: string): Promise<{ readonly expected: any; readonly parsed: readonly any[] }> => {
   const fixturePath = join(root, 'packages', 'e2e', 'fixtures', name)
   await execa(`npm`, ['run', 'lint:ci'], {
     cwd: join(fixturePath),
@@ -43,9 +43,9 @@ export const runFixture = async (name: string) => {
   })
   const resultFilePath = join(fixturePath, 'result.json')
   const expectedJsonPath = join(fixturePath, 'expected.json')
-  const expectedJsonContent = await readFile(expectedJsonPath, 'utf-8')
+  const expectedJsonContent = await readFile(expectedJsonPath, 'utf8')
   const expected = JSON.parse(expectedJsonContent)
-  const resultContent = await readFile(resultFilePath, 'utf-8')
+  const resultContent = await readFile(resultFilePath, 'utf8')
   const resultJson = JSON.parse(resultContent)
   const parsed = parseResult(fixturePath, resultJson)
   return { expected, parsed }

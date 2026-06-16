@@ -10,7 +10,6 @@
   "scripts": {
     "test": "node test/index.ts"
   },
-  "keywords": [],
   "license": "MIT",
   "description": "Lint .nvmrc files.",
   "dependencies": {

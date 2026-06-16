@@ -27,9 +27,9 @@ export const meta: Rule.RuleMetaData = {
   type: 'problem',
 }
 
-export const create = (context: Rule.RuleContext) => {
+export const create = (context: Rule.RuleContext): Rule.RuleListener => {
   return {
-    VariableDeclaration(node: any) {
+    VariableDeclaration(node: any): void {
       if (!shouldUseUsing(node)) {
         return
       }

@@ -74,14 +74,14 @@ export const meta: Rule.RuleMetaData = {
   type: 'problem',
 }
 
-export const create = (context: Rule.RuleContext) => {
+export const create = (context: Rule.RuleContext): Rule.RuleListener => {
   const { parserServices } = context.sourceCode
   if (!parserServices?.isNvmrc) {
     return {}
   }
 
   return {
-    Program(node: any) {
+    Program(node: any): void {
       const value = context.sourceCode.text.trim()
       const version = parseVersion(value)
       if (!version) {
@@ -132,7 +132,6 @@ export const create = (context: Rule.RuleContext) => {
           messageId: 'versionTooNew',
           node,
         })
-        return
       }
     },
   }
