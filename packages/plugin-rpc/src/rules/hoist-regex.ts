@@ -1,7 +1,7 @@
 import type { Rule } from 'eslint'
 
 const isFunctionNode = (node: any): boolean => {
-  return node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression'
+  return ['FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression'].includes(node.type)
 }
 
 const isInsideFunction = (node: any): boolean => {
