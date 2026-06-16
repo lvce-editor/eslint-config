@@ -9,6 +9,103 @@ const ruleTester = new RuleTester({
 })
 
 ruleTester.run('valid-version', rule, {
+  invalid: [
+    {
+      code: '',
+      errors: [
+        {
+          column: 1,
+          line: 1,
+          messageId: 'invalidVersion',
+        },
+      ],
+    },
+    {
+      code: 'lts/*',
+      errors: [
+        {
+          column: 1,
+          line: 1,
+          messageId: 'invalidVersion',
+        },
+      ],
+    },
+    {
+      code: '20.01.0',
+      errors: [
+        {
+          column: 1,
+          line: 1,
+          messageId: 'invalidVersion',
+        },
+      ],
+    },
+    {
+      code: '20.0.0-alpha',
+      errors: [
+        {
+          column: 1,
+          line: 1,
+          messageId: 'invalidVersion',
+        },
+      ],
+    },
+    {
+      code: '20.0.0+build',
+      errors: [
+        {
+          column: 1,
+          line: 1,
+          messageId: 'invalidVersion',
+        },
+      ],
+    },
+    {
+      code: '19.9.0',
+      errors: [
+        {
+          column: 1,
+          line: 1,
+          messageId: 'versionTooOld',
+        },
+      ],
+    },
+    {
+      code: '24.16.1',
+      errors: [
+        {
+          column: 1,
+          line: 1,
+          messageId: 'versionTooNew',
+        },
+      ],
+    },
+    {
+      code: '24.16.0',
+      errors: [
+        {
+          column: 1,
+          line: 1,
+          messageId: 'badVersion',
+        },
+      ],
+    },
+    {
+      code: '22.1.0',
+      errors: [
+        {
+          column: 1,
+          line: 1,
+          messageId: 'badVersion',
+        },
+      ],
+      options: [
+        {
+          badVersions: ['22.1.0'],
+        },
+      ],
+    },
+  ],
   valid: [
     {
       code: '20.0.0',
@@ -36,105 +133,8 @@ ruleTester.run('valid-version', rule, {
       code: '24.16.0',
       options: [
         {
-          maximumVersion: '24.16.0',
           badVersions: [],
-        },
-      ],
-    },
-  ],
-  invalid: [
-    {
-      code: '',
-      errors: [
-        {
-          messageId: 'invalidVersion',
-          line: 1,
-          column: 1,
-        },
-      ],
-    },
-    {
-      code: 'lts/*',
-      errors: [
-        {
-          messageId: 'invalidVersion',
-          line: 1,
-          column: 1,
-        },
-      ],
-    },
-    {
-      code: '20.01.0',
-      errors: [
-        {
-          messageId: 'invalidVersion',
-          line: 1,
-          column: 1,
-        },
-      ],
-    },
-    {
-      code: '20.0.0-alpha',
-      errors: [
-        {
-          messageId: 'invalidVersion',
-          line: 1,
-          column: 1,
-        },
-      ],
-    },
-    {
-      code: '20.0.0+build',
-      errors: [
-        {
-          messageId: 'invalidVersion',
-          line: 1,
-          column: 1,
-        },
-      ],
-    },
-    {
-      code: '19.9.0',
-      errors: [
-        {
-          messageId: 'versionTooOld',
-          line: 1,
-          column: 1,
-        },
-      ],
-    },
-    {
-      code: '24.16.1',
-      errors: [
-        {
-          messageId: 'versionTooNew',
-          line: 1,
-          column: 1,
-        },
-      ],
-    },
-    {
-      code: '24.16.0',
-      errors: [
-        {
-          messageId: 'badVersion',
-          line: 1,
-          column: 1,
-        },
-      ],
-    },
-    {
-      code: '22.1.0',
-      options: [
-        {
-          badVersions: ['22.1.0'],
-        },
-      ],
-      errors: [
-        {
-          messageId: 'badVersion',
-          line: 1,
-          column: 1,
+          maximumVersion: '24.16.0',
         },
       ],
     },

@@ -1,31 +1,31 @@
 const createProgram = (): any => {
   return {
-    type: 'Program',
     body: [],
-    sourceType: 'script',
-    range: [0, 0],
+    comments: [],
     loc: {
-      start: {
-        line: 1,
-        column: 0,
-      },
       end: {
-        line: 1,
         column: 0,
+        line: 1,
+      },
+      start: {
+        column: 0,
+        line: 1,
       },
     },
-    comments: [],
+    range: [0, 0],
+    sourceType: 'script',
     tokens: [],
+    type: 'Program',
   }
 }
 
 export const parseForESLint = () => {
   return {
     ast: createProgram(),
+    scopeManager: null,
     services: {
       isNvmrc: true,
     },
-    scopeManager: null,
     visitorKeys: {
       Program: ['body'],
     },
