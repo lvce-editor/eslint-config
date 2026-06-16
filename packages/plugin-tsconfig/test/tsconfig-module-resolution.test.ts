@@ -1,20 +1,46 @@
-import * as rule from '../src/tsconfig-module-resolution.ts'
 import json from '@eslint/json'
 import { RuleTester } from 'eslint'
+import * as rule from '../src/tsconfig-module-resolution.ts'
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
+  language: 'json/json',
   plugins: {
     // @ts-ignore
     json,
   },
-  language: 'json/json',
 })
 
 ruleTester.run('module-resolution', rule, {
+  invalid: [
+    {
+      code: '{"compilerOptions": { "moduleResolution": "classic" }}',
+      errors: [
+        {
+          column: 23,
+          endColumn: 41,
+          endLine: 1,
+          line: 1,
+          messageId: 'moduleResolution',
+        },
+      ],
+    },
+    {
+      code: '{"compilerOptions": { "moduleResolution": true }}',
+      errors: [
+        {
+          column: 23,
+          endColumn: 41,
+          endLine: 1,
+          line: 1,
+          messageId: 'moduleResolution',
+        },
+      ],
+    },
+  ],
   valid: [
     {
       code: '{"compilerOptions": { "moduleResolution": "bundle" }}',
@@ -30,32 +56,6 @@ ruleTester.run('module-resolution', rule, {
       code: '{"compilerOptions": { }}',
       // @ts-ignore
       language: 'json/json5',
-    },
-  ],
-  invalid: [
-    {
-      code: '{"compilerOptions": { "moduleResolution": "classic" }}',
-      errors: [
-        {
-          messageId: 'moduleResolution',
-          line: 1,
-          column: 23,
-          endLine: 1,
-          endColumn: 41,
-        },
-      ],
-    },
-    {
-      code: '{"compilerOptions": { "moduleResolution": true }}',
-      errors: [
-        {
-          messageId: 'moduleResolution',
-          line: 1,
-          column: 23,
-          endLine: 1,
-          endColumn: 41,
-        },
-      ],
     },
   ],
 })

@@ -1,13 +1,13 @@
 import type { Rule } from 'eslint'
 
 export const meta: Rule.RuleMetaData = {
-  type: 'problem' as const,
   docs: {
     description: 'Validate moduleResolution values',
   },
   messages: {
     moduleResolution: 'moduleResolution must be set to bundle or nodenext',
   },
+  type: 'problem' as const,
 }
 
 const allowedValues = new Set(['bundle', 'nodenext'])
