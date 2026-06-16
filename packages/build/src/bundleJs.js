@@ -23,7 +23,7 @@ export const bundleJs = async ({ inFile, outFile }) => {
       },
       inlineDynamicImports: true,
     },
-    external: ['@lvce-editor/ripgrep', 'electron', 'execa', 'ws', 'yaml-eslint-parser', 'eslint-compat-utils', 'eslint-plugin-yml', '@eslint/json'],
+    external: ['@lvce-editor/ripgrep', 'electron', 'execa', 'semver', 'ws', 'yaml-eslint-parser', 'eslint-compat-utils', 'eslint-plugin-yml', '@eslint/json'],
     plugins: [
       babel({
         babelHelpers: 'bundled',
