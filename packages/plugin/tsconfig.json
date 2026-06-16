@@ -22,5 +22,5 @@
     "noUncheckedSideEffectImports": true,
     "erasableSyntaxOnly": true
   },
-  "include": ["index.js", "test"]
+  "include": ["index.js", "index.d.ts", "test"]
 }
