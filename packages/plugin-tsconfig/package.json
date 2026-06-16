@@ -10,9 +10,8 @@
   "scripts": {
     "test": "node test/index.ts"
   },
-  "keywords": [],
   "license": "MIT",
-  "description": "",
+  "description": "ESLint rules for TypeScript configuration files.",
   "dependencies": {
     "@eslint/json": "2.0.0"
   },

@@ -6,7 +6,6 @@
   "scripts": {
     "test": "node test/index.ts"
   },
-  "keywords": [],
   "license": "MIT",
   "description": "Lint github action workflows.",
   "repository": {

@@ -10,9 +10,8 @@
   "scripts": {
     "test": "node test/index.ts"
   },
-  "keywords": [],
   "license": "MIT",
-  "description": "",
+  "description": "ESLint rules for regex usage.",
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/node": "^22.10.6",
