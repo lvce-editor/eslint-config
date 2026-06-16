@@ -1,17 +1,11 @@
 import type { Rule } from 'eslint'
+import semver from 'semver'
+import type { SemVer } from 'semver'
 
 const defaultMinimumVersion = '20.0.0'
 const defaultMaximumVersion = '24.15.0'
 const defaultBadVersions = ['24.16.0']
 const versionPattern = String.raw`^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$`
-const versionRegex = new RegExp(versionPattern)
-
-interface Version {
-  readonly major: number
-  readonly minor: number
-  readonly patch: number
-  readonly text: string
-}
 
 interface RuleOptions {
   readonly minimumVersion?: string
@@ -19,27 +13,16 @@ interface RuleOptions {
   readonly badVersions?: readonly string[]
 }
 
-const parseVersion = (value: string): Version | undefined => {
-  const match = versionRegex.exec(value.trim())
-  if (!match) {
+const parseVersion = (value: string): SemVer | undefined => {
+  const version = semver.parse(value.trim())
+  if (!version || version.prerelease.length > 0 || version.build.length > 0) {
     return undefined
   }
-  return {
-    major: Number(match[1]),
-    minor: Number(match[2]),
-    patch: Number(match[3]),
-    text: `${Number(match[1])}.${Number(match[2])}.${Number(match[3])}`,
-  }
+  return version
 }
 
-const compareVersion = (a: Version, b: Version): number => {
-  if (a.major !== b.major) {
-    return a.major - b.major
-  }
-  if (a.minor !== b.minor) {
-    return a.minor - b.minor
-  }
-  return a.patch - b.patch
+const compareVersion = (a: SemVer, b: SemVer): number => {
+  return semver.compare(a, b)
 }
 
 const getRuleOptions = (context: Rule.RuleContext): Required<RuleOptions> => {
@@ -115,14 +98,14 @@ export const create = (context: Rule.RuleContext) => {
       const options = getRuleOptions(context)
       const minimumVersion = parseVersion(options.minimumVersion) ?? parseVersion(defaultMinimumVersion)!
       const maximumVersion = parseVersion(options.maximumVersion) ?? parseVersion(defaultMaximumVersion)!
-      const badVersions = new Set(options.badVersions.map((badVersion) => parseVersion(badVersion)?.text ?? badVersion))
+      const badVersions = new Set(options.badVersions.map((badVersion) => parseVersion(badVersion)?.version ?? badVersion))
 
-      if (badVersions.has(version.text)) {
+      if (badVersions.has(version.version)) {
         context.report({
           node,
           messageId: 'badVersion',
           data: {
-            value: version.text,
+            value: version.version,
           },
         })
         return
@@ -133,8 +116,8 @@ export const create = (context: Rule.RuleContext) => {
           node,
           messageId: 'versionTooOld',
           data: {
-            value: version.text,
-            minimumVersion: minimumVersion.text,
+            value: version.version,
+            minimumVersion: minimumVersion.version,
           },
         })
         return
@@ -145,8 +128,8 @@ export const create = (context: Rule.RuleContext) => {
           node,
           messageId: 'versionTooNew',
           data: {
-            value: version.text,
-            maximumVersion: maximumVersion.text,
+            value: version.version,
+            maximumVersion: maximumVersion.version,
           },
         })
         return
