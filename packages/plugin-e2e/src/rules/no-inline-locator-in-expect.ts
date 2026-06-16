@@ -46,17 +46,15 @@ interface IdentifierNode extends ESTree.BaseNode {
   type: 'Identifier'
 }
 
-type TraversableNode = unknown
-
-const isCallExpressionNode = (node: TraversableNode): node is CallExpressionNode => {
+const isCallExpressionNode = (node: unknown): node is CallExpressionNode => {
   return typeof node === 'object' && node !== null && 'type' in node && node.type === 'CallExpression' && 'callee' in node && 'arguments' in node
 }
 
-const isIdentifierNode = (node: TraversableNode): node is IdentifierNode => {
+const isIdentifierNode = (node: unknown): node is IdentifierNode => {
   return typeof node === 'object' && node !== null && 'type' in node && node.type === 'Identifier' && 'name' in node
 }
 
-const isMemberExpressionNode = (node: TraversableNode): node is MemberExpressionNode => {
+const isMemberExpressionNode = (node: unknown): node is MemberExpressionNode => {
   return (
     typeof node === 'object' &&
     node !== null &&
@@ -68,23 +66,23 @@ const isMemberExpressionNode = (node: TraversableNode): node is MemberExpression
   )
 }
 
-const isChainExpressionNode = (node: TraversableNode): node is ChainExpressionNode => {
+const isChainExpressionNode = (node: unknown): node is ChainExpressionNode => {
   return typeof node === 'object' && node !== null && 'type' in node && node.type === 'ChainExpression' && 'expression' in node
 }
 
-const isAwaitExpressionNode = (node: TraversableNode): node is AwaitExpressionNode => {
+const isAwaitExpressionNode = (node: unknown): node is AwaitExpressionNode => {
   return typeof node === 'object' && node !== null && 'type' in node && node.type === 'AwaitExpression' && 'argument' in node
 }
 
-const isTsNonNullExpression = (node: TraversableNode): node is TsNonNullExpression => {
+const isTsNonNullExpression = (node: unknown): node is TsNonNullExpression => {
   return typeof node === 'object' && node !== null && 'type' in node && node.type === 'TSNonNullExpression' && 'expression' in node
 }
 
-const isLocatorCall = (node: TraversableNode): node is CallExpressionNode => {
+const isLocatorCall = (node: unknown): node is CallExpressionNode => {
   return isCallExpressionNode(node) && isIdentifierNode(node.callee) && node.callee.name === 'Locator'
 }
 
-const containsInlineLocatorCall = (node: TraversableNode): boolean => {
+const containsInlineLocatorCall = (node: unknown): boolean => {
   if (!node) {
     return false
   }
