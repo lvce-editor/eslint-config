@@ -96,7 +96,7 @@ const recommended: Linter.Config[] = [
       'github-actions/python-version': 'error',
       'github-actions/release-action': 'error',
       'github-actions/require-checkout-depth': 'off',
-      'github-actions/require-concurrency': 'error',
+      'github-actions/require-concurrency': 'off',
       'github-actions/require-explicit-permissions': 'error',
       'github-actions/shell': 'error',
       'github-actions/timeout-minutes': 'error',
