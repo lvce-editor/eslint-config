@@ -19,7 +19,7 @@ const plugin = {
   },
   rules: {
     'allow-importing-ts-extensions': tsconfigAllowImportingTsExtensions,
-    'assume-changes-only-affect-direct-dependenices': tsconfigAssumeChangesOnlyAffectDirectDependencies,
+    'assume-changes-only-affect-direct-dependencies': tsconfigAssumeChangesOnlyAffectDirectDependencies,
     'dont-skip-lib-check': tsconfigDontSkipLibCheck,
     'erasable-syntax-only': tsconfigErasableSyntaxOnly,
     'exact-optional-property-types': tsconfigExactOptionalPropertyTypes,
@@ -45,7 +45,7 @@ const recommended: Linter.Config[] = [
     },
     rules: {
       'tsconfig/allow-importing-ts-extensions': 'error',
-      'tsconfig/assume-changes-only-affect-direct-dependenices': 'error',
+      'tsconfig/assume-changes-only-affect-direct-dependencies': 'error',
       'tsconfig/dont-skip-lib-check': 'error',
       'tsconfig/erasable-syntax-only': 'off',
       'tsconfig/exact-optional-property-types': 'error',
