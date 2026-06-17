@@ -429,6 +429,7 @@ const defaultConfig = tseslint.config(
       'unicorn/prevent-abbreviations': 'off',
       'unicorn/import-style': 'off',
       'unicorn/no-useless-undefined': 'off',
+      'unicorn/no-computed-property-existence-check': 'off',
       'unicorn/switch-case-braces': 'off',
       'unicorn/prefer-add-event-listener': 'off',
       'unicorn/prefer-set-has': 'off',
