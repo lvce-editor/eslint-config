@@ -330,6 +330,7 @@ const defaultConfig = tseslint.config(
     files: ['packages/*/src/rules/**/*.ts'],
     rules: {
       '@typescript-eslint/prefer-readonly-parameter-types': 'off',
+      'sonarjs/cognitive-complexity': 'off',
     },
   },
   {
@@ -448,6 +449,12 @@ const defaultConfig = tseslint.config(
       'unicorn/no-nested-ternary': 'off',
       'unicorn/prefer-short-arrow-method': 'off',
       'unicorn/consistent-boolean-name': 'off',
+    },
+  },
+  {
+    files: ['packages/*/src/rules/**/*.ts'],
+    rules: {
+      'unicorn/prefer-early-return': 'off',
     },
   },
   {
