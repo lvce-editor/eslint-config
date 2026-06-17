@@ -365,6 +365,7 @@ const defaultConfig = tseslint.config(
     rules: {
       'unicorn/consistent-function-scoping': 'off',
       '@typescript-eslint/only-throw-error': 'off',
+      'unicorn/no-global-object-property-assignment': 'off',
       '@typescript-eslint/prefer-promise-reject-errors': 'off',
       'jest/no-restricted-jest-methods': [
         'error',
