@@ -448,7 +448,6 @@ const defaultConfig = tseslint.config(
       'unicorn/prefer-single-call': 'off',
       'unicorn/prefer-url-href': 'off',
       'unicorn/no-nested-ternary': 'off',
-      'unicorn/prefer-short-arrow-method': 'off',
     },
   },
   {
