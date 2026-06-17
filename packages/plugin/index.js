@@ -421,6 +421,7 @@ const defaultConfig = tseslint.config(
           message: "Don't use Proxy.",
         },
       ],
+      'unicorn/no-non-function-verb-prefix': 'off',
       'unicorn/filename-case': 'off',
       'unicorn/prefer-event-target': 'off',
       'unicorn/no-null': 'off',
