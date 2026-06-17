@@ -2,9 +2,5 @@
   {
     "filePath": "test/Add.test.ts:3",
     "message": "Don't use module mocks"
-  },
-  {
-    "filePath": "test/Add.test.ts:5",
-    "message": "Prefer an arrow function property over a method with a single return."
   }
 ]
