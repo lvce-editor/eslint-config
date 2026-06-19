@@ -28,6 +28,10 @@ const regexUri = '../plugin-regex/src/index.ts'
 const regexPlugin = await import(regexUri)
 
 // @ts-ignore
+const virtualDomUri = '../plugin-virtual-dom/src/index.ts'
+const virtualDomPlugin = await import(virtualDomUri)
+
+// @ts-ignore
 const e2eUri = '../plugin-e2e/src/index.ts'
 const e2ePlugin = await import(e2eUri)
 
@@ -60,6 +64,7 @@ const defaultConfig = tseslint.config(
               'testdir',
               'iselectron',
               'quickpick',
+              'quasis',
               'Backquote',
               'checkmark',
               'openrouter',
@@ -529,6 +534,8 @@ export const recommendedActions = [...actionsPlugin.default]
 export const recommendedNvmrc = [...nvmrcPlugin.default]
 
 export const recommendedRegex = [...regexPlugin.default]
+
+export const recommendedVirtualDom = [...virtualDomPlugin.default]
 
 export const recommendedE2e = [...e2ePlugin.default]
 
