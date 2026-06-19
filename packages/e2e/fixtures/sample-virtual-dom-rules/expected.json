@@ -1,0 +1,58 @@
+[
+  {
+    "filePath": "src/main.ts:6",
+    "message": "Use `text(...)` instead of a raw string in virtual-dom arrays."
+  },
+  {
+    "filePath": "src/main.ts:11",
+    "message": "`childCount` declares more children than this static virtual-dom array contains."
+  },
+  {
+    "filePath": "src/main.ts:19",
+    "message": "Use `VirtualDomElements.*` instead of a raw element type number."
+  },
+  {
+    "filePath": "src/main.ts:24",
+    "message": "Use `AriaRoles.*` instead of a raw role string."
+  },
+  {
+    "filePath": "src/main.ts:29",
+    "message": "Use an ARIA boolean constant instead of a raw string."
+  },
+  {
+    "filePath": "src/main.ts:36",
+    "message": "Use `TabIndex.*` instead of a raw tabIndex number."
+  },
+  {
+    "filePath": "src/main.ts:42",
+    "message": "Use a registered event listener id instead of an inline event handler."
+  },
+  {
+    "filePath": "src/main.ts:42",
+    "message": "Avoid object, array, or function attribute values because virtual-dom diffing compares attributes by reference."
+  },
+  {
+    "filePath": "src/main.ts:48",
+    "message": "Omit `className` instead of using an empty string."
+  },
+  {
+    "filePath": "src/main.ts:54",
+    "message": "Use class names or generated CSS instead of inline `style`."
+  },
+  {
+    "filePath": "src/main.ts:60",
+    "message": "Avoid object, array, or function attribute values because virtual-dom diffing compares attributes by reference."
+  },
+  {
+    "filePath": "src/main.ts:66",
+    "message": "Add an explicit `role` to clickable virtual-dom div nodes."
+  },
+  {
+    "filePath": "src/main.ts:71",
+    "message": "Omit empty ARIA attributes instead of using an empty string."
+  },
+  {
+    "filePath": "src/main.ts:78",
+    "message": "Use `mergeClassNames(...)` instead of manually concatenating `className`."
+  }
+]
