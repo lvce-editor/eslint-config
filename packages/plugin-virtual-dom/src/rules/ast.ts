@@ -76,7 +76,9 @@ export interface FunctionExpressionNode extends ESTree.BaseNode {
 }
 
 export const isPropertyNode = (node: unknown): node is PropertyNode => {
-  return typeof node === 'object' && node !== null && 'type' in node && node.type === 'Property' && 'key' in node && 'value' in node && 'computed' in node
+  return (
+    typeof node === 'object' && node !== null && 'type' in node && node.type === 'Property' && 'key' in node && 'value' in node && 'computed' in node
+  )
 }
 
 export const isObjectExpressionNode = (node: unknown): node is ObjectExpressionNode => {
