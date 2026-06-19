@@ -44,12 +44,13 @@ export const create = (context: Rule.RuleContext): Record<string, (node: AST.YAM
             const { parent } = node
             edits.push(fixer.replaceText(node.value, 'softprops/action-gh-release@v2'))
             for (const pair of parent.pairs) {
-              if (pair.key && pair.key.type === 'YAMLScalar' && pair.key.value === 'with' && pair.value?.type == 'YAMLMapping') {
-                const subPairs = pair.value.pairs
-                for (const subPair of subPairs) {
-                  if (subPair.key?.type === 'YAMLScalar' && subPair.key.value === 'release_name') {
-                    edits.push(fixer.replaceText(subPair.key, 'name'))
-                  }
+              if (!pair.key || pair.key.type !== 'YAMLScalar' || pair.key.value !== 'with' || pair.value?.type != 'YAMLMapping') {
+                continue
+              }
+              const subPairs = pair.value.pairs
+              for (const subPair of subPairs) {
+                if (subPair.key?.type === 'YAMLScalar' && subPair.key.value === 'release_name') {
+                  edits.push(fixer.replaceText(subPair.key, 'name'))
                 }
               }
             }

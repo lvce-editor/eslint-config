@@ -38,32 +38,33 @@ export const create = (context: Rule.RuleContext): Record<string, (node: AST.YAM
         node.value.type === 'YAMLMapping'
       ) {
         for (const pair of node.value.pairs) {
-          if (pair.key && pair.key.type === 'YAMLScalar' && typeof pair.key.value === 'string') {
-            const supportedKey = Object.hasOwn(permissions, pair.key.value)
-            if (supportedKey) {
-              if (pair.value && pair.value.type === 'YAMLScalar' && typeof pair.value.value === 'string') {
-                const items = permissions[pair.key.value] || []
-                if (!items.includes(pair.value.value)) {
-                  context.report({
-                    data: {
-                      // @ts-ignore
-                      value: pair.value,
-                    },
-                    messageId: 'unsupportedPermission',
-                    node,
-                  })
-                }
+          if (!pair.key || pair.key.type !== 'YAMLScalar' || typeof pair.key.value !== 'string') {
+            continue
+          }
+          const supportedKey = Object.hasOwn(permissions, pair.key.value)
+          if (supportedKey) {
+            if (pair.value && pair.value.type === 'YAMLScalar' && typeof pair.value.value === 'string') {
+              const items = permissions[pair.key.value] || []
+              if (!items.includes(pair.value.value)) {
+                context.report({
+                  data: {
+                    // @ts-ignore
+                    value: pair.value,
+                  },
+                  messageId: 'unsupportedPermission',
+                  node,
+                })
               }
-            } else {
-              context.report({
-                data: {
-                  // @ts-ignore
-                  value: pair,
-                },
-                messageId: 'unsupportedPermission',
-                node: pair.key,
-              })
             }
+          } else {
+            context.report({
+              data: {
+                // @ts-ignore
+                value: pair,
+              },
+              messageId: 'unsupportedPermission',
+              node: pair.key,
+            })
           }
         }
       }
