@@ -27,6 +27,9 @@
       "path": "./packages/plugin-regex"
     },
     {
+      "path": "./packages/plugin-virtual-dom"
+    },
+    {
       "path": "./packages/plugin-rpc"
     }
   ]

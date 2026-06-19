@@ -4,6 +4,7 @@ declare const recommendedTsconfig: readonly any[]
 declare const recommendedActions: readonly any[]
 declare const recommendedNvmrc: readonly any[]
 declare const recommendedRegex: readonly any[]
+declare const recommendedVirtualDom: readonly any[]
 declare const recommendedE2e: readonly any[]
 declare const recommendedRpc: readonly any[]
 
@@ -12,6 +13,7 @@ export { recommendedTsconfig }
 export { recommendedActions }
 export { recommendedNvmrc }
 export { recommendedRegex }
+export { recommendedVirtualDom }
 export { recommendedE2e }
 export { recommendedRpc }
 
