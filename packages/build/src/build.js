@@ -33,6 +33,12 @@ const bundledPlugins = [
     variable: 'regexPlugin',
   },
   {
+    dependency: '@lvce-editor/eslint-plugin-virtual-dom',
+    packageName: 'plugin-virtual-dom',
+    uri: 'virtualDomUri',
+    variable: 'virtualDomPlugin',
+  },
+  {
     dependency: '@lvce-editor/eslint-plugin-e2e',
     packageName: 'plugin-e2e',
     uri: 'e2eUri',
