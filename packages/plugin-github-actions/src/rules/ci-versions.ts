@@ -70,18 +70,19 @@ export const create = (context: Rule.RuleContext): Record<string, (node: AST.YAM
     YAMLScalar(node: AST.YAMLScalar): void {
       if (node && node.type === 'YAMLScalar' && typeof node.value === 'string') {
         for (const check of checks) {
-          if (node.value.startsWith(check.prefix)) {
-            const version = check.parseVersion(node.value)
-            const isSupported = check.isSupported(version)
-            if (!isSupported) {
-              context.report({
-                data: {
-                  value: node.value,
-                },
-                messageId: 'unsupportedCiVersion',
-                node,
-              })
-            }
+          if (!node.value.startsWith(check.prefix)) {
+            continue
+          }
+          const version = check.parseVersion(node.value)
+          const isSupported = check.isSupported(version)
+          if (!isSupported) {
+            context.report({
+              data: {
+                value: node.value,
+              },
+              messageId: 'unsupportedCiVersion',
+              node,
+            })
           }
         }
       }
