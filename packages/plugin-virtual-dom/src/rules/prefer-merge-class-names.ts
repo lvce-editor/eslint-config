@@ -1,89 +1,25 @@
 import type { Rule } from 'eslint'
 import type * as ESTree from 'estree'
-
-interface PropertyNode extends ESTree.BaseNode {
-  computed: boolean
-  key: unknown
-  type: 'Property'
-  value: unknown
-}
-
-interface IdentifierNode extends ESTree.BaseNode {
-  name: string
-  type: 'Identifier'
-}
-
-interface LiteralNode extends ESTree.BaseNode {
-  type: 'Literal'
-  value: unknown
-}
-
-interface TemplateLiteralNode extends ESTree.BaseNode {
-  expressions: readonly unknown[]
-  quasis: readonly TemplateElementNode[]
-  type: 'TemplateLiteral'
-}
-
-interface TemplateElementNode extends ESTree.BaseNode {
-  type: 'TemplateElement'
-  value: {
-    cooked?: string | null
-    raw: string
-  }
-}
-
-interface BinaryExpressionNode extends ESTree.BaseNode {
-  left: unknown
-  operator: string
-  right: unknown
-  type: 'BinaryExpression'
-}
-
-const isPropertyNode = (node: unknown): node is PropertyNode => {
-  return (
-    typeof node === 'object' && node !== null && 'type' in node && node.type === 'Property' && 'key' in node && 'value' in node && 'computed' in node
-  )
-}
-
-const isIdentifierNode = (node: unknown): node is IdentifierNode => {
-  return typeof node === 'object' && node !== null && 'type' in node && node.type === 'Identifier' && 'name' in node
-}
-
-const isLiteralNode = (node: unknown): node is LiteralNode => {
-  return typeof node === 'object' && node !== null && 'type' in node && node.type === 'Literal' && 'value' in node
-}
-
-const isTemplateLiteralNode = (node: unknown): node is TemplateLiteralNode => {
-  return typeof node === 'object' && node !== null && 'type' in node && node.type === 'TemplateLiteral' && 'expressions' in node && 'quasis' in node
-}
-
-const isBinaryExpressionNode = (node: unknown): node is BinaryExpressionNode => {
-  return (
-    typeof node === 'object' &&
-    node !== null &&
-    'type' in node &&
-    node.type === 'BinaryExpression' &&
-    'operator' in node &&
-    'left' in node &&
-    'right' in node
-  )
-}
+import {
+  getStaticPropertyName,
+  isBinaryExpressionNode,
+  isPropertyNode,
+  isStringLiteral,
+  isTemplateLiteralNode,
+  type PropertyNode,
+  type TemplateLiteralNode,
+} from './ast.ts'
 
 const isClassNameKey = (node: PropertyNode): boolean => {
-  if (node.computed) {
-    return false
-  }
-  if (isIdentifierNode(node.key)) {
-    return node.key.name === 'className'
-  }
-  if (isLiteralNode(node.key)) {
-    return node.key.value === 'className'
-  }
-  return false
+  return getStaticPropertyName(node) === 'className'
 }
 
 const isStringLiteralWithSpace = (node: unknown): boolean => {
-  return isLiteralNode(node) && typeof node.value === 'string' && /\s/.test(node.value)
+  return isStringLiteral(node) && /\s/.test(node.value)
+}
+
+const isStaticMultiClassName = (node: unknown): boolean => {
+  return isStringLiteral(node) && /\s/.test(node.value) && node.value.trim().split(/\s+/).length > 1
 }
 
 const hasTemplateClassSeparator = (node: TemplateLiteralNode): boolean => {
@@ -91,6 +27,9 @@ const hasTemplateClassSeparator = (node: TemplateLiteralNode): boolean => {
 }
 
 const isManualClassNameConcatenation = (node: unknown): boolean => {
+  if (isStaticMultiClassName(node)) {
+    return true
+  }
   if (isTemplateLiteralNode(node)) {
     return node.expressions.length > 0 && hasTemplateClassSeparator(node)
   }

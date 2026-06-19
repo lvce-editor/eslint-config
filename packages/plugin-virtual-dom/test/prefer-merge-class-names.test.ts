@@ -48,6 +48,23 @@ const dom = {
       code: `
 const dom = {
   type: 'div',
+  className: 'ListItem ListItemInvalid',
+}
+`,
+      errors: [
+        {
+          column: 14,
+          endColumn: 40,
+          endLine: 4,
+          line: 4,
+          messageId: 'preferMergeClassNames',
+        },
+      ],
+    },
+    {
+      code: `
+const dom = {
+  type: 'div',
   'className': baseClass + ' item',
 }
 `,
@@ -76,6 +93,14 @@ const dom = {
 const dom = {
   type: 'div',
   className: 'button',
+}
+`,
+    },
+    {
+      code: `
+const dom = {
+  type: 'div',
+  className: 'button ',
 }
 `,
     },
