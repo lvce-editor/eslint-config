@@ -428,6 +428,7 @@ const defaultConfig = tseslint.config(
       'unicorn/prefer-event-target': 'off',
       'unicorn/no-null': 'off',
       'unicorn/prevent-abbreviations': 'off',
+      'unicorn/name-replacements': 'off',
       'unicorn/import-style': 'off',
       'unicorn/no-useless-undefined': 'off',
       'unicorn/no-computed-property-existence-check': 'off',
