@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "e2e/main.ts:11",
+    "message": "Destructure the e2e test api in the parameter list instead of from api inside the function body."
+  }
+]
