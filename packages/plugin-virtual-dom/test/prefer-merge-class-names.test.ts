@@ -31,6 +31,23 @@ const dom = {
       code: `
 const dom = {
   type: 'div',
+  className: \`\${ClassNames.Sash} \${sashLayoutClass}\`,
+}
+`,
+      errors: [
+        {
+          column: 14,
+          endColumn: 53,
+          endLine: 4,
+          line: 4,
+          messageId: 'preferMergeClassNames',
+        },
+      ],
+    },
+    {
+      code: `
+const dom = {
+  type: 'div',
   className: baseClass + ' ' + selectedClass,
 }
 `,
