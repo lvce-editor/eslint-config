@@ -455,6 +455,7 @@ const defaultConfig = tseslint.config(
       'unicorn/no-nested-ternary': 'off',
       'unicorn/prefer-short-arrow-method': 'off',
       'unicorn/consistent-boolean-name': 'off',
+      'unicorn/no-nonstandard-builtin-properties': 'off',
     },
   },
   {
