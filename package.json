@@ -49,7 +49,7 @@
   "devDependencies": {
     "@lerna/legacy-package-management": "^8.2.4",
     "@types/node": "^24.2.1",
-    "eslint": "^10.5.0",
+    "eslint": "^10.6.0",
     "eslint-plugin-eslint-plugin": "^7.4.0",
     "lerna": "^8.2.4",
     "prettier": "^3.8.5",
