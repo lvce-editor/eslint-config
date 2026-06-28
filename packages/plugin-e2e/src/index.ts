@@ -4,6 +4,7 @@ import * as noInlineLocatorInExpect from './rules/no-inline-locator-in-expect.ts
 import * as noInlineNthInExpect from './rules/no-inline-nth-in-expect.ts'
 import * as noLazyNthVariableName from './rules/no-lazy-nth-variable-name.ts'
 import * as preferDirectApiDestructuring from './rules/prefer-direct-api-destructuring.ts'
+import * as preferExecuteExtensionCommand from './rules/prefer-execute-extension-command.ts'
 import * as preferImportMetaResolve from './rules/prefer-import-meta-resolve.ts'
 
 const plugin = {
@@ -18,6 +19,7 @@ const plugin = {
     'no-inline-nth-in-expect': noInlineNthInExpect,
     'no-lazy-nth-variable-name': noLazyNthVariableName,
     'prefer-direct-api-destructuring': preferDirectApiDestructuring,
+    'prefer-execute-extension-command': preferExecuteExtensionCommand,
     'prefer-import-meta-resolve': preferImportMetaResolve,
   },
 }
@@ -34,6 +36,7 @@ const recommended: Linter.Config[] = [
       'e2e/no-inline-nth-in-expect': 'error',
       'e2e/no-lazy-nth-variable-name': 'error',
       'e2e/prefer-direct-api-destructuring': 'error',
+      'e2e/prefer-execute-extension-command': 'error',
       'e2e/prefer-import-meta-resolve': 'error',
     },
   },
