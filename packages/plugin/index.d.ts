@@ -6,6 +6,7 @@ declare const recommendedNvmrc: readonly any[]
 declare const recommendedRegex: readonly any[]
 declare const recommendedVirtualDom: readonly any[]
 declare const recommendedE2e: readonly any[]
+declare const recommendedDevcontainer: readonly any[]
 declare const recommendedRpc: readonly any[]
 
 export { recommendedNode }
@@ -15,6 +16,7 @@ export { recommendedNvmrc }
 export { recommendedRegex }
 export { recommendedVirtualDom }
 export { recommendedE2e }
+export { recommendedDevcontainer }
 export { recommendedRpc }
 
 export default config

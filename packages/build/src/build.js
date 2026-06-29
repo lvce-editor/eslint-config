@@ -45,6 +45,12 @@ const bundledPlugins = [
     variable: 'e2ePlugin',
   },
   {
+    dependency: '@lvce-editor/eslint-plugin-devcontainer',
+    packageName: 'plugin-devcontainer',
+    uri: 'devcontainerUri',
+    variable: 'devcontainerPlugin',
+  },
+  {
     dependency: '@lvce-editor/eslint-plugin-rpc',
     packageName: 'plugin-rpc',
     uri: 'rpcUri',

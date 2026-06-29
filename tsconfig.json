@@ -12,6 +12,9 @@
       "path": "./packages/plugin-e2e"
     },
     {
+      "path": "./packages/plugin-devcontainer"
+    },
+    {
       "path": "./packages/plugin"
     },
     {
