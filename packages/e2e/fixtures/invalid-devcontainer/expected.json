@@ -1,0 +1,18 @@
+[
+  {
+    "filePath": ".devcontainer/devcontainer.json:1",
+    "message": "packages/e2e/package.json postinstall must install Playwright dependencies"
+  },
+  {
+    "filePath": ".devcontainer/devcontainer.json:2",
+    "message": "Unsupported devcontainer image: node:24"
+  },
+  {
+    "filePath": ".devcontainer/devcontainer.json:3",
+    "message": "desktop-lite devcontainer feature must be enabled"
+  },
+  {
+    "filePath": ".devcontainer/devcontainer.json:4",
+    "message": "devcontainer postCreateCommand must be npm ci"
+  }
+]

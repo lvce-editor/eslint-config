@@ -36,6 +36,10 @@ const e2eUri = '../plugin-e2e/src/index.ts'
 const e2ePlugin = await import(e2eUri)
 
 // @ts-ignore
+const devcontainerUri = '../plugin-devcontainer/src/index.ts'
+const devcontainerPlugin = await import(devcontainerUri)
+
+// @ts-ignore
 const rpcUri = '../plugin-rpc/src/index.ts'
 const rpcPlugin = await import(rpcUri)
 
@@ -509,6 +513,7 @@ const defaultConfig = tseslint.config(
     },
   },
   ...e2ePlugin.default,
+  ...devcontainerPlugin.default,
   ...rpcPlugin.default,
 )
 
@@ -540,6 +545,8 @@ export const recommendedRegex = [...regexPlugin.default]
 export const recommendedVirtualDom = [...virtualDomPlugin.default]
 
 export const recommendedE2e = [...e2ePlugin.default]
+
+export const recommendedDevcontainer = [...devcontainerPlugin.default]
 
 export const recommendedRpc = [...rpcPlugin.default]
 

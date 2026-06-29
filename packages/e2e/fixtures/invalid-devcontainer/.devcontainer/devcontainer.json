@@ -1,0 +1,5 @@
+{
+  "image": "node:24",
+  "features": {},
+  "postCreateCommand": "npm ci && cd packages/e2e && npx playwright install-deps && npx playwright install"
+}
