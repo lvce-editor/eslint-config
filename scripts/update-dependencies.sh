@@ -1,6 +1,8 @@
 #!/bin/bash
 
-cd $(dirname "$0")
+set -e
+
+cd "$(dirname "$0")"
 cd ..
 
 command_exists(){
@@ -15,8 +17,8 @@ else
 fi
 
 function updateDependencies {
-  echo "updating dependencies..."
-  OUTPUT=`ncu -u -x @types/node -x lerna -x @babel/preset-typescript`
+  echo "updating dependencies in $(pwd)..."
+  OUTPUT=$(ncu -u -x @types/node -x lerna -x @babel/preset-typescript)
   SUB='All dependencies match the latest package versions'
   if [[ "$OUTPUT" == *"$SUB"* ]]; then
     echo "$OUTPUT"
@@ -26,14 +28,15 @@ function updateDependencies {
   fi
 }
 
-                                                       updateDependencies             &&
-cd packages/build                                   && updateDependencies && cd ../.. &&
-cd packages/e2e                                     && updateDependencies && cd ../.. &&
-cd packages/plugin                                  && updateDependencies && cd ../.. &&
-cd packages/plugin-github-actions                   && updateDependencies && cd ../.. &&
-cd packages/plugin-tsconfig                         && updateDependencies && cd ../.. &&
-cd packages/plugin-regex                         && updateDependencies && cd ../.. &&
-cd packages/plugin-rpc                         && updateDependencies && cd ../.. &&
+updateDependencies
+
+for PACKAGE_JSON in packages/*/package.json; do
+  PACKAGE_DIR=${PACKAGE_JSON%/package.json}
+  (
+    cd "$PACKAGE_DIR"
+    updateDependencies
+  )
+done
 
 
 echo "Great Success!"
