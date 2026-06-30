@@ -1,0 +1,18 @@
+[
+  {
+    "filePath": "src/main.ts:20",
+    "message": "Prefer destructuring from state instead of using state.processes."
+  },
+  {
+    "filePath": "src/main.ts:23",
+    "message": "Prefer destructuring from state instead of using state.processes."
+  },
+  {
+    "filePath": "src/main.ts:24",
+    "message": "Prefer destructuring from state instead of using state.processes."
+  },
+  {
+    "filePath": "src/main.ts:24",
+    "message": "Prefer destructuring from state instead of using state.rootId."
+  }
+]
