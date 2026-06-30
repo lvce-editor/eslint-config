@@ -31,7 +31,7 @@ const recommended: Linter.Config[] = [
     },
     rules: {
       'devcontainer/allowed-image': 'error',
-      'devcontainer/post-create-command': 'error',
+      'devcontainer/post-create-command': 'off',
       'devcontainer/require-desktop-lite-feature': 'error',
     },
   },
