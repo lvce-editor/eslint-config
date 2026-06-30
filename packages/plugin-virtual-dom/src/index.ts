@@ -8,6 +8,7 @@ import * as noObjectAttributeValues from './rules/no-object-attribute-values.ts'
 import * as noRawTextChildren from './rules/no-raw-text-children.ts'
 import * as preferConstants from './rules/prefer-constants.ts'
 import * as preferMergeClassNames from './rules/prefer-merge-class-names.ts'
+import * as preferStateDestructuring from './rules/prefer-state-destructuring.ts'
 import * as validChildCount from './rules/valid-child-count.ts'
 
 const plugin = {
@@ -26,6 +27,7 @@ const plugin = {
     'no-raw-text-children': noRawTextChildren,
     'prefer-constants': preferConstants,
     'prefer-merge-class-names': preferMergeClassNames,
+    'prefer-state-destructuring': preferStateDestructuring,
     'valid-child-count': validChildCount,
   },
 }
@@ -46,6 +48,7 @@ const recommended: Linter.Config[] = [
       'virtual-dom/no-raw-text-children': 'error',
       'virtual-dom/prefer-constants': 'error',
       'virtual-dom/prefer-merge-class-names': 'error',
+      'virtual-dom/prefer-state-destructuring': 'error',
       'virtual-dom/valid-child-count': 'error',
     },
   },
