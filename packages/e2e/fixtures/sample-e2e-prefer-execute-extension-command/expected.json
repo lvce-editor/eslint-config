@@ -1,0 +1,10 @@
+[
+  {
+    "filePath": "e2e/main.ts:2",
+    "message": "Use Command.executeExtensionCommand(...) instead of Command.execute('ExtensionHost.executeCommand', ...)."
+  },
+  {
+    "filePath": "e2e/main.ts:6",
+    "message": "Use Command.executeExtensionCommand(...) instead of Command.execute('ExtensionHost.executeCommand', ...)."
+  }
+]
