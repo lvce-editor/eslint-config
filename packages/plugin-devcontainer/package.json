@@ -13,7 +13,7 @@
     "url": "git+https://github.com/lvce-editor/eslint-config.git"
   },
   "dependencies": {
-    "@eslint/json": "2.0.0"
+    "@eslint/json": "2.0.1"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
