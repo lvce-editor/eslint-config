@@ -38,7 +38,7 @@ jobs:
         os: [ubuntu-24.04]
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6`,
+      - uses: actions/checkout@v7`,
     },
   ],
   valid: [
@@ -51,7 +51,7 @@ jobs:
         os: [ubuntu-24.04]
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v6`,
+      - uses: actions/checkout@v7`,
     },
   ],
 })

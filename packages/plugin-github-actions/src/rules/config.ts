@@ -11,15 +11,15 @@ export const platforms = {
 }
 
 export const actions = {
-  'actions/cache': ['actions/cache@v5'],
-  'actions/checkout': ['actions/checkout@v6'],
+  'actions/cache': ['actions/cache@v6'],
+  'actions/checkout': ['actions/checkout@v7'],
   'actions/create-release': ['actions/create-release@v1'],
-  'actions/deploy-pages': ['actions/deploy-pages@v4'],
-  'actions/download-artifact': ['actions/download-artifact@v7'],
+  'actions/deploy-pages': ['actions/deploy-pages@v5'],
+  'actions/download-artifact': ['actions/download-artifact@v8'],
   'actions/setup-node': ['actions/setup-node@v6'],
   'actions/setup-python': ['actions/setup-python@v6'],
-  'actions/upload-artifact': ['actions/upload-artifact@v6'],
-  'actions/upload-pages-artifact': ['actions/upload-pages-artifact@v4'],
+  'actions/upload-artifact': ['actions/upload-artifact@v7'],
+  'actions/upload-pages-artifact': ['actions/upload-pages-artifact@v5'],
 }
 
 export const npmRegistries = ['https://registry.npmjs.org', 'https://npm.pkg.github.com']
