@@ -21,7 +21,7 @@ jobs:
   deploy:
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4`,
+        uses: actions/deploy-pages@v5`,
       errors: [
         {
           messageId: 'missingGithubPagesPermissions',
@@ -45,7 +45,7 @@ jobs:
   deploy:
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4`,
+        uses: actions/deploy-pages@v5`,
       errors: [
         {
           messageId: 'missingGithubPagesConcurrency',
@@ -89,7 +89,7 @@ jobs:
   deploy:
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4`,
+        uses: actions/deploy-pages@v5`,
       errors: [
         {
           messageId: 'missingGithubPagesPermissions',
@@ -116,7 +116,7 @@ jobs:
   deploy:
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4`,
+        uses: actions/deploy-pages@v5`,
       filename,
     },
     {
@@ -127,7 +127,7 @@ jobs:
   deploy:
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4`,
+        uses: actions/deploy-pages@v5`,
       filename: '/workspace/.github/workflows/release.yml',
     },
   ],
