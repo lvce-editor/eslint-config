@@ -3,6 +3,7 @@ import * as parserYAML from 'yaml-eslint-parser'
 import * as actionVersions from './rules/action-versions.ts'
 import * as ciVersions from './rules/ci-versions.ts'
 import * as failFast from './rules/fail-fast.ts'
+import * as githubPages from './rules/github-pages.ts'
 import * as githubToken from './rules/github-token.ts'
 import * as matrix from './rules/matrix.ts'
 import * as maxParallel from './rules/max-parallel.ts'
@@ -27,6 +28,7 @@ const plugin = {
     'action-versions': actionVersions,
     'ci-versions': ciVersions,
     'fail-fast': failFast,
+    'github-pages': githubPages,
     'github-token': githubToken,
     matrix: matrix,
     'max-parallel': maxParallel,
@@ -57,6 +59,7 @@ const recommended: Linter.Config[] = [
       'github-actions/action-versions': 'error',
       'github-actions/ci-versions': 'error',
       'github-actions/fail-fast': 'error',
+      'github-actions/github-pages': 'error',
       'github-actions/github-token': 'error',
       'github-actions/matrix': 'off',
       'github-actions/max-parallel': 'error',
