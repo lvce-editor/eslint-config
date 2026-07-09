@@ -7,6 +7,7 @@ import * as githubToken from './rules/github-token.ts'
 import * as matrix from './rules/matrix.ts'
 import * as maxParallel from './rules/max-parallel.ts'
 import * as needs from './rules/needs.ts'
+import * as noE2eInRelease from './rules/no-e2e-in-release.ts'
 import * as nodeVersionFile from './rules/node-version-file.ts'
 import * as npmRegistry from './rules/npm-registry.ts'
 import * as npm from './rules/npm.ts'
@@ -31,6 +32,7 @@ const plugin = {
     matrix: matrix,
     'max-parallel': maxParallel,
     needs: needs,
+    'no-e2e-in-release': noE2eInRelease,
     'node-version-file': nodeVersionFile,
     npm: npm,
     'npm-registry': npmRegistry,
@@ -61,6 +63,7 @@ const recommended: Linter.Config[] = [
       'github-actions/matrix': 'off',
       'github-actions/max-parallel': 'error',
       'github-actions/needs': 'error',
+      'github-actions/no-e2e-in-release': 'error',
       'github-actions/node-version-file': 'error',
       'github-actions/npm': 'error',
       'github-actions/npm-registry': 'error',
