@@ -1,5 +1,6 @@
 import type { Linter } from 'eslint'
 import * as noDirectClick from './rules/no-direct-click.ts'
+import * as noImports from './rules/no-imports.ts'
 import * as noInlineLocatorInExpect from './rules/no-inline-locator-in-expect.ts'
 import * as noInlineNthInExpect from './rules/no-inline-nth-in-expect.ts'
 import * as noLazyNthVariableName from './rules/no-lazy-nth-variable-name.ts'
@@ -16,6 +17,7 @@ const plugin = {
   },
   rules: {
     'no-direct-click': noDirectClick,
+    'no-imports': noImports,
     'no-inline-locator-in-expect': noInlineLocatorInExpect,
     'no-inline-nth-in-expect': noInlineNthInExpect,
     'no-lazy-nth-variable-name': noLazyNthVariableName,
@@ -34,6 +36,7 @@ const recommended: Linter.Config[] = [
     },
     rules: {
       'e2e/no-direct-click': 'error',
+      'e2e/no-imports': 'error',
       'e2e/no-inline-locator-in-expect': 'error',
       'e2e/no-inline-nth-in-expect': 'error',
       'e2e/no-lazy-nth-variable-name': 'error',

@@ -11,4 +11,10 @@ export default [
     files: ['packages/plugin-*/test/**/*.test.ts'],
     ...eslintPlugin.configs['tests-recommended'],
   },
+  {
+    files: ['packages/e2e/test/**/*.ts'],
+    rules: {
+      'e2e/no-imports': 'off',
+    },
+  },
 ]
