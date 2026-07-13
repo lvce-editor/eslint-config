@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "e2e/main.ts:2",
+    "message": "E2E tests must be self-contained. Only type imports from @lvce-editor/test-with-playwright are allowed."
+  }
+]
