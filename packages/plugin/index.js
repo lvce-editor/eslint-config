@@ -445,6 +445,7 @@ const defaultConfig = tseslint.config(
       'unicorn/prefer-add-event-listener': 'off',
       'unicorn/prefer-set-has': 'off',
       'unicorn/consistent-compound-words': 'off',
+      'unicorn/consistent-json-file-read': 'off',
       'unicorn/prefer-node-protocol': 'off',
       'unicorn/prefer-ternary': 'off',
       'unicorn/new-for-builtins': 'off',
