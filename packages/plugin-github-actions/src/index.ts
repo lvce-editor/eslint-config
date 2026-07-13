@@ -12,6 +12,7 @@ import * as noE2eInRelease from './rules/no-e2e-in-release.ts'
 import * as noMeasureInRelease from './rules/no-measure-in-release.ts'
 import * as nodeVersionFile from './rules/node-version-file.ts'
 import * as npmRegistry from './rules/npm-registry.ts'
+import * as npmTaskOrder from './rules/npm-task-order.ts'
 import * as npm from './rules/npm.ts'
 import * as on from './rules/on.ts'
 import * as permissions from './rules/permissions.ts'
@@ -40,6 +41,7 @@ const plugin = {
     'node-version-file': nodeVersionFile,
     npm: npm,
     'npm-registry': npmRegistry,
+    'npm-task-order': npmTaskOrder,
     on: on,
     permissions,
     'python-version': pythonVersion,
@@ -73,6 +75,7 @@ const recommended: Linter.Config[] = [
       'github-actions/node-version-file': 'error',
       'github-actions/npm': 'error',
       'github-actions/npm-registry': 'error',
+      'github-actions/npm-task-order': 'error',
       'github-actions/on': 'error',
       'github-actions/permissions': 'off',
       'github-actions/python-version': 'error',
