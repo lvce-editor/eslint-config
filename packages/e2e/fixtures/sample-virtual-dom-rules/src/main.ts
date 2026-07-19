@@ -79,6 +79,13 @@ const multiClassName = {
   type: VirtualDomElements.Div,
 }
 
+const getSearchResultClassName = (focused: boolean): string => {
+  if (focused) {
+    return ClassNames.TreeItem + ' ' + ClassNames.TreeItemActive
+  }
+  return ClassNames.TreeItem
+}
+
 export const nodes = [
   rawTextChildren,
   invalidChildCount,
@@ -93,4 +100,5 @@ export const nodes = [
   clickableDiv,
   emptyAria,
   multiClassName,
+  getSearchResultClassName,
 ]

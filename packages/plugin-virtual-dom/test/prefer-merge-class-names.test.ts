@@ -95,6 +95,44 @@ const dom = {
         },
       ],
     },
+    {
+      code: `
+const getSearchResultClassName = (focused) => {
+  if (focused) {
+    return ClassNames.TreeItem + ' ' + ClassNames.TreeItemActive
+  }
+  return ClassNames.TreeItem
+}
+`,
+      errors: [
+        {
+          column: 12,
+          endColumn: 65,
+          endLine: 4,
+          line: 4,
+          messageId: 'preferMergeClassNames',
+        },
+      ],
+    },
+    {
+      code: `
+const getSearchResultClassName = (focused) => {
+  if (focused) {
+    return \`\${ClassNames.TreeItem} \${ClassNames.TreeItemActive}\`
+  }
+  return ClassNames.TreeItem
+}
+`,
+      errors: [
+        {
+          column: 12,
+          endColumn: 65,
+          endLine: 4,
+          line: 4,
+          messageId: 'preferMergeClassNames',
+        },
+      ],
+    },
   ],
   valid: [
     {
@@ -150,6 +188,21 @@ const dom = {
 const dom = {
   type: 'div',
   [classNameProperty]: \`\${baseClass} \${selectedClass}\`,
+}
+`,
+    },
+    {
+      code: `
+const label = firstName + ' ' + lastName
+`,
+    },
+    {
+      code: `
+const getSearchResultClassName = (focused) => {
+  if (focused) {
+    return mergeClassNames(ClassNames.TreeItem, ClassNames.TreeItemActive)
+  }
+  return ClassNames.TreeItem
 }
 `,
     },

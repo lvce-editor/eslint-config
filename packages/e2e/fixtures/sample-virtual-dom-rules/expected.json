@@ -54,5 +54,9 @@
   {
     "filePath": "src/main.ts:78",
     "message": "Use `mergeClassNames(...)` instead of manually concatenating `className`."
+  },
+  {
+    "filePath": "src/main.ts:84",
+    "message": "Use `mergeClassNames(...)` instead of manually concatenating `className`."
   }
 ]
