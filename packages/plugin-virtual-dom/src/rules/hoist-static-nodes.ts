@@ -45,6 +45,42 @@ const isStaticIdentifier = (sourceCode: SourceCode, node: ESTree.Identifier): bo
   return Boolean(variable && isStaticModuleVariable(variable))
 }
 
+const isPropertyMutation = (sourceCode: SourceCode, identifier: ESTree.Identifier): boolean => {
+  const ancestors = sourceCode.getAncestors(identifier)
+  let current: ESTree.Node = identifier
+  for (let i = ancestors.length - 1; i >= 0; i--) {
+    const parent = ancestors[i]
+    if (parent.type === 'MemberExpression' && parent.object === current) {
+      current = parent
+      continue
+    }
+    return (
+      (parent.type === 'AssignmentExpression' && parent.left === current) ||
+      (parent.type === 'UpdateExpression' && parent.argument === current) ||
+      (parent.type === 'UnaryExpression' && parent.operator === 'delete' && parent.argument === current)
+    )
+  }
+  return false
+}
+
+const isMutatedVariable = (sourceCode: SourceCode, variable: Scope.Variable): boolean => {
+  return variable.references.some((reference) => {
+    if (!reference.init && reference.isWrite()) {
+      return true
+    }
+    return reference.identifier.type === 'Identifier' && isPropertyMutation(sourceCode, reference.identifier)
+  })
+}
+
+const isMutatedObject = (sourceCode: SourceCode, node: ESTree.ObjectExpression): boolean => {
+  const parent = sourceCode.getAncestors(node).at(-1)
+  if (parent?.type !== 'VariableDeclarator' || parent.init !== node || parent.id.type !== 'Identifier') {
+    return false
+  }
+  const variable = findVariable(sourceCode, parent.id)
+  return Boolean(variable && isMutatedVariable(sourceCode, variable))
+}
+
 const isVirtualDomElement = (node: ESTree.ObjectExpression): boolean => {
   if (!isVirtualDomNode(node) || !hasProperty(node, 'childCount')) {
     return false
@@ -107,6 +143,9 @@ export const create = (context: Rule.RuleContext): Rule.RuleListener => {
         return
       }
       if (!isStaticExpression(context.sourceCode, node)) {
+        return
+      }
+      if (isMutatedObject(context.sourceCode, node)) {
         return
       }
       context.report({

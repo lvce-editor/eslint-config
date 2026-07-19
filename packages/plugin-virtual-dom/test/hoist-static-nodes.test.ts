@@ -136,5 +136,35 @@ export const getNode = () => {
 }
 `,
     },
+    {
+      code: `
+import { VirtualDomElements } from './constants.js'
+
+export const getLabel = (parts) => {
+  const label = {
+    childCount: 0,
+    type: VirtualDomElements.Div,
+  }
+  for (const part of parts) {
+    label.childCount++
+  }
+  return label
+}
+`,
+    },
+    {
+      code: `
+import { VirtualDomElements } from './constants.js'
+
+export const getLabel = (parts) => {
+  const label = {
+    childCount: 0,
+    type: VirtualDomElements.Div,
+  }
+  label.childCount = parts.length
+  return label
+}
+`,
+    },
   ],
 })
