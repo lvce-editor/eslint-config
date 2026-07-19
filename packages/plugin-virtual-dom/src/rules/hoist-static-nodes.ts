@@ -1,6 +1,6 @@
 import type { Rule, Scope, SourceCode } from 'eslint'
 import type * as ESTree from 'estree'
-import { isVirtualDomNode } from './ast.ts'
+import { getProperty, hasProperty, isStringLiteral, isVirtualDomNode } from './ast.ts'
 
 export const meta: Rule.RuleMetaData = {
   docs: {
@@ -43,6 +43,14 @@ const isStaticModuleVariable = (variable: Scope.Variable): boolean => {
 const isStaticIdentifier = (sourceCode: SourceCode, node: ESTree.Identifier): boolean => {
   const variable = findVariable(sourceCode, node)
   return Boolean(variable && isStaticModuleVariable(variable))
+}
+
+const isVirtualDomElement = (node: ESTree.ObjectExpression): boolean => {
+  if (!isVirtualDomNode(node) || !hasProperty(node, 'childCount')) {
+    return false
+  }
+  const type = getProperty(node, 'type')
+  return Boolean(type && !isStringLiteral(type.value))
 }
 
 const isStaticProperty = (sourceCode: SourceCode, node: ESTree.Property | ESTree.SpreadElement): boolean => {
@@ -92,7 +100,7 @@ const isStaticExpression = (sourceCode: SourceCode, node: ESTree.Node | null): b
 export const create = (context: Rule.RuleContext): Rule.RuleListener => {
   return {
     ObjectExpression(node: ESTree.ObjectExpression): void {
-      if (!isVirtualDomNode(node)) {
+      if (!isVirtualDomElement(node)) {
         return
       }
       if (!context.sourceCode.getAncestors(node).some(isFunctionNode)) {

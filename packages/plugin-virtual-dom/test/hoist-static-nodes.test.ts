@@ -61,6 +61,17 @@ export function getSeparator() {
   valid: [
     {
       code: `
+export const getDialogOptions = () => {
+  return {
+    buttons: ['Ok', 'Cancel'],
+    childCount: 0,
+    type: 'info',
+  }
+}
+`,
+    },
+    {
+      code: `
 import { ClassNames, VirtualDomElements } from './constants.js'
 
 const searchHeader = {
