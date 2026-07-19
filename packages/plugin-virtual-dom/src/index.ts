@@ -1,5 +1,6 @@
 import type { Linter } from 'eslint'
 import * as clickableDivNeedsRole from './rules/clickable-div-needs-role.ts'
+import * as hoistStaticNodes from './rules/hoist-static-nodes.ts'
 import * as noEmptyAria from './rules/no-empty-aria.ts'
 import * as noEmptyClassName from './rules/no-empty-class-name.ts'
 import * as noInlineEventHandlers from './rules/no-inline-event-handlers.ts'
@@ -20,6 +21,7 @@ const plugin = {
   },
   rules: {
     'clickable-div-needs-role': clickableDivNeedsRole,
+    'hoist-static-nodes': hoistStaticNodes,
     'no-empty-aria': noEmptyAria,
     'no-empty-class-name': noEmptyClassName,
     'no-inline-event-handlers': noInlineEventHandlers,
@@ -42,6 +44,7 @@ const recommended: Linter.Config[] = [
     },
     rules: {
       'virtual-dom/clickable-div-needs-role': 'error',
+      'virtual-dom/hoist-static-nodes': 'error',
       'virtual-dom/no-empty-aria': 'error',
       'virtual-dom/no-empty-class-name': 'error',
       'virtual-dom/no-inline-event-handlers': 'error',
