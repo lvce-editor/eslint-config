@@ -58,6 +58,12 @@ const recommended: Linter.Config[] = [
       'virtual-dom/valid-child-count': 'error',
     },
   },
+  {
+    files: ['**/test/**/*.{js,mjs,cjs,ts,mts,cts}', '**/tests/**/*.{js,mjs,cjs,ts,mts,cts}', '**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}'],
+    rules: {
+      'virtual-dom/hoist-static-nodes': 'off',
+    },
+  },
 ]
 
 export default recommended
