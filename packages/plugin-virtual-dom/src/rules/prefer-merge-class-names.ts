@@ -3,6 +3,8 @@ import type * as ESTree from 'estree'
 import {
   getStaticPropertyName,
   isBinaryExpressionNode,
+  isIdentifierNode,
+  isMemberExpressionNode,
   isPropertyNode,
   isStringLiteral,
   isTemplateLiteralNode,
@@ -12,6 +14,10 @@ import {
 
 const isClassNameKey = (node: PropertyNode): boolean => {
   return getStaticPropertyName(node) === 'className'
+}
+
+const isClassNameProperty = (node: unknown): boolean => {
+  return isPropertyNode(node) && isClassNameKey(node)
 }
 
 const isStringLiteralWithSpace = (node: unknown): boolean => {
@@ -44,6 +50,30 @@ const isManualClassNameConcatenation = (node: unknown): boolean => {
   )
 }
 
+const hasClassNamesReference = (node: unknown): boolean => {
+  if (isMemberExpressionNode(node)) {
+    return (
+      (isIdentifierNode(node.object) && node.object.name === 'ClassNames') ||
+      hasClassNamesReference(node.object) ||
+      (node.computed && hasClassNamesReference(node.property))
+    )
+  }
+  if (isBinaryExpressionNode(node)) {
+    return hasClassNamesReference(node.left) || hasClassNamesReference(node.right)
+  }
+  if (isTemplateLiteralNode(node)) {
+    return node.expressions.some(hasClassNamesReference)
+  }
+  return false
+}
+
+const getParent = (node: unknown): unknown => {
+  if (typeof node === 'object' && node !== null && 'parent' in node) {
+    return node.parent
+  }
+  return undefined
+}
+
 export const meta: Rule.RuleMetaData = {
   docs: {
     description: 'Prefer mergeClassNames for composing virtual-dom className values',
@@ -55,7 +85,22 @@ export const meta: Rule.RuleMetaData = {
 }
 
 export const create = (context: Rule.RuleContext): Rule.RuleListener => {
+  const reportNamespacedClassNameComposition = (node: unknown): void => {
+    if (!isManualClassNameConcatenation(node) || !hasClassNamesReference(node)) {
+      return
+    }
+    const parent = getParent(node)
+    if (isManualClassNameConcatenation(parent) || isClassNameProperty(parent)) {
+      return
+    }
+    context.report({
+      messageId: 'preferMergeClassNames',
+      node: node as ESTree.Node,
+    })
+  }
+
   return {
+    BinaryExpression: reportNamespacedClassNameComposition,
     Property(node: unknown): void {
       if (!isPropertyNode(node) || !isClassNameKey(node) || !isManualClassNameConcatenation(node.value)) {
         return
@@ -65,5 +110,6 @@ export const create = (context: Rule.RuleContext): Rule.RuleListener => {
         node: node.value as ESTree.Node,
       })
     },
+    TemplateLiteral: reportNamespacedClassNameComposition,
   }
 }
