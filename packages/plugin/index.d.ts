@@ -7,6 +7,7 @@ declare const recommendedRegex: readonly any[]
 declare const recommendedVirtualDom: readonly any[]
 declare const recommendedE2e: readonly any[]
 declare const recommendedDevcontainer: readonly any[]
+declare const recommendedExtensionJson: readonly any[]
 declare const recommendedRpc: readonly any[]
 
 export { recommendedNode }
@@ -17,6 +18,7 @@ export { recommendedRegex }
 export { recommendedVirtualDom }
 export { recommendedE2e }
 export { recommendedDevcontainer }
+export { recommendedExtensionJson }
 export { recommendedRpc }
 
 export default config
