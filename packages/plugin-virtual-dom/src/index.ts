@@ -11,6 +11,7 @@ import * as preferConstants from './rules/prefer-constants.ts'
 import * as preferLazyDateTimeFormat from './rules/prefer-lazy-date-time-format.ts'
 import * as preferMergeClassNames from './rules/prefer-merge-class-names.ts'
 import * as preferStateDestructuring from './rules/prefer-state-destructuring.ts'
+import * as requireEventListenerOptions from './rules/require-event-listener-options.ts'
 import * as validChildCount from './rules/valid-child-count.ts'
 
 const plugin = {
@@ -32,6 +33,7 @@ const plugin = {
     'prefer-lazy-date-time-format': preferLazyDateTimeFormat,
     'prefer-merge-class-names': preferMergeClassNames,
     'prefer-state-destructuring': preferStateDestructuring,
+    'require-event-listener-options': requireEventListenerOptions,
     'valid-child-count': validChildCount,
   },
 }
@@ -55,6 +57,7 @@ const recommended: Linter.Config[] = [
       'virtual-dom/prefer-lazy-date-time-format': 'error',
       'virtual-dom/prefer-merge-class-names': 'error',
       'virtual-dom/prefer-state-destructuring': 'error',
+      'virtual-dom/require-event-listener-options': 'error',
       'virtual-dom/valid-child-count': 'error',
     },
   },
