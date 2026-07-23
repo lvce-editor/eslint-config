@@ -1,5 +1,6 @@
 import './clickable-div-needs-role.test.ts'
 import './hoist-static-nodes.test.ts'
+import './no-conditional-spread.test.ts'
 import './no-empty-aria.test.ts'
 import './no-empty-class-name.test.ts'
 import './no-inline-event-handlers.test.ts'
