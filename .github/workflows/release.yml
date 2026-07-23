@@ -110,6 +110,10 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - run: npm publish --access public
+        working-directory: ./.tmp/plugin-extension-json
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: npm publish --access public
         working-directory: ./.tmp/plugin-rpc
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
