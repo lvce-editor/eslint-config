@@ -112,6 +112,12 @@ export const strict: Linter.Config[] = [
       'virtual-dom/valid-node-shape': 'error',
     },
   },
+  {
+    files: ['**/test/**/*.{js,mjs,cjs,ts,mts,cts}', '**/tests/**/*.{js,mjs,cjs,ts,mts,cts}', '**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}'],
+    rules: {
+      'virtual-dom/prefer-class-name-constants': 'off',
+    },
+  },
 ]
 
 export default recommended
