@@ -8,6 +8,7 @@ export const meta: Rule.RuleMetaData = {
   },
   messages: {
     preferAriaBooleanConstant: 'Use an ARIA boolean constant instead of a raw string.',
+    preferEventListenerConstant: 'Use a named event listener constant instead of a raw numeric id.',
     preferRoleConstant: 'Use `AriaRoles.*` instead of a raw role string.',
     preferTabIndexConstant: 'Use `TabIndex.*` instead of a raw tabIndex number.',
     preferTypeConstant: 'Use `VirtualDomElements.*` instead of a raw element type number.',
@@ -50,6 +51,13 @@ export const create = (context: Rule.RuleContext): Rule.RuleListener => {
         if (name === 'tabIndex' && isNumericLiteral(property.value)) {
           context.report({
             messageId: 'preferTabIndexConstant',
+            node: property.value,
+          })
+          continue
+        }
+        if (/^on[A-Z]/.test(name) && isNumericLiteral(property.value)) {
+          context.report({
+            messageId: 'preferEventListenerConstant',
             node: property.value,
           })
           continue

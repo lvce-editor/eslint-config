@@ -1,0 +1,50 @@
+[
+  {
+    "filePath": "src/main.ts:3",
+    "message": "`onContextmenu` is not a supported virtual-dom event property."
+  },
+  {
+    "filePath": "src/main.ts:9",
+    "message": "Use a `text(...)` child instead of a `text` property on an element node."
+  },
+  {
+    "filePath": "src/main.ts:15",
+    "message": "Omit `title` instead of assigning a nullish value."
+  },
+  {
+    "filePath": "src/main.ts:19",
+    "message": "Add an `alt` attribute to this virtual-dom image."
+  },
+  {
+    "filePath": "src/main.ts:26",
+    "message": "`ariaActiveDescendant` is not a valid virtual-dom ARIA property."
+  },
+  {
+    "filePath": "src/main.ts:32",
+    "message": "`loud` is not a valid value for `ariaLive`."
+  },
+  {
+    "filePath": "src/main.ts:37",
+    "message": "Add an accessible name to this virtual-dom `Button` control."
+  },
+  {
+    "filePath": "src/main.ts:44",
+    "message": "Use `TabIndex.*` instead of a raw tabIndex number."
+  },
+  {
+    "filePath": "src/main.ts:44",
+    "message": "Use a `tabIndex` of 0 or -1 instead of a positive value."
+  },
+  {
+    "filePath": "src/main.ts:50",
+    "message": "Use a `ClassNames.*` constant instead of a literal `className`."
+  },
+  {
+    "filePath": "src/main.ts:57",
+    "message": "Use a named event listener constant instead of a raw numeric id."
+  },
+  {
+    "filePath": "src/main.ts:61",
+    "message": "Add an explicit `childCount` to this virtual-dom node."
+  }
+]

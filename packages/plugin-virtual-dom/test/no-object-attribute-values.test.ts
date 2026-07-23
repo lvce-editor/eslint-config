@@ -42,6 +42,14 @@ const dom = {
   valid: [
     {
       code: `
+const options = {
+  buttons: ['Copy', 'OK'],
+  type: ElectronMessageBoxType.Info,
+}
+`,
+    },
+    {
+      code: `
 const dom = {
   childCount: 0,
   className: ClassNames.Button,
