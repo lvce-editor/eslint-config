@@ -550,6 +550,8 @@ export const recommendedRegex = [...regexPlugin.default]
 
 export const recommendedVirtualDom = [...virtualDomPlugin.default]
 
+export const recommendedVirtualDomStrict = [...virtualDomPlugin.strict]
+
 export const recommendedE2e = [...e2ePlugin.default]
 
 export const recommendedDevcontainer = [...devcontainerPlugin.default]

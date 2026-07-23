@@ -1,7 +1,7 @@
 import { Linter } from 'eslint'
 import { deepEqual, equal } from 'node:assert/strict'
 import { test } from 'node:test'
-import recommended from '../src/index.ts'
+import recommended, { strict } from '../src/index.ts'
 
 void test('disables static node hoisting in test files', () => {
   const code = `
@@ -26,4 +26,26 @@ export const getNode = () => {
     filename: 'test/getNode.test.js',
   })
   deepEqual(testMessages, [])
+})
+
+void test('enables strict rules only in the strict preset', () => {
+  const code = `
+const node = {
+  childCount: 0,
+  onContextmenu: Events.ContextMenu,
+  type: VirtualDomElements.Div,
+}
+`
+
+  const linter = new Linter()
+  const recommendedMessages = linter.verify(code, recommended, {
+    filename: 'src/getNode.js',
+  })
+  deepEqual(recommendedMessages, [])
+
+  const strictMessages = linter.verify(code, strict, {
+    filename: 'src/getNode.js',
+  })
+  equal(strictMessages.length, 1)
+  equal(strictMessages[0].ruleId, 'virtual-dom/valid-event-properties')
 })

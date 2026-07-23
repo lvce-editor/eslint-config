@@ -162,8 +162,87 @@ export const hasProperty = (node: ObjectExpressionNode, name: string): boolean =
   return Boolean(getProperty(node, name))
 }
 
+const virtualDomElementNames = new Set([
+  'A',
+  'Abbr',
+  'Article',
+  'Aside',
+  'Audio',
+  'Br',
+  'Button',
+  'Cite',
+  'Code',
+  'Col',
+  'ColGroup',
+  'Data',
+  'Dd',
+  'Del',
+  'Div',
+  'Dl',
+  'Dt',
+  'Figcaption',
+  'Figure',
+  'Footer',
+  'H1',
+  'H2',
+  'H3',
+  'H4',
+  'H5',
+  'H6',
+  'Header',
+  'Hr',
+  'I',
+  'Img',
+  'Input',
+  'Ins',
+  'Kbd',
+  'Label',
+  'Li',
+  'Nav',
+  'Ol',
+  'Option',
+  'P',
+  'Pre',
+  'Reference',
+  'Root',
+  'Search',
+  'Section',
+  'Select',
+  'Span',
+  'Table',
+  'TBody',
+  'Td',
+  'Text',
+  'TextArea',
+  'Tfoot',
+  'Th',
+  'THead',
+  'Time',
+  'Tr',
+  'Ul',
+  'Video',
+])
+
+export const getVirtualDomElementName = (node: unknown): string | undefined => {
+  if (
+    !isMemberExpressionNode(node) ||
+    node.computed ||
+    !isIdentifierNode(node.object) ||
+    !isIdentifierNode(node.property) ||
+    !node.object.name.endsWith('Elements') ||
+    !virtualDomElementNames.has(node.property.name)
+  ) {
+    return undefined
+  }
+  return node.property.name
+}
+
 export const isVirtualDomNode = (node: unknown): node is ObjectExpressionNode => {
-  return isObjectExpressionNode(node) && hasProperty(node, 'type')
+  if (!isObjectExpressionNode(node)) {
+    return false
+  }
+  const typeProperty = getProperty(node, 'type')
+  return Boolean(typeProperty && (hasProperty(node, 'childCount') || getVirtualDomElementName(typeProperty.value)))
 }
 
 export const isTextCall = (node: unknown): boolean => {

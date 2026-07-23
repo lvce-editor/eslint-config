@@ -27,6 +27,20 @@ const dom = {
       code: `
 const dom = {
   childCount: 0,
+  onClick: 1,
+  type: VirtualDomElements.Button,
+}
+`,
+      errors: [
+        {
+          messageId: 'preferEventListenerConstant',
+        },
+      ],
+    },
+    {
+      code: `
+const dom = {
+  childCount: 0,
   role: 'button',
   type: VirtualDomElements.Div,
 }
