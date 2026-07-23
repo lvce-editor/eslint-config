@@ -49,3 +49,31 @@ const node = {
   equal(strictMessages.length, 1)
   equal(strictMessages[0].ruleId, 'virtual-dom/valid-event-properties')
 })
+
+void test('allows literal class names in strict test fixtures', () => {
+  const code = `
+const node = {
+  ariaLabel: 'Test',
+  childCount: 0,
+  className: 'Button',
+  type: VirtualDomElements.Button,
+}
+`
+
+  const linter = new Linter()
+  const sourceMessages = linter.verify(code, strict, {
+    filename: 'src/getNode.js',
+  })
+  let hasClassNameDiagnostic = false
+  for (const message of sourceMessages) {
+    if (message.ruleId === 'virtual-dom/prefer-class-name-constants') {
+      hasClassNameDiagnostic = true
+    }
+  }
+  equal(hasClassNameDiagnostic, true)
+
+  const testMessages = linter.verify(code, strict, {
+    filename: 'test/getNode.test.js',
+  })
+  deepEqual(testMessages, [])
+})
