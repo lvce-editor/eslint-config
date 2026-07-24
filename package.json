@@ -4,12 +4,14 @@
   "main": "index.js",
   "type": "module",
   "types": "index.d.ts",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "node packages/build/src/build.js",
     "format": "prettier --write .",
-    "postinstall": "lerna bootstrap --ci",
     "lint": "eslint . && prettier --check .",
-    "test": "lerna run test",
+    "test": "npm test --workspaces --if-present",
     "type-check": "tsc -b",
     "update-action-versions": "node packages/build/src/updateActionVersions.ts"
   },
@@ -47,12 +49,10 @@
     "eslint": "^10"
   },
   "devDependencies": {
-    "@lerna/legacy-package-management": "^8.2.4",
     "@lvce-editor/eslint-config": "^17.0.3",
     "@types/node": "^24.2.1",
     "eslint": "^10.7.0",
     "eslint-plugin-eslint-plugin": "^7.4.1",
-    "lerna": "^8.2.4",
     "prettier": "^3.9.4",
     "typescript": "6.0.3"
   },
