@@ -57,6 +57,45 @@ export function getSeparator() {
         },
       ],
     },
+    {
+      code: `
+import { mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import * as ClassNames from './ClassNames.js'
+
+export const getCloseIcon = () => {
+  return {
+    childCount: 0,
+    className: mergeClassNames(ClassNames.MaskIcon, ClassNames.MaskIconClose),
+    type: VirtualDomElements.Div,
+  }
+}
+`,
+      errors: [
+        {
+          messageId: 'hoistStaticNode',
+        },
+      ],
+    },
+    {
+      code: `
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import * as ClassNames from './ClassNames.js'
+import * as MergeClassNames from './MergeClassNames.js'
+
+export const getCloseIcon = () => {
+  return {
+    childCount: 0,
+    className: MergeClassNames.mergeClassNames(ClassNames.MaskIcon, ClassNames.MaskIconClose),
+    type: VirtualDomElements.Div,
+  }
+}
+`,
+      errors: [
+        {
+          messageId: 'hoistStaticNode',
+        },
+      ],
+    },
   ],
   valid: [
     {
@@ -102,6 +141,39 @@ export const getLabelNode = () => {
   return {
     childCount: 0,
     label: getLabel(),
+    type: VirtualDomElements.Div,
+  }
+}
+`,
+    },
+    {
+      code: `
+import { mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import * as ClassNames from './ClassNames.js'
+
+export const getIcon = (iconClassName) => {
+  return {
+    childCount: 0,
+    className: mergeClassNames(ClassNames.MaskIcon, iconClassName),
+    type: VirtualDomElements.Div,
+  }
+}
+`,
+    },
+    {
+      code: `
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import * as ClassNames from './ClassNames.js'
+
+const mergeClassNames = (...classNames) => {
+  console.log(classNames)
+  return classNames.join(' ')
+}
+
+export const getCloseIcon = () => {
+  return {
+    childCount: 0,
+    className: mergeClassNames(ClassNames.MaskIcon, ClassNames.MaskIconClose),
     type: VirtualDomElements.Div,
   }
 }

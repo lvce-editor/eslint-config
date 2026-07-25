@@ -45,6 +45,39 @@ const isStaticIdentifier = (sourceCode: SourceCode, node: ESTree.Identifier): bo
   return Boolean(variable && isStaticModuleVariable(variable))
 }
 
+const isMergeClassNamesImport = (variable: Scope.Variable): boolean => {
+  return variable.defs.some((definition) => {
+    if (definition.type !== 'ImportBinding' || definition.node.type !== 'ImportSpecifier') {
+      return false
+    }
+    return definition.node.imported.type === 'Identifier'
+      ? definition.node.imported.name === 'mergeClassNames'
+      : definition.node.imported.value === 'mergeClassNames'
+  })
+}
+
+const isNamespaceImport = (variable: Scope.Variable): boolean => {
+  return variable.defs.some((definition) => definition.type === 'ImportBinding' && definition.node.type === 'ImportNamespaceSpecifier')
+}
+
+const isMergeClassNamesCallee = (sourceCode: SourceCode, node: ESTree.Expression | ESTree.Super): boolean => {
+  if (node.type === 'Identifier') {
+    const variable = findVariable(sourceCode, node)
+    return Boolean(variable && isMergeClassNamesImport(variable))
+  }
+  if (
+    node.type !== 'MemberExpression' ||
+    node.computed ||
+    node.object.type !== 'Identifier' ||
+    node.property.type !== 'Identifier' ||
+    node.property.name !== 'mergeClassNames'
+  ) {
+    return false
+  }
+  const variable = findVariable(sourceCode, node.object)
+  return Boolean(variable && isNamespaceImport(variable))
+}
+
 const isPropertyMutation = (sourceCode: SourceCode, identifier: ESTree.Identifier): boolean => {
   const ancestors = sourceCode.getAncestors(identifier)
   let current: ESTree.Node = identifier
@@ -112,6 +145,11 @@ const isStaticExpression = (sourceCode: SourceCode, node: ESTree.Node | null): b
     case 'ConditionalExpression':
       return (
         isStaticExpression(sourceCode, node.test) && isStaticExpression(sourceCode, node.consequent) && isStaticExpression(sourceCode, node.alternate)
+      )
+    case 'CallExpression':
+      return (
+        isMergeClassNamesCallee(sourceCode, node.callee) &&
+        node.arguments.every((argument) => argument.type !== 'SpreadElement' && isStaticExpression(sourceCode, argument))
       )
     case 'Identifier':
       return isStaticIdentifier(sourceCode, node)
