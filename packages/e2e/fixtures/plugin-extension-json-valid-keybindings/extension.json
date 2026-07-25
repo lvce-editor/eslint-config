@@ -1,0 +1,8 @@
+{
+  "keybindings": [
+    {
+      "key": "Ctrl+Nope",
+      "command": "sample.run"
+    }
+  ]
+}

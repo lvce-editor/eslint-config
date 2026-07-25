@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "assumeChangesOnlyAffectDirectDependencies": true,
+    "allowImportingTsExtensions": true,
+    "exactOptionalPropertyTypes": false,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "NodeNext",
+    "noImplicitAny": true,
+    "noUncheckedSideEffectImports": true,
+    "skipLibCheck": false,
+    "strict": true
+  }
+}

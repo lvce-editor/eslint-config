@@ -50,3 +50,13 @@ export const runFixture = async (name: string): Promise<{ readonly expected: any
   const parsed = parseResult(fixturePath, resultJson)
   return { expected, parsed }
 }
+
+export const runConfiguredFixture = async (name: string): Promise<readonly any[]> => {
+  const fixturePath = join(root, 'packages', 'e2e', 'fixtures', name)
+  const eslintPath = join(root, 'node_modules', 'eslint', 'bin', 'eslint.js')
+  const { stdout } = await execa('node', [eslintPath, '.', '--format', 'json'], {
+    cwd: fixturePath,
+    reject: false,
+  })
+  return parseResult(fixturePath, JSON.parse(stdout))
+}
