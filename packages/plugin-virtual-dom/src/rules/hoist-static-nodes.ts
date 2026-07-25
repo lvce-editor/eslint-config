@@ -50,9 +50,7 @@ const isMergeClassNamesImport = (variable: Scope.Variable): boolean => {
     if (definition.type !== 'ImportBinding' || definition.node.type !== 'ImportSpecifier') {
       return false
     }
-    return definition.node.imported.type === 'Identifier'
-      ? definition.node.imported.name === 'mergeClassNames'
-      : definition.node.imported.value === 'mergeClassNames'
+    return (definition.node.imported.type === 'Identifier' ? definition.node.imported.name : definition.node.imported.value) === 'mergeClassNames'
   })
 }
 
@@ -142,14 +140,14 @@ const isStaticExpression = (sourceCode: SourceCode, node: ESTree.Node | null): b
     case 'BinaryExpression':
     case 'LogicalExpression':
       return isStaticExpression(sourceCode, node.left) && isStaticExpression(sourceCode, node.right)
-    case 'ConditionalExpression':
-      return (
-        isStaticExpression(sourceCode, node.test) && isStaticExpression(sourceCode, node.consequent) && isStaticExpression(sourceCode, node.alternate)
-      )
     case 'CallExpression':
       return (
         isMergeClassNamesCallee(sourceCode, node.callee) &&
         node.arguments.every((argument) => argument.type !== 'SpreadElement' && isStaticExpression(sourceCode, argument))
+      )
+    case 'ConditionalExpression':
+      return (
+        isStaticExpression(sourceCode, node.test) && isStaticExpression(sourceCode, node.consequent) && isStaticExpression(sourceCode, node.alternate)
       )
     case 'Identifier':
       return isStaticIdentifier(sourceCode, node)
