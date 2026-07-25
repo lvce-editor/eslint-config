@@ -1,0 +1,4 @@
+jobs:
+  pr:
+    runs-on: ubuntu-24.04
+    max-parallel: test
