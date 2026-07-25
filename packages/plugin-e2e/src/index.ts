@@ -8,6 +8,7 @@ import * as preferDirectApiDestructuring from './rules/prefer-direct-api-destruc
 import * as preferExecuteExtensionCommand from './rules/prefer-execute-extension-command.ts'
 import * as preferFileSystemSetFiles from './rules/prefer-filesystem-set-files.ts'
 import * as preferImportMetaResolve from './rules/prefer-import-meta-resolve.ts'
+import * as preferToBeHidden from './rules/prefer-to-be-hidden.ts'
 
 const plugin = {
   configs: {},
@@ -25,6 +26,7 @@ const plugin = {
     'prefer-execute-extension-command': preferExecuteExtensionCommand,
     'prefer-filesystem-set-files': preferFileSystemSetFiles,
     'prefer-import-meta-resolve': preferImportMetaResolve,
+    'prefer-to-be-hidden': preferToBeHidden,
   },
 }
 
@@ -44,6 +46,7 @@ const recommended: Linter.Config[] = [
       'e2e/prefer-execute-extension-command': 'error',
       'e2e/prefer-filesystem-set-files': 'error',
       'e2e/prefer-import-meta-resolve': 'error',
+      'e2e/prefer-to-be-hidden': 'error',
     },
   },
 ]
