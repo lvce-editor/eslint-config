@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "src/main.ts:3",
+    "message": "Do not destructure `RendererWorker`; call its methods directly so they can be tree-shaken."
+  }
+]
