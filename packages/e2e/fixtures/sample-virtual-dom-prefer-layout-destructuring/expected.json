@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "src/main.ts:6",
+    "message": "Prefer destructuring from layout instead of using layout.groups."
+  }
+]

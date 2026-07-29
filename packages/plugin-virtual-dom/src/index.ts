@@ -15,6 +15,7 @@ import * as noSharedEventListenerHandlers from './rules/no-shared-event-listener
 import * as preferClassNameConstants from './rules/prefer-class-name-constants.ts'
 import * as preferConstants from './rules/prefer-constants.ts'
 import * as preferLazyDateTimeFormat from './rules/prefer-lazy-date-time-format.ts'
+import * as preferLayoutDestructuring from './rules/prefer-layout-destructuring.ts'
 import * as preferMergeClassNames from './rules/prefer-merge-class-names.ts'
 import * as preferStateDestructuring from './rules/prefer-state-destructuring.ts'
 import * as requireEventListenerOptions from './rules/require-event-listener-options.ts'
@@ -49,6 +50,7 @@ const plugin = {
     'prefer-class-name-constants': preferClassNameConstants,
     'prefer-constants': preferConstants,
     'prefer-lazy-date-time-format': preferLazyDateTimeFormat,
+    'prefer-layout-destructuring': preferLayoutDestructuring,
     'prefer-merge-class-names': preferMergeClassNames,
     'prefer-state-destructuring': preferStateDestructuring,
     'require-event-listener-options': requireEventListenerOptions,
@@ -81,6 +83,7 @@ const recommended: Linter.Config[] = [
       'virtual-dom/no-shared-event-listener-handlers': 'error',
       'virtual-dom/prefer-constants': 'error',
       'virtual-dom/prefer-lazy-date-time-format': 'error',
+      'virtual-dom/prefer-layout-destructuring': 'error',
       'virtual-dom/prefer-merge-class-names': 'error',
       'virtual-dom/prefer-state-destructuring': 'error',
       'virtual-dom/require-event-listener-options': 'error',
