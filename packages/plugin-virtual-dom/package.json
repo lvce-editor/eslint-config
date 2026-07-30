@@ -13,11 +13,10 @@
   "license": "MIT",
   "description": "ESLint rules for @lvce-editor/virtual-dom usage.",
   "devDependencies": {
+    "@types/estree": "^1.0.9",
     "@types/jest": "^30.0.0",
     "@types/node": "^22.10.6",
-    "esbuild": "^0.28.1",
     "eslint": "^10.6.0",
-    "execa": "^9.6.1",
     "jest": "^30.4.2",
     "ts-jest": "^29.4.11"
   },
