@@ -9,6 +9,12 @@ const dist = join(root, '.tmp', 'dist')
 
 const bundledPlugins = [
   {
+    dependency: '@lvce-editor/eslint-plugin-eslint-config',
+    packageName: 'plugin-eslint-config',
+    uri: 'eslintConfigUri',
+    variable: 'eslintConfigPlugin',
+  },
+  {
     dependency: '@lvce-editor/eslint-plugin-tsconfig',
     packageName: 'plugin-tsconfig',
     uri: 'tsconfigUri',

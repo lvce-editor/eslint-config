@@ -1,3 +1,4 @@
 import config from '../../../plugin/index.js'
+import { defineConfig } from 'eslint/config'
 
-export default config
+export default defineConfig(config)

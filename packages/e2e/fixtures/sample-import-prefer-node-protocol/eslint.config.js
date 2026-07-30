@@ -1,3 +1,4 @@
 import * as config from '../../../plugin/index.js'
+import { defineConfig } from 'eslint/config'
 
-export default [...config.default, ...config.recommendedNode]
+export default defineConfig([...config.default, ...config.recommendedNode])

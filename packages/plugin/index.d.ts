@@ -10,6 +10,7 @@ declare const recommendedE2e: readonly any[]
 declare const recommendedDevcontainer: readonly any[]
 declare const recommendedExtensionJson: readonly any[]
 declare const recommendedRpc: readonly any[]
+declare const recommendedEslintConfig: readonly any[]
 
 export { recommendedNode }
 export { recommendedTsconfig }
@@ -22,5 +23,6 @@ export { recommendedE2e }
 export { recommendedDevcontainer }
 export { recommendedExtensionJson }
 export { recommendedRpc }
+export { recommendedEslintConfig }
 
 export default config

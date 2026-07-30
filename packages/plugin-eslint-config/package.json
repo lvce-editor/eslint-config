@@ -1,0 +1,47 @@
+{
+  "name": "@lvce-editor/eslint-plugin-eslint-config",
+  "version": "0.0.0-dev",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lvce-editor/eslint-config.git"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "node test/index.ts"
+  },
+  "license": "MIT",
+  "description": "ESLint rules for ESLint flat configuration files.",
+  "devDependencies": {
+    "@types/estree": "^1.0.9",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^22.10.6",
+    "eslint": "^10.6.0",
+    "jest": "^30.4.2",
+    "ts-jest": "^29.4.11"
+  },
+  "jest": {
+    "injectGlobals": false,
+    "testTimeout": 240000,
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    },
+    "transform": {
+      "^.+\\.tsx?$": [
+        "ts-jest",
+        {
+          "useESM": true
+        }
+      ]
+    },
+    "testMatch": [
+      "**/test/**/*.test.ts"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/fixtures/"
+    ]
+  }
+}
