@@ -1,0 +1,31 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "workspaces": {
+    ".": {
+      "project": ["*.js", "scripts/**/*.js"]
+    },
+    "packages/build": {
+      "entry": ["src/build.js", "src/updateActionVersions.ts"],
+      "project": ["src/**/*.js", "src/**/*.ts"]
+    },
+    "packages/e2e": {
+      "entry": ["test/**/*.test.ts"],
+      "project": ["test/**/*.ts"]
+    },
+    "packages/plugin": {
+      "entry": ["index.js"],
+      "project": ["index.js"]
+    },
+    "packages/plugin-*": {
+      "entry": ["src/index.ts", "test/index.ts"],
+      "project": ["src/**/*.ts", "test/**/*.ts"],
+      "ignoreExportsUsedInFile": true,
+      "ignoreIssues": {
+        "src/parser.ts": ["exports"],
+        "src/rules/**/*.ts": ["exports"],
+        "src/tsconfig-*.ts": ["exports"]
+      }
+    }
+  },
+  "ignoreDependencies": ["@lvce-editor/eslint-config"]
+}

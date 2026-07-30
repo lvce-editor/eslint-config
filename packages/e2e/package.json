@@ -10,6 +10,7 @@
   "license": "MIT",
   "description": "End-to-end tests for the ESLint configuration.",
   "devDependencies": {
+    "@jest/globals": "^30.4.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^22.10.6",
     "execa": "^9.6.1",
