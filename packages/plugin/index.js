@@ -12,6 +12,10 @@ import tseslint from 'typescript-eslint'
 import e18e from '@e18e/eslint-plugin'
 
 // @ts-ignore
+const eslintConfigUri = '../plugin-eslint-config/src/index.ts'
+const eslintConfigPlugin = await import(eslintConfigUri)
+
+// @ts-ignore
 const tsconfigUri = '../plugin-tsconfig/src/index.ts'
 const tsconfigPlugin = await import(tsconfigUri)
 
@@ -499,7 +503,6 @@ const defaultConfig = tseslint.config(
       '**test/cases/**',
       'scripts',
       'rollup.config.js',
-      'eslint.config.js',
     ],
   },
   {
@@ -521,6 +524,7 @@ const defaultConfig = tseslint.config(
   ...devcontainerPlugin.default,
   ...extensionJsonPlugin.default,
   ...rpcPlugin.default,
+  ...eslintConfigPlugin.default,
 )
 
 /**
@@ -559,5 +563,7 @@ export const recommendedDevcontainer = [...devcontainerPlugin.default]
 export const recommendedExtensionJson = [...extensionJsonPlugin.default]
 
 export const recommendedRpc = [...rpcPlugin.default]
+
+export const recommendedEslintConfig = [...eslintConfigPlugin.default]
 
 export default defaultConfig

@@ -1,7 +1,8 @@
 import config from './packages/plugin/index.js'
+import { defineConfig } from 'eslint/config'
 import eslintPlugin from 'eslint-plugin-eslint-plugin'
 
-export default [
+export default defineConfig([
   ...config,
   {
     files: ['packages/plugin-*/src/rules/**/*.ts'],
@@ -17,4 +18,4 @@ export default [
       'e2e/no-imports': 'off',
     },
   },
-]
+])
