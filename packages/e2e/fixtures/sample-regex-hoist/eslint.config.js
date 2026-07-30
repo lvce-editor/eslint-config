@@ -1,3 +1,4 @@
 import * as config from '../../../plugin/index.js'
+import { defineConfig } from 'eslint/config'
 
-export default [...config.default, ...config.recommendedRegex]
+export default defineConfig([...config.default, ...config.recommendedRegex])
