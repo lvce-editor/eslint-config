@@ -1,6 +1,7 @@
 import './no-direct-click.test.ts'
 import './no-imports.test.ts'
 import './no-lazy-nth-variable-name.test.ts'
+import './no-skip-zero.test.ts'
 import './no-inline-locator-in-expect.test.ts'
 import './no-inline-nth-in-expect.test.ts'
 import './prefer-direct-api-destructuring.test.ts'
