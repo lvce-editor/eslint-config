@@ -1,7 +1,7 @@
 import type { Rule } from 'eslint'
 import type * as ESTree from 'estree'
 
-const allowedTypeImportSource = '@lvce-editor/test-with-playwright'
+const allowedTypeImportSources = new Set(['@lvce-editor/test-with-playwright', '@lvce-editor/test-worker'])
 
 interface ImportDeclaration extends ESTree.BaseNode {
   readonly importKind?: 'type' | 'value'
@@ -16,16 +16,16 @@ interface ImportSpecifier extends ESTree.BaseNode {
 
 export const meta: Rule.RuleMetaData = {
   docs: {
-    description: 'Disallow imports in e2e tests except type imports from @lvce-editor/test-with-playwright',
+    description: 'Disallow imports in e2e tests except type imports from the test runner and test worker',
   },
   messages: {
-    noImports: 'E2E tests must be self-contained. Only type imports from @lvce-editor/test-with-playwright are allowed.',
+    noImports: 'E2E tests must be self-contained. Only type imports from @lvce-editor/test-with-playwright and @lvce-editor/test-worker are allowed.',
   },
   type: 'problem',
 }
 
 const isAllowedTypeImport = (node: ImportDeclaration): boolean => {
-  if (node.source.value !== allowedTypeImportSource) {
+  if (typeof node.source.value !== 'string' || !allowedTypeImportSources.has(node.source.value)) {
     return false
   }
   if (node.importKind === 'type') {

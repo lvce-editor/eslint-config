@@ -32,6 +32,10 @@ ruleTester.run('no-imports', rule, {
       code: `import '@lvce-editor/test-with-playwright'`,
       errors: [{ messageId: 'noImports' }],
     },
+    {
+      code: `import { Test } from '@lvce-editor/test-worker'`,
+      errors: [{ messageId: 'noImports' }],
+    },
   ],
   valid: [
     {
@@ -45,6 +49,12 @@ ruleTester.run('no-imports', rule, {
     },
     {
       code: `import type * as PlaywrightTypes from '@lvce-editor/test-with-playwright'`,
+    },
+    {
+      code: `import type { Test } from '@lvce-editor/test-worker'`,
+    },
+    {
+      code: `import { type Test } from '@lvce-editor/test-worker'`,
     },
   ],
 })
