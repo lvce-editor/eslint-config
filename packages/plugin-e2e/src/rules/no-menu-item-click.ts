@@ -30,11 +30,6 @@ export const create = (context: Rule.RuleContext): Rule.RuleListener => {
   const menuItemLocators = new Set<string>()
 
   return {
-    VariableDeclarator(node: ESTree.VariableDeclarator): void {
-      if (node.id.type === 'Identifier' && node.init && isMenuItemLocatorCall(node.init)) {
-        menuItemLocators.add(node.id.name)
-      }
-    },
     CallExpression(node: ESTree.SimpleCallExpression): void {
       if (!isClickCall(node) || node.callee.object.type === 'Super') {
         return
@@ -45,6 +40,11 @@ export const create = (context: Rule.RuleContext): Rule.RuleListener => {
           messageId: 'noMenuItemClick',
           node: node.callee.property,
         })
+      }
+    },
+    VariableDeclarator(node: ESTree.VariableDeclarator): void {
+      if (node.id.type === 'Identifier' && node.init && isMenuItemLocatorCall(node.init)) {
+        menuItemLocators.add(node.id.name)
       }
     },
   }
