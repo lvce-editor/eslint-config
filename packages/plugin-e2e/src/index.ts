@@ -1,5 +1,6 @@
 import type { Linter } from 'eslint'
 import * as noDirectClick from './rules/no-direct-click.ts'
+import * as noDisableMemoryClipBoardInFinally from './rules/no-disable-memory-clipboard-in-finally.ts'
 import * as noImports from './rules/no-imports.ts'
 import * as noInlineImportMetaResolveInOpenUri from './rules/no-inline-import-meta-resolve-in-open-uri.ts'
 import * as noInlineLocatorInExpect from './rules/no-inline-locator-in-expect.ts'
@@ -20,6 +21,7 @@ const plugin = {
   },
   rules: {
     'no-direct-click': noDirectClick,
+    'no-disable-memory-clipboard-in-finally': noDisableMemoryClipBoardInFinally,
     'no-imports': noImports,
     'no-inline-import-meta-resolve-in-open-uri': noInlineImportMetaResolveInOpenUri,
     'no-inline-locator-in-expect': noInlineLocatorInExpect,
@@ -42,6 +44,7 @@ const recommended: Linter.Config[] = [
     },
     rules: {
       'e2e/no-direct-click': 'error',
+      'e2e/no-disable-memory-clipboard-in-finally': 'error',
       'e2e/no-imports': 'error',
       'e2e/no-inline-import-meta-resolve-in-open-uri': 'error',
       'e2e/no-inline-locator-in-expect': 'error',
