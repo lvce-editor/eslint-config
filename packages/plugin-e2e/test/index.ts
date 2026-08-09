@@ -1,4 +1,5 @@
 import './no-direct-click.test.ts'
+import './no-disable-memory-clipboard-in-finally.test.ts'
 import './no-imports.test.ts'
 import './no-lazy-nth-variable-name.test.ts'
 import './no-skip-zero.test.ts'
