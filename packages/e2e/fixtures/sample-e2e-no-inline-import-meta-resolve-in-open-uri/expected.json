@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "e2e/main.ts:6",
+    "message": "Assign import.meta.resolve(...) to a variable before passing the URI to Main.openUri(...)."
+  }
+]

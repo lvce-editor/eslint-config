@@ -1,5 +1,6 @@
 import './no-direct-click.test.ts'
 import './no-imports.test.ts'
+import './no-inline-import-meta-resolve-in-open-uri.test.ts'
 import './no-lazy-nth-variable-name.test.ts'
 import './no-skip-zero.test.ts'
 import './no-inline-locator-in-expect.test.ts'
