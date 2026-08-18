@@ -77,3 +77,14 @@ const node = {
   })
   deepEqual(testMessages, [])
 })
+
+void test('disallows tree helpers in the recommended preset', () => {
+  const code = `tree(VirtualDomElements.Div, { className: ClassNames.DrawView }, [])`
+
+  const linter = new Linter()
+  const messages = linter.verify(code, recommended, {
+    filename: 'src/getNode.js',
+  })
+  equal(messages.length, 1)
+  equal(messages[0].ruleId, 'virtual-dom/no-tree-helper')
+})

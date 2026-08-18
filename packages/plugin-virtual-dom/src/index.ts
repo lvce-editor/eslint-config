@@ -12,6 +12,7 @@ import * as noObjectAttributeValues from './rules/no-object-attribute-values.ts'
 import * as noPositiveTabIndex from './rules/no-positive-tab-index.ts'
 import * as noRawTextChildren from './rules/no-raw-text-children.ts'
 import * as noSharedEventListenerHandlers from './rules/no-shared-event-listener-handlers.ts'
+import * as noTreeHelper from './rules/no-tree-helper.ts'
 import * as preferClassNameConstants from './rules/prefer-class-name-constants.ts'
 import * as preferConstants from './rules/prefer-constants.ts'
 import * as preferLayoutDestructuring from './rules/prefer-layout-destructuring.ts'
@@ -47,6 +48,7 @@ const plugin = {
     'no-positive-tab-index': noPositiveTabIndex,
     'no-raw-text-children': noRawTextChildren,
     'no-shared-event-listener-handlers': noSharedEventListenerHandlers,
+    'no-tree-helper': noTreeHelper,
     'prefer-class-name-constants': preferClassNameConstants,
     'prefer-constants': preferConstants,
     'prefer-layout-destructuring': preferLayoutDestructuring,
@@ -81,6 +83,7 @@ const recommended: Linter.Config[] = [
       'virtual-dom/no-object-attribute-values': 'error',
       'virtual-dom/no-raw-text-children': 'error',
       'virtual-dom/no-shared-event-listener-handlers': 'error',
+      'virtual-dom/no-tree-helper': 'error',
       'virtual-dom/prefer-constants': 'error',
       'virtual-dom/prefer-layout-destructuring': 'error',
       'virtual-dom/prefer-lazy-date-time-format': 'error',
