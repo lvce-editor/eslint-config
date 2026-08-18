@@ -3,6 +3,7 @@ import * as accessibleControlName from './rules/accessible-control-name.ts'
 import * as clickableDivNeedsRole from './rules/clickable-div-needs-role.ts'
 import * as hoistStaticNodes from './rules/hoist-static-nodes.ts'
 import * as noConditionalSpread from './rules/no-conditional-spread.ts'
+import * as noElementHelper from './rules/no-element-helper.ts'
 import * as noEmptyAria from './rules/no-empty-aria.ts'
 import * as noEmptyClassName from './rules/no-empty-class-name.ts'
 import * as noInlineEventHandlers from './rules/no-inline-event-handlers.ts'
@@ -39,6 +40,7 @@ const plugin = {
     'clickable-div-needs-role': clickableDivNeedsRole,
     'hoist-static-nodes': hoistStaticNodes,
     'no-conditional-spread': noConditionalSpread,
+    'no-element-helper': noElementHelper,
     'no-empty-aria': noEmptyAria,
     'no-empty-class-name': noEmptyClassName,
     'no-inline-event-handlers': noInlineEventHandlers,
@@ -76,6 +78,7 @@ const recommended: Linter.Config[] = [
       'virtual-dom/clickable-div-needs-role': 'error',
       'virtual-dom/hoist-static-nodes': 'error',
       'virtual-dom/no-conditional-spread': 'error',
+      'virtual-dom/no-element-helper': 'error',
       'virtual-dom/no-empty-aria': 'error',
       'virtual-dom/no-empty-class-name': 'error',
       'virtual-dom/no-inline-event-handlers': 'error',
