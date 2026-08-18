@@ -20,6 +20,7 @@ import * as preferLayoutDestructuring from './rules/prefer-layout-destructuring.
 import * as preferLazyDateTimeFormat from './rules/prefer-lazy-date-time-format.ts'
 import * as preferMergeClassNames from './rules/prefer-merge-class-names.ts'
 import * as preferStateDestructuring from './rules/prefer-state-destructuring.ts'
+import * as preferUrlCanParse from './rules/prefer-url-can-parse.ts'
 import * as requireEventListenerOptions from './rules/require-event-listener-options.ts'
 import * as requireImageAlt from './rules/require-image-alt.ts'
 import * as secureLinks from './rules/secure-links.ts'
@@ -57,6 +58,7 @@ const plugin = {
     'prefer-lazy-date-time-format': preferLazyDateTimeFormat,
     'prefer-merge-class-names': preferMergeClassNames,
     'prefer-state-destructuring': preferStateDestructuring,
+    'prefer-url-can-parse': preferUrlCanParse,
     'require-event-listener-options': requireEventListenerOptions,
     'require-image-alt': requireImageAlt,
     'secure-links': secureLinks,
@@ -92,6 +94,7 @@ const recommended: Linter.Config[] = [
       'virtual-dom/prefer-lazy-date-time-format': 'error',
       'virtual-dom/prefer-merge-class-names': 'error',
       'virtual-dom/prefer-state-destructuring': 'error',
+      'virtual-dom/prefer-url-can-parse': 'error',
       'virtual-dom/require-event-listener-options': 'error',
       'virtual-dom/secure-links': 'error',
       'virtual-dom/valid-child-count': 'error',
