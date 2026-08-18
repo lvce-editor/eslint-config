@@ -78,6 +78,23 @@ const node = {
   deepEqual(testMessages, [])
 })
 
+void test('enables URL.canParse preference in the recommended preset', () => {
+  const code = `
+try {
+  const url = new URL(value)
+} catch {
+  handleInvalidUrl()
+}
+`
+
+  const linter = new Linter()
+  const messages = linter.verify(code, recommended, {
+    filename: 'src/parseUrl.js',
+  })
+  equal(messages.length, 1)
+  equal(messages[0].ruleId, 'virtual-dom/prefer-url-can-parse')
+})
+
 void test('disallows tree helpers in the recommended preset', () => {
   const code = `tree(VirtualDomElements.Div, { className: ClassNames.DrawView }, [])`
 
