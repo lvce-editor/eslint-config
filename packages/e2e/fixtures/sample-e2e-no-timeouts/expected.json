@@ -1,0 +1,6 @@
+[
+  {
+    "filePath": "e2e/main.ts:2",
+    "message": "Do not use setTimeout in e2e tests. Wait for an observable condition instead."
+  }
+]
