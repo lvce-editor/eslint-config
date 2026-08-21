@@ -8,6 +8,7 @@ import * as noInlineNthInExpect from './rules/no-inline-nth-in-expect.ts'
 import * as noLazyNthVariableName from './rules/no-lazy-nth-variable-name.ts'
 import * as noMenuItemClick from './rules/no-menu-item-click.ts'
 import * as noSkipZero from './rules/no-skip-zero.ts'
+import * as noTimeouts from './rules/no-timeouts.ts'
 import * as preferDirectApiDestructuring from './rules/prefer-direct-api-destructuring.ts'
 import * as preferExecuteExtensionCommand from './rules/prefer-execute-extension-command.ts'
 import * as preferFileSystemSetFiles from './rules/prefer-filesystem-set-files.ts'
@@ -30,6 +31,7 @@ const plugin = {
     'no-lazy-nth-variable-name': noLazyNthVariableName,
     'no-menu-item-click': noMenuItemClick,
     'no-skip-zero': noSkipZero,
+    'no-timeouts': noTimeouts,
     'prefer-direct-api-destructuring': preferDirectApiDestructuring,
     'prefer-execute-extension-command': preferExecuteExtensionCommand,
     'prefer-filesystem-set-files': preferFileSystemSetFiles,
@@ -54,6 +56,7 @@ const recommended: Linter.Config[] = [
       'e2e/no-lazy-nth-variable-name': 'error',
       'e2e/no-menu-item-click': 'error',
       'e2e/no-skip-zero': 'error',
+      'e2e/no-timeouts': 'error',
       'e2e/prefer-direct-api-destructuring': 'error',
       'e2e/prefer-execute-extension-command': 'error',
       'e2e/prefer-filesystem-set-files': 'error',
