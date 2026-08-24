@@ -104,6 +104,7 @@ const recommended: Linter.Config[] = [
     files: ['**/test/**/*.{js,mjs,cjs,ts,mts,cts}', '**/tests/**/*.{js,mjs,cjs,ts,mts,cts}', '**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}'],
     rules: {
       'virtual-dom/hoist-static-nodes': 'off',
+      'virtual-dom/prefer-merge-class-names': 'off',
     },
   },
 ]
