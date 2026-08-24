@@ -28,6 +28,27 @@ export const getNode = () => {
   deepEqual(testMessages, [])
 })
 
+void test('allows normal class name strings in test files', () => {
+  const code = `
+const node = {
+  className: 'Button ButtonActive',
+  type: VirtualDomElements.Button,
+}
+`
+
+  const linter = new Linter()
+  const sourceMessages = linter.verify(code, recommended, {
+    filename: 'src/getNode.js',
+  })
+  equal(sourceMessages.length, 1)
+  equal(sourceMessages[0].ruleId, 'virtual-dom/prefer-merge-class-names')
+
+  const testMessages = linter.verify(code, recommended, {
+    filename: 'test/getNode.test.js',
+  })
+  deepEqual(testMessages, [])
+})
+
 void test('enables strict rules only in the strict preset', () => {
   const code = `
 const node = {
