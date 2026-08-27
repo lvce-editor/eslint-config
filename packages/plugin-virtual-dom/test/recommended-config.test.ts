@@ -137,3 +137,14 @@ void test('disallows element helpers in the recommended preset', () => {
   equal(messages.length, 1)
   equal(messages[0].ruleId, 'virtual-dom/no-element-helper')
 })
+
+void test('disallows local text helpers in the recommended preset', () => {
+  const code = `const text = (value) => ({ childCount: 0, text: value, type: VirtualDomElements.Text })`
+
+  const linter = new Linter()
+  const messages = linter.verify(code, recommended, {
+    filename: 'src/getNode.js',
+  })
+  equal(messages.length, 1)
+  equal(messages[0].ruleId, 'virtual-dom/no-text-helper')
+})
