@@ -1,7 +1,7 @@
 import type { Rule } from 'eslint'
 import { findMember, isObjectNode, isStringNode } from './ast.ts'
 
-export const defaultAllowedImages = ['mcr.microsoft.com/devcontainers/javascript-node:24']
+export const defaultAllowedImages = ['mcr.microsoft.com/devcontainers/javascript-node:24', 'mcr.microsoft.com/devcontainers/javascript-node:26']
 
 export const meta: Rule.RuleMetaData = {
   docs: {
