@@ -1,6 +1,7 @@
 import type { Linter } from 'eslint'
 import json from '@eslint/json'
 import * as allowedImage from './rules/allowed-image.ts'
+import * as dockerInDocker from './rules/docker-in-docker.ts'
 import * as postCreateCommand from './rules/post-create-command.ts'
 import * as requireDesktopLiteFeature from './rules/require-desktop-lite-feature.ts'
 
@@ -12,6 +13,7 @@ const plugin = {
   },
   rules: {
     'allowed-image': allowedImage,
+    'docker-in-docker': dockerInDocker,
     'post-create-command': postCreateCommand,
     'require-desktop-lite-feature': requireDesktopLiteFeature,
   },
@@ -31,6 +33,7 @@ const recommended: Linter.Config[] = [
     },
     rules: {
       'devcontainer/allowed-image': 'error',
+      'devcontainer/docker-in-docker': 'error',
       'devcontainer/post-create-command': 'off',
       'devcontainer/require-desktop-lite-feature': 'error',
     },

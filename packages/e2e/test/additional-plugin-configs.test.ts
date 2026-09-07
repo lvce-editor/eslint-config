@@ -1,7 +1,31 @@
 import { expect, test } from '@jest/globals'
 import { runConfiguredFixture, runFixture } from './util.ts'
 
+// cspell:ignore moby
+
 const cases = [
+  {
+    expected: [
+      {
+        filePath: '.devcontainer/devcontainer.json:5',
+        message: 'docker-in-docker devcontainer feature must use version 4',
+      },
+    ],
+    name: 'plugin-devcontainer-docker-in-docker-version',
+  },
+  {
+    expected: [
+      {
+        filePath: '.devcontainer/devcontainer.json:5',
+        message: 'docker-in-docker devcontainer feature must configure "moby": false',
+      },
+    ],
+    name: 'plugin-devcontainer-docker-in-docker-moby',
+  },
+  {
+    expected: [],
+    name: 'plugin-devcontainer-docker-in-docker-valid',
+  },
   {
     expected: [
       {
