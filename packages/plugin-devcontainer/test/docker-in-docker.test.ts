@@ -2,6 +2,8 @@ import json from '@eslint/json'
 import { RuleTester } from 'eslint'
 import * as rule from '../src/rules/docker-in-docker.ts'
 
+// cspell:ignore moby
+
 const ruleTester = new RuleTester({
   language: 'json/jsonc',
   languageOptions: {

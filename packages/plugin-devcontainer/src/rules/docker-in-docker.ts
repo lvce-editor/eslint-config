@@ -1,6 +1,8 @@
 import type { Rule } from 'eslint'
 import { findMember, isObjectNode, isStringNode } from './ast.ts'
 
+// cspell:ignore moby
+
 const dockerInDockerFeature = 'ghcr.io/devcontainers/features/docker-in-docker'
 const expectedFeature = `${dockerInDockerFeature}:4`
 
@@ -40,7 +42,7 @@ export const create = (context: Rule.RuleContext): { readonly Document: (node: a
         const moby = findMember(feature.value, 'moby')
         if (!moby || moby.value.type !== 'Boolean' || moby.value.value !== false) {
           context.report({
-            loc: moby ? moby.value.loc : feature.value.loc,
+            loc: (moby || feature).value.loc,
             messageId: 'mobyMustBeFalse',
           })
         }

@@ -1,6 +1,8 @@
 import { expect, test } from '@jest/globals'
 import { runConfiguredFixture, runFixture } from './util.ts'
 
+// cspell:ignore moby
+
 const cases = [
   {
     expected: [
