@@ -5,6 +5,28 @@ const cases = [
   {
     expected: [
       {
+        filePath: '.devcontainer/devcontainer.json:5',
+        message: 'docker-in-docker devcontainer feature must use version 4',
+      },
+    ],
+    name: 'plugin-devcontainer-docker-in-docker-version',
+  },
+  {
+    expected: [
+      {
+        filePath: '.devcontainer/devcontainer.json:5',
+        message: 'docker-in-docker devcontainer feature must configure "moby": false',
+      },
+    ],
+    name: 'plugin-devcontainer-docker-in-docker-moby',
+  },
+  {
+    expected: [],
+    name: 'plugin-devcontainer-docker-in-docker-valid',
+  },
+  {
+    expected: [
+      {
         filePath: 'e2e/main.ts:3',
         message:
           'Use FileSystem.setFiles([...fileItems]) instead of multiple adjacent FileSystem.writeFile calls so files can be written in parallel.',
