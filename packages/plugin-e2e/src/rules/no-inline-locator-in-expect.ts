@@ -86,10 +86,7 @@ const isLocatorCall = (node: unknown): node is CallExpressionNode => {
     return node.callee.name === 'Locator'
   }
   return (
-    isMemberExpressionNode(node.callee) &&
-    !node.callee.computed &&
-    isIdentifierNode(node.callee.property) &&
-    node.callee.property.name === 'locator'
+    isMemberExpressionNode(node.callee) && !node.callee.computed && isIdentifierNode(node.callee.property) && node.callee.property.name === 'locator'
   )
 }
 

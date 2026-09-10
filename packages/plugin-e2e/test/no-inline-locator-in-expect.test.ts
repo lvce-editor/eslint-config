@@ -43,7 +43,7 @@ async function test() {
     "const title = card.locator('.Title'); expect(title).toHaveText('Title')",
     "expect(card.textContent()).toBe('Title')",
     "card.locator('.Title')",
-    "expect(card.locator).toBeDefined()",
+    'expect(card.locator).toBeDefined()',
     {
       code: `
 async function test() {
