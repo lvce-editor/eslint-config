@@ -79,7 +79,18 @@ const isTsNonNullExpression = (node: unknown): node is TsNonNullExpression => {
 }
 
 const isLocatorCall = (node: unknown): node is CallExpressionNode => {
-  return isCallExpressionNode(node) && isIdentifierNode(node.callee) && node.callee.name === 'Locator'
+  if (!isCallExpressionNode(node)) {
+    return false
+  }
+  if (isIdentifierNode(node.callee)) {
+    return node.callee.name === 'Locator'
+  }
+  return (
+    isMemberExpressionNode(node.callee) &&
+    !node.callee.computed &&
+    isIdentifierNode(node.callee.property) &&
+    node.callee.property.name === 'locator'
+  )
 }
 
 const containsInlineLocatorCall = (node: unknown): boolean => {

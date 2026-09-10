@@ -11,6 +11,18 @@ const ruleTester = new RuleTester({
 ruleTester.run('no-inline-locator-in-expect', rule, {
   invalid: [
     {
+      code: "expect(card.locator('.ComponentStateCardTitle')).toHaveText(component.displayName || component.moduleId)",
+      errors: [{ messageId: 'noInlineLocatorInExpect' }],
+    },
+    {
+      code: "expect(card.locator('.Title').first()).toBeVisible()",
+      errors: [{ messageId: 'noInlineLocatorInExpect' }],
+    },
+    {
+      code: "expect(card?.locator('.Title')).toBeVisible()",
+      errors: [{ messageId: 'noInlineLocatorInExpect' }],
+    },
+    {
       code: `
 async function test() {
   await expect(Locator('.ChatModelPicker')).toBeVisible()
@@ -28,6 +40,10 @@ async function test() {
     },
   ],
   valid: [
+    "const title = card.locator('.Title'); expect(title).toHaveText('Title')",
+    "expect(card.textContent()).toBe('Title')",
+    "card.locator('.Title')",
+    "expect(card.locator).toBeDefined()",
     {
       code: `
 async function test() {
