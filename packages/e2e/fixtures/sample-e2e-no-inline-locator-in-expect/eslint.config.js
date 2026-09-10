@@ -3,6 +3,7 @@ import { defineConfig } from 'eslint/config'
 
 export default defineConfig([
   ...config.default,
+  ...config.recommendedE2e,
   {
     rules: {},
   },
