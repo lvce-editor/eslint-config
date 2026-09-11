@@ -148,3 +148,15 @@ void test('disallows local text helpers in the recommended preset', () => {
   equal(messages.length, 1)
   equal(messages[0].ruleId, 'virtual-dom/no-text-helper')
 })
+
+void test('enforces class name hoisting in source files only', () => {
+  const code = `import { mergeClassNames } from '@lvce-editor/virtual-dom-worker';
+export const render = () => mergeClassNames('Button', 'Disabled')`
+  const linter = new Linter()
+  for (const config of [recommended, strict]) {
+    const messages = linter.verify(code, config, { filename: 'src/render.js' })
+    equal(messages.length, 1)
+    equal(messages[0].ruleId, 'virtual-dom/hoist-class-names')
+    deepEqual(linter.verify(code, config, { filename: 'test/render.test.js' }), [])
+  }
+})
