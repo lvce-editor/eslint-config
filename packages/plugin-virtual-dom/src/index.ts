@@ -1,6 +1,7 @@
 import type { Linter } from 'eslint'
 import * as accessibleControlName from './rules/accessible-control-name.ts'
 import * as clickableDivNeedsRole from './rules/clickable-div-needs-role.ts'
+import * as hoistClassNames from './rules/hoist-class-names.ts'
 import * as hoistStaticNodes from './rules/hoist-static-nodes.ts'
 import * as noConditionalSpread from './rules/no-conditional-spread.ts'
 import * as noElementHelper from './rules/no-element-helper.ts'
@@ -40,6 +41,7 @@ const plugin = {
   rules: {
     'accessible-control-name': accessibleControlName,
     'clickable-div-needs-role': clickableDivNeedsRole,
+    'hoist-class-names': hoistClassNames,
     'hoist-static-nodes': hoistStaticNodes,
     'no-conditional-spread': noConditionalSpread,
     'no-element-helper': noElementHelper,
@@ -80,6 +82,7 @@ const recommended: Linter.Config[] = [
     },
     rules: {
       'virtual-dom/clickable-div-needs-role': 'error',
+      'virtual-dom/hoist-class-names': 'error',
       'virtual-dom/hoist-static-nodes': 'error',
       'virtual-dom/no-conditional-spread': 'error',
       'virtual-dom/no-element-helper': 'error',
@@ -106,6 +109,7 @@ const recommended: Linter.Config[] = [
   {
     files: ['**/test/**/*.{js,mjs,cjs,ts,mts,cts}', '**/tests/**/*.{js,mjs,cjs,ts,mts,cts}', '**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts}'],
     rules: {
+      'virtual-dom/hoist-class-names': 'off',
       'virtual-dom/hoist-static-nodes': 'off',
       'virtual-dom/prefer-merge-class-names': 'off',
     },

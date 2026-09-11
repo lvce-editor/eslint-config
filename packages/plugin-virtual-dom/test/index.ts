@@ -1,3 +1,4 @@
+import './hoist-class-names.test.ts'
 import './accessible-control-name.test.ts'
 import './clickable-div-needs-role.test.ts'
 import './hoist-static-nodes.test.ts'
