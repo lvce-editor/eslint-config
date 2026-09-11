@@ -7,6 +7,7 @@ import * as ClassNames from './ClassNames.ts';`
 
 ruleTester.run('hoist-class-names', rule, {
   invalid: [
+    `import { ClassNames as Names, mergeClassNames } from '@lvce-editor/virtual-dom-worker'; const render = () => mergeClassNames(Names.Button, Names.Disabled)`,
     `${imports} function render(value) { return { className: mergeClassNames(ClassNames.Button, ClassNames.Disabled), value } }`,
     `${imports} const render = () => mergeClassNames('Button', 'Disabled')`,
     `${imports} const base = 'Button'; const alias = base; const render = function () { return mergeClassNames(alias, 'Disabled') }`,
