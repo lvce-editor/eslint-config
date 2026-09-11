@@ -102,7 +102,7 @@ const isStatic = (sourceCode: SourceCode, node: ESTree.Node, seen = new Set<Scop
 export const create = (context: Rule.RuleContext): Rule.RuleListener => {
   return {
     CallExpression(node: ESTree.CallExpression): void {
-      if (node.optional || !isMergeClassNames(context.sourceCode, node.callee)) {
+      if (node.type !== 'CallExpression' || node.optional || !isMergeClassNames(context.sourceCode, node.callee)) {
         return
       }
       if (
