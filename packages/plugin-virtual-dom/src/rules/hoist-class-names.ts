@@ -77,13 +77,17 @@ const isStatic = (sourceCode: SourceCode, node: ESTree.Node, seen = new Set<Scop
       const variable = findVariable(sourceCode, node.object)
       return Boolean(
         variable?.defs.some((definition) => {
+          if (definition.type !== 'ImportBinding') {
+            return false
+          }
+          if (definition.node.type === 'ImportNamespaceSpecifier') {
+            return /(?:^|\/)ClassNames\.(?:js|ts)$/.test(String(definition.parent.source.value))
+          }
           return (
-            definition.type === 'ImportBinding' &&
-            ((definition.node.type === 'ImportNamespaceSpecifier' && /(?:^|\/)ClassNames\.(?:js|ts)$/.test(String(definition.parent.source.value))) ||
-              (definition.node.type === 'ImportSpecifier' &&
-                definition.node.imported.type === 'Identifier' &&
-                definition.node.imported.name === 'ClassNames' &&
-                definition.parent.source.value === '@lvce-editor/virtual-dom-worker'))
+            definition.node.type === 'ImportSpecifier' &&
+            definition.node.imported.type === 'Identifier' &&
+            definition.node.imported.name === 'ClassNames' &&
+            definition.parent.source.value === '@lvce-editor/virtual-dom-worker'
           )
         }),
       )
