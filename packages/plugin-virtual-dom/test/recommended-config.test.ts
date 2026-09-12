@@ -160,3 +160,17 @@ export const render = () => mergeClassNames('Button', 'Disabled')`
     deepEqual(linter.verify(code, config, { filename: 'test/render.test.js' }), [])
   }
 })
+
+void test('restricts dependency versions in root and workspace manifests', () => {
+  const linter = new Linter()
+  for (const config of [recommended, strict]) {
+    for (const filename of ['package.json', 'packages/worker/package.json']) {
+      const messages = linter.verify('{"devDependencies":{"typescript":"7.0.2","eslint":"10.10.0"}}', config, { filename })
+      deepEqual(
+        messages.map((message) => message.ruleId),
+        ['virtual-dom/no-restricted-dependencies', 'virtual-dom/no-restricted-dependencies'],
+      )
+      deepEqual(linter.verify('{"devDependencies":{"typescript":"^6.0.3","eslint":"10.8.1"}}', config, { filename }), [])
+    }
+  }
+})

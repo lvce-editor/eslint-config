@@ -1,4 +1,5 @@
 import type { Linter } from 'eslint'
+import json from '@eslint/json'
 import * as accessibleControlName from './rules/accessible-control-name.ts'
 import * as clickableDivNeedsRole from './rules/clickable-div-needs-role.ts'
 import * as hoistClassNames from './rules/hoist-class-names.ts'
@@ -12,6 +13,7 @@ import * as noInlineStyle from './rules/no-inline-style.ts'
 import * as noNullishAttributeValues from './rules/no-nullish-attribute-values.ts'
 import * as noObjectAttributeValues from './rules/no-object-attribute-values.ts'
 import * as noPositiveTabIndex from './rules/no-positive-tab-index.ts'
+import * as noRestrictedDependencies from './rules/no-restricted-dependencies.ts'
 import * as noRawTextChildren from './rules/no-raw-text-children.ts'
 import * as noSharedEventListenerHandlers from './rules/no-shared-event-listener-handlers.ts'
 import * as noTextHelper from './rules/no-text-helper.ts'
@@ -53,6 +55,7 @@ const plugin = {
     'no-object-attribute-values': noObjectAttributeValues,
     'no-positive-tab-index': noPositiveTabIndex,
     'no-raw-text-children': noRawTextChildren,
+    'no-restricted-dependencies': noRestrictedDependencies,
     'no-shared-event-listener-handlers': noSharedEventListenerHandlers,
     'no-text-helper': noTextHelper,
     'no-tree-helper': noTreeHelper,
@@ -74,7 +77,23 @@ const plugin = {
   },
 }
 
+export const recommendedDependencies: Linter.Config[] = [
+  {
+    files: ['**/package.json'],
+    language: 'json/json',
+    plugins: {
+      // @ts-ignore
+      json,
+      'virtual-dom': plugin,
+    },
+    rules: {
+      'virtual-dom/no-restricted-dependencies': 'error',
+    },
+  },
+]
+
 const recommended: Linter.Config[] = [
+  ...recommendedDependencies,
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts}'],
     plugins: {
