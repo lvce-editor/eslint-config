@@ -21,7 +21,7 @@ export const meta: Rule.RuleMetaData = {
       properties: {
         restrictions: {
           additionalProperties: {
-            anyOf: [{ type: 'string', minLength: 1 }, { enum: [false] }],
+            anyOf: [{ minLength: 1, type: 'string' }, { enum: [false] }],
           },
           type: 'object',
         },
@@ -50,21 +50,20 @@ export const create = (context: Rule.RuleContext): { readonly Document: (node: a
         }
         for (const dependency of section.value.members) {
           const name = dependency.name.value
-          if (!Object.hasOwn(restrictions, name)) {
-            continue
-          }
-          const allowed = restrictions[name]
-          if (allowed === false) {
-            context.report({ loc: dependency.name.loc, messageId: 'forbidden', data: { name } })
-            continue
-          }
-          const version = dependency.value.value
-          if (typeof version !== 'string' || !validRange(version) || !subset(version, allowed, { includePrerelease: true })) {
-            context.report({
-              loc: dependency.value.loc,
-              messageId: 'unsupported',
-              data: { name, allowed, version: String(version) },
-            })
+          if (Object.hasOwn(restrictions, name)) {
+            const allowed = restrictions[name]
+            if (allowed === false) {
+              context.report({ data: { name }, loc: dependency.name.loc, messageId: 'forbidden' })
+            } else {
+              const version = dependency.value.value
+              if (typeof version !== 'string' || !validRange(version) || !subset(version, allowed, { includePrerelease: true })) {
+                context.report({
+                  data: { allowed, name, version: String(version) },
+                  loc: dependency.value.loc,
+                  messageId: 'unsupported',
+                })
+              }
+            }
           }
         }
       }

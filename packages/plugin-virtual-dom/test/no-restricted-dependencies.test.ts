@@ -26,13 +26,13 @@ ruleTester.run('no-restricted-dependencies', rule, {
     })),
     {
       code: '{"dependencies":{"blocked-package":"1.0.0"}}',
-      options: [{ restrictions: { 'blocked-package': false } }],
       errors: [{ messageId: 'forbidden' }],
+      options: [{ restrictions: { 'blocked-package': false } }],
     },
     {
       code: '{"dependencies":{"some-package":"^2.0.0"}}',
-      options: [{ restrictions: { 'some-package': '^1.0.0' } }],
       errors: [{ messageId: 'unsupported' }],
+      options: [{ restrictions: { 'some-package': '^1.0.0' } }],
     },
     {
       code: '{"devDependencies":{"typescript":6}}',
