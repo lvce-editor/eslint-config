@@ -16,9 +16,10 @@
     "@types/estree": "^1.0.9",
     "@types/jest": "^30.0.0",
     "@types/node": "^22.10.6",
-    "eslint": "^10.8.1",
+    "eslint": "10.8.1",
     "jest": "^30.4.2",
-    "ts-jest": "^29.4.11"
+    "ts-jest": "^29.4.11",
+    "@types/semver": "^7.7.0"
   },
   "jest": {
     "injectGlobals": false,
@@ -43,5 +44,8 @@
     "modulePathIgnorePatterns": [
       "<rootDir>/fixtures/"
     ]
+  },
+  "dependencies": {
+    "semver": "^7.7.2"
   }
 }

@@ -45,12 +45,12 @@
     "typescript-eslint": "8.63.0"
   },
   "peerDependencies": {
-    "eslint": "^10"
+    "eslint": ">=10.0.0 <10.10.0-0"
   },
   "devDependencies": {
     "@lvce-editor/eslint-config": "^18.4.0",
     "@types/node": "^24.2.1",
-    "eslint": "^10.8.1",
+    "eslint": "10.8.1",
     "eslint-plugin-eslint-plugin": "^7.4.1",
     "knip": "^6.29.0",
     "prettier": "^3.9.4",

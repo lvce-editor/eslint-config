@@ -536,6 +536,7 @@ const defaultConfig = tseslint.config(
       'e18e/ban-dependencies': 'off',
     },
   },
+  ...virtualDomPlugin.recommendedDependencies,
   ...e2ePlugin.default,
   ...devcontainerPlugin.default,
   ...extensionJsonPlugin.default,
