@@ -1,5 +1,5 @@
 import { RuleTester } from 'eslint'
-import * as rule from '../src/rules/no-renderer-worker-destructuring.ts'
+import * as rule from '../src/rules/no-rpc-registry-destructuring.ts'
 
 const ruleTester = new RuleTester({
   languageOptions: {
@@ -8,8 +8,20 @@ const ruleTester = new RuleTester({
   },
 })
 
-ruleTester.run('no-renderer-worker-destructuring', rule, {
+ruleTester.run('no-rpc-registry-destructuring', rule, {
   invalid: [
+    ...['FileSystemWorker', 'EditorWorker', 'FileSystemProcess', 'ExtensionHost', 'ProcessExplorer'].map((name) => ({
+      code: `import { ${name} as Worker } from '@lvce-editor/rpc-registry'; export const { set } = Worker`,
+      errors: [{ messageId: 'noRpcRegistryDestructuring' }],
+    })),
+    {
+      code: "import * as Registry from '@lvce-editor/rpc-registry'; const { set: renamed, ...rest } = Registry['FileSystemWorker']",
+      errors: [{ messageId: 'noRpcRegistryDestructuring' }],
+    },
+    {
+      code: "import { FileSystemWorker } from '@lvce-editor/rpc-registry'; let set; ({ set } = FileSystemWorker)",
+      errors: [{ messageId: 'noRpcRegistryDestructuring' }],
+    },
     {
       code: `
 import { RendererWorker } from '@lvce-editor/rpc-registry'
@@ -22,7 +34,7 @@ export const { getActiveEditorId, set } = RendererWorker
           endColumn: 40,
           endLine: 4,
           line: 4,
-          messageId: 'noRendererWorkerDestructuring',
+          messageId: 'noRpcRegistryDestructuring',
         },
       ],
     },
@@ -34,7 +46,7 @@ const { set } = Worker
 `,
       errors: [
         {
-          messageId: 'noRendererWorkerDestructuring',
+          messageId: 'noRpcRegistryDestructuring',
         },
       ],
     },
@@ -46,7 +58,7 @@ const { set } = RpcRegistry.RendererWorker
 `,
       errors: [
         {
-          messageId: 'noRendererWorkerDestructuring',
+          messageId: 'noRpcRegistryDestructuring',
         },
       ],
     },
@@ -59,12 +71,16 @@ let set
 `,
       errors: [
         {
-          messageId: 'noRendererWorkerDestructuring',
+          messageId: 'noRpcRegistryDestructuring',
         },
       ],
     },
   ],
   valid: [
+    { code: "import { FileSystemWorker } from '@lvce-editor/rpc-registry'; export const set = FileSystemWorker.set" },
+    { code: "import * as Registry from '@lvce-editor/rpc-registry'; const { FileSystemWorker } = Registry" },
+    { code: "import { FileSystemWorker } from '@lvce-editor/rpc-registry'; function read(FileSystemWorker) { const { set } = FileSystemWorker }" },
+    { code: "import * as Registry from '@lvce-editor/rpc-registry'; function read(Registry) { const { set } = Registry.FileSystemWorker }" },
     {
       code: `
 import { RendererWorker } from '@lvce-editor/rpc-registry'
@@ -99,7 +115,7 @@ RendererWorker.set()
     },
     {
       code: `
-import { EditorWorker } from '@lvce-editor/rpc-registry'
+import { RpcId as EditorWorker } from '@lvce-editor/rpc-registry'
 
 const { set } = EditorWorker
 `,
