@@ -1,5 +1,5 @@
 import type { Linter } from 'eslint'
-import * as noRendererWorkerDestructuring from './rules/no-renderer-worker-destructuring.ts'
+import * as noRpcRegistryDestructuring from './rules/no-rpc-registry-destructuring.ts'
 import * as preferUsingMockRpc from './rules/prefer-using-mock-rpc.ts'
 
 const plugin = {
@@ -9,7 +9,8 @@ const plugin = {
     version: '0.0.1',
   },
   rules: {
-    'no-renderer-worker-destructuring': noRendererWorkerDestructuring,
+    'no-renderer-worker-destructuring': noRpcRegistryDestructuring,
+    'no-rpc-registry-destructuring': noRpcRegistryDestructuring,
     'prefer-using-mock-rpc': preferUsingMockRpc,
   },
 }
@@ -21,7 +22,7 @@ const recommended: Linter.Config[] = [
       rpc: plugin,
     },
     rules: {
-      'rpc/no-renderer-worker-destructuring': 'error',
+      'rpc/no-rpc-registry-destructuring': 'error',
       'rpc/prefer-using-mock-rpc': 'error',
     },
   },

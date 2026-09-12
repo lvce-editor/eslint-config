@@ -2,14 +2,16 @@ import type { Rule } from 'eslint'
 import type * as ESTree from 'estree'
 
 const rpcRegistryModule = '@lvce-editor/rpc-registry'
-const rendererWorkerName = 'RendererWorker'
+const isWorkerName = (name: unknown): boolean => {
+  return typeof name === 'string' && (/(?:Worker|Process)$/.test(name) || name === 'ExtensionHost' || name === 'ProcessExplorer')
+}
 
 export const meta: Rule.RuleMetaData = {
   docs: {
-    description: 'Disallow destructuring RendererWorker to preserve tree shaking',
+    description: 'Disallow destructuring RPC registry workers to preserve tree shaking',
   },
   messages: {
-    noRendererWorkerDestructuring: 'Do not destructure `RendererWorker`; call its methods directly so they can be tree-shaken.',
+    noRpcRegistryDestructuring: 'Do not destructure RPC registry workers; call its methods directly so they can be tree-shaken.',
   },
   type: 'problem',
 }
@@ -30,13 +32,13 @@ const isImportFromRpcRegistry = (definition: any): boolean => {
   return definition.type === 'ImportBinding' && definition.parent?.source?.value === rpcRegistryModule
 }
 
-const isRendererWorkerImport = (variable: any): boolean => {
+const isWorkerImport = (variable: any): boolean => {
   return variable?.defs.some((definition: any) => {
     if (!isImportFromRpcRegistry(definition) || definition.node?.type !== 'ImportSpecifier') {
       return false
     }
     const { imported } = definition.node
-    return imported?.name === rendererWorkerName || imported?.value === rendererWorkerName
+    return isWorkerName(imported?.name ?? imported?.value)
   })
 }
 
@@ -53,23 +55,23 @@ const unwrapExpression = (node: any): any => {
   return node
 }
 
-const isRendererWorkerProperty = (node: any): boolean => {
+const isWorkerProperty = (node: any): boolean => {
   if (node.computed) {
-    return node.property?.type === 'Literal' && node.property.value === rendererWorkerName
+    return node.property?.type === 'Literal' && isWorkerName(node.property.value)
   }
-  return node.property?.type === 'Identifier' && node.property.name === rendererWorkerName
+  return node.property?.type === 'Identifier' && isWorkerName(node.property.name)
 }
 
-const isRendererWorkerExpression = (context: Rule.RuleContext, expression: any, node: ESTree.Node): boolean => {
+const isWorkerExpression = (context: Rule.RuleContext, expression: any, node: ESTree.Node): boolean => {
   const unwrappedExpression = unwrapExpression(expression)
   const scope = context.sourceCode.getScope(node)
   if (unwrappedExpression?.type === 'Identifier') {
-    return isRendererWorkerImport(findVariable(scope, unwrappedExpression.name))
+    return isWorkerImport(findVariable(scope, unwrappedExpression.name))
   }
   if (
     unwrappedExpression?.type !== 'MemberExpression' ||
     unwrappedExpression.object?.type !== 'Identifier' ||
-    !isRendererWorkerProperty(unwrappedExpression)
+    !isWorkerProperty(unwrappedExpression)
   ) {
     return false
   }
@@ -78,7 +80,7 @@ const isRendererWorkerExpression = (context: Rule.RuleContext, expression: any, 
 
 const reportObjectPattern = (context: Rule.RuleContext, pattern: ESTree.ObjectPattern): void => {
   context.report({
-    messageId: 'noRendererWorkerDestructuring',
+    messageId: 'noRpcRegistryDestructuring',
     node: pattern,
   })
 }
@@ -86,12 +88,12 @@ const reportObjectPattern = (context: Rule.RuleContext, pattern: ESTree.ObjectPa
 export const create = (context: Rule.RuleContext): Rule.RuleListener => {
   return {
     AssignmentExpression(node: ESTree.AssignmentExpression): void {
-      if (node.left.type === 'ObjectPattern' && isRendererWorkerExpression(context, node.right, node)) {
+      if (node.left.type === 'ObjectPattern' && isWorkerExpression(context, node.right, node)) {
         reportObjectPattern(context, node.left)
       }
     },
     VariableDeclarator(node: ESTree.VariableDeclarator): void {
-      if (node.id.type === 'ObjectPattern' && isRendererWorkerExpression(context, node.init, node)) {
+      if (node.id.type === 'ObjectPattern' && isWorkerExpression(context, node.init, node)) {
         reportObjectPattern(context, node.id)
       }
     },
