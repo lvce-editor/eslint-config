@@ -11,7 +11,7 @@ export const meta: Rule.RuleMetaData = {
     description: 'Disallow destructuring RPC registry workers to preserve tree shaking',
   },
   messages: {
-    noRpcRegistryDestructuring: 'Do not destructure RPC registry workers; call its methods directly so they can be tree-shaken.',
+    noRpcRegistryDestructuring: 'Do not destructure RPC registry workers; access their methods directly so they can be tree-shaken.',
   },
   type: 'problem',
 }
