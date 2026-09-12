@@ -2,7 +2,7 @@
 
 > ESLint configuration for LVCE Editor
 
-### Dependency restrictions
+## Dependency restrictions
 
 The shared configuration and virtual DOM presets enable
 `virtual-dom/no-restricted-dependencies` for `package.json`. It checks dependencies,
