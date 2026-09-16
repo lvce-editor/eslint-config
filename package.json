@@ -45,7 +45,7 @@
     "typescript-eslint": "8.63.0"
   },
   "peerDependencies": {
-    "eslint": ">=10.0.0 <10.10.0-0"
+    "eslint": ">=10.0.0 <11.0.0-0"
   },
   "devDependencies": {
     "@lvce-editor/eslint-config": "^18.12.0",

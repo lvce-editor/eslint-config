@@ -2,7 +2,7 @@ import type { Rule } from 'eslint'
 import { subset, validRange } from 'semver'
 
 const defaultRestrictions: Readonly<Record<string, string | false>> = {
-  eslint: '<10.10.0-0',
+  eslint: '<11.0.0-0',
   typescript: '>=6.0.0-0 <7.0.0-0',
 }
 const dependencySections = new Set(['dependencies', 'devDependencies', 'optionalDependencies', 'peerDependencies'])

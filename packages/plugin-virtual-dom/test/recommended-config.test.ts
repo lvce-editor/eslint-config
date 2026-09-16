@@ -165,7 +165,7 @@ void test('restricts dependency versions in root and workspace manifests', () =>
   const linter = new Linter()
   for (const config of [recommended, strict]) {
     for (const filename of ['package.json', 'packages/worker/package.json']) {
-      const messages = linter.verify('{"devDependencies":{"typescript":"7.0.2","eslint":"10.10.0"}}', config, { filename })
+      const messages = linter.verify('{"devDependencies":{"typescript":"7.0.2","eslint":"11.0.0"}}', config, { filename })
       deepEqual(
         messages.map((message: { readonly ruleId: string | null; readonly message: string }) => message.ruleId),
         ['virtual-dom/no-restricted-dependencies', 'virtual-dom/no-restricted-dependencies'],

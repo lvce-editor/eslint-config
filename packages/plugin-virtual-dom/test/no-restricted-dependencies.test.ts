@@ -20,7 +20,7 @@ ruleTester.run('no-restricted-dependencies', rule, {
       code: JSON.stringify({ devDependencies: { typescript: version } }),
       errors: [{ messageId: 'unsupported' }],
     })),
-    ...['10.10.0', '^10.8.1', '>=10', '11.0.0'].map((version) => ({
+    ...['11.0.0', '^11.0.0', '>=10'].map((version) => ({
       code: JSON.stringify({ devDependencies: { eslint: version } }),
       errors: [{ messageId: 'unsupported' }],
     })),
@@ -48,8 +48,10 @@ ruleTester.run('no-restricted-dependencies', rule, {
     ...['6.0.3', '^6.0.3', '~6.0.3', '6', '6.x', '>=6.0.0 <7.0.0-0', '6.0.0 - 6.9.0'].map((version) => ({
       code: JSON.stringify({ devDependencies: { typescript: version } }),
     })),
-    '{"devDependencies":{"eslint":"10.8.1"}}',
-    '{"peerDependencies":{"eslint":">=10.0.0 <10.10.0-0"}}',
+    ...['10.0.0', '10.10.0', '10.99.99', '^10.8.1', '>=10 <11'].map((version) => ({
+      code: JSON.stringify({ devDependencies: { eslint: version } }),
+    })),
+    '{"peerDependencies":{"eslint":">=10.0.0 <11.0.0-0"}}',
     {
       code: '{"dependencies":{"typescript":"7.0.2"}}',
       options: [{ restrictions: { typescript: '^7.0.0' } }],
