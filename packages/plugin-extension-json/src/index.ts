@@ -1,6 +1,7 @@
 import type { Linter } from 'eslint'
 import json from '@eslint/json'
 import * as contentSecurityPolicy from './rules/content-security-policy.ts'
+import * as nonEmptyLanguages from './rules/non-empty-languages.ts'
 import * as validKeybindings from './rules/valid-keybindings.ts'
 
 const plugin = {
@@ -11,6 +12,7 @@ const plugin = {
   },
   rules: {
     'content-security-policy': contentSecurityPolicy,
+    'non-empty-languages': nonEmptyLanguages,
     'valid-keybindings': validKeybindings,
   },
 }
@@ -26,6 +28,7 @@ const recommended: Linter.Config[] = [
     },
     rules: {
       'extension-json/content-security-policy': 'error',
+      'extension-json/non-empty-languages': 'error',
       'extension-json/valid-keybindings': 'error',
     },
   },

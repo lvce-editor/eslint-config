@@ -102,6 +102,15 @@ const cases = [
   {
     expected: [
       {
+        filePath: 'extension.json:2',
+        message: 'extension languages array must not be empty',
+      },
+    ],
+    name: 'plugin-extension-json-non-empty-languages',
+  },
+  {
+    expected: [
+      {
         filePath: '.devcontainer/devcontainer.json:2',
         message: 'Unsupported devcontainer image: node:24',
       },
