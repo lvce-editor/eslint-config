@@ -12,6 +12,7 @@ ruleTester.run('valid-event-properties', rule, {
   ],
   valid: [
     `const node = { childCount: 0, onContextMenu: Events.ContextMenu, type: Elements.Div }`,
+    `const node = { childCount: 0, onError: Events.MediaError, onLoadedData: Events.MediaReady, type: Elements.Video }`,
     `const value = { onContextmenu: 1, type: MessageType.Info }`,
   ],
 })
