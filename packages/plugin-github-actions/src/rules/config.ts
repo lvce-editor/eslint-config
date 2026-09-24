@@ -1,6 +1,6 @@
 export const config = {
   macos: ['macos-15', 'macos-26'],
-  ubuntu: ['ubuntu-24.04', 'ubuntu-24.04-arm'],
+  ubuntu: ['ubuntu-24.04', 'ubuntu-24.04-arm', 'ubuntu-26.04', 'ubuntu-26.04-arm'],
   windows: ['windows-2025', 'windows-11-arm'],
 }
 
