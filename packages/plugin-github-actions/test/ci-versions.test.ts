@@ -51,6 +51,20 @@ jobs:
     {
       code: `
 jobs:
+  direct:
+    runs-on: ubuntu-26.04
+  arm:
+    runs-on: ubuntu-26.04-arm
+  ci:
+    strategy:
+      matrix:
+        os: [ubuntu-24.04, ubuntu-24.04-arm, ubuntu-26.04, ubuntu-26.04-arm, macos-15, windows-2025]
+    runs-on: \${{ matrix.os }}
+`,
+    },
+    {
+      code: `
+jobs:
   ci:
     strategy:
       matrix:
