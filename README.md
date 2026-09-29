@@ -2,6 +2,12 @@
 
 > ESLint configuration for LVCE Editor
 
+Try JavaScript ESLint core rules and LVCE's `regex/hoist-regex` rule in the
+[browser playground](https://lvce-editor.github.io/eslint-config/). The preview
+runs locally in your browser. TypeScript project rules, configuration-file
+rules, and rules that inspect workspace files require a local project and are
+not included in the browser preview.
+
 ## Dependency restrictions
 
 The shared configuration and virtual DOM presets enable
