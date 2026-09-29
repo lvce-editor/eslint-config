@@ -5,6 +5,15 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   ci:
     strategy:
@@ -30,6 +39,26 @@ jobs:
         run: npm ci
         if: steps.npm-cache.outputs.cache-hit != 'true'
       - run: npm run build
+      - run: npm run build:static
       - run: npm test
       - run: npm run type-check
       - run: npm run lint
+      - name: Configure GitHub Pages
+        if: matrix.os == 'ubuntu-24.04'
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        if: matrix.os == 'ubuntu-24.04'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ./.tmp/static
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-24.04
+    needs: ci
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
