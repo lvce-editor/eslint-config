@@ -6,6 +6,7 @@
   "license": "MIT",
   "description": "Build scripts for the ESLint configuration.",
   "scripts": {
+    "test": "node --test",
     "update-action-versions": "node src/updateActionVersions.ts"
   },
   "devDependencies": {

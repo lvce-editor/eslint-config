@@ -1,8 +1,0 @@
-{
-  "name": "playground",
-  "version": "0.0.0-dev",
-  "type": "module",
-  "scripts": {
-    "test": "node --test"
-  }
-}
