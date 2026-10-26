@@ -33,6 +33,7 @@ export const bundleJs = async ({ inFile, outFile }) => {
       'eslint-compat-utils',
       'eslint-plugin-yml',
       '@eslint/json',
+      '@eslint/css',
     ],
     plugins: [
       babel({

@@ -583,4 +583,6 @@ export const recommendedRpc = [...rpcPlugin.default]
 
 export const recommendedEslintConfig = [...eslintConfigPlugin.default]
 
+export const recommendedQuickPickCss = [...eslintConfigPlugin.recommendedQuickPickCss]
+
 export default defaultConfig

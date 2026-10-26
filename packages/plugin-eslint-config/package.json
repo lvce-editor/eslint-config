@@ -43,5 +43,8 @@
     "modulePathIgnorePatterns": [
       "<rootDir>/fixtures/"
     ]
+  },
+  "dependencies": {
+    "@eslint/css": "^2.0.1"
   }
 }
