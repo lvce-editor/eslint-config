@@ -5,6 +5,19 @@
 Explore the full LVCE Editor IDE at <https://lvce-editor.github.io/eslint-config/>.
 The statically hosted editor runs directly in your browser without a development server.
 
+## Quick-pick CSS linting
+
+Projects that lint quick-pick stylesheets can add `recommendedQuickPickCss` to their
+flat config. It enables CSS parsing and reports `contain: strict` on `.QuickPickItem`
+selectors, where strict containment increased paint events in the LVCE quick-pick
+benchmark. Other selectors can still use strict containment.
+
+```js
+import * as config from '@lvce-editor/eslint-config'
+
+export default [...config.default, ...config.recommendedQuickPickCss]
+```
+
 ## Dependency restrictions
 
 The shared configuration and virtual DOM presets enable
