@@ -1,6 +1,7 @@
 import { RuleTester } from 'eslint'
 import * as parser from '../src/parser.ts'
 import * as rule from '../src/rules/valid-version.ts'
+import { insecureVersionRule } from '../src/rules/valid-version.ts'
 
 const ruleTester = new RuleTester({
   languageOptions: {
@@ -139,4 +140,15 @@ ruleTester.run('valid-version', rule, {
       ],
     },
   ],
+})
+
+ruleTester.run('insecure-version', insecureVersionRule, {
+  invalid: [
+    { code: '22.23.3', errors: [{ messageId: 'insecureVersion' }] },
+    { code: '24.22.0', errors: [{ messageId: 'insecureVersion' }] },
+    { code: '26.12.0', errors: [{ messageId: 'insecureVersion' }] },
+    { code: 'v26.12.0', errors: [{ messageId: 'insecureVersion' }] },
+    { code: ' 26.12.0 ', errors: [{ messageId: 'insecureVersion' }] },
+  ],
+  valid: ['22.23.4', '24.22.1', '26.12.1', '26.13.0'].map((code) => ({ code })),
 })

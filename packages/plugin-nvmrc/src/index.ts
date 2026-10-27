@@ -9,6 +9,7 @@ const plugin = {
     version: '0.0.1',
   },
   rules: {
+    'insecure-version': validVersion.insecureVersionRule,
     'valid-version': validVersion,
   },
 }
@@ -23,6 +24,7 @@ const recommended: Linter.Config[] = [
       nvmrc: plugin,
     },
     rules: {
+      'nvmrc/insecure-version': 'error',
       'nvmrc/valid-version': 'error',
     },
   },
