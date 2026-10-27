@@ -5,6 +5,7 @@ import semver from 'semver'
 const defaultMinimumVersion = '20.0.0'
 const defaultMaximumVersion = '24.15.0'
 const defaultBadVersions = ['24.16.0']
+const insecureVersionRanges = ['<22.23.4', '>=23 <24', '>=24 <24.22.1', '>=25 <26', '>=26 <26.12.1']
 const versionPattern = String.raw`^v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$`
 
 interface RuleOptions {
@@ -135,4 +136,40 @@ export const create = (context: Rule.RuleContext): Rule.RuleListener => {
       }
     },
   }
+}
+
+export const insecureVersionRule: Rule.RuleModule = {
+  create(context: Rule.RuleContext): Rule.RuleListener {
+    const { parserServices } = context.sourceCode
+    if (!parserServices?.isNvmrc) {
+      return {}
+    }
+
+    return {
+      Program(node: any): void {
+        const value = context.sourceCode.text.trim()
+        const version = parseVersion(value)
+        if (!version || insecureVersionRanges.every((range) => !semver.satisfies(version, range))) {
+          return
+        }
+        context.report({
+          data: {
+            value: version.version,
+          },
+          messageId: 'insecureVersion',
+          node,
+        })
+      },
+    }
+  },
+  meta: {
+    docs: {
+      description: 'Disallow Node.js versions vulnerable to the Brotli decoder security issue',
+    },
+    messages: {
+      insecureVersion: '.nvmrc version {{value}} is affected by CVE-2026-111497; use a fixed Node.js release (22.23.4, 24.22.1, or 26.12.1) or newer',
+    },
+    schema: [],
+    type: 'problem',
+  },
 }
