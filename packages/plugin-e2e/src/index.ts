@@ -14,6 +14,7 @@ import * as preferExecuteExtensionCommand from './rules/prefer-execute-extension
 import * as preferFileSystemSetFiles from './rules/prefer-filesystem-set-files.ts'
 import * as preferImportMetaResolve from './rules/prefer-import-meta-resolve.ts'
 import * as preferToBeHidden from './rules/prefer-to-be-hidden.ts'
+import * as requireAwaitedOpfsCleanup from './rules/require-awaited-opfs-cleanup.ts'
 
 const plugin = {
   configs: {},
@@ -37,6 +38,7 @@ const plugin = {
     'prefer-filesystem-set-files': preferFileSystemSetFiles,
     'prefer-import-meta-resolve': preferImportMetaResolve,
     'prefer-to-be-hidden': preferToBeHidden,
+    'require-awaited-opfs-cleanup': requireAwaitedOpfsCleanup,
   },
 }
 
@@ -62,6 +64,7 @@ const recommended: Linter.Config[] = [
       'e2e/prefer-filesystem-set-files': 'error',
       'e2e/prefer-import-meta-resolve': 'error',
       'e2e/prefer-to-be-hidden': 'error',
+      'e2e/require-awaited-opfs-cleanup': 'error',
     },
   },
 ]
