@@ -45,3 +45,26 @@ rules: {
   }],
 }
 ```
+
+The recommended e2e configuration enables `e2e/require-awaited-opfs-cleanup`.
+Create OPFS entries inside `try` and await matching `removeEntry` calls in `finally`;
+use `{ recursive: true }` for directories. Nested entries may share their parent
+directory's recursive cleanup. Writable streams also require an awaited `close()`
+in `finally`, so failed writes and assertions still release test resources.
+Acquisition immediately before the protecting `try` is supported. Conditional,
+unawaited, deferred, mismatched, and unreachable cleanup is rejected.
+
+```ts
+const root = await navigator.storage.getDirectory()
+try {
+  const file = await root.getFileHandle('example.txt', { create: true })
+  const writable = await file.createWritable()
+  try {
+    await writable.write('example')
+  } finally {
+    await writable.close()
+  }
+} finally {
+  await root.removeEntry('example.txt')
+}
+```
