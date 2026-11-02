@@ -5,6 +5,11 @@ const ruleTester = new RuleTester({ languageOptions: { ecmaVersion: 'latest', so
 
 ruleTester.run('require-awaited-opfs-cleanup', rule, {
   invalid: [
+    {
+      code: `async function test(root) { try { root.getFileHandle('file', { create: true }) } finally { await root.removeEntry('file') } }`,
+      errors: [{ messageId: 'cleanup' }],
+    },
+
     { code: `async function test(root, options) { await root.getFileHandle('file', options) }`, errors: [{ messageId: 'cleanup' }] },
     { code: `async function test(root, flag) { await root.getFileHandle('file', { create: flag }) }`, errors: [{ messageId: 'cleanup' }] },
     { code: `async function test(root, options) { await root.getFileHandle('file', { ...options }) }`, errors: [{ messageId: 'cleanup' }] },

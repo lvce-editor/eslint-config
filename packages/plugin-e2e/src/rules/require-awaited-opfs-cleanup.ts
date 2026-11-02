@@ -198,6 +198,11 @@ export const create = (context: Rule.RuleContext): Rule.RuleListener => {
       if (!isWritable && !createsEntry) {
         return
       }
+      const parent = context.sourceCode.getAncestors(node).at(-1)
+      if (parent?.type !== 'AwaitExpression') {
+        context.report({ messageId: isWritable ? 'close' : 'cleanup', node })
+        return
+      }
       const finalizers = getFinalizers(context, node)
       const matches = isWritable ? matchesClose : matchesRemoval
       if (finalizers.some((finalizer) => getAwaitedCalls(finalizer).some((cleanup) => matches(context, node, cleanup)))) {
