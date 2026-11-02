@@ -84,16 +84,15 @@ const getDirectoryPath = (context: Rule.RuleContext, node: ESTree.Expression, se
 }
 
 const hasTrueOption = (node: ESTree.Node | undefined, name: string): boolean => {
-  return (
-    node?.type === 'ObjectExpression' &&
-    node.properties.some(
-      (property) =>
-        property.type === 'Property' &&
-        ((property.key.type === 'Identifier' && property.key.name === name) || (property.key.type === 'Literal' && property.key.value === name)) &&
-        property.value.type === 'Literal' &&
-        property.value.value === true,
-    )
+  if (node?.type !== 'ObjectExpression' || node.properties.some((property) => property.type === 'SpreadElement' || property.computed)) {
+    return false
+  }
+  const option = node.properties.findLast(
+    (property) =>
+      property.type === 'Property' &&
+      ((property.key.type === 'Identifier' && property.key.name === name) || (property.key.type === 'Literal' && property.key.value === name)),
   )
+  return option?.type === 'Property' && option.value.type === 'Literal' && option.value.value === true
 }
 
 const mayCreateEntry = (options: ESTree.Node | undefined): boolean => {
@@ -105,6 +104,9 @@ const mayCreateEntry = (options: ESTree.Node | undefined): boolean => {
   }
   return options.properties.some((property) => {
     if (property.type === 'SpreadElement') {
+      return true
+    }
+    if (property.computed) {
       return true
     }
     const isCreate =
