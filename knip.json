@@ -27,5 +27,5 @@
       }
     }
   },
-  "ignoreDependencies": ["@lvce-editor/eslint-config"]
+  "ignoreDependencies": ["@lvce-editor/eslint-config", "@lvce-editor/api"]
 }
