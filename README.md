@@ -68,3 +68,25 @@ try {
   await root.removeEntry('example.txt')
 }
 ```
+
+The default configuration includes type-aware extension provider checks. The
+`recommendedExtension` export also provides these checks as a standalone preset:
+
+```js
+import * as config from '@lvce-editor/eslint-config'
+
+export default [...config.default]
+```
+
+This preset uses the TypeScript parser and project service configured by the
+shared default configuration. When using it on its own, configure
+`typescript-eslint` with `parserOptions.projectService: true`.
+
+`extension/no-empty-optional-provider-method` reports optional methods declared
+by `@lvce-editor/api` provider interfaces whose result explicitly allows
+`undefined`, when their implementation is empty or
+only returns `undefined` (including async methods and arrow functions). For
+example, omit `CompletionProvider.resolveCompletionItem` when there is nothing
+to resolve. Required methods, optional `void` methods, untyped objects, and methods that return a value
+or do work are left alone. The rule deliberately provides no automatic fix:
+removing a method can affect code that inspects a provider's properties.

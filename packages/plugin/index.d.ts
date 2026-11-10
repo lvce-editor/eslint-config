@@ -8,6 +8,7 @@ declare const recommendedVirtualDom: readonly any[]
 declare const recommendedVirtualDomStrict: readonly any[]
 declare const recommendedE2e: readonly any[]
 declare const recommendedDevcontainer: readonly any[]
+declare const recommendedExtension: readonly any[]
 declare const recommendedExtensionJson: readonly any[]
 declare const recommendedRpc: readonly any[]
 declare const recommendedEslintConfig: readonly any[]
@@ -21,6 +22,7 @@ export { recommendedVirtualDom }
 export { recommendedVirtualDomStrict }
 export { recommendedE2e }
 export { recommendedDevcontainer }
+export { recommendedExtension }
 export { recommendedExtensionJson }
 export { recommendedRpc }
 export { recommendedEslintConfig }

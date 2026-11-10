@@ -1,0 +1,24 @@
+{
+  "name": "@lvce-editor/eslint-plugin-extension",
+  "version": "0.0.0-dev",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lvce-editor/eslint-config.git"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "node test/index.ts"
+  },
+  "license": "MIT",
+  "description": "Type-aware ESLint rules for LVCE extension providers.",
+  "devDependencies": {
+    "@lvce-editor/api": "9.54.1",
+    "@types/estree": "^1.0.9",
+    "eslint": "10.9.1",
+    "typescript-eslint": "8.63.0"
+  },
+  "peerDependencies": {
+    "typescript": ">=6.0.0-0 <7.0.0-0"
+  }
+}

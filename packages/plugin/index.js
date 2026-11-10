@@ -51,6 +51,10 @@ const extensionJsonPlugin = await import(extensionJsonUri)
 const rpcUri = '../plugin-rpc/src/index.ts'
 const rpcPlugin = await import(rpcUri)
 
+// @ts-ignore
+const extensionUri = '../plugin-extension/src/index.ts'
+const extensionPlugin = await import(extensionUri)
+
 const root = process.cwd()
 
 /**
@@ -540,6 +544,7 @@ const defaultConfig = tseslint.config(
   ...e2ePlugin.default,
   ...devcontainerPlugin.default,
   ...extensionJsonPlugin.default,
+  ...extensionPlugin.default,
   ...rpcPlugin.default,
   ...eslintConfigPlugin.default,
 )
@@ -576,6 +581,8 @@ export const recommendedVirtualDomStrict = [...virtualDomPlugin.strict]
 export const recommendedE2e = [...e2ePlugin.default]
 
 export const recommendedDevcontainer = [...devcontainerPlugin.default]
+
+export const recommendedExtension = [...extensionPlugin.default]
 
 export const recommendedExtensionJson = [...extensionJsonPlugin.default]
 

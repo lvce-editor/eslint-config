@@ -24,6 +24,7 @@ export const bundleJs = async ({ inFile, outFile }) => {
       inlineDynamicImports: true,
     },
     external: [
+      'typescript',
       '@lvce-editor/ripgrep',
       'electron',
       'execa',

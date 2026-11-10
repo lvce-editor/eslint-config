@@ -40,6 +40,9 @@
     },
     {
       "path": "./packages/plugin-rpc"
+    },
+    {
+      "path": "./packages/plugin-extension"
     }
   ]
 }
