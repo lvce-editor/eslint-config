@@ -9,6 +9,8 @@ const ruleTester = new RuleTester({
   languageOptions: {
     parser: tseslint.parser,
     parserOptions: {
+      // Each test supplies different contents for the same fixture filename.
+      disallowAutomaticSingleRunInference: true,
       project: './tsconfig.json',
       tsconfigRootDir: fixtureRoot,
     },

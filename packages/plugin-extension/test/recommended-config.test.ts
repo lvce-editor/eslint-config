@@ -13,6 +13,8 @@ void test('exported extension preset diagnoses no-op optional methods using actu
       languageOptions: {
         parser: tseslint.parser,
         parserOptions: {
+          // Each test supplies different contents for the same fixture filename.
+          disallowAutomaticSingleRunInference: true,
           project: './tsconfig.json',
           tsconfigRootDir: fileURLToPath(new URL('../fixtures/', import.meta.url)),
         },

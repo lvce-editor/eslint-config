@@ -11,7 +11,8 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-24.04, macos-14, windows-2025]
-    runs-on: ${{ matrix.os }}
+    # Preserve the protected check name while replacing the retired macOS 14 runner.
+    runs-on: ${{ matrix.os == 'macos-14' && 'macos-26' || matrix.os }}
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
