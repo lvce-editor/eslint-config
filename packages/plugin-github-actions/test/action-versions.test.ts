@@ -40,6 +40,19 @@ jobs:
     steps:
       - uses: actions/checkout@v7`,
     },
+    {
+      code: `
+jobs:
+  ci:
+    steps:
+      - uses: docker/setup-buildx-action@v3`,
+      errors: [{ messageId: 'unsupportedActionVersion' }],
+      output: `
+jobs:
+  ci:
+    steps:
+      - uses: docker/setup-buildx-action@v4`,
+    },
   ],
   valid: [
     {
@@ -52,6 +65,13 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7`,
+    },
+    {
+      code: `
+jobs:
+  ci:
+    steps:
+      - uses: docker/setup-buildx-action@v4`,
     },
   ],
 })

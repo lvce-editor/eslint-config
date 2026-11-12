@@ -98,6 +98,7 @@ const defaultConfig = tseslint.config(
               'Iconreplace',
               'Poiner',
               'barfoo',
+              'buildx',
               'offscreencanvas',
               'ylet',
               'Consolas',
