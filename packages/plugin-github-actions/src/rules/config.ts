@@ -20,6 +20,7 @@ export const actions = {
   'actions/setup-python': ['actions/setup-python@v6'],
   'actions/upload-artifact': ['actions/upload-artifact@v7'],
   'actions/upload-pages-artifact': ['actions/upload-pages-artifact@v5'],
+  'docker/setup-buildx-action': ['docker/setup-buildx-action@v4'],
 }
 
 export const npmRegistries = ['https://registry.npmjs.org', 'https://npm.pkg.github.com']
