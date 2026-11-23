@@ -6,14 +6,13 @@ export const meta: Rule.RuleMetaData = {
     description: 'Prefer destructuring e2e test api parameters directly',
   },
   messages: {
+    destructureTestApi: 'Destructure the e2e test API in the first parameter.',
     preferDirectApiDestructuring: 'Destructure the e2e test api in the parameter list instead of from api inside the function body.',
   },
   type: 'problem',
 }
 
-interface FunctionNode extends ESTree.BaseNode {
-  params: readonly unknown[]
-}
+type FunctionNode = ESTree.ArrowFunctionExpression | ESTree.FunctionExpression | ESTree.FunctionDeclaration
 
 interface IdentifierNode extends ESTree.BaseNode {
   name: string
@@ -42,15 +41,39 @@ const isVariableDeclaratorNode = (node: unknown): node is VariableDeclaratorNode
   return typeof node === 'object' && node !== null && 'type' in node && node.type === 'VariableDeclarator' && 'id' in node && 'init' in node
 }
 
-const getParameterNames = (node: FunctionNode): readonly string[] => {
-  return node.params.filter(isIdentifierNode).map((param) => param.name)
+const getParameterNames = (params: FunctionNode['params']): string[] => {
+  return params.filter(isIdentifierNode).map((param) => param.name)
+}
+
+const isExportedTest = (node: FunctionNode, ancestors: ESTree.Node[]): boolean => {
+  if (node.type === 'FunctionDeclaration') {
+    return node.id?.name === 'test' && ancestors.at(-1)?.type === 'ExportNamedDeclaration'
+  }
+  const declarator = ancestors.at(-1)
+  return (
+    declarator?.type === 'VariableDeclarator' &&
+    declarator.id.type === 'Identifier' &&
+    declarator.id.name === 'test' &&
+    ancestors.at(-2)?.type === 'VariableDeclaration' &&
+    ancestors.at(-3)?.type === 'ExportNamedDeclaration'
+  )
 }
 
 export const create = (context: Rule.RuleContext): Rule.RuleListener => {
   const functionParameterNames: string[][] = []
 
   const enterFunction = (node: FunctionNode): void => {
-    functionParameterNames.push([...getParameterNames(node)])
+    const [parameter] = node.params
+    const pattern = parameter?.type === 'AssignmentPattern' ? parameter.left : parameter
+    if (pattern && pattern.type !== 'ObjectPattern' && isExportedTest(node, context.sourceCode.getAncestors(node))) {
+      context.report({
+        messageId: 'destructureTestApi',
+        node: pattern,
+      })
+      functionParameterNames.push(getParameterNames(node.params.slice(1)))
+      return
+    }
+    functionParameterNames.push(getParameterNames(node.params))
   }
 
   const exitFunction = (): void => {

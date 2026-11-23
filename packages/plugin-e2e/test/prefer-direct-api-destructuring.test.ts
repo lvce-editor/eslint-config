@@ -11,13 +11,25 @@ const ruleTester = new RuleTester({
 ruleTester.run('prefer-direct-api-destructuring', rule, {
   invalid: [
     {
+      code: "export const test = (api) => api.expect(api.Locator('.View'))",
+      errors: [{ messageId: 'destructureTestApi' }],
+    },
+    {
+      code: 'export const test = function (runner = fallback) { return runner.Locator(".View") }',
+      errors: [{ messageId: 'destructureTestApi' }],
+    },
+    {
+      code: 'export function test(fixtures) { return fixtures.expect(1) }',
+      errors: [{ messageId: 'destructureTestApi' }],
+    },
+    {
       code: `
 export const test = async (api) => {
   const { DiffView, expect, FileSystem, Locator } = api
   await expect(Locator('.View')).toBeVisible()
 }
 `,
-      errors: [{ messageId: 'preferDirectApiDestructuring' }],
+      errors: [{ messageId: 'destructureTestApi' }],
     },
     {
       code: `
@@ -30,6 +42,9 @@ async function test(api) {
     },
   ],
   valid: [
+    'export const test = () => {}',
+    'export function test({ Locator: locate } = fallback) { return locate(".View") }',
+    'const test = (api) => api.expect(1)',
     {
       code: `
 export const test = async ({ DiffView, expect, FileSystem, Locator }) => {
@@ -39,7 +54,7 @@ export const test = async ({ DiffView, expect, FileSystem, Locator }) => {
     },
     {
       code: `
-export const test = async (api) => {
+export const helper = async (api) => {
   const { DiffView } = otherApi
   await api.expect(DiffView).toBeVisible()
 }

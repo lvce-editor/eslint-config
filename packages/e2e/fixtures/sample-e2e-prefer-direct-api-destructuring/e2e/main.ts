@@ -8,8 +8,7 @@ type TestApi = {
 type Test = (api: TestApi) => Promise<void>
 
 export const test: Test = async (api) => {
-  const { DiffView, expect, FileSystem, Locator } = api
-  const locator = Locator('.View')
-  await expect(locator).toBeVisible()
-  Object.is(DiffView, FileSystem)
+  const locator = api.Locator('.View')
+  await api.expect(locator).toBeVisible()
+  Object.is(api.DiffView, api.FileSystem)
 }
