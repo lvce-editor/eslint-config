@@ -50,7 +50,7 @@ void test('default configuration and standalone manifest preset preserve the man
   for (const config of [defaultConfig, recommendedExtensionJson]) {
     const messages = linter.verify(manifest, [...config], { filename })
     deepEqual(
-      messages.map(({ ruleId }) => ruleId),
+      messages.map(({ ruleId }: { readonly ruleId: string | null }) => ruleId),
       ['extension-json/non-empty-languages'],
     )
   }
