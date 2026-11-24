@@ -11,7 +11,10 @@
     "test": "node test/index.ts"
   },
   "license": "MIT",
-  "description": "Type-aware ESLint rules for LVCE extension providers.",
+  "description": "ESLint rules for LVCE extension providers and manifests.",
+  "dependencies": {
+    "@eslint/json": "2.0.1"
+  },
   "devDependencies": {
     "@lvce-editor/api": "9.54.1",
     "@types/estree": "^1.0.9",

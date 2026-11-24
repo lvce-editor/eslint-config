@@ -3,7 +3,7 @@ import { deepEqual, equal, throws } from 'node:assert/strict'
 import { test } from 'node:test'
 import { fileURLToPath } from 'node:url'
 import tseslint from 'typescript-eslint'
-import defaultConfig, { recommendedExtension } from '../../plugin/index.js'
+import defaultConfig, { recommendedExtension, recommendedExtensionJson } from '../../plugin/index.js'
 
 void test('exported extension preset diagnoses no-op optional methods using actual API declarations', () => {
   const linter = new Linter()
@@ -41,4 +41,17 @@ void test('default configuration includes extension provider checks', () => {
     defaultConfig.some((config: any) => config.rules?.['extension/no-empty-optional-provider-method'] === 'error'),
     true,
   )
+})
+
+void test('default configuration and standalone manifest preset preserve the manifest rule IDs', () => {
+  const linter = new Linter()
+  const manifest = '{"languages":[]}'
+  const filename = 'packages/sample/extension.json'
+  for (const config of [defaultConfig, recommendedExtensionJson]) {
+    const messages = linter.verify(manifest, [...config], { filename })
+    deepEqual(
+      messages.map(({ ruleId }) => ruleId),
+      ['extension-json/non-empty-languages'],
+    )
+  }
 })

@@ -18,9 +18,6 @@
       "path": "./packages/plugin-devcontainer"
     },
     {
-      "path": "./packages/plugin-extension-json"
-    },
-    {
       "path": "./packages/plugin"
     },
     {

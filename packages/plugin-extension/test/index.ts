@@ -1,2 +1,6 @@
+import './content-security-policy.test.ts'
 import './no-empty-optional-provider-method.test.ts'
+import './non-empty-languages.test.ts'
 import './recommended-config.test.ts'
+import './valid-configuration.test.ts'
+import './valid-keybindings.test.ts'
