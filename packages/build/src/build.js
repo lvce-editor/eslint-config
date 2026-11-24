@@ -63,12 +63,6 @@ const bundledPlugins = [
     variable: 'devcontainerPlugin',
   },
   {
-    dependency: '@lvce-editor/eslint-plugin-extension-json',
-    packageName: 'plugin-extension-json',
-    uri: 'extensionJsonUri',
-    variable: 'extensionJsonPlugin',
-  },
-  {
     dependency: '@lvce-editor/eslint-plugin-rpc',
     packageName: 'plugin-rpc',
     uri: 'rpcUri',
